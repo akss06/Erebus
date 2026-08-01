@@ -1,0 +1,11 @@
+earthengine-api
+geemap
+rasterio
+numpy
+scipy
+geopandas
+shapely
+requests
+folium
+Pillow
+matplotlib

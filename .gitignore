@@ -1,0 +1,21 @@
+# secrets - never commit
+.env
+
+__pycache__/
+*.pyc
+
+# virtual environments
+.venv/
+venv/
+predeploy_venv/
+
+# machine-local Claude Code settings, not project source
+.claude/settings.local.json
+
+# large re-downloadable input cache (land_mask.py re-fetches if absent)
+data/ne_10m_land.zip
+
+# large raw SAR downloads - excluded (multiple GB across data/ and
+# data/multi_date/); geojson/json/png outputs are small and are what the
+# deployed app actually reads, so those stay tracked
+data/**/*.tif

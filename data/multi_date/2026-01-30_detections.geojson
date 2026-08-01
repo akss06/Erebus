@@ -1,0 +1,643 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.23216682664814,
+          8.84667142601673
+        ]
+      },
+      "properties": {
+        "row": 38.0,
+        "col": 144.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.969735861395108,
+        "max_intensity_db": -13.46263737860519,
+        "local_background_db": -20.40504116173665,
+        "contrast_db": 6.435305300341543,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 779.0,
+        "matched_mmsi": "419819609",
+        "matched_name": "ST MATHA NET BOAT",
+        "matched_flag": "IND",
+        "matched_type": "GEAR",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.29362812696611,
+          8.802214472966828
+        ]
+      },
+      "properties": {
+        "row": 535.0,
+        "col": 817.0,
+        "area_px": 5,
+        "mean_intensity_db": -11.78062982563428,
+        "max_intensity_db": -10.569468650008966,
+        "local_background_db": -19.989114145637036,
+        "contrast_db": 8.208484320002755,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 3264.0,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22415251580999,
+          8.800804652282517
+        ]
+      },
+      "properties": {
+        "row": 545.0,
+        "col": 52.0,
+        "area_px": 5,
+        "mean_intensity_db": -11.796740903074895,
+        "max_intensity_db": -11.06108748988252,
+        "local_background_db": -19.660174101880926,
+        "contrast_db": 7.863433198806032,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 2401.1,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22292141684233,
+          8.795374568766443
+        ]
+      },
+      "properties": {
+        "row": 605.0,
+        "col": 38.0,
+        "area_px": 5,
+        "mean_intensity_db": -11.63505002464993,
+        "max_intensity_db": -10.21592629516029,
+        "local_background_db": -20.060058500267317,
+        "contrast_db": 8.425008475617387,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 1878.4,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22718334138924,
+          8.794954238526868
+        ]
+      },
+      "properties": {
+        "row": 610.0,
+        "col": 84.88888888888889,
+        "area_px": 18,
+        "mean_intensity_db": -9.954869204042362,
+        "max_intensity_db": -6.684833888158506,
+        "local_background_db": -19.664626048785035,
+        "contrast_db": 9.709756844742673,
+        "aspect_ratio": 1.75,
+        "fill_ratio": 0.6428571428571429,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 1691.5,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.29117296963712,
+          8.790089242066665
+        ]
+      },
+      "properties": {
+        "row": 669.0,
+        "col": 789.0,
+        "area_px": 5,
+        "mean_intensity_db": -12.997092016711738,
+        "max_intensity_db": -11.830111791495355,
+        "local_background_db": -20.19405678278655,
+        "contrast_db": 7.196964766074812,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 3483.6,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27687029194702,
+          8.779712859959309
+        ]
+      },
+      "properties": {
+        "row": 782.7,
+        "col": 630.7,
+        "area_px": 10,
+        "mean_intensity_db": -11.155673903812618,
+        "max_intensity_db": -8.845773634940448,
+        "local_background_db": -20.39282238847866,
+        "contrast_db": 9.237148484666042,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.625,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 3321.8,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.23313381267722,
+          8.77778620995637
+        ]
+      },
+      "properties": {
+        "row": 800.5,
+        "col": 149.0,
+        "area_px": 8,
+        "mean_intensity_db": -12.990860202350511,
+        "max_intensity_db": -11.15739632927625,
+        "local_background_db": -20.07098091802279,
+        "contrast_db": 7.08012071567228,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 423.0,
+        "matched_mmsi": "419801903",
+        "matched_name": "MSV-PENIEL-TTN-266",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28510301274807,
+          8.775453281244346
+        ]
+      },
+      "properties": {
+        "row": 830.5,
+        "col": 721.0,
+        "area_px": 8,
+        "mean_intensity_db": -11.608371580308125,
+        "max_intensity_db": -9.30547772368803,
+        "local_background_db": -20.691855529995316,
+        "contrast_db": 9.08348394968719,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 2373.6,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22111177109436,
+          8.75479410807735
+        ]
+      },
+      "properties": {
+        "row": 1054.0,
+        "col": 14.75,
+        "area_px": 28,
+        "mean_intensity_db": 2.6862821130274526,
+        "max_intensity_db": 5.646937781409992,
+        "local_background_db": -10.77831991538881,
+        "contrast_db": 13.464602028416262,
+        "aspect_ratio": 1.1666666666666667,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 546.9,
+        "matched_mmsi": "538011477",
+        "matched_name": "GN RUBY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22358919358008,
+          8.753671638313659
+        ]
+      },
+      "properties": {
+        "row": 1066.625,
+        "col": 41.9375,
+        "area_px": 16,
+        "mean_intensity_db": 1.1686274417642706,
+        "max_intensity_db": 3.533624643878869,
+        "local_background_db": -11.91584491814118,
+        "contrast_db": 13.084472359905451,
+        "aspect_ratio": 1.1666666666666667,
+        "fill_ratio": 0.38095238095238093,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 567.6,
+        "matched_mmsi": "538011477",
+        "matched_name": "GN RUBY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22906130970185,
+          8.748532020871425
+        ]
+      },
+      "properties": {
+        "row": 1123.9545454545455,
+        "col": 101.77272727272727,
+        "area_px": 22,
+        "mean_intensity_db": -3.3713876195082633,
+        "max_intensity_db": -1.6557257011203308,
+        "local_background_db": -15.770681627245803,
+        "contrast_db": 12.39929400773754,
+        "aspect_ratio": 1.4,
+        "fill_ratio": 0.6285714285714286,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 193.3,
+        "matched_mmsi": "419001466",
+        "matched_name": "OCEAN POISE",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22345570958564,
+          8.747944716841593
+        ]
+      },
+      "properties": {
+        "row": 1130.0,
+        "col": 40.0,
+        "area_px": 5,
+        "mean_intensity_db": 3.123768650008714,
+        "max_intensity_db": 4.341119713082027,
+        "local_background_db": -11.983634983027871,
+        "contrast_db": 15.107403633036585,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 443.1,
+        "matched_mmsi": "538011477",
+        "matched_name": "GN RUBY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28254695867732,
+          8.748069202945276
+        ]
+      },
+      "properties": {
+        "row": 1133.3703703703704,
+        "col": 690.6666666666666,
+        "area_px": 27,
+        "mean_intensity_db": 8.835347955565608,
+        "max_intensity_db": 13.138693998114254,
+        "local_background_db": -9.218347999864864,
+        "contrast_db": 18.05369595543047,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.5625,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 352.9,
+        "matched_mmsi": "636020701",
+        "matched_name": "MSC KYMEA II",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2238656974769,
+          8.7477670248066
+        ]
+      },
+      "properties": {
+        "row": 1132.0,
+        "col": 44.5,
+        "area_px": 8,
+        "mean_intensity_db": 1.986562630922084,
+        "max_intensity_db": 3.4849677519361295,
+        "local_background_db": -12.129555261224827,
+        "contrast_db": 14.11611789214691,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 492.0,
+        "matched_mmsi": "538011477",
+        "matched_name": "GN RUBY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26114609120897,
+          8.747767657071613
+        ]
+      },
+      "properties": {
+        "row": 1135.0,
+        "col": 455.0,
+        "area_px": 5,
+        "mean_intensity_db": -12.456799692568724,
+        "max_intensity_db": -11.019526090152356,
+        "local_background_db": -20.2544110407715,
+        "contrast_db": 7.797611348202777,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 1249.9,
+        "matched_mmsi": "341203002",
+        "matched_name": "TB.SURYA 1",
+        "matched_flag": "KNA",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22210092035627,
+          8.746940921866113
+        ]
+      },
+      "properties": {
+        "row": 1141.0,
+        "col": 25.0,
+        "area_px": 5,
+        "mean_intensity_db": 4.161241950522168,
+        "max_intensity_db": 5.6027094319597035,
+        "local_background_db": -11.320736122288082,
+        "contrast_db": 15.48197807281025,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 411.0,
+        "matched_mmsi": "538011477",
+        "matched_name": "GN RUBY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22728145033909,
+          8.745518251007947
+        ]
+      },
+      "properties": {
+        "row": 1157.1666666666667,
+        "col": 81.92857142857143,
+        "area_px": 42,
+        "mean_intensity_db": 5.651730706467045,
+        "max_intensity_db": 8.16797027050142,
+        "local_background_db": -11.072465622403193,
+        "contrast_db": 16.72419632887024,
+        "aspect_ratio": 1.0833333333333333,
+        "fill_ratio": 0.2692307692307692,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 581.2,
+        "matched_mmsi": "419001466",
+        "matched_name": "OCEAN POISE",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26921797934868,
+          8.740729374706145
+        ]
+      },
+      "properties": {
+        "row": 1213.5428571428572,
+        "col": 543.3142857142857,
+        "area_px": 35,
+        "mean_intensity_db": 3.7955020675724094,
+        "max_intensity_db": 7.391074692904228,
+        "local_background_db": -14.641768142577561,
+        "contrast_db": 18.437270210149972,
+        "aspect_ratio": 1.1428571428571428,
+        "fill_ratio": 0.625,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 117.9,
+        "matched_mmsi": "341970001",
+        "matched_name": "NEREUS PROGRESS",
+        "matched_flag": "KNA",
+        "matched_type": "OTHER",
+        "matched_hours": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22518936810314,
+          8.739349057870633
+        ]
+      },
+      "properties": {
+        "row": 1225.2777777777778,
+        "col": 58.388888888888886,
+        "area_px": 18,
+        "mean_intensity_db": -8.127091839137035,
+        "max_intensity_db": -5.014616716283884,
+        "local_background_db": -19.461564639163683,
+        "contrast_db": 11.334472800026647,
+        "aspect_ratio": 1.5,
+        "fill_ratio": 0.75,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 534.0,
+        "matched_mmsi": "419087700",
+        "matched_name": "",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.25706878838074,
+          8.734057225427444
+        ]
+      },
+      "properties": {
+        "row": 1286.4166666666667,
+        "col": 409.0,
+        "area_px": 12,
+        "mean_intensity_db": -13.190657901911841,
+        "max_intensity_db": -12.108709798601407,
+        "local_background_db": -20.27513583119233,
+        "contrast_db": 7.084477929280489,
+        "aspect_ratio": 2.0,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 898.4,
+        "matched_mmsi": "419087700",
+        "matched_name": "",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28269427816095,
+          8.725650628968262
+        ]
+      },
+      "properties": {
+        "row": 1381.5,
+        "col": 690.5,
+        "area_px": 12,
+        "mean_intensity_db": 12.879814267678592,
+        "max_intensity_db": 16.199086339509496,
+        "local_background_db": -5.883074266616994,
+        "contrast_db": 18.762888534295584,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.75,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 567.2,
+        "matched_mmsi": "538009555",
+        "matched_name": "FJ CAMELIA",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24
+      }
+    }
+  ]
+}

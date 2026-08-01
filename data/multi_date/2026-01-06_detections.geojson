@@ -1,0 +1,585 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2322411841907,
+          8.830606089489443
+        ]
+      },
+      "properties": {
+        "row": 216.0,
+        "col": 144.0,
+        "area_px": 5,
+        "mean_intensity_db": -14.197975810328632,
+        "max_intensity_db": -13.254546497624101,
+        "local_background_db": -21.08806652557234,
+        "contrast_db": 6.8900907152437085,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 4739.3,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2263199317596,
+          8.796790741312321
+        ]
+      },
+      "properties": {
+        "row": 589.7857142857143,
+        "col": 76.03571428571429,
+        "area_px": 28,
+        "mean_intensity_db": -9.168929835341206,
+        "max_intensity_db": -4.298967422936574,
+        "local_background_db": -20.04526044931888,
+        "contrast_db": 10.876330613977675,
+        "aspect_ratio": 1.6,
+        "fill_ratio": 0.7,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 3006.4,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22850599536304,
+          8.795522580981608
+        ]
+      },
+      "properties": {
+        "row": 604.0,
+        "col": 100.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.840698391645532,
+        "max_intensity_db": -13.249226061843014,
+        "local_background_db": -20.51209295604101,
+        "contrast_db": 6.671394564395477,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 2842.7,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2972951696784,
+          8.766205542795934
+        ]
+      },
+      "properties": {
+        "row": 934.0,
+        "col": 855.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.583938700328508,
+        "max_intensity_db": -12.585785446715663,
+        "local_background_db": -19.98379269086965,
+        "contrast_db": 6.399853990541141,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 2619.2,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3078863802918,
+          8.75851056296894
+        ]
+      },
+      "properties": {
+        "row": 1020.0,
+        "col": 971.0,
+        "area_px": 5,
+        "mean_intensity_db": -12.742174030236724,
+        "max_intensity_db": -11.454978009843648,
+        "local_background_db": -20.334366430128213,
+        "contrast_db": 7.5921923998914895,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 3207.6,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22063333493668,
+          8.754987790312388
+        ]
+      },
+      "properties": {
+        "row": 1052.0,
+        "col": 10.0,
+        "area_px": 5,
+        "mean_intensity_db": 1.5860889100868192,
+        "max_intensity_db": 3.173532642120746,
+        "local_background_db": -11.453523697629524,
+        "contrast_db": 13.039612607716343,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 559.0,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22095251975935,
+          8.754809436722496
+        ]
+      },
+      "properties": {
+        "row": 1054.0,
+        "col": 13.5,
+        "area_px": 8,
+        "mean_intensity_db": 4.028938888651545,
+        "max_intensity_db": 6.847927444777299,
+        "local_background_db": -10.623130811478065,
+        "contrast_db": 14.65206970012961,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 544.9,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22354938479522,
+          8.753653963918616
+        ]
+      },
+      "properties": {
+        "row": 1067.0,
+        "col": 42.0,
+        "area_px": 5,
+        "mean_intensity_db": 1.6796931380441253,
+        "max_intensity_db": 2.5450014650017607,
+        "local_background_db": -11.554652711938056,
+        "contrast_db": 13.234345849982182,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 563.2,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22903960650898,
+          8.748528120333058
+        ]
+      },
+      "properties": {
+        "row": 1124.1785714285713,
+        "col": 102.03571428571429,
+        "area_px": 28,
+        "mean_intensity_db": -4.746470578658462,
+        "max_intensity_db": -2.6312416991367527,
+        "local_background_db": -16.990473346690344,
+        "contrast_db": 12.244002768031882,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.5833333333333334,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 194.9,
+        "matched_mmsi": "419821076",
+        "matched_name": "HOLYSPIRIT1 NET BOAT",
+        "matched_flag": "IND",
+        "matched_type": "GEAR",
+        "matched_hours": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22286578005915,
+          8.747866536422137
+        ]
+      },
+      "properties": {
+        "row": 1131.0,
+        "col": 34.0,
+        "area_px": 5,
+        "mean_intensity_db": 13.506616878104179,
+        "max_intensity_db": 14.201654816628524,
+        "local_background_db": -0.9710977739650013,
+        "contrast_db": 14.47771465206918,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 394.2,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2222798662587,
+          8.747274959968541
+        ]
+      },
+      "properties": {
+        "row": 1137.5,
+        "col": 27.5,
+        "area_px": 8,
+        "mean_intensity_db": 13.282124814324058,
+        "max_intensity_db": 14.997818398272928,
+        "local_background_db": -1.99995240271699,
+        "contrast_db": 15.28207721704105,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 393.1,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2219176295297,
+          8.747136775598104
+        ]
+      },
+      "properties": {
+        "row": 1139.0,
+        "col": 23.5,
+        "area_px": 8,
+        "mean_intensity_db": 13.551433608137923,
+        "max_intensity_db": 15.213789971475657,
+        "local_background_db": -1.554891385544552,
+        "contrast_db": 15.106324993682476,
+        "aspect_ratio": 1.3333333333333333,
+        "fill_ratio": 0.6666666666666666,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 381.7,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26919039892425,
+          8.74056884088231
+        ]
+      },
+      "properties": {
+        "row": 1215.5,
+        "col": 543.5,
+        "area_px": 22,
+        "mean_intensity_db": 4.448336519629006,
+        "max_intensity_db": 7.474586805389107,
+        "local_background_db": -14.182350393563866,
+        "contrast_db": 18.63068691319287,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.6111111111111112,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 108.9,
+        "matched_mmsi": "341970001",
+        "matched_name": "NEREUS PROGRESS",
+        "matched_flag": "KNA",
+        "matched_type": "OTHER",
+        "matched_hours": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27202623273278,
+          8.731508728547157
+        ]
+      },
+      "properties": {
+        "row": 1316.0,
+        "col": 574.0,
+        "area_px": 5,
+        "mean_intensity_db": 7.956470844562513,
+        "max_intensity_db": 9.782481141756499,
+        "local_background_db": -7.141786816814253,
+        "contrast_db": 15.098257661376767,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 279.1,
+        "matched_mmsi": "538011871",
+        "matched_name": "SSI IRRESISTIBLE",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27185315089984,
+          8.730332884105065
+        ]
+      },
+      "properties": {
+        "row": 1329.0,
+        "col": 572.0,
+        "area_px": 5,
+        "mean_intensity_db": 9.052098451464603,
+        "max_intensity_db": 10.510899682391912,
+        "local_background_db": -6.9718843658678225,
+        "contrast_db": 16.023982817332424,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 207.4,
+        "matched_mmsi": "538011871",
+        "matched_name": "SSI IRRESISTIBLE",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27140435512767,
+          8.729606824469663
+        ]
+      },
+      "properties": {
+        "row": 1337.0,
+        "col": 567.0,
+        "area_px": 5,
+        "mean_intensity_db": 9.35443769686516,
+        "max_intensity_db": 10.433197039411965,
+        "local_background_db": -7.245057924720434,
+        "contrast_db": 16.599495621585593,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 160.8,
+        "matched_mmsi": "538011871",
+        "matched_name": "SSI IRRESISTIBLE",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.30319282702112,
+          8.72920177180275
+        ]
+      },
+      "properties": {
+        "row": 1344.0,
+        "col": 917.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.562184059549725,
+        "max_intensity_db": -12.653605649346964,
+        "local_background_db": -20.425865307270232,
+        "contrast_db": 6.863681247720507,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5555555555555556,
+        "shape_label": "BLOCKY",
+        "match_status": "UNMATCHED",
+        "match_distance_m": 1774.6,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27768135223647,
+          8.724807367040771
+        ]
+      },
+      "properties": {
+        "row": 1390.6176470588234,
+        "col": 635.7352941176471,
+        "area_px": 34,
+        "mean_intensity_db": -0.3745719740432007,
+        "max_intensity_db": 2.5142402382339113,
+        "local_background_db": -15.290607917711945,
+        "contrast_db": 14.916035943668744,
+        "aspect_ratio": 1.5,
+        "fill_ratio": 0.6296296296296297,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 592.1,
+        "matched_mmsi": "352005913",
+        "matched_name": "BO RUN JIU ZHOU",
+        "matched_flag": "PAN",
+        "matched_type": "CARGO",
+        "matched_hours": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2862257747995,
+          8.722555808358367
+        ]
+      },
+      "properties": {
+        "row": 1416.2142857142858,
+        "col": 729.6428571428571,
+        "area_px": 14,
+        "mean_intensity_db": 8.256654294766266,
+        "max_intensity_db": 10.308778414820301,
+        "local_background_db": -7.001844678049169,
+        "contrast_db": 15.258498972815435,
+        "aspect_ratio": 1.25,
+        "fill_ratio": 0.7,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 502.9,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22982904178235,
+          8.721128602503743
+        ]
+      },
+      "properties": {
+        "row": 1427.5,
+        "col": 108.5,
+        "area_px": 8,
+        "mean_intensity_db": -12.984612027005362,
+        "max_intensity_db": -11.658084562280528,
+        "local_background_db": -20.45793558936691,
+        "contrast_db": 7.47332356236155,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.5,
+        "shape_label": "BLOCKY",
+        "match_status": "MATCHED",
+        "match_distance_m": 986.6,
+        "matched_mmsi": "419000783",
+        "matched_name": "CG 239",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1
+      }
+    }
+  ]
+}
