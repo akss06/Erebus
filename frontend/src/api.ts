@@ -84,6 +84,19 @@ export interface SimVessel {
 
 const q = (sim: string | null) => (sim ? `&sim=${sim}` : "");
 
+export interface AnalyzeResult {
+  run_id: string;
+}
+
+export interface AnalyzeStatus {
+  status: "starting" | "running" | "done" | "error";
+  progress: number;
+  log: string[];
+  result: { total: number; dark_candidates: number; classes: Record<string, number> } | null;
+  area_id: string | null;
+  error: string | null;
+}
+
 export const api = {
   areas: () => get<Area[]>("/api/areas"),
   clusters: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/clusters?area=${area}${q(sim)}`),
@@ -101,4 +114,14 @@ export const api = {
     if (!res.ok) throw new Error(`review -> ${res.status}`);
     return res.json();
   },
+  analyze: async (region: [number, number, number, number], startDate: string, endDate: string, maxPerDate = 10): Promise<AnalyzeResult> => {
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ region, start_date: startDate, end_date: endDate, max_per_date: maxPerDate }),
+    });
+    if (!res.ok) throw new Error(`analyze -> ${res.status}`);
+    return res.json();
+  },
+  analyzeStatus: (runId: string) => get<AnalyzeStatus>(`/api/analyze/${runId}`),
 };

@@ -61,3 +61,12 @@ select { background: var(--bg); color: var(--text); border: 1px solid var(--line
 .simbanner { position: absolute; left: 10px; right: 60px; top: 96px; background: rgba(97, 71, 0, 0.95); border: 1px solid #ffd666; color: #fff1b8; border-radius: 8px; padding: 8px 12px; font-size: 13px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .simbanner button { margin-left: auto; }
 .provenance.sim { color: #ffd666; }
+.analyze-btn { border-color: var(--accent); color: var(--accent); }
+.coord-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+.coord-grid input { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 4px 6px; font: inherit; }
+.progress-bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s ease; }
+.log-box { max-height: 300px; overflow-y: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; font: 12px/1.5 "Cascadia Code", "Fira Code", monospace; color: var(--muted); }
+.log-box div { white-space: pre-wrap; word-break: break-all; }
+input[type="date"] { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 4px 6px; font: inherit; }
+input[type="number"] { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 4px; padding: 4px 6px; font: inherit; }

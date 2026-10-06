@@ -4,6 +4,7 @@ import { CLASSES, CLASS_ORDER } from "./classes";
 import MapView, { type MapPoint } from "./MapView";
 import AlertsPanel from "./AlertsPanel";
 import DetailPanel from "./DetailPanel";
+import AnalyzePanel from "./AnalyzePanel";
 
 const DEFAULT_VISIBLE = new Set<ConfClass>(CLASS_ORDER.filter((c) => c !== "CLUTTER"));
 
@@ -19,6 +20,7 @@ export default function App() {
   const [overlay, setOverlay] = useState(false);
   const [sim, setSim] = useState<string | null>(null);
   const [simVessels, setSimVessels] = useState<SimVessel[]>([]);
+  const [showAnalyze, setShowAnalyze] = useState(false);
 
   useEffect(() => {
     api.areas().then(setAreas);
@@ -74,10 +76,13 @@ export default function App() {
         </div>
         <nav>
           {areas.map((a) => (
-            <button key={a.id} className={a.id === areaId ? "active" : ""} onClick={() => setAreaId(a.id)}>
+            <button key={a.id} className={a.id === areaId ? "active" : ""} onClick={() => { setAreaId(a.id); setShowAnalyze(false); }}>
               {a.name} <small>({a.detections})</small>
             </button>
           ))}
+          <button className={showAnalyze ? "active" : "analyze-btn"} onClick={() => setShowAnalyze(true)}>
+            Run Analysis
+          </button>
         </nav>
       </header>
 
@@ -132,7 +137,16 @@ export default function App() {
           </div>
         </section>
 
-        {selectedId ? (
+        {showAnalyze ? (
+          <AnalyzePanel
+            onComplete={(newAreaId) => {
+              api.areas().then(setAreas);
+              setAreaId(newAreaId);
+              setShowAnalyze(false);
+            }}
+            onClose={() => setShowAnalyze(false)}
+          />
+        ) : selectedId ? (
           <DetailPanel id={selectedId} sim={sim} onClose={() => setSelectedId(null)} onReviewed={refreshAlerts} />
         ) : (
           <AlertsPanel alerts={alerts} selectedId={selectedId} onSelect={setSelectedId} />
