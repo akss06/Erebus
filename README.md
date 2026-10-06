@@ -107,6 +107,11 @@ dark-vessel-detection/
 
 ## 5. Detection methodology
 
+The project has **two detectors**: the original **CA-CFAR** (`detect.py`, described
+here — still used for the Tuticorin and Jan 2026 sets and for the frozen GFW
+validation) and the newer **v3 superpixel Generalized-Gamma CFAR** (`detect_v3.py`,
+§9, used for the recent Jun–Sep set). Both feed the same confidence scorer below.
+
 ### Land mask (`land_mask.py`)
 Land is a bright radar reflector and buries a naive threshold in coastal false
 positives. Land pixels are masked with the **Natural Earth 10 m** land polygon,
@@ -149,9 +154,13 @@ What a cluster does across passes is the strongest evidence available:
 structure." Pipeline/cable fragments reappear on every pass but "match" a *different*
 AIS ship each time (whichever anchored nearby that day); a true anchored ship matches
 the *same* MMSI every time. So the rule is persistence **plus AIS-identity
-consistency**. When an independent detector (GFW's SAR detections) corroborates a
-target, the contrast bar for vessel/dark-candidate drops from 15 dB to 10 dB — a
-design decision to re-test, documented as such, not a validated threshold.
+consistency**. When an independent detector (GFW's SAR detection) corroborates a
+target *within match radius of that detection*, the contrast bar for
+vessel/dark-candidate drops from 15 dB to **12 dB** (recalibrated Oct 2026 from 10 dB
+after reviewing v3 crops — 10 dB returns read as speckle). Corroboration is applied
+**per detection**, not blanket across a tile. A positive **VH/VV cross-pol** signal
+(`vh_corroborated`) adds confidence but never demotes, since small wooden/fibreglass
+trawlers depolarise weakly.
 
 **Known blind spot:** a *dark* ship anchored in one place for weeks looks exactly like
 a `FIXED_OBJECT`. Persistence cannot separate those two cases; such objects are
@@ -191,14 +200,16 @@ single biggest gap in operational-grade matching.
 
 ## 7. Scored datasets currently in the app
 
-| Area | Detections | Breakdown | Notes |
+| Area | Detections | Breakdown | Detector |
 |---|---|---|---|
-| **Tuticorin anchorage** | 70 over 4 passes | ANCHORED 4 · VESSEL_CANDIDATE 10 · FIXED 18 · LOW 12 · CLUTTER 26 · **DARK 0** | Repeat-pass test bed; matches the Round-1 negative result |
-| **Gulf of Mannar / Palk Strait** | 95 | VESSEL_CANDIDATE 9 · LOW 1 · CLUTTER 62 · **DARK 23** | From the 143-detection GFW search; all 23 dark candidates single-pass, 10–16 dB |
-| **Gulf of Mannar (Jun–Sep 2026)** | 444 | VESSEL_CANDIDATE 17 · FIXED 57 · LOW 26 · CLUTTER 264 · **DARK 80** | Recent multi-date hotspot run; **detector being upgraded (see §9)** |
+| **Gulf of Mannar (Jun–Sep 2026)** | 572 | VESSEL_CANDIDATE 4 · FIXED 67 · LOW 4 · CLUTTER 480 · **DARK 17** | **v3** (superpixel GG-CFAR, §9) |
+| **Tuticorin anchorage** | 70 over 4 passes | ANCHORED 4 · VESSEL_CANDIDATE 10 · FIXED 18 · LOW 12 · CLUTTER 26 · **DARK 0** | CA-CFAR (migration to v3 pending) |
+| **Gulf of Mannar / Palk Strait (Jan 2026)** | 95 | VESSEL_CANDIDATE 9 · LOW 1 · CLUTTER 62 · **DARK 23** | CA-CFAR (migration to v3 pending) |
 
 All dark-candidate counts are **unverified candidates pending review**, not confirmed
-dark vessels.
+dark vessels. The recent (Jun–Sep) set runs the v3 detector; the Tuticorin and Jan 2026
+sets still run the original CA-CFAR and are being migrated to v3 (same pipeline, so
+their counts will change).
 
 ---
 
@@ -231,28 +242,44 @@ runs.
 
 ---
 
-## 9. Detector upgrade — in progress
+## 9. The v3 detector (`detect_v3.py`)
 
-Visual review of the recent (Jun–Sep 2026) run surfaced three false-positive modes
-the CA-CFAR detector does not handle: clustered clutter flagged as vessels, detections
-on small unmasked reefs/islets, and faint speckle near bright coastal returns that
-reads as a dark vessel. The fix in progress (`detect_v3.py`) replaces the hand-tuned
-post-filters with a literature-grounded detector — each stage mapped to a paper from a
-SAR false-positive-reduction review:
+Visual review of the recent run surfaced three false-positive modes the original
+CA-CFAR could not handle: clustered clutter flagged as vessels, detections on small
+unmasked reefs/islets, and faint speckle near bright returns reading as dark vessels.
+`detect_v3.py` replaces the hand-tuned post-filters with a literature-grounded
+detector — each stage mapped to a paper from a SAR false-positive-reduction review
+(the Elicit set):
 
 1. **JRC Global Surface Water mask + 1 km shore buffer** (GFW / Paolo et al. 2024) —
-   replaces the coarse coastline so small Gulf of Mannar reefs and islets are masked.
-2. **SLIC superpixels split into pure-clutter vs bright regions** (Pappas 2018; Li
-   2022) — so target and land pixels do not poison the clutter estimate.
-3. **Generalized-Gamma CFAR** (Martín-de-Nicolás 2015; Li 2022) — a heavy-tailed
-   clutter quantile for a target false-alarm rate, instead of the Gaussian `mean+k·std`
-   that over-detects speckle spikes.
-4. **Peak-to-clutter ratio + Eigen-ellipse shape gates** (Ao & Xu 2018; Bi 2013) — the
-   "bright radiating point vs faint speckle" discriminator.
+   replaces the coarse coastline. Water = JRC `occurrence ≥ 50 %`; land = Natural Earth
+   land ∪ JRC non-water; then every pixel within 1 km of shore is dropped. Catches the
+   Gulf of Mannar reefs/islets the 10 m coastline misses.
+2. **SLIC superpixels, robust-MAD clutter selection** (Pappas 2018; Li M-D 2022) —
+   keep the dominant sea as clutter, exclude only genuinely bright outlier superpixels.
+   (An earlier Otsu half-split flooded rough-sea tiles; the MAD test fixed it.)
+3. **Generalized-Gamma CFAR, locally adaptive** (Martín-de-Nicolás 2015; Li 2022) —
+   `threshold = local_clutter_mean × α`, where α is the GGD quantile of the *normalized*
+   clutter (scale-free, so one fit is valid tile-wide) for P_fa = 1e-5. Rough patches
+   get a proportionally higher bar — a heavy-tailed replacement for Gaussian `k·std`.
+4. **Shape + peak-to-clutter gates** (Ao & Xu 2018; Bi 2013) — eigen-ellipse solidity
+   and eccentricity reject ragged blobs and reef/wake lines (tuned for 10 m, so compact
+   small boats are kept, not required to look boat-shaped). *Note:* peak-to-clutter
+   (TCR) turned out **not** to discriminate here — over −20 dB water almost everything
+   has high TCR — so plain contrast (blob vs local background) is the real lever.
+5. **VH/VV cross-pol** — a corroborating confidence signal only (see §5).
+
+**Honest crops:** `save_crop` now uses a fixed VV window (−23 → +3 dB) instead of a
+per-crop percentile stretch, which was getting hijacked by bright azimuth-ambiguity
+streaks in frame and washing real targets down to grey.
 
 The frozen Round-1 CA-CFAR detector (`detect.py`) and the GFW validation
-(`validate_vs_gfw.py`) are left untouched so the reported validation numbers stay
-honest.
+(`validate_vs_gfw.py`) are deliberately left untouched so the §6 validation numbers
+stay honest.
+
+**Still pending:** (a) an explicit Adam's Bridge reef-chain mask (two Jun-30 dark
+candidates sit on that charted shoal, which JRC reports as permanent water); (b)
+migrating the Tuticorin and Jan 2026 datasets from CA-CFAR onto this same v3 pipeline.
 
 ---
 
@@ -300,6 +327,10 @@ python src/run_recent.py --max-hotspots 20        # recent multi-date hotspot ru
 - **Confidence thresholds involve mild tuning on the same data** they were checked
   against (noted in `WORKLOG.md`); they need testing on a fresh area to be called
   validated.
+- **Reefs and azimuth ambiguities still produce some false positives.** Intermittently
+  exposed shoals (e.g. Adam's Bridge) can read as targets, and strong scatterers throw
+  bright azimuth-ambiguity "ghost" streaks; the v3 shape/mask gates reduce but do not
+  eliminate these (see §9 pending work).
 - **A human must eyeball the output.** Automated detection can be confidently wrong
   (clutter, platforms, rain cells); red dots are candidates for an analyst, not
   verdicts.
