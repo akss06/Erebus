@@ -1,0 +1,157 @@
+*** Earth Engine *** Share your feedback by taking our Annual Developer Satisfaction Survey: https://google.qualtrics.com/jfe/form/SV_9oS0DRcPvElRMNw?source=python
+[gfw] 2026-01-06: 52 SAR detections (42 without AIS match)
+[gfw] 2026-01-18: 20 SAR detections (15 without AIS match)
+[gfw] 2026-01-30: 71 SAR detections (64 without AIS match)
+[download] 143 tiles, 4 in parallel
+  [retry 1/3] ReadTimeout
+  [retry 1/3] ConnectionError
+  2026-01-06 GFW 78.390,8.420 ais=Y  found=True  nearest=719m  tile_dets=6
+  2026-01-06 GFW 79.750,10.210 ais=N  found=True  nearest=213m  tile_dets=7
+  2026-01-06 GFW 79.220,9.210 ais=N  found=True  nearest=230m  tile_dets=18
+  2026-01-06 GFW 78.360,8.670 ais=Y  found=True  nearest=707m  tile_dets=6
+  2026-01-06 GFW 79.550,10.100 ais=N  found=True  nearest=241m  tile_dets=10
+  2026-01-06 GFW 79.560,10.110 ais=N  found=True  nearest=494m  tile_dets=9
+  2026-01-06 GFW 78.490,8.730 ais=Y  found=True  nearest=610m  tile_dets=5
+  2026-01-06 GFW 79.420,9.590 ais=N  found=True  nearest=522m  tile_dets=5
+  2026-01-06 GFW 79.410,9.610 ais=N  found=True  nearest=676m  tile_dets=8
+  2026-01-06 GFW 78.280,8.720 ais=Y  found=True  nearest=592m  tile_dets=11
+  2026-01-06 GFW 79.450,9.430 ais=N  found=False  nearest=1967m  tile_dets=5
+  2026-01-06 GFW 79.690,10.220 ais=N  found=False  nearest=2143m  tile_dets=3
+  2026-01-06 GFW 79.420,9.620 ais=N  found=False  nearest=1959m  tile_dets=8
+  2026-01-06 GFW 79.440,9.550 ais=N  found=True  nearest=597m  tile_dets=6
+  2026-01-06 GFW 79.460,10.260 ais=N  found=True  nearest=593m  tile_dets=2
+  2026-01-06 GFW 79.410,9.630 ais=N  found=True  nearest=724m  tile_dets=8
+  2026-01-06 GFW 79.530,10.120 ais=N  found=True  nearest=549m  tile_dets=8
+  2026-01-06 GFW 78.870,8.980 ais=N  found=False  nearest=3645m  tile_dets=2
+  2026-01-06 GFW 79.560,10.120 ais=N  found=True  nearest=638m  tile_dets=9
+  2026-01-06 GFW 79.430,8.910 ais=N  found=False  nearest=1586m  tile_dets=5
+  2026-01-06 GFW 79.440,9.690 ais=N  found=True  nearest=387m  tile_dets=10
+  2026-01-06 GFW 78.480,9.050 ais=N  found=True  nearest=471m  tile_dets=4
+  2026-01-06 GFW 78.190,8.620 ais=N  found=True  nearest=621m  tile_dets=11
+  2026-01-06 GFW 78.220,8.650 ais=Y  found=True  nearest=134m  tile_dets=13
+  2026-01-06 GFW 79.440,9.660 ais=N  found=False  nearest=1821m  tile_dets=7
+  2026-01-06 GFW 78.270,8.740 ais=Y  found=True  nearest=109m  tile_dets=11
+  2026-01-06 GFW 79.910,10.200 ais=N  found=True  nearest=982m  tile_dets=16
+  2026-01-06 GFW 79.490,9.400 ais=N  found=True  nearest=720m  tile_dets=1
+  2026-01-06 GFW 79.450,9.690 ais=N  found=True  nearest=186m  tile_dets=10
+  2026-01-06 GFW 79.610,10.140 ais=N  found=False  nearest=1923m  tile_dets=3
+  2026-01-06 GFW 79.990,10.150 ais=N  found=True  nearest=705m  tile_dets=11
+  2026-01-06 GFW 78.270,8.730 ais=Y  found=True  nearest=161m  tile_dets=12
+  2026-01-06 GFW 78.290,8.720 ais=Y  found=True  nearest=503m  tile_dets=11
+  2026-01-06 GFW 78.550,8.370 ais=Y  found=True  nearest=407m  tile_dets=8
+  2026-01-06 GFW 78.220,8.660 ais=Y  found=True  nearest=132m  tile_dets=13
+  2026-01-06 GFW 79.400,9.730 ais=N  found=True  nearest=365m  tile_dets=7
+  2026-01-06 GFW 78.220,8.710 ais=N  found=True  nearest=347m  tile_dets=23
+  2026-01-06 GFW 79.220,9.200 ais=N  found=True  nearest=168m  tile_dets=15
+  2026-01-06 GFW 79.420,9.710 ais=N  found=True  nearest=997m  tile_dets=10
+  2026-01-06 GFW 79.610,10.130 ais=N  found=False  nearest=2687m  tile_dets=2
+  2026-01-06 GFW 79.440,9.640 ais=N  found=True  nearest=1312m  tile_dets=6
+  2026-01-06 GFW 79.110,8.880 ais=N  found=False  nearest=1967m  tile_dets=2
+  2026-01-06 GFW 79.780,10.220 ais=N  found=True  nearest=648m  tile_dets=9
+  2026-01-06 GFW 79.750,10.170 ais=N  found=False  nearest=4084m  tile_dets=4
+  2026-01-06 GFW 79.430,9.630 ais=N  found=True  nearest=1336m  tile_dets=8
+  2026-01-06 GFW 79.370,9.300 ais=N  found=True  nearest=487m  tile_dets=4
+  2026-01-06 GFW 79.400,9.610 ais=N  found=True  nearest=500m  tile_dets=8
+  2026-01-06 GFW 78.220,8.660 ais=N  found=True  nearest=132m  tile_dets=13
+  2026-01-06 GFW 79.430,9.580 ais=N  found=True  nearest=141m  tile_dets=8
+  2026-01-06 GFW 79.660,10.210 ais=N  found=False  nearest=2564m  tile_dets=3
+  2026-01-06 GFW 79.700,10.190 ais=N  found=False  nearest=1701m  tile_dets=2
+  2026-01-06 GFW 79.950,10.290 ais=N  found=True  nearest=581m  tile_dets=17
+  2026-01-18 GFW 78.270,8.750 ais=Y  found=True  nearest=401m  tile_dets=6
+  2026-01-18 GFW 79.230,9.220 ais=N  found=True  nearest=346m  tile_dets=25
+  2026-01-18 GFW 78.270,8.740 ais=Y  found=True  nearest=92m  tile_dets=6
+  2026-01-18 GFW 79.290,9.470 ais=N  found=False  nearest=2770m  tile_dets=3
+  2026-01-18 GFW 78.420,8.590 ais=N  found=True  nearest=1177m  tile_dets=3
+  2026-01-18 GFW 79.410,9.300 ais=N  found=False  nearest=2362m  tile_dets=3
+  2026-01-18 GFW 78.280,8.730 ais=Y  found=True  nearest=413m  tile_dets=5
+  2026-01-18 GFW 79.230,9.210 ais=N  found=True  nearest=859m  tile_dets=19
+  2026-01-18 GFW 79.220,9.210 ais=N  found=True  nearest=95m  tile_dets=21
+  2026-01-18 GFW 79.150,8.810 ais=N  found=True  nearest=395m  tile_dets=3
+  2026-01-18 GFW 79.210,9.210 ais=N  found=True  nearest=100m  tile_dets=19
+  2026-01-18 GFW 78.370,8.550 ais=Y  found=True  nearest=217m  tile_dets=4
+  2026-01-18 GFW 79.600,9.790 ais=N  found=False  nearest=5085m  tile_dets=1
+  2026-01-18 GFW 78.390,8.240 ais=N  found=True  nearest=940m  tile_dets=3
+  2026-01-18 GFW 78.640,8.700 ais=Y  found=True  nearest=496m  tile_dets=3
+  2026-01-18 GFW 79.230,9.200 ais=N  found=True  nearest=235m  tile_dets=17
+  2026-01-18 GFW 79.280,9.490 ais=N  found=True  nearest=498m  tile_dets=2
+  2026-01-18 GFW 79.220,9.220 ais=N  found=True  nearest=431m  tile_dets=27
+  2026-01-18 GFW 78.870,9.100 ais=N  found=False  nearest=Nonem  tile_dets=0
+  2026-01-18 GFW 78.980,8.890 ais=N  found=True  nearest=146m  tile_dets=4
+  2026-01-30 GFW 78.290,8.760 ais=Y  found=False  nearest=1559m  tile_dets=9
+  2026-01-30 GFW 79.530,10.280 ais=N  found=True  nearest=384m  tile_dets=6
+  2026-01-30 GFW 78.350,8.860 ais=N  found=True  nearest=518m  tile_dets=7
+  2026-01-30 GFW 78.210,8.650 ais=N  found=True  nearest=329m  tile_dets=6
+  2026-01-30 GFW 79.610,10.130 ais=N  found=False  nearest=2525m  tile_dets=2
+  2026-01-30 GFW 79.230,8.780 ais=N  found=True  nearest=278m  tile_dets=7
+  2026-01-30 GFW 79.750,10.180 ais=N  found=True  nearest=83m  tile_dets=4
+  2026-01-30 GFW 79.400,9.000 ais=N  found=False  nearest=1533m  tile_dets=3
+  2026-01-30 GFW 79.000,9.640 ais=N  found=False  nearest=Nonem  tile_dets=0
+  2026-01-30 GFW 78.280,8.750 ais=Y  found=True  nearest=353m  tile_dets=8
+  2026-01-30 GFW 78.370,8.840 ais=N  found=False  nearest=1640m  tile_dets=7
+  2026-01-30 GFW 79.100,8.800 ais=N  found=True  nearest=1447m  tile_dets=4
+  2026-01-30 GFW 78.200,8.640 ais=N  found=True  nearest=672m  tile_dets=7
+  2026-01-30 GFW 78.950,8.690 ais=N  found=False  nearest=Nonem  tile_dets=0
+  2026-01-30 GFW 78.280,8.730 ais=Y  found=True  nearest=567m  tile_dets=6
+  2026-01-30 GFW 79.410,9.710 ais=N  found=True  nearest=437m  tile_dets=10
+  2026-01-30 GFW 78.130,8.340 ais=Y  found=True  nearest=654m  tile_dets=9
+  2026-01-30 GFW 79.280,9.020 ais=N  found=True  nearest=562m  tile_dets=5
+  2026-01-30 GFW 79.640,10.240 ais=N  found=True  nearest=456m  tile_dets=3
+  2026-01-30 GFW 78.770,8.920 ais=N  found=False  nearest=2586m  tile_dets=3
+  2026-01-30 GFW 79.400,9.680 ais=N  found=True  nearest=82m  tile_dets=11
+  2026-01-30 GFW 79.430,9.730 ais=N  found=False  nearest=1687m  tile_dets=8
+  2026-01-30 GFW 79.220,8.830 ais=N  found=False  nearest=1755m  tile_dets=5
+  2026-01-30 GFW 78.040,8.240 ais=N  found=False  nearest=4954m  tile_dets=1
+  2026-01-30 GFW 78.910,8.960 ais=N  found=False  nearest=Nonem  tile_dets=0
+  2026-01-30 GFW 79.110,8.920 ais=N  found=True  nearest=397m  tile_dets=5
+  2026-01-30 GFW 79.450,9.800 ais=N  found=False  nearest=2413m  tile_dets=2
+  2026-01-30 GFW 79.420,9.720 ais=N  found=True  nearest=302m  tile_dets=10
+  2026-01-30 GFW 79.210,9.080 ais=N  found=True  nearest=372m  tile_dets=2
+  2026-01-30 GFW 79.080,8.790 ais=N  found=False  nearest=1663m  tile_dets=3
+  2026-01-30 GFW 79.510,9.080 ais=N  found=True  nearest=1218m  tile_dets=11
+  2026-01-30 GFW 78.410,8.670 ais=N  found=True  nearest=44m  tile_dets=4
+  2026-01-30 GFW 79.880,10.130 ais=N  found=True  nearest=435m  tile_dets=4
+  2026-01-30 GFW 79.150,8.970 ais=N  found=True  nearest=602m  tile_dets=3
+  2026-01-30 GFW 78.940,8.710 ais=N  found=False  nearest=3860m  tile_dets=2
+  2026-01-30 GFW 79.030,8.760 ais=N  found=True  nearest=530m  tile_dets=7
+  2026-01-30 GFW 78.640,8.260 ais=Y  found=True  nearest=460m  tile_dets=4
+  2026-01-30 GFW 79.440,9.540 ais=N  found=True  nearest=395m  tile_dets=4
+  2026-01-30 GFW 79.390,9.690 ais=N  found=True  nearest=686m  tile_dets=14
+  2026-01-30 GFW 79.500,9.080 ais=N  found=True  nearest=394m  tile_dets=11
+  2026-01-30 GFW 78.970,8.910 ais=N  found=True  nearest=420m  tile_dets=10
+  2026-01-30 GFW 79.610,9.990 ais=N  found=True  nearest=340m  tile_dets=4
+  2026-01-30 GFW 79.350,9.150 ais=N  found=True  nearest=582m  tile_dets=6
+  2026-01-30 GFW 79.430,9.020 ais=N  found=True  nearest=624m  tile_dets=3
+  2026-01-30 GFW 79.390,9.720 ais=N  found=True  nearest=520m  tile_dets=12
+  2026-01-30 GFW 78.340,8.700 ais=Y  found=True  nearest=699m  tile_dets=7
+  2026-01-30 GFW 79.170,9.070 ais=N  found=True  nearest=480m  tile_dets=3
+  2026-01-30 GFW 79.430,9.540 ais=N  found=True  nearest=558m  tile_dets=4
+  2026-01-30 GFW 78.140,8.380 ais=Y  found=False  nearest=1595m  tile_dets=16
+  2026-01-30 GFW 79.010,8.670 ais=N  found=True  nearest=97m  tile_dets=5
+  2026-01-30 GFW 79.240,8.810 ais=N  found=True  nearest=894m  tile_dets=6
+  2026-01-30 GFW 78.400,8.480 ais=N  found=True  nearest=327m  tile_dets=5
+  2026-01-30 GFW 78.580,8.830 ais=N  found=True  nearest=503m  tile_dets=3
+  2026-01-30 GFW 79.560,10.230 ais=N  found=True  nearest=473m  tile_dets=1
+  2026-01-30 GFW 79.410,9.730 ais=N  found=True  nearest=290m  tile_dets=9
+  2026-01-30 GFW 79.410,9.000 ais=N  found=True  nearest=1127m  tile_dets=3
+  2026-01-30 GFW 79.320,9.100 ais=N  found=True  nearest=435m  tile_dets=5
+  2026-01-30 GFW 79.160,8.980 ais=N  found=True  nearest=384m  tile_dets=3
+  2026-01-30 GFW 79.420,9.630 ais=N  found=True  nearest=355m  tile_dets=8
+  2026-01-30 GFW 78.980,8.920 ais=N  found=True  nearest=162m  tile_dets=9
+  2026-01-30 GFW 79.370,9.680 ais=N  found=True  nearest=421m  tile_dets=10
+  2026-01-30 GFW 79.410,8.990 ais=N  found=True  nearest=59m  tile_dets=2
+  2026-01-30 GFW 78.360,8.860 ais=N  found=True  nearest=561m  tile_dets=7
+  2026-01-30 GFW 78.870,9.130 ais=N  found=True  nearest=422m  tile_dets=4
+  2026-01-30 GFW 78.280,8.780 ais=N  found=True  nearest=345m  tile_dets=7
+  2026-01-30 GFW 79.160,8.750 ais=N  found=True  nearest=572m  tile_dets=3
+  2026-01-30 GFW 79.290,9.140 ais=N  found=False  nearest=3962m  tile_dets=2
+  2026-01-30 GFW 79.400,9.710 ais=N  found=True  nearest=383m  tile_dets=10
+  2026-01-30 GFW 79.870,10.120 ais=N  found=True  nearest=1034m  tile_dets=4
+  2026-01-30 GFW 79.210,8.800 ais=N  found=True  nearest=1280m  tile_dets=7
+  2026-01-30 GFW 79.140,8.770 ais=N  found=True  nearest=592m  tile_dets=3
+
+=== SUMMARY ===
+GFW detections tested: 143
+Found by our detector within 1500 m: 111/143 (78%)
+  GFW detections WITH AIS match:    20/22
+  GFW detections WITHOUT AIS match: 91/121
+Extra detections (ours, not near any tested GFW detection): 755 over 11349 km^2 sea = 6.65 per 100 km^2

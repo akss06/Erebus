@@ -1,0 +1,104 @@
+export type ConfClass =
+  | "ANCHORED_VESSEL"
+  | "VESSEL_CANDIDATE"
+  | "DARK_CANDIDATE"
+  | "LOW_CONFIDENCE"
+  | "FIXED_OBJECT"
+  | "CLUTTER";
+
+export interface Area {
+  id: string;
+  name: string;
+  center: [number, number];
+  zoom: number;
+  overlay: { image: string; bounds: [[number, number], [number, number]] } | null;
+  detections: number;
+  passes: string[];
+  classes: Partial<Record<ConfClass, number>>;
+}
+
+export interface Detection {
+  id: string;
+  area_id: string;
+  date: string;
+  lon: number;
+  lat: number;
+  confidence_class: ConfClass;
+  confidence: number;
+  reasons: string[];
+  contrast_db: number;
+  area_px: number;
+  shape_label: string;
+  match_status: string;
+  match_distance_m?: number;
+  matched_name?: string;
+  matched_mmsi?: string;
+  matched_flag?: string;
+  matched_type?: string;
+  cluster_id?: number;
+  cluster_size?: number;
+  provenance: string;
+  crop_url: string | null;
+  simulated?: boolean;
+}
+
+export interface Review {
+  detection_id: string;
+  verdict: "confirm" | "reject" | "unsure";
+  note: string;
+}
+
+export interface DetectionDetail extends Detection {
+  other_passes: Detection[];
+  review: Review | null;
+}
+
+export interface Cluster {
+  cluster_id: string;
+  area_id: string;
+  lon: number;
+  lat: number;
+  confidence_class: ConfClass;
+  confidence: number;
+  passes_seen: number;
+  dates: string[];
+  best_detection_id: string;
+  reasons: string[];
+  matched_names: string[];
+  provenance: string;
+  simulated?: boolean;
+  review?: Review | null;
+}
+
+async function get<T>(path: string): Promise<T> {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`${path} -> ${res.status}`);
+  return res.json();
+}
+
+export interface SimVessel {
+  mmsi: string;
+  name: string | null;
+  detections: number;
+}
+
+const q = (sim: string | null) => (sim ? `&sim=${sim}` : "");
+
+export const api = {
+  areas: () => get<Area[]>("/api/areas"),
+  clusters: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/clusters?area=${area}${q(sim)}`),
+  detections: (area: string, date: string, sim: string | null = null) =>
+    get<Detection[]>(`/api/detections?area=${area}&date=${date}${q(sim)}`),
+  detection: (id: string, sim: string | null = null) => get<DetectionDetail>(`/api/detections/${id}?${q(sim).slice(1)}`),
+  alerts: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/alerts?area=${area}${q(sim)}`),
+  simVessels: () => get<SimVessel[]>("/api/simulation/vessels"),
+  review: async (r: Review): Promise<Review> => {
+    const res = await fetch("/api/reviews", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(r),
+    });
+    if (!res.ok) throw new Error(`review -> ${res.status}`);
+    return res.json();
+  },
+};

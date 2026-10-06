@@ -19,3 +19,11 @@ data/ne_10m_land.zip
 # data/multi_date/); geojson/json/png outputs are small and are what the
 # deployed app actually reads, so those stay tracked
 data/**/*.tif
+
+# downloaded validation tiles are covered by data/**/*.tif; run logs too
+data/validation/run.log
+data/reviews.json
+
+# frontend build artifacts
+frontend/node_modules/
+frontend/dist/
