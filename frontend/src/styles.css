@@ -21,6 +21,8 @@ button.link { background: none; border: none; color: var(--accent); padding: 0 0
 .toolbar > * { pointer-events: auto; }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .check { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; }
+.stacking-hint { color: var(--muted); font-size: 12px; }
+.stacking-hint[title] { border-color: var(--accent); color: var(--text); cursor: help; }
 .legend { position: absolute; left: 10px; bottom: 24px; background: rgba(17, 26, 46, 0.92); border: 1px solid var(--line); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px; max-width: 230px; }
 .legend button { text-align: left; border: none; background: none; padding: 3px 4px; }
 .legend button.off { opacity: 0.35; }
@@ -35,6 +37,8 @@ button.link { background: none; border: none; color: var(--accent); padding: 0 0
 .alerts li { display: flex; align-items: center; gap: 4px; padding: 10px 8px; border-bottom: 1px solid var(--line); cursor: pointer; border-radius: 6px; }
 .alerts li:hover, .alerts li.selected { background: #172341; }
 .alerts li > div { flex: 1; }
+.conf { font-size: 11px; color: var(--muted); margin-left: 2px; }
+.conf::before { content: ""; }
 .badge { font-size: 11px; padding: 2px 6px; border-radius: 10px; background: #243456; }
 .badge.confirm { background: #135200; }
 .badge.reject { background: #5c0011; }

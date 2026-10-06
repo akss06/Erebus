@@ -8,6 +8,13 @@ import AnalyzePanel from "./AnalyzePanel";
 
 const DEFAULT_VISIBLE = new Set<ConfClass>(CLASS_ORDER.filter((c) => c !== "CLUTTER"));
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function shortDate(iso: string): string {
+  const [, m, d] = iso.split("-");
+  return `${parseInt(d)} ${MONTHS[parseInt(m) - 1]}`;
+}
+
 export default function App() {
   const [areas, setAreas] = useState<Area[]>([]);
   const [areaId, setAreaId] = useState("tuticorin");
@@ -72,11 +79,11 @@ export default function App() {
       <header>
         <div className="brand">
           <h1>ERÉBUS</h1>
-          <span>Dark-vessel detection for Indian waters · Sentinel-1 SAR + AIS</span>
+          <span>Dark-vessel detection · Sentinel-1 SAR + AIS</span>
         </div>
         <nav>
           {areas.map((a) => (
-            <button key={a.id} className={a.id === areaId ? "active" : ""} onClick={() => { setAreaId(a.id); setShowAnalyze(false); }}>
+            <button key={a.id} className={a.id === areaId && !showAnalyze ? "active" : ""} onClick={() => { setAreaId(a.id); setShowAnalyze(false); }}>
               {a.name} <small>({a.detections})</small>
             </button>
           ))}
@@ -94,11 +101,18 @@ export default function App() {
 
           <div className="toolbar">
             <div className="chips">
-              <button className={date === "all" ? "active" : ""} onClick={() => setDate("all")}>All passes combined</button>
+              <button className={date === "all" ? "active" : ""} onClick={() => setDate("all")}>All passes</button>
               {area?.passes.map((p) => (
-                <button key={p} className={date === p ? "active" : ""} onClick={() => setDate(p)}>{p}</button>
+                <button key={p} className={date === p ? "active" : ""} onClick={() => setDate(p)} title={p}>{shortDate(p)}</button>
               ))}
             </div>
+            {date === "all" && area && area.passes.length > 1 ? (
+              <span className="check stacking-hint" title="Detections from every pass are drawn on top of each other. A busy spot stacks many dates into what looks like one cluster. Pick a date to see a single pass.">
+                ⓘ All {area.passes.length} passes stacked ({shortDate(area.passes[0])}–{shortDate(area.passes[area.passes.length - 1])}) · click a date to separate
+              </span>
+            ) : date !== "all" ? (
+              <span className="check stacking-hint">Single pass · {shortDate(date)}</span>
+            ) : null}
             {area?.id === "tuticorin" && (
               <label className="check">
                 Simulate:&nbsp;
@@ -112,7 +126,7 @@ export default function App() {
             )}
             {area?.overlay && (
               <label className="check">
-                <input type="checkbox" checked={overlay} onChange={(e) => setOverlay(e.target.checked)} /> Radar image
+                <input type="checkbox" checked={overlay} onChange={(e) => setOverlay(e.target.checked)} /> Radar overlay
               </label>
             )}
           </div>
@@ -120,10 +134,10 @@ export default function App() {
           {sim && (
             <div className="simbanner">
               <span>
-                <b>SIMULATION</b> · the AIS record of {simName} has been removed to test the detector. Radar detections are
-                real; the AIS gap is not. Highlighted dots changed.
+                <b>SIMULATION</b> · AIS record of {simName} removed to test detector. Radar detections are
+                real; the AIS gap is not.
               </span>
-              <button onClick={() => setSim(null)}>Exit simulation</button>
+              <button onClick={() => setSim(null)}>Exit</button>
             </div>
           )}
 
@@ -133,7 +147,7 @@ export default function App() {
                 <span className="dot" style={{ background: CLASSES[c].color }} /> {CLASSES[c].label}
               </button>
             ))}
-            <p className="small muted">Larger dot = seen on more passes. Click a dot for evidence.</p>
+            <p className="small muted">Larger dot = more passes. Click for evidence.</p>
           </div>
         </section>
 

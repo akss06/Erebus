@@ -31,7 +31,7 @@ CLUSTER_RADIUS_M = 100       # NEREUS PROGRESS drifted <60 m; 75 m split real fi
 MIN_PASSES_FOR_FIXED = 3     # persistence needed to call something fixed / anchored
 SAME_VESSEL_SHARE = 0.75     # share of passes with the top MMSI to call it "the same vessel"
 STRONG_CONTRAST_DB = 15.0    # contrast level of every confirmed ship in Round 1
-WEAK_CONTRAST_DB = 10.0      # below this, nothing in Round 1 looked like a ship
+WEAK_CONTRAST_DB = 12.0      # below this, returns are speckle-like (recalibrated Oct 2026 after reviewing v3 crops; was 10.0)
 MIN_AREA_PX = 8
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -90,6 +90,13 @@ def score_detection(det: dict, cluster: list[tuple[str, dict]], n_passes_total: 
 
     # contrast term scales 0..1 between WEAK and ~20 dB; size term caps at 20 px
     strength = min(1.0, max(0.0, (contrast - 6.0) / 14.0)) * 0.8 + min(1.0, area / 20) * 0.2
+
+    # VH/VV cross-pol corroboration: metal vessels depolarise and spike VH, sea
+    # clutter does not. A positive signal only raises confidence; its absence
+    # does NOT demote (small wooden/fibreglass trawlers have weak VH too).
+    if det.get("vh_corroborated"):
+        reasons.append("cross-pol (VH/VV) elevated vs sea: consistent with a hard/metal target")
+        strength = min(1.0, strength + 0.1)
 
     if n_seen >= MIN_PASSES_FOR_FIXED:
         reasons.append(f"same spot on {n_seen}/{n_passes_total} passes")
