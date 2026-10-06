@@ -24,6 +24,9 @@ data/**/*.tif
 data/validation/run.log
 data/reviews.json
 
+# recent run data (tifs are large)
+data/recent/run.log
+
 # frontend build artifacts
 frontend/node_modules/
 frontend/dist/

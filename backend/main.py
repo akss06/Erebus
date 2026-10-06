@@ -36,12 +36,19 @@ AREAS = {
         "file": "scored_detections.geojson",
         "center": [78.27, 8.785],
         "zoom": 12,
-        "overlay": {"image": "/api/overlay/tuticorin.png", "bounds": None},  # bounds filled from overlay_bounds.json
+        "overlay": {"image": "/api/overlay/tuticorin.png", "bounds": None},
     },
     "gulf_of_mannar": {
-        "name": "Gulf of Mannar / Palk Strait",
+        "name": "Gulf of Mannar / Palk Strait (Jan 2026)",
         "file": "scored_gulf.geojson",
         "center": [79.35, 9.3],
+        "zoom": 8,
+        "overlay": None,
+    },
+    "recent": {
+        "name": "Gulf of Mannar (Sep-Oct 2026)",
+        "file": "scored_recent.geojson",
+        "center": [79.0, 9.2],
         "zoom": 8,
         "overlay": None,
     },
@@ -53,6 +60,7 @@ ALERT_PRIORITY = {"DARK_CANDIDATE": 0, "VESSEL_CANDIDATE": 1, "ANCHORED_VESSEL":
 PROVENANCE = {
     "tuticorin": "Real detection (Sentinel-1 + AIS presence)",
     "gulf_of_mannar": "Real detection (Sentinel-1); AIS status from GFW, unverified",
+    "recent": "Real detection (Sentinel-1 Sep/Oct 2026); AIS status from GFW, unverified",
 }
 
 sys.path.insert(0, str(ROOT / "src"))
@@ -238,7 +246,7 @@ def crop(det_id: str) -> FileResponse:
     fname = d and d.get("_crop_file")
     if not fname:
         raise HTTPException(404, "no evidence crop for this detection")
-    for base in (DATA, DATA / "validation" / "crops"):
+    for base in (DATA, DATA / "validation" / "crops", DATA / "recent" / "crops"):
         path = base / fname
         if path.exists():
             return FileResponse(path)

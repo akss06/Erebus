@@ -1,0 +1,651 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.30656586828219,
+     8.459380939622026
+    ]
+   },
+   "properties": {
+    "row": 452.35,
+    "col": 406.4,
+    "area_px": 20,
+    "mean_intensity_db": 4.858655797909814,
+    "max_intensity_db": 10.68617727567911,
+    "local_background_db": -13.377797661407698,
+    "contrast_db": 18.236453459317513,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.7142857142857143,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 383.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_004.tif",
+    "id": "2026-09-22-R01",
+    "date": "2026-09-22",
+    "cluster_id": 1,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R01.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 76,
+    "reasons": [
+     "contrast 18.2 dB, 20 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.28637486891184,
+     8.516758492827414
+    ]
+   },
+   "properties": {
+    "row": 481.7857142857143,
+    "col": 403.35714285714283,
+    "area_px": 14,
+    "mean_intensity_db": 18.442862465447323,
+    "max_intensity_db": 21.649932320624803,
+    "local_background_db": -0.892107729753026,
+    "contrast_db": 19.33497019520035,
+    "aspect_ratio": 1.25,
+    "fill_ratio": 0.7,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 537.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_003.tif",
+    "id": "2026-09-22-R02",
+    "date": "2026-09-22",
+    "cluster_id": 2,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R02.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 76,
+    "reasons": [
+     "contrast 19.3 dB, 14 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.37458197786985,
+     8.606654844288597
+    ]
+   },
+   "properties": {
+    "row": 483.5,
+    "col": 493.5,
+    "area_px": 12,
+    "mean_intensity_db": 10.671235077451074,
+    "max_intensity_db": 14.41321626946187,
+    "local_background_db": -8.133184184758118,
+    "contrast_db": 18.804419262209194,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.75,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 626.0,
+    "matched_name": "FSL KELANG",
+    "matched_mmsi": "636019337",
+    "matched_flag": "LBR",
+    "matched_type": "CARGO",
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_009.tif",
+    "id": "2026-09-22-R03",
+    "date": "2026-09-22",
+    "cluster_id": 3,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R03.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 84,
+    "reasons": [
+     "contrast 18.8 dB, 12 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (FSL KELANG, 626 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.37821187149049,
+     8.632211552897031
+    ]
+   },
+   "properties": {
+    "row": 420.94736842105266,
+    "col": 424.42105263157896,
+    "area_px": 19,
+    "mean_intensity_db": -11.03442547215868,
+    "max_intensity_db": -7.8033779360123585,
+    "local_background_db": -21.14454753433489,
+    "contrast_db": 10.11012206217621,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.6785714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 314.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_001.tif",
+    "id": "2026-09-22-R04",
+    "date": "2026-09-22",
+    "cluster_id": 4,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R04.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 57,
+    "reasons": [
+     "contrast 10.1 dB, 19 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.47033800143228,
+     8.68650434586723
+    ]
+   },
+   "properties": {
+    "row": 374.0,
+    "col": 558.0,
+    "area_px": 5,
+    "mean_intensity_db": -15.298384436020726,
+    "max_intensity_db": -14.485327889991574,
+    "local_background_db": -21.582175462671422,
+    "contrast_db": 6.283791026650697,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1347.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_002.tif",
+    "id": "2026-09-22-R05",
+    "date": "2026-09-22",
+    "cluster_id": 5,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R05.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.3 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.46516179605828,
+     8.695125846467729
+    ]
+   },
+   "properties": {
+    "row": 499.2142857142857,
+    "col": 389.64285714285717,
+    "area_px": 14,
+    "mean_intensity_db": -13.71194005796117,
+    "max_intensity_db": -9.999581897023086,
+    "local_background_db": -22.002780501533273,
+    "contrast_db": 8.290840443572103,
+    "aspect_ratio": 1.25,
+    "fill_ratio": 0.7,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 759.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_005.tif",
+    "id": "2026-09-22-R06",
+    "date": "2026-09-22",
+    "cluster_id": 6,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R06.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 8.3 dB, 14 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.22399293057026,
+     8.70184438365039
+    ]
+   },
+   "properties": {
+    "row": 315.0,
+    "col": 489.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.21400251555393,
+    "max_intensity_db": -8.541216951794151,
+    "local_background_db": -18.24446125353772,
+    "contrast_db": 8.030458737983793,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1388.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_005.tif",
+    "id": "2026-09-10-R01",
+    "date": "2026-09-10",
+    "cluster_id": 7,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R01.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 8.0 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.94235070024843,
+     8.77432445911558
+    ]
+   },
+   "properties": {
+    "row": 397.7,
+    "col": 468.3,
+    "area_px": 10,
+    "mean_intensity_db": -10.982441095723486,
+    "max_intensity_db": -8.189094320006538,
+    "local_background_db": -18.742681538077512,
+    "contrast_db": 7.760240442354027,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.625,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 545.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_030.tif",
+    "id": "2026-09-10-R02",
+    "date": "2026-09-10",
+    "cluster_id": 8,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R02.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 7.8 dB, 10 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.38363200530146,
+     8.858081622046562
+    ]
+   },
+   "properties": {
+    "row": 467.5,
+    "col": 483.0,
+    "area_px": 14,
+    "mean_intensity_db": -10.652074281849329,
+    "max_intensity_db": -9.017943098614316,
+    "local_background_db": -20.18172246411748,
+    "contrast_db": 9.529648182268152,
+    "aspect_ratio": 2.0,
+    "fill_ratio": 0.7777777777777778,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 452.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_070.tif",
+    "id": "2026-09-10-R03",
+    "date": "2026-09-10",
+    "cluster_id": 9,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R03.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 9.5 dB, 14 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.41392847840282,
+     8.903971006853174
+    ]
+   },
+   "properties": {
+    "row": 402.0,
+    "col": 487.0,
+    "area_px": 5,
+    "mean_intensity_db": -13.532805084316772,
+    "max_intensity_db": -11.972182607307646,
+    "local_background_db": -21.426247150378558,
+    "contrast_db": 7.893442066061786,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 617.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_020.tif",
+    "id": "2026-09-10-R04",
+    "date": "2026-09-10",
+    "cluster_id": 10,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R04.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 7.9 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.44053508273261,
+     8.946130845315068
+    ]
+   },
+   "properties": {
+    "row": 488.0,
+    "col": 557.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.481291763630828,
+    "max_intensity_db": -7.945936218222359,
+    "local_background_db": -16.64831339325413,
+    "contrast_db": 7.167021629623303,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1234.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_025.tif",
+    "id": "2026-09-10-R05",
+    "date": "2026-09-10",
+    "cluster_id": 11,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R05.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.4996188955263,
+     9.030169196284973
+    ]
+   },
+   "properties": {
+    "row": 444.0,
+    "col": 438.5,
+    "area_px": 8,
+    "mean_intensity_db": -13.506898226494798,
+    "max_intensity_db": -11.062147702183916,
+    "local_background_db": -23.033002005767116,
+    "contrast_db": 9.526103779272319,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 45.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_055.tif",
+    "id": "2026-09-10-R06",
+    "date": "2026-09-10",
+    "cluster_id": 12,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R06.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 9.5 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.50085652171451,
+     9.234300884498962
+    ]
+   },
+   "properties": {
+    "row": 507.0,
+    "col": 451.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.426479302077917,
+    "max_intensity_db": -9.883493055198027,
+    "local_background_db": -16.287734010851317,
+    "contrast_db": 5.8612547087734,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 640.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_006.tif",
+    "id": "2026-09-22-R07",
+    "date": "2026-09-22",
+    "cluster_id": 13,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R07.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 5.9 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.38022451070276,
+     9.274081407674657
+    ]
+   },
+   "properties": {
+    "row": 510.0,
+    "col": 444.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.217778534486694,
+    "max_intensity_db": -7.448665291136112,
+    "local_background_db": -18.327700768069406,
+    "contrast_db": 9.109922233582711,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 658.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-10_050.tif",
+    "id": "2026-09-10-R07",
+    "date": "2026-09-10",
+    "cluster_id": 14,
+    "cluster_size": 1,
+    "crop": "2026-09-10-R07.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 9.1 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.23846550939967,
+     9.308771544804298
+    ]
+   },
+   "properties": {
+    "row": 458.12,
+    "col": 424.8,
+    "area_px": 25,
+    "mean_intensity_db": -5.987936436331881,
+    "max_intensity_db": -0.23867428755566325,
+    "local_background_db": -17.061074513746917,
+    "contrast_db": 11.073138077415035,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.7142857142857143,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 216.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_000.tif",
+    "id": "2026-09-22-R08",
+    "date": "2026-09-22",
+    "cluster_id": 15,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R08.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 60,
+    "reasons": [
+     "contrast 11.1 dB, 25 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.31404282782344,
+     10.107435867293248
+    ]
+   },
+   "properties": {
+    "row": 473.3666666666667,
+    "col": 485.3666666666667,
+    "area_px": 30,
+    "mean_intensity_db": -5.1527682309701275,
+    "max_intensity_db": 1.1403548065179716,
+    "local_background_db": -19.8293713127206,
+    "contrast_db": 14.676603081750471,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.8333333333333334,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 526.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "tile": "C:\\Users\\aksha\\Desktop\\dark-vessel-detection\\data\\recent\\2026-09-22_010.tif",
+    "id": "2026-09-22-R09",
+    "date": "2026-09-22",
+    "cluster_id": 16,
+    "cluster_size": 1,
+    "crop": "2026-09-22-R09.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 68,
+    "reasons": [
+     "contrast 14.7 dB, 30 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  }
+ ]
+}
