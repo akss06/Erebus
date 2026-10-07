@@ -7,6 +7,11 @@ are **not** broadcasting their position — *candidate "dark vessels"*.
 Built by **Team SREEGOAT / Erébus** (Manipal Institute of Technology, Bengaluru) for
 TechGig *Ideas of India 2026*, Round 2.
 
+**Live:** frontend on **Vercel**, backend API on **Render** (Docker). The hosted demo
+serves the full precomputed viewer; the live "Run Analysis" button is gated there (it
+needs Earth Engine credentials) — see [§11 Deployment](#11-deployment) and
+[DEPLOY.md](DEPLOY.md).
+
 > **Honesty is a design constraint, not an afterthought.** A radar return is only ever
 > called a *candidate pending verification*, never a confirmed dark vessel. A zero
 > result is reported as a zero result. Every item in the app carries a provenance
@@ -67,6 +72,7 @@ ESA SNAP / snappy** toolchain anywhere in this project.
 | Detection | Python, NumPy, SciPy, rasterio, GeoPandas, Shapely — CA-CFAR + morphology |
 | Backend | FastAPI + Pydantic (serves precomputed GeoJSON; no GEE/GFW calls at request time) |
 | Frontend | Vite + React 19 + TypeScript + MapLibre GL |
+| Deployment | Frontend → Vercel (static build); backend → Render / any Docker host (`Dockerfile`) |
 
 Secrets (Earth Engine credentials, `GFW_API_TOKEN`) live in `.env` / the host
 environment and are gitignored — never committed.
@@ -81,22 +87,34 @@ dark-vessel-detection/
 ├── ROUND2_PLAN.md               — Round 2 plan, deadlines, jury-question prep
 ├── WORKLOG.md                   — chronological record of every step (source of truth)
 ├── README.md                    — this file
+├── DEPLOY.md                    — step-by-step deploy (Vercel + Render)
+├── FINAL_REPORT.md              — Oct-2026 audit: bugs, corrected claims, experiments, outcomes
+├── AUDIT_CHECKLIST.md           — per-finding evidence → fix → verification table
+├── Dockerfile / .dockerignore   — backend image for Render / any Docker host
+├── render.yaml                  — Render blueprint (optional; free tier is created manually)
+├── requirements.txt             — Python deps (the real detection + API stack)
 ├── backend/
-│   └── main.py                  — FastAPI app + live "Run Analysis" (SSE) endpoints
+│   └── main.py                  — FastAPI app + live "Run Analysis" (SSE) + /api/health capability flag
 ├── frontend/                    — Vite + React + TypeScript + MapLibre
 │   └── src/                     — App, MapView, AlertsPanel, DetailPanel, AnalyzePanel, api.ts, classes.ts
+│                                  (api.ts reads VITE_API_BASE for the backend origin)
 ├── src/
-│   ├── fetch_sar.py             — GEE → calibrated VV GeoTIFF clip
+│   ├── fetch_sar.py             — GEE → calibrated VV GeoTIFF clip (service-account auth for servers)
 │   ├── land_mask.py             — Natural Earth 10 m land → sea mask (reprojected to the tile grid)
 │   ├── detect.py                — CA-CFAR detector (linear intensity → blobs + contrast/shape)
+│   ├── detect_v3.py             — v3 superpixel Generalized-Gamma CFAR detector (§9)
+│   ├── crops.py                 — canonical fixed [-23,+3] dB radar-crop renderer (shared everywhere)
 │   ├── fetch_ais.py             — GFW API client (AIS presence + SAR-presence)
 │   ├── match.py                 — spatial match of detections to AIS → MATCHED / UNMATCHED
-│   ├── confidence.py            — cross-pass clustering + persistence → confidence class
+│   ├── confidence.py            — cross-pass clustering + persistence + chain geometry → confidence class
 │   ├── validate_vs_gfw.py       — run our detector where GFW reports SAR detections; agreement metrics
 │   ├── build_gulf_candidates.py — turn validation tiles into scored Gulf of Mannar candidates + crops
 │   ├── run_recent.py            — multi-date hotspot pipeline on recent (Jun–Sep 2026) passes
-│   ├── enrichment_test.py       — objective Poisson test: do strong blobs cluster at GFW's AIS-less points?
+│   ├── enrichment_test.py       — enrichment test: do strong blobs cluster at GFW's AIS-less points?
 │   └── run_multi_date.py        — multi-pass Tuticorin run
+├── audit/                       — baseline manifest, experiments (calibration/morphology/ablation),
+│                                  results, rescore_historical.py, regen_crops.py
+├── tests/                       — test_audit_fixes.py (regression tests for the audit fixes)
 ├── config/
 │   └── milestone1_confirmed.json— frozen Round 1 detector settings + AOI
 ├── data/                        — SAR clips (gitignored *.tif), scored GeoJSON, crops, caches
@@ -257,7 +275,9 @@ time, except the live "Run Analysis" feature).
   that, rather than fabricating a 12-day cadence. It reports **coverage** (tiles analysed
   vs unavailable vs no open sea) and distinguishes a **GFW request failure** (that date
   *unperformed* → `partial`) from a **successful empty response** (no detections there),
-  so a failed retrieval is never presented as an empty sea.
+  so a failed retrieval is never presented as an empty sea. On the hosted demo this
+  button is disabled unless the backend has live-analysis credentials (gated via
+  `/api/health`; see §11).
 
 **API endpoints** (`backend/main.py`): `/api/health`, `/api/areas`, `/api/detections`
 (+`/{id}`), `/api/clusters`, `/api/alerts`, `/api/crop/{id}`,
@@ -355,7 +375,45 @@ python src/run_recent.py --max-hotspots 20        # recent multi-date hotspot ru
 
 ---
 
-## 11. Limitations (kept deliberately visible)
+## 11. Deployment
+
+The app is split for hosting: the **frontend** is a static Vite build on **Vercel**, and
+the **backend** runs as a Docker container on **Render** (or any Docker host). The
+FastAPI backend can't go on Vercel — its native deps (GDAL via rasterio) and the
+long-running live analysis exceed serverless limits — so only the static frontend lives
+there.
+
+**How the two connect**
+- The frontend reads the backend origin from **`VITE_API_BASE`** (baked in at build
+  time; unset in dev → it calls `/api`, proxied to `localhost:8000` by `vite.config.ts`).
+  Every data fetch, the SSE stream, and the crop/overlay **image URLs** are prefixed
+  with it.
+- The backend allows the frontend's browser origin via **`ALLOWED_ORIGINS`**
+  (comma-separated; `*` is fine for this public, read-only demo).
+
+**Backend environment variables** (Render → Environment):
+
+| Var | Needed for | Notes |
+|---|---|---|
+| `ALLOWED_ORIGINS` | always | the Vercel origin(s), or `*` |
+| `GFW_API_TOKEN` | live analysis only | Global Fishing Watch API token |
+| `GEE_SERVICE_ACCOUNT` + `GEE_SA_KEY_JSON` | live analysis only | Earth Engine service account for headless auth |
+
+**Live-analysis gating.** `/api/health` returns a `live_analysis` flag — true only when
+the GFW token **and** an Earth Engine credential (a service account, or a cached local
+login) are present. The frontend disables the **Run Analysis** button when it's false,
+so the hosted demo never offers a run that would just error. The precomputed viewer
+(areas, crops, overlay, AIS-off simulation) needs **no secrets**.
+
+**Cold start.** Render's free tier sleeps when idle; the first request wakes it
+(~30–60 s). The frontend shows a *"Waking the backend…"* overlay (with a Retry) so a
+cold start never looks broken.
+
+Full step-by-step for both services, in order, is in **[DEPLOY.md](DEPLOY.md)**.
+
+---
+
+## 12. Limitations (kept deliberately visible)
 
 - **Small boats (~10–20 m) are near Sentinel-1's 10 m limit** and get lost in speckle.
   Many Gulf of Mannar AIS-less detections are very weak — consistent with exactly
