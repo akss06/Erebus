@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Area, ConfClass } from "./api";
+import { API_BASE, type Area, type ConfClass } from "./api";
 import { CLASSES, CLASS_ORDER } from "./classes";
 
 export interface MapPoint {
@@ -131,7 +131,7 @@ export default function MapView({ area, points, visible, selectedId, showOverlay
       if (map.getSource("sar")) map.removeSource("sar");
       if (!showOverlay || !area.overlay) return;
       const [[s, w], [n, e]] = area.overlay.bounds;
-      map.addSource("sar", { type: "image", url: area.overlay.image, coordinates: [[w, n], [e, n], [e, s], [w, s]] });
+      map.addSource("sar", { type: "image", url: API_BASE + area.overlay.image, coordinates: [[w, n], [e, n], [e, s], [w, s]] });
       map.addLayer({ id: "sar", type: "raster", source: "sar", paint: { "raster-opacity": 0.8 } }, "points");
     });
   }, [area.id, showOverlay]);

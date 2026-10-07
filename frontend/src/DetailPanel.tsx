@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api, type DetectionDetail, type Review } from "./api";
+import { api, API_BASE, type DetectionDetail, type Review } from "./api";
 import { CLASSES } from "./classes";
 
 interface Props {
@@ -67,7 +67,7 @@ export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
 
       {d.crop_url ? (
         <figure>
-          <img src={d.crop_url} alt="Radar crop around the detection" />
+          <img src={API_BASE + d.crop_url} alt="Radar crop around the detection" />
           <figcaption>Sentinel-1 radar crop, detection at the centre ({d.date})</figcaption>
         </figure>
       ) : (
