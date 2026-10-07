@@ -15,6 +15,7 @@ If frontend/dist exists it is served at "/", so the whole app is one process:
 from __future__ import annotations
 
 import json
+import os
 import sys
 import threading
 import time
@@ -76,7 +77,14 @@ sys.path.insert(0, str(ROOT / "src"))
 import confidence  # noqa: E402  (same scoring code the offline pipeline uses)
 
 app = FastAPI(title="Erébus API")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173"], allow_methods=["*"], allow_headers=["*"])
+# Allowed browser origins: local dev by default; in production set ALLOWED_ORIGINS
+# (comma-separated) to the deployed frontend origin(s), e.g. the Vercel URL.
+_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:4173")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[o.strip() for o in _origins.split(",") if o.strip()],
+    allow_methods=["*"], allow_headers=["*"],
+)
 
 _lock = threading.Lock()
 

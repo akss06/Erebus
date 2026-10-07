@@ -15,7 +15,20 @@ import requests
 
 
 def authenticate_and_init(project_id: str) -> None:
-    """Initialize the Earth Engine client, authenticating in a browser on first use."""
+    """Initialize the Earth Engine client.
+
+    On a server, set GEE_SERVICE_ACCOUNT (the service-account email) and
+    GEE_SA_KEY_JSON (the service-account key, as JSON) for headless auth. Locally,
+    falls back to cached credentials or an interactive browser sign-in.
+    """
+    import os
+
+    sa_email = os.environ.get("GEE_SERVICE_ACCOUNT")
+    sa_key = os.environ.get("GEE_SA_KEY_JSON")
+    if sa_email and sa_key:
+        creds = ee.ServiceAccountCredentials(sa_email, key_data=sa_key)
+        ee.Initialize(creds, project=project_id)
+        return
     try:
         ee.Initialize(project=project_id)
     except Exception:

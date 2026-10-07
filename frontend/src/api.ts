@@ -77,8 +77,12 @@ export interface Cluster {
   review?: Review | null;
 }
 
+// Backend base URL. Empty in dev (requests hit /api, proxied to localhost:8000 by
+// vite.config); in production set VITE_API_BASE to the deployed backend origin.
+export const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(path);
+  const res = await fetch(API_BASE + path);
   if (!res.ok) throw new Error(`${path} -> ${res.status}`);
   return res.json();
 }
@@ -122,7 +126,7 @@ export const api = {
   alerts: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/alerts?area=${area}${q(sim)}`),
   simVessels: () => get<SimVessel[]>("/api/simulation/vessels"),
   review: async (r: Review): Promise<Review> => {
-    const res = await fetch("/api/reviews", {
+    const res = await fetch(`${API_BASE}/api/reviews`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(r),
@@ -131,7 +135,7 @@ export const api = {
     return res.json();
   },
   analyze: async (region: [number, number, number, number], startDate: string, endDate: string, maxPerDate = 10): Promise<AnalyzeResult> => {
-    const res = await fetch("/api/analyze", {
+    const res = await fetch(`${API_BASE}/api/analyze`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ region, start_date: startDate, end_date: endDate, max_per_date: maxPerDate }),

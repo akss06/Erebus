@@ -1,0 +1,18 @@
+# Render blueprint for the Erebus backend (Docker). Railway/Fly.io work from the
+# same Dockerfile; this file just makes Render a one-click "New Blueprint" deploy.
+services:
+  - type: web
+    name: erebus-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter            # free tier sleeps; live analysis is slow on free CPU
+    healthCheckPath: /api/health
+    envVars:
+      - key: ALLOWED_ORIGINS   # the Vercel frontend origin, e.g. https://erebus.vercel.app
+        sync: false
+      - key: GFW_API_TOKEN     # Global Fishing Watch API token (live analysis only)
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT  # Earth Engine service-account email (live analysis only)
+        sync: false
+      - key: GEE_SA_KEY_JSON      # Earth Engine service-account key, full JSON (live analysis only)
+        sync: false

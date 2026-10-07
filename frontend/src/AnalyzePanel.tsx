@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, type AnalyzeStatus } from "./api";
+import { api, API_BASE, type AnalyzeStatus } from "./api";
 
 interface Props {
   onComplete: (areaId: string) => void;
@@ -36,7 +36,7 @@ export default function AnalyzePanel({ onComplete, onClose }: Props) {
     try {
       const { run_id } = await api.analyze(region, startDate, endDate, maxPerDate);
 
-      const es = new EventSource(`/api/analyze/${run_id}/stream`);
+      const es = new EventSource(`${API_BASE}/api/analyze/${run_id}/stream`);
       es.onmessage = (e) => {
         const data: AnalyzeStatus = JSON.parse(e.data);
         setStatus(data);
