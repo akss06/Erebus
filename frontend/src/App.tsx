@@ -29,12 +29,25 @@ export default function App() {
   const [simVessels, setSimVessels] = useState<SimVessel[]>([]);
   const [showAnalyze, setShowAnalyze] = useState(false);
   const [liveAnalysis, setLiveAnalysis] = useState(false);
+  const [boot, setBoot] = useState<"loading" | "ready" | "error">("loading");
+  const [slow, setSlow] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
-    api.areas().then(setAreas);
-    api.simVessels().then(setSimVessels);
-    api.health().then((h) => setLiveAnalysis(h.live_analysis)).catch(() => setLiveAnalysis(false));
-  }, []);
+    let cancelled = false;
+    setSlow(false);
+    // free-tier backend can be asleep: after a few seconds, tell the user we're waking it
+    const slowTimer = setTimeout(() => { if (!cancelled) setSlow(true); }, 4000);
+    api.areas()
+      .then((a) => { if (!cancelled) { setAreas(a); setBoot("ready"); } })
+      .catch(() => { if (!cancelled) setBoot("error"); })
+      .finally(() => clearTimeout(slowTimer));
+    api.simVessels().then((v) => { if (!cancelled) setSimVessels(v); }).catch(() => {});
+    api.health().then((h) => { if (!cancelled) setLiveAnalysis(h.live_analysis); }).catch(() => { if (!cancelled) setLiveAnalysis(false); });
+    return () => { cancelled = true; clearTimeout(slowTimer); };
+  }, [reloadKey]);
+
+  const retryBoot = () => { setBoot("loading"); setReloadKey((k) => k + 1); };
   const area = areas.find((a) => a.id === areaId);
 
   const refreshAlerts = () => api.alerts(areaId, sim).then(setAlerts);
@@ -82,6 +95,25 @@ export default function App() {
 
   return (
     <div className="app">
+      {boot !== "ready" && (
+        <div className="boot-overlay">
+          <div className="boot-card">
+            {boot === "error" ? (
+              <>
+                <b>Can't reach the backend</b>
+                <p>The API didn't respond. On the free tier it may still be starting up — give it a moment and retry.</p>
+                <button onClick={retryBoot}>Retry</button>
+              </>
+            ) : (
+              <>
+                <div className="spinner" />
+                <b>{slow ? "Waking the backend…" : "Loading…"}</b>
+                {slow && <p>The free-tier server was asleep; the first load can take 30–60s.</p>}
+              </>
+            )}
+          </div>
+        </div>
+      )}
       <header>
         <div className="brand">
           <h1>ERÉBUS</h1>
