@@ -1,0 +1,280 @@
+{
+  "radii_m": [
+    1000.0,
+    1500.0,
+    2000.0
+  ],
+  "contrasts_db": [
+    10.0,
+    12.0,
+    15.0
+  ],
+  "min_area_px": 8,
+  "bootstrap": 2000,
+  "results": [
+    {
+      "radius_m": 1000.0,
+      "contrast_db": 10.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 10,
+          "blobs_outside": 16,
+          "inside_sea_km2": 34.6,
+          "outside_sea_km2": 938.7,
+          "enrichment_ratio": 16.98,
+          "ci95": [
+            7.16,
+            90.55
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 45,
+          "blobs_outside": 89,
+          "inside_sea_km2": 373.8,
+          "outside_sea_km2": 8987.6,
+          "enrichment_ratio": 12.16,
+          "ci95": [
+            7.48,
+            19.59
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 1000.0,
+      "contrast_db": 12.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 9,
+          "blobs_outside": 9,
+          "inside_sea_km2": 34.6,
+          "outside_sea_km2": 938.7,
+          "enrichment_ratio": 27.16,
+          "ci95": [
+            9.78,
+            139.23
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 27,
+          "blobs_outside": 53,
+          "inside_sea_km2": 373.8,
+          "outside_sea_km2": 8987.6,
+          "enrichment_ratio": 12.25,
+          "ci95": [
+            6.88,
+            21.89
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 1000.0,
+      "contrast_db": 15.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 8,
+          "blobs_outside": 1,
+          "inside_sea_km2": 34.6,
+          "outside_sea_km2": 938.7,
+          "enrichment_ratio": 217.32,
+          "ci95": [
+            40.08,
+            292.63
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 6,
+          "blobs_outside": 15,
+          "inside_sea_km2": 373.8,
+          "outside_sea_km2": 8987.6,
+          "enrichment_ratio": 9.62,
+          "ci95": [
+            2.8,
+            27.33
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 1500.0,
+      "contrast_db": 10.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 11,
+          "blobs_outside": 15,
+          "inside_sea_km2": 77.8,
+          "outside_sea_km2": 895.5,
+          "enrichment_ratio": 8.45,
+          "ci95": [
+            3.64,
+            37.59
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 58,
+          "blobs_outside": 76,
+          "inside_sea_km2": 841.1,
+          "outside_sea_km2": 8520.4,
+          "enrichment_ratio": 7.73,
+          "ci95": [
+            4.45,
+            13.03
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 1500.0,
+      "contrast_db": 12.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 10,
+          "blobs_outside": 8,
+          "inside_sea_km2": 77.8,
+          "outside_sea_km2": 895.5,
+          "enrichment_ratio": 14.4,
+          "ci95": [
+            5.87,
+            66.18
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 34,
+          "blobs_outside": 46,
+          "inside_sea_km2": 841.1,
+          "outside_sea_km2": 8520.4,
+          "enrichment_ratio": 7.49,
+          "ci95": [
+            4.3,
+            13.2
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 1500.0,
+      "contrast_db": 15.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 9,
+          "blobs_outside": 0,
+          "inside_sea_km2": 77.8,
+          "outside_sea_km2": 895.5,
+          "enrichment_ratio": null,
+          "ci95": null
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 8,
+          "blobs_outside": 13,
+          "inside_sea_km2": 841.1,
+          "outside_sea_km2": 8520.4,
+          "enrichment_ratio": 6.23,
+          "ci95": [
+            2.04,
+            20.23
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 2000.0,
+      "contrast_db": 10.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 15,
+          "blobs_outside": 11,
+          "inside_sea_km2": 138.2,
+          "outside_sea_km2": 835.0,
+          "enrichment_ratio": 8.24,
+          "ci95": [
+            4.34,
+            75.73
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 76,
+          "blobs_outside": 58,
+          "inside_sea_km2": 1494.2,
+          "outside_sea_km2": 7867.3,
+          "enrichment_ratio": 6.9,
+          "ci95": [
+            4.53,
+            11.19
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 2000.0,
+      "contrast_db": 12.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 13,
+          "blobs_outside": 5,
+          "inside_sea_km2": 138.2,
+          "outside_sea_km2": 835.0,
+          "enrichment_ratio": 15.71,
+          "ci95": [
+            6.99,
+            41.34
+          ]
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 48,
+          "blobs_outside": 32,
+          "inside_sea_km2": 1494.2,
+          "outside_sea_km2": 7867.3,
+          "enrichment_ratio": 7.9,
+          "ci95": [
+            4.98,
+            13.37
+          ]
+        }
+      }
+    },
+    {
+      "radius_m": 2000.0,
+      "contrast_db": 15.0,
+      "groups": {
+        "with_ais_control": {
+          "tiles": 11,
+          "blobs_inside": 9,
+          "blobs_outside": 0,
+          "inside_sea_km2": 138.2,
+          "outside_sea_km2": 835.0,
+          "enrichment_ratio": null,
+          "ci95": null
+        },
+        "without_ais": {
+          "tiles": 119,
+          "blobs_inside": 13,
+          "blobs_outside": 8,
+          "inside_sea_km2": 1494.2,
+          "outside_sea_km2": 7867.3,
+          "enrichment_ratio": 8.56,
+          "ci95": [
+            4.4,
+            31.71
+          ]
+        }
+      }
+    }
+  ]
+}

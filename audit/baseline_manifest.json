@@ -1,0 +1,52 @@
+{
+  "baseline_git_rev": "549ed4a398e2c9e76bc314a91f054ef471127db8",
+  "python": "3.13.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "installed_deps": {
+    "numpy": "2.2.4",
+    "scipy": "1.18.0",
+    "scikit-image": "0.26.0",
+    "rasterio": "1.5.0",
+    "earthengine-api": "1.7.37",
+    "requests": "2.34.2",
+    "pillow": "11.2.1",
+    "fastapi": "0.135.3",
+    "uvicorn": "0.44.0",
+    "pydantic": "2.13.0"
+  },
+  "scored_output_hashes": {
+    "data/scored_recent.geojson": {
+      "sha256": "e1ce46367c3850bac5250fc2813f1bd48019014c89790e9cbab6ce8fd3f0e0fd",
+      "bytes": 653725
+    },
+    "data/scored_gulf.geojson": {
+      "sha256": "71094d43bce9badc9591c91f93973264c9004a26e766d9ebbaf9bcff0e2d92b3",
+      "bytes": 104433
+    },
+    "data/scored_detections.geojson": {
+      "sha256": "3480d63b94ceb018beacee40e658fb03eeebc5ff0dcc5497f91a9d9d0b7440a3",
+      "bytes": 75051
+    },
+    "data/matched_detections.geojson": {
+      "sha256": "cca38119beff2c828d2cbf9c48988155e7e6cef8a5fb9b24808104a5806167f3",
+      "bytes": 16543
+    },
+    "data/multi_date/2026-01-06_detections.geojson": {
+      "sha256": "0c7404b97e0514ed9f90c6e49753b9e57a367e017f2be9876f4ed6c44f315fd3",
+      "bytes": 16893
+    },
+    "data/multi_date/2026-01-30_detections.geojson": {
+      "sha256": "7aae68859a618a8be5bb194a1db799f43b9187e9e3bb4d884a3405a690f48465",
+      "bytes": 18649
+    },
+    "data/multi_date/2026-02-11_detections.geojson": {
+      "sha256": "eaf28938e5c961e080f7e708e45678aea05ac7985a7c298e93a3c4e20410c02b",
+      "bytes": 9394
+    },
+    "data/ais_positions.json": {
+      "sha256": "e52934d6c9d1e15b013d1e957ab7ea2e96ffb0a8bb824ad7ba289fc563ea398f",
+      "bytes": 10118
+    }
+  },
+  "note": "Baseline = git 549ed4a (clean tree). Raw SAR .tif are gitignored; tile counts: recent=577, validation=143, multi_date=3. JRC occurrence caches: recent=140, validation=0, multi_date=0. Random seeds: _fit_shape_alpha uses np.random.default_rng(0) for the 8000-sample subsample; SLIC is deterministic."
+}

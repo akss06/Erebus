@@ -1,0 +1,145 @@
+{
+  "nominal_pfa": 1e-05,
+  "clutter": "Gamma(shape=2.0, scale=0.5)",
+  "n_train": 200000,
+  "n_held": 5000000,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "per_method": {
+    "trim+gengamma (detector default)": {
+      "mean_achieved_pfa": 0.00014512000000000002,
+      "std_achieved_pfa": 3.9216649525424784e-05,
+      "ratio_to_nominal": 14.512
+    },
+    "gengamma_no_trim": {
+      "mean_achieved_pfa": 1.3239999999999999e-05,
+      "std_achieved_pfa": 3.233326460473795e-06,
+      "ratio_to_nominal": 1.3239999999999998
+    },
+    "gamma_no_trim": {
+      "mean_achieved_pfa": 1.04e-05,
+      "std_achieved_pfa": 8.763560920082661e-07,
+      "ratio_to_nominal": 1.04
+    },
+    "empirical_quantile": {
+      "mean_achieved_pfa": 1.284e-05,
+      "std_achieved_pfa": 7.0703889567689275e-06,
+      "ratio_to_nominal": 1.284
+    }
+  },
+  "raw": {
+    "trim+gengamma (detector default)": [
+      {
+        "seed": 0,
+        "alpha": 5.598836091762045,
+        "achieved_pfa": 0.000175
+      },
+      {
+        "seed": 1,
+        "alpha": 5.5075886063577775,
+        "achieved_pfa": 0.0001962
+      },
+      {
+        "seed": 2,
+        "alpha": 5.759496879451277,
+        "achieved_pfa": 0.000127
+      },
+      {
+        "seed": 3,
+        "alpha": 5.937038022639393,
+        "achieved_pfa": 8.3e-05
+      },
+      {
+        "seed": 4,
+        "alpha": 5.658854320396786,
+        "achieved_pfa": 0.0001444
+      }
+    ],
+    "gengamma_no_trim": [
+      {
+        "seed": 0,
+        "alpha": 7.081891121516086,
+        "achieved_pfa": 1.24e-05
+      },
+      {
+        "seed": 1,
+        "alpha": 6.982794196732347,
+        "achieved_pfa": 1.42e-05
+      },
+      {
+        "seed": 2,
+        "alpha": 7.176905010028678,
+        "achieved_pfa": 1.06e-05
+      },
+      {
+        "seed": 3,
+        "alpha": 7.182609834324343,
+        "achieved_pfa": 1e-05
+      },
+      {
+        "seed": 4,
+        "alpha": 6.7501214436460755,
+        "achieved_pfa": 1.9e-05
+      }
+    ],
+    "gamma_no_trim": [
+      {
+        "seed": 0,
+        "alpha": 7.208369259476468,
+        "achieved_pfa": 9.2e-06
+      },
+      {
+        "seed": 1,
+        "alpha": 7.122995572176198,
+        "achieved_pfa": 1.08e-05
+      },
+      {
+        "seed": 2,
+        "alpha": 7.140148887697001,
+        "achieved_pfa": 1.08e-05
+      },
+      {
+        "seed": 3,
+        "alpha": 7.041863905791611,
+        "achieved_pfa": 1.16e-05
+      },
+      {
+        "seed": 4,
+        "alpha": 7.110020803973902,
+        "achieved_pfa": 9.6e-06
+      }
+    ],
+    "empirical_quantile": [
+      {
+        "seed": 0,
+        "alpha": 7.158836500015943,
+        "achieved_pfa": 1e-05
+      },
+      {
+        "seed": 1,
+        "alpha": 7.6132073731987076,
+        "achieved_pfa": 4.4e-06
+      },
+      {
+        "seed": 2,
+        "alpha": 7.397363216753951,
+        "achieved_pfa": 7.4e-06
+      },
+      {
+        "seed": 3,
+        "alpha": 6.6943369567186135,
+        "achieved_pfa": 2.04e-05
+      },
+      {
+        "seed": 4,
+        "alpha": 6.632504343216137,
+        "achieved_pfa": 2.2e-05
+      }
+    ]
+  }
+}

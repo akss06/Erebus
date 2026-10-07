@@ -65,6 +65,10 @@ export default function App() {
     }));
   }, [clusters, dayDetections, date]);
 
+  // Legend shows only classes actually present on the map now, so empty categories
+  // (e.g. a class no dataset produces) don't appear with no dots.
+  const presentClasses = useMemo(() => new Set(points.map((p) => p.confidence_class)), [points]);
+
   const simName = simVessels.find((v) => v.mmsi === sim)?.name ?? sim;
 
   const toggle = (c: ConfClass) => {
@@ -142,7 +146,7 @@ export default function App() {
           )}
 
           <div className="legend">
-            {CLASS_ORDER.map((c) => (
+            {CLASS_ORDER.filter((c) => presentClasses.has(c)).map((c) => (
               <button key={c} className={visible.has(c) ? "" : "off"} onClick={() => toggle(c)} title={CLASSES[c].blurb}>
                 <span className="dot" style={{ background: CLASSES[c].color }} /> {CLASSES[c].label}
               </button>

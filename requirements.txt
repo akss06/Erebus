@@ -1,4 +1,25 @@
-folium
-pandas
-streamlit
-streamlit-folium
+# Erébus dark-vessel detection — actual runtime stack (audited 2026-10-07).
+# Versions are those verified in audit/baseline_manifest.json (Python 3.13).
+
+# SAR fetch + Earth Engine
+earthengine-api>=1.7
+requests>=2.32
+
+# raster / geo
+rasterio>=1.4
+geopandas>=1.0
+shapely>=2.0
+
+# numerics / detection
+numpy>=2.0
+scipy>=1.13
+scikit-image>=0.24
+pillow>=11.0
+
+# backend API
+fastapi>=0.115
+uvicorn>=0.30
+pydantic>=2.0
+
+# tests
+pytest>=8.0

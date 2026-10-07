@@ -143,53 +143,63 @@ What a cluster does across passes is the strongest evidence available:
 
 | Class | Rule |
 |---|---|
-| `ANCHORED_VESSEL` | same spot on 3+ passes **and** the same AIS MMSI each time — ship at anchor |
-| `FIXED_OBJECT` | same spot on 3+ passes but the "matched" AIS vessel changes / is absent — pipeline, cable, shoal |
-| `VESSEL_CANDIDATE` | single pass, strong contrast, ship-sized, AIS vessel nearby |
-| `DARK_CANDIDATE` | single pass, strong contrast, ship-sized, **no** AIS within match radius — needs review |
+| `ANCHORED_VESSEL` | same spot on 3+ passes **and** the same AIS MMSI each time (our own AIS match) — anchored-vessel hypothesis |
+| `PERSISTENT_UNIDENTIFIED` | same spot on 3+ passes but no consistent identity — could be fixed infrastructure **or** a dark ship at anchor; stays in the review queue |
+| `SUSPECTED_FIXED` | heuristic fixed-object signal — a **collinear persistent chain** (reef/shoal/causeway; a compact anchorage blob is *not* flagged) or **position-stability** (pinned across passes). Supports a reef/infrastructure reading but does **not** confirm it; **stays in the review queue**, deprioritized, labelled *suspected* not charted (`fixed_evidence` records which) |
+| `FIXED_OBJECT` | **confirmed** fixed infrastructure from **charted** evidence (`context_fixed`) only — never inferred from persistence or geometry. Excluded from the review queue |
+| `VESSEL_CANDIDATE` | single pass, strong contrast, ship-sized, AIS evidence of a vessel nearby |
+| `DARK_CANDIDATE` | single pass, strong contrast, ship-sized, with **established** no-AIS evidence (our own radius check came up empty, or GFW reports no AIS here) — needs review |
+| `UNVERIFIED_TARGET` | strong, ship-sized, but AIS status **never established** (not checked / no reference). Reviewable, but cannot be called "dark" without an AIS check |
 | `LOW_CONFIDENCE` | bright but small/weak |
-| `CLUTTER` | below the weak-contrast bar — indistinguishable from sea clutter |
+| `CLUTTER` | below the weak-contrast evidence bar |
 
-**Key discovery (from the data):** persistence alone does **not** mean "fixed
-structure." Pipeline/cable fragments reappear on every pass but "match" a *different*
-AIS ship each time (whichever anchored nearby that day); a true anchored ship matches
-the *same* MMSI every time. So the rule is persistence **plus AIS-identity
-consistency**. When an independent detector (GFW's SAR detection) corroborates a
-target *within match radius of that detection*, the contrast bar for
-vessel/dark-candidate drops from 15 dB to **12 dB** (recalibrated Oct 2026 from 10 dB
-after reviewing v3 crops — 10 dB returns read as speckle). Corroboration is applied
-**per detection**, not blanket across a tile. A positive **VH/VV cross-pol** signal
-(`vh_corroborated`) adds confidence but never demotes, since small wooden/fibreglass
-trawlers depolarise weakly.
+The 0–100 number is a **heuristic evidence/ranking score, not a calibrated
+probability** (`score_basis` records this on every detection).
 
-**Known blind spot:** a *dark* ship anchored in one place for weeks looks exactly like
-a `FIXED_OBJECT`. Persistence cannot separate those two cases; such objects are
-labelled `FIXED_OBJECT`, never "vessel." The AIS-off simulation exposes this rather
-than hiding it.
+**Persistence does not prove "fixed structure."** A dark ship anchored for weeks looks
+exactly like infrastructure on radar; persistence cannot separate the two, so such
+targets are `PERSISTENT_UNIDENTIFIED` (reviewable), not silently dismissed as
+`FIXED_OBJECT`. **GFW association is kept distinct from AIS evidence**
+(`gfw_association` ∈ associated/ambiguous/none; `ais_evidence` ∈ matched /
+gfw_reported_ais / gfw_reported_no_ais / unmatched / unknown). When GFW's SAR-presence
+product corroborates a target *within match radius*, the contrast bar drops from 15 dB
+to **12 dB** — but this is **shared-sensor algorithmic agreement on the same Sentinel-1
+imagery, not independent-sensor confirmation**, and the lowered bar is an experimental
+heuristic, not a validated threshold. A positive **VH/VV cross-pol** signal adds
+confidence but never demotes.
+
+> See [FINAL_REPORT.md](FINAL_REPORT.md), [AUDIT_CHECKLIST.md](AUDIT_CHECKLIST.md) and
+> [audit/](audit/) for the Oct-2026 scientific audit: confirmed bugs, corrected
+> interpretations, experiments (P_fa calibration, morphology, ablation, enrichment),
+> measured outcomes and the experiments blocked by missing labels.
 
 ---
 
 ## 6. Validation — how well does it agree with GFW?
 
-GFW publishes its own independent Sentinel-1 SAR detections
-(`public-global-sar-presence`), each flagged matched/unmatched to AIS. We run our
-detector where GFW reports a detection and measure agreement. **GFW is a reference,
-not perfect ground truth** — it also misses ships and has false alarms, and its
-positions are grid-snapped to ~1 km.
+GFW publishes Sentinel-1 SAR detections (`public-global-sar-presence`), each flagged
+matched/unmatched to AIS. We run our detector where GFW reports a detection and measure
+agreement. **GFW is derived from the same Sentinel-1 imagery by a different algorithm**
+— so this is shared-sensor agreement, not independent-sensor confirmation — and it is a
+**reference, not ground truth** (it also misses ships and has false alarms; positions
+are grid-snapped to ~1 km).
 
 **Full search, 3 passes (2026-01-06 / 18 / 30), Gulf of Mannar + Palk Strait:**
 - GFW SAR detections: **143** (22 with an AIS match, 121 without).
 - Found by us within 1500 m: **111 (78%)** — AIS-matched 20/22 (91%), AIS-less 91/121 (75%).
 
-**Honest correction (do not quote "78% recall" to the jury):** our detector fires
-~6.7 times per 100 km², so a 1.5 km circle catches a random detection ~37% of the
-time. The defensible figure is the **enrichment test** (`enrichment_test.py`), a
-Poisson comparison with no human judgement:
+**Do not quote "78% recall" to the jury:** our detector fires often enough that a
+1.5 km circle catches a random detection a large fraction of the time. The defensible
+figure is the **enrichment test** (`enrichment_test.py`, rewritten in the audit to use
+actual valid-water area and a tile-level block bootstrap instead of a per-blob Poisson
+independence assumption):
 
-> Strong ship-like radar returns occur **~7.4× more often than chance** at the places
-> GFW reports AIS-less detections — the *same* enrichment as for AIS-matched ships
-> (p ≈ 2e-30). About 1 in 7 are expected to be chance; we flag the rest for analyst
-> review. We cannot say which individual one is a ship.
+> Strong ship-like radar returns occur at a **~7.5× higher density** (95% CI
+> [4.3, 13.2] at 1.5 km / 12 dB; 6–12× across the radius/contrast sweep) near GFW's
+> AIS-less detections than in the surrounding valid water. This is a **population-level
+> association only** — it is *not* candidate precision and *not* a probability that any
+> particular target is a vessel, and it is not evidence over arbitrary ocean (all tiles
+> are GFW hotspots).
 
 **AIS coverage, tested:** AISstream's free live-AIS network returned **0 messages**
 over Indian waters across five separate tests (677 ships in a global box; 0 in ours).
@@ -202,14 +212,19 @@ single biggest gap in operational-grade matching.
 
 | Area | Detections | Breakdown | Detector |
 |---|---|---|---|
-| **Gulf of Mannar (Jun–Sep 2026)** | 572 | VESSEL_CANDIDATE 4 · FIXED 67 · LOW 4 · CLUTTER 480 · **DARK 17** | **v3** (superpixel GG-CFAR, §9) |
-| **Tuticorin anchorage** | 70 over 4 passes | ANCHORED 4 · VESSEL_CANDIDATE 10 · FIXED 18 · LOW 12 · CLUTTER 26 · **DARK 0** | CA-CFAR (migration to v3 pending) |
-| **Gulf of Mannar / Palk Strait (Jan 2026)** | 95 | VESSEL_CANDIDATE 9 · LOW 1 · CLUTTER 62 · **DARK 23** | CA-CFAR (migration to v3 pending) |
+| **Gulf of Mannar (Jun–Sep 2026)** | 572 | VESSEL_CANDIDATE 4 · PERSISTENT_UNIDENTIFIED 67 · LOW 4 · CLUTTER 480 · **DARK 17** | **v3** (superpixel GG-CFAR, §9) |
+| **Tuticorin anchorage** | 70 over 4 passes | ANCHORED 4 · VESSEL_CANDIDATE 11 · PERSISTENT_UNIDENTIFIED 15 · LOW 12 · CLUTTER 28 · **DARK 0** | CA-CFAR detections, audited scoring |
+| **Gulf of Mannar / Palk Strait (Jan 2026)** | 95 | VESSEL_CANDIDATE 9 · CLUTTER 70 · **DARK 16** | CA-CFAR detections, audited scoring |
 
 All dark-candidate counts are **unverified candidates pending review**, not confirmed
-dark vessels. The recent (Jun–Sep) set runs the v3 detector; the Tuticorin and Jan 2026
-sets still run the original CA-CFAR and are being migrated to v3 (same pipeline, so
-their counts will change).
+dark vessels. The Oct-2026 audit re-scored all three sets with the corrected semantics
+(former `FIXED_OBJECT` → `PERSISTENT_UNIDENTIFIED`; GFW≠AIS; heuristic score). The
+recent set's detections come from the v3 detector; the Tuticorin and Jan 2026
+*detections* are still the original CA-CFAR output (their geometry is frozen as the
+baseline — re-running them through the corrected v3 detector needs a network JRC fetch
+and is noted as pending in [FINAL_REPORT.md](FINAL_REPORT.md) §5). The Jan 2026 DARK
+count moved 23→16 because the already-committed 12 dB evidence bar (which the recent set
+already used) was finally applied consistently — a relabel, not a detector change.
 
 ---
 
@@ -229,10 +244,20 @@ time, except the live "Run Analysis" feature).
   confirm/reject/unsure + note.
 - **AIS-off simulation** (Tuticorin): switch off a chosen vessel's AIS and watch the
   system reclassify it. DMC JUPITER becomes a `DARK_CANDIDATE` (the clean demo);
-  NEREUS PROGRESS becomes a `FIXED_OBJECT` (the honest blind spot). Always behind an
-  amber **SIMULATION** banner.
+  NEREUS PROGRESS, seen across passes, falls to `PERSISTENT_UNIDENTIFIED` — the honest
+  limitation: an anchored vessel with AIS removed looks like a persistent unidentified
+  return, not a clean dark candidate. It does, however, stay in the review queue rather
+  than being dismissed. Always behind an amber **SIMULATION** banner.
 - **Run Analysis**: kick off the detection pipeline on a new AOI/date on demand, with
-  live progress streamed over Server-Sent Events.
+  live progress streamed over Server-Sent Events. It runs the same corrected
+  `detect_v3.run_detector_v3` detector the write-up describes (not the Round 1 path) and
+  renders crops with the same fixed −23/+3 dB window as every other dataset
+  (`src/crops.py`). It **discovers the actual Sentinel-1 acquisition dates and never
+  guesses** — if discovery fails the run errors, and if there are no scenes it reports
+  that, rather than fabricating a 12-day cadence. It reports **coverage** (tiles analysed
+  vs unavailable vs no open sea) and distinguishes a **GFW request failure** (that date
+  *unperformed* → `partial`) from a **successful empty response** (no detections there),
+  so a failed retrieval is never presented as an empty sea.
 
 **API endpoints** (`backend/main.py`): `/api/health`, `/api/areas`, `/api/detections`
 (+`/{id}`), `/api/clusters`, `/api/alerts`, `/api/crop/{id}`,
@@ -253,21 +278,36 @@ detector — each stage mapped to a paper from a SAR false-positive-reduction re
 
 1. **JRC Global Surface Water mask + 1 km shore buffer** (GFW / Paolo et al. 2024) —
    replaces the coarse coastline. Water = JRC `occurrence ≥ 50 %`; land = Natural Earth
-   land ∪ JRC non-water; then every pixel within 1 km of shore is dropped. Catches the
-   Gulf of Mannar reefs/islets the 10 m coastline misses.
+   land ∪ JRC non-water; then every pixel within 1 km of shore is dropped. **Caveat:**
+   JRC v1.4 is a historical water-*occurrence* record, not an acquisition-time reef map
+   — our probe found occurrence = 99 over the Adam's Bridge reefs, so JRC does **not**
+   reliably exclude them. An authoritative charted reef layer is the right tool (pending).
 2. **SLIC superpixels, robust-MAD clutter selection** (Pappas 2018; Li M-D 2022) —
    keep the dominant sea as clutter, exclude only genuinely bright outlier superpixels.
    (An earlier Otsu half-split flooded rough-sea tiles; the MAD test fixed it.)
 3. **Generalized-Gamma CFAR, locally adaptive** (Martín-de-Nicolás 2015; Li 2022) —
    `threshold = local_clutter_mean × α`, where α is the GGD quantile of the *normalized*
-   clutter (scale-free, so one fit is valid tile-wide) for P_fa = 1e-5. Rough patches
-   get a proportionally higher bar — a heavy-tailed replacement for Gaussian `k·std`.
+   clutter for a **nominal** P_fa = 1e-5. P_fa is nominal only: the fit **trims** (does
+   not censor) the top 1% before an ordinary MLE, so the achieved exceedance differs
+   from nominal — the audit measured **~14.5× on synthetic Gamma clutter and ~63× pixel
+   exceedance on real tiles** (`audit/experiments/`). The downstream gates and the 12 dB
+   evidence bar do the real discrimination. A `MIN_TRAIN_PX=12` floor and finite-masking
+   (no NaN propagation) were added; `run_detector_v3` returns diagnostics + an explicit
+   status (ok/degraded/insufficient_data/no_sea).
 4. **Shape + peak-to-clutter gates** (Ao & Xu 2018; Bi 2013) — eigen-ellipse solidity
-   and eccentricity reject ragged blobs and reef/wake lines (tuned for 10 m, so compact
-   small boats are kept, not required to look boat-shaped). *Note:* peak-to-clutter
-   (TCR) turned out **not** to discriminate here — over −20 dB water almost everything
-   has high TCR — so plain contrast (blob vs local background) is the real lever.
-5. **VH/VV cross-pol** — a corroborating confidence signal only (see §5).
+   and eccentricity reject ragged blobs and reef/wake lines. *Note:* peak-to-clutter
+   (TCR) does **not** discriminate over dark water, so plain contrast is the real lever.
+   **Size floor caveat:** the pre-labelling `binary_opening` erases every target smaller
+   than a solid 3×3 block, so `MIN_BLOB_PX=3` is effectively ~9 px compact (the audit's
+   morphology experiment measured 100%→0% recovery for thin/≤8 px injected targets).
+   A 15 m boat (~1–2 px at 10 m) is below this floor.
+5. **VH/VV cross-pol** — a corroborating signal only (see §5); the background ratio is
+   **tile-wide** (a genuinely local version is an experiment), and VH is used only if it
+   is confirmed co-registered with VV.
+
+The 1 km shore buffer is built on a padded grid (off-tile land included) with true
+metric pixel spacing; the audit measured it **excludes ~15% of sea coverage** — a real
+coverage cost, recorded per tile, not only "better discrimination".
 
 **Honest crops:** `save_crop` now uses a fixed VV window (−23 → +3 dB) instead of a
 per-crop percentile stretch, which was getting hijacked by bright azimuth-ambiguity
@@ -277,9 +317,12 @@ The frozen Round-1 CA-CFAR detector (`detect.py`) and the GFW validation
 (`validate_vs_gfw.py`) are deliberately left untouched so the §6 validation numbers
 stay honest.
 
-**Still pending:** (a) an explicit Adam's Bridge reef-chain mask (two Jun-30 dark
-candidates sit on that charted shoal, which JRC reports as permanent water); (b)
-migrating the Tuticorin and Jan 2026 datasets from CA-CFAR onto this same v3 pipeline.
+**Still pending (needs data/network, see [FINAL_REPORT.md](FINAL_REPORT.md) §5):**
+(a) an authoritative charted Adam's Bridge reef-chain mask (two Jun-30 dark candidates
+sit on that shoal, which JRC reports as permanent water); (b) re-running the Tuticorin
+and Jan 2026 *detections* through the corrected v3 detector (their scoring is already
+audited; a full detector re-run needs the JRC fetch); (c) a labelled evaluation set to
+turn the density/exceedance measurements into precision/recall.
 
 ---
 
@@ -290,7 +333,7 @@ migrating the Tuticorin and Jan 2026 datasets from CA-CFAR onto this same v3 pip
 
 ```bash
 # Python deps for the detection pipeline
-pip install earthengine-api rasterio numpy scipy geopandas shapely requests pillow scikit-image fastapi uvicorn pydantic
+pip install -r requirements.txt
 
 # Build the frontend once (or after any frontend change)
 cd frontend && npm install && npm run build && cd ..
@@ -326,7 +369,18 @@ python src/run_recent.py --max-hotspots 20        # recent multi-date hotspot ru
   (see §5). Resolving this needs a known-infrastructure layer and/or shape analysis.
 - **Confidence thresholds involve mild tuning on the same data** they were checked
   against (noted in `WORKLOG.md`); they need testing on a fresh area to be called
-  validated.
+  validated. The 0–100 score is a **heuristic rank, not a calibrated probability**.
+- **The nominal P_fa = 1e-5 is not the achieved rate.** The GG-CFAR fit trims rather
+  than censors the tail; the audit measured ~14.5× inflation on synthetic clutter and
+  ~63× pixel exceedance on real tiles. The gates and the 12 dB bar, not the P_fa, do the
+  discrimination.
+- **The morphology step suppresses small targets.** `binary_opening` erases everything
+  below a solid 3×3 block (measured), so the effective size floor is ~9 px compact, well
+  above a small boat — a sensitivity cost traded for ~4.5× fewer raw detections.
+- **No labelled ground truth exists.** All quantitative results are density, pixel
+  exceedance, coverage or population-level enrichment — **never precision/recall or
+  "false objects per km²"**, which would require an independent labelled set (§5 of the
+  final report lists what is blocked on this).
 - **Reefs and azimuth ambiguities still produce some false positives.** Intermittently
   exposed shoals (e.g. Adam's Bridge) can read as targets, and strong scatterers throw
   bright azimuth-ambiguity "ghost" streaks; the v3 shape/mask gates reduce but do not

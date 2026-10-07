@@ -1,0 +1,19 @@
+{
+  "summary": {
+    "tiles_used": 37,
+    "tiles_no_sea": 3,
+    "ne_only_sea_km2": 2657.5,
+    "v3_sea_km2": 2256.7,
+    "coverage_excluded_by_jrc_and_buffer_km2": 400.8,
+    "shore_buffer_excluded_km2": 181.0,
+    "mean_alpha": 3.897,
+    "ca_cfar_oldmask_density_per_km2": 0.14,
+    "ca_cfar_newmask_density_per_km2": 0.101,
+    "ggcfar_pixel_exceedance": 0.0006350054908255665,
+    "ggcfar_density_with_opening_per_km2": 0.099,
+    "ggcfar_density_without_opening_per_km2": 0.444,
+    "opening_removes_pct_of_detections": 77.7,
+    "nominal_pfa": 1e-05
+  },
+  "note": "No labels: densities and pixel exceedance only; hotspot-selected tiles are not arbitrary ocean. Pixel exceedance is an upper bound on clutter exceedance (real targets included)."
+}

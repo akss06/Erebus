@@ -21,20 +21,16 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-import numpy as np
-import rasterio
-from PIL import Image, ImageDraw
-
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import confidence  # noqa: E402
+import crops as crops_mod  # noqa: E402
 import match  # noqa: E402
 import validate_vs_gfw as vgfw  # noqa: E402
 
 VAL = vgfw.VAL_DIR
 CROP_DIR = VAL / "crops"
 OUT = vgfw.DATA_DIR / "scored_gulf.geojson"
-CROP_HALF_PX = 60   # 600 m each side at 10 m/px
-CROP_SCALE = 4      # upscale so the 120 px crop is readable in the panel
+# Crop rendering (fixed [-23,+3] dB window) lives in src/crops.py, shared by every dataset.
 DEDUPE_M = 60       # two GFW cells can point at the same ship
 TUTICORIN_BOX = (78.20, 8.70, 78.34, 8.87)  # already its own area in the app; avoid double counting
 
@@ -48,21 +44,9 @@ def gfw_index(date: str, rec: dict) -> int | None:
 
 
 def save_crop(tif: Path, row: float, col: float, out: Path) -> None:
-    with rasterio.open(tif) as src:
-        db = src.read(1).astype("float64")
-    r, c = int(round(row)), int(round(col))
-    r0, r1 = max(0, r - CROP_HALF_PX), min(db.shape[0], r + CROP_HALF_PX)
-    c0, c1 = max(0, c - CROP_HALF_PX), min(db.shape[1], c + CROP_HALF_PX)
-    crop = db[r0:r1, c0:c1]
-    ok = np.isfinite(crop)
-    lo, hi = np.percentile(crop[ok], [2, 98])
-    img = Image.fromarray((np.clip((crop - lo) / (hi - lo), 0, 1) * 255).astype("uint8"), mode="L")
-    img = img.resize((img.width * CROP_SCALE, img.height * CROP_SCALE), Image.NEAREST).convert("RGB")
-    cx, cy = (c - c0 + 0.5) * CROP_SCALE, (r - r0 + 0.5) * CROP_SCALE
-    d = ImageDraw.Draw(img)
-    d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], outline=(255, 60, 60), width=2)
-    CROP_DIR.mkdir(parents=True, exist_ok=True)
-    img.save(out)
+    # Canonical fixed [-23, +3] dB window (see crops.py), shared across all datasets,
+    # instead of a per-crop percentile stretch that rescales each crop independently.
+    crops_mod.save_crop(tif, row, col, out)
 
 
 def main() -> None:
@@ -91,6 +75,9 @@ def main() -> None:
             "matched_mmsi": gfw["mmsi"] or None,
             "matched_flag": gfw.get("flag") or None,
             "matched_type": gfw.get("vesselType") or None,
+            # every kept detection sits at a GFW SAR-presence record (this script
+            # only processes found_by_us GFW detections); AIS here is GFW-reported.
+            "gfw_association": "associated",
             "tile": tif, "gfw_lon": gfw["lon"], "gfw_lat": gfw["lat"],
         })
         day = picked.setdefault(r["date"], [])
@@ -103,7 +90,8 @@ def main() -> None:
     features, per_date = [], Counter()
     for cid, cluster in enumerate(clusters, start=1):
         for date, det in sorted(cluster, key=lambda m: m[0]):
-            res = confidence.score_detection(det, cluster, len(vgfw.PASS_DATES), corroborated_by="GFW SAR detection")
+            res = confidence.score_detection(det, cluster, len(vgfw.PASS_DATES),
+                                             corroborated_by="GFW's SAR-presence algorithm", ais_source="gfw_reported")
             per_date[date] += 1
             det_id = f"{date}-G{per_date[date]:02d}"
             save_crop(det.pop("tile"), det["row"], det["col"], CROP_DIR / f"{det_id}.png")

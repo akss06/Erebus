@@ -59,8 +59,12 @@ AREAS = {
     },
 }
 
-# Alert priority: lower sorts first. Fixed objects and clutter are never alerts.
-ALERT_PRIORITY = {"DARK_CANDIDATE": 0, "VESSEL_CANDIDATE": 1, "ANCHORED_VESSEL": 2, "LOW_CONFIDENCE": 3}
+# Alert priority: lower sorts first. Confirmed fixed objects and clutter are never
+# alerts; PERSISTENT_UNIDENTIFIED is a reviewable alert (unresolved stationary target).
+# Review queue (most suspicious first). SUSPECTED_FIXED is heuristic, so it stays
+# reviewable; only charted FIXED_OBJECT and CLUTTER are excluded.
+ALERT_PRIORITY = {"DARK_CANDIDATE": 0, "UNVERIFIED_TARGET": 1, "PERSISTENT_UNIDENTIFIED": 2,
+                  "SUSPECTED_FIXED": 3, "VESSEL_CANDIDATE": 4, "ANCHORED_VESSEL": 5, "LOW_CONFIDENCE": 6}
 
 PROVENANCE = {
     "tuticorin": "Real detection (Sentinel-1 + AIS presence)",
@@ -306,6 +310,8 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
         import fetch_ais
         import fetch_sar
         import confidence as conf
+        import crops
+        import detect_v3
         import match as match_mod
         import validate_vs_gfw as vgfw
 
@@ -318,25 +324,59 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
         run_dir.mkdir(parents=True, exist_ok=True)
         crop_dir.mkdir(exist_ok=True)
 
-        # Build date list: every 12 days (Sentinel-1 repeat cycle) within the range
-        d0 = dt.date.fromisoformat(req.start_date)
+        # Discover the ACTUAL Sentinel-1 acquisition dates over the region in the
+        # range (§10.1). We do NOT guess a cadence: if discovery fails we stop, and if
+        # it returns no scenes we report that honestly rather than fabricating dates.
         d1 = dt.date.fromisoformat(req.end_date)
-        dates = []
-        d = d0
-        while d <= d1:
-            dates.append(d.isoformat())
-            d += dt.timedelta(days=12)
+        dates: list[str] = []
+        discovery_ok = False
+        try:
+            import ee
+            lon0, lat0, lon1, lat1 = req.region
+            coll = (ee.ImageCollection("COPERNICUS/S1_GRD")
+                    .filterBounds(ee.Geometry.Rectangle([lon0, lat0, lon1, lat1]))
+                    .filterDate(req.start_date, (d1 + dt.timedelta(days=1)).isoformat())
+                    .filter(ee.Filter.eq("instrumentMode", "IW"))
+                    .filter(ee.Filter.listContains("transmitterReceiverPolarisation", "VV")))
+            millis = coll.aggregate_array("system:time_start").getInfo() or []
+            dates = sorted({dt.datetime.utcfromtimestamp(m / 1000).date().isoformat() for m in millis})
+            discovery_ok = True
+            run["log"].append(f"Discovered {len(dates)} actual Sentinel-1 acquisition date(s) in range")
+        except Exception as e:
+            run["log"].append(f"Acquisition-date discovery FAILED: {e}")
+
+        if not discovery_ok:
+            # No real dates -> do not guess. The analysis was not performed.
+            run["status"] = "error"
+            run["error"] = ("Sentinel-1 acquisition-date discovery failed, so no analysis was performed. "
+                            "No acquisition dates were guessed.")
+            run["log"].append(run["error"])
+            return
         if not dates:
-            dates = [req.start_date]
-        run["log"].append(f"Date range: {req.start_date} to {req.end_date} ({len(dates)} passes)")
+            # Discovery succeeded, but the archive holds no S1 pass here -> report, don't invent.
+            run["progress"] = 100
+            run["status"] = "done"
+            run["result"] = {
+                "total": 0, "dark_candidates": 0, "classes": {},
+                "coverage": {"requested": 0, "dates": 0, "no_scene": 0, "download_failed": 0,
+                             "analyzed": 0, "no_sea": 0, "degraded": 0, "gfw_failed_dates": 0, "detections_kept": 0},
+                "data_unavailable": True,
+                "note": "No Sentinel-1 acquisitions found in this date range over this region.",
+            }
+            run["log"].append("No Sentinel-1 acquisitions in range over this region -- nothing to analyse (not an empty sea).")
+            return
+        run["log"].append(f"Date range: {req.start_date} to {req.end_date} ({len(dates)} acquisition passes)")
 
         region = tuple(req.region)
         tuticorin_box = (78.20, 8.70, 78.34, 8.87)
         tile_half = vgfw.TILE_HALF_DEG
         match_radius = vgfw.MATCH_RADIUS_M
 
-        # Fetch GFW SAR detections
+        # Fetch GFW SAR detections. A request FAILURE (no answer) is tracked
+        # separately from a successful EMPTY response (genuinely no SAR detections):
+        # the first means we do not know, the second means there were none.
         all_gfw: dict[str, list[dict]] = {}
+        gfw_ok: dict[str, bool] = {}
         for date in dates:
             run["log"].append(f"Fetching GFW SAR detections for {date}...")
             try:
@@ -367,20 +407,26 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
                 entries = resp.json().get("entries", [{}])[0].get("public-global-sar-presence:v4.0") or []
                 records = [e for e in entries if e.get("date") == date]
                 all_gfw[date] = records
+                gfw_ok[date] = True
                 no_ais = sum(1 for g in records if not g.get("mmsi"))
-                run["log"].append(f"  {len(records)} SAR detections ({no_ais} without AIS)")
+                run["log"].append(
+                    f"  {len(records)} SAR detections ({no_ais} without AIS)"
+                    + (" -- successful empty response (no SAR detections here)" if not records else "")
+                )
             except Exception as e:
-                run["log"].append(f"  GFW fetch failed for {date}: {e}")
+                run["log"].append(f"  GFW REQUEST FAILED for {date}: {e} -- this date is unperformed, not empty")
                 all_gfw[date] = []
+                gfw_ok[date] = False
 
         # Download tiles and run detector
-        import numpy as np
-        from PIL import Image, ImageDraw
-        import rasterio
-
         picked_dets: dict[str, list[dict]] = {}
         total_tiles = sum(min(len(gfw), req.max_per_date) for gfw in all_gfw.values())
         processed = 0
+        gfw_failed_dates = [d for d in dates if not gfw_ok.get(d)]
+        # coverage accounting (§ "distinguish unavailable data from empty sea"):
+        # a failed retrieval must not be reported as an analysed-but-empty result.
+        cov = {"requested": total_tiles, "dates": len(dates), "no_scene": 0, "download_failed": 0,
+               "analyzed": 0, "no_sea": 0, "degraded": 0, "gfw_failed_dates": len(gfw_failed_dates)}
 
         for date in dates:
             gfw = all_gfw[date]
@@ -399,15 +445,27 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
                 if not tif.exists():
                     scene = vgfw.find_scene(lon, lat, date)
                     if scene is None:
+                        cov["no_scene"] += 1
+                        run["log"].append(f"  unavailable: no Sentinel-1 scene covering this point on {date}")
                         continue
                     aoi = fetch_sar.build_aoi(
                         lon - tile_half, lat - tile_half,
                         lon + tile_half, lat + tile_half,
                     )
                     if not vgfw.download_with_retry(aoi, scene, tif):
+                        cov["download_failed"] += 1
+                        run["log"].append(f"  unavailable: tile download failed after retries on {date}")
                         continue
 
-                dets, _ = vgfw.run_detector_on_tile(tif)
+                # Corrected v3.1-audit detector (same code the technical write-up describes),
+                # not the Round 1 CA-CFAR path.
+                dets, ddiag = detect_v3.run_detector_v3(tif)
+                cov["analyzed"] += 1
+                status = ddiag.get("status", "ok")
+                if status == "no_sea":
+                    cov["no_sea"] += 1
+                elif status in ("degraded", "insufficient_data"):
+                    cov["degraded"] += 1
                 dists = [match_mod.haversine_m(lon, lat, d["lon"], d["lat"]) for d in dets]
                 nearest_dist = min(dists) if dists else None
                 if nearest_dist is None or nearest_dist > match_radius:
@@ -425,6 +483,7 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
                     "matched_mmsi": g.get("mmsi") or None,
                     "matched_flag": g.get("flag") or None,
                     "matched_type": g.get("vesselType") or None,
+                    "gfw_association": "associated",
                     "tif_path": str(tif),
                 })
                 day = picked_dets.setdefault(date, [])
@@ -437,35 +496,21 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
 
         clusters_list = conf.cluster_across_passes(picked_dets)
         clusters_list.sort(key=lambda c: (round(c[0][1]["lat"], 4), round(c[0][1]["lon"], 4)))
+        chains = conf.find_chain_members(clusters_list)
         features, per_date = [], Counter()
         for cid, cluster in enumerate(clusters_list, start=1):
             for cdate, det in sorted(cluster, key=lambda m: m[0]):
-                res = conf.score_detection(det, cluster, len(dates), corroborated_by="GFW SAR detection")
+                res = conf.score_detection(det, cluster, len(dates),
+                                           corroborated_by="GFW's SAR-presence algorithm", ais_source="gfw_reported",
+                                           chain_member=id(cluster) in chains)
                 per_date[cdate] += 1
                 det_id = f"{cdate}-A{per_date[cdate]:02d}"
                 tif_path = Path(det.pop("tif_path", ""))
                 if tif_path.exists():
-                    # Save crop
+                    # Canonical fixed [-23, +3] dB crop window (crops.py), same as the
+                    # saved Tuticorin/Gulf/recent crops -- not a per-crop percentile stretch.
                     try:
-                        with rasterio.open(tif_path) as src:
-                            db = src.read(1).astype("float64")
-                        r, c = int(round(det["row"])), int(round(det["col"]))
-                        r0, r1 = max(0, r - 60), min(db.shape[0], r + 60)
-                        c0, c1 = max(0, c - 60), min(db.shape[1], c + 60)
-                        crop = db[r0:r1, c0:c1]
-                        ok = np.isfinite(crop)
-                        if ok.sum() > 0:
-                            lo_v, hi_v = np.percentile(crop[ok], [2, 98])
-                            if hi_v <= lo_v:
-                                hi_v = lo_v + 1
-                            img = Image.fromarray(
-                                (np.clip((crop - lo_v) / (hi_v - lo_v), 0, 1) * 255).astype("uint8"), mode="L"
-                            )
-                            img = img.resize((img.width * 4, img.height * 4), Image.NEAREST).convert("RGB")
-                            cx, cy = (c - c0 + 0.5) * 4, (r - r0 + 0.5) * 4
-                            draw = ImageDraw.Draw(img)
-                            draw.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], outline=(255, 60, 60), width=2)
-                            img.save(crop_dir / f"{det_id}.png")
+                        crops.save_crop(tif_path, det["row"], det["col"], crop_dir / f"{det_id}.png")
                     except Exception:
                         pass
 
@@ -511,12 +556,39 @@ def _run_analysis(run_id: str, req: AnalyzeRequest) -> None:
         run["progress"] = 100
         run["status"] = "done"
         run["area_id"] = area_id
+        unavailable = cov["no_scene"] + cov["download_failed"]
+        cov["detections_kept"] = sum(len(v) for v in picked_dets.values())
+        # Partial: some acquisition dates could not be fetched from GFW at all, so those
+        # dates are unperformed (unknown), not confirmed empty.
+        partial = len(gfw_failed_dates) > 0
+        # Unavailable: nothing usable was obtained -- every GFW date failed, or no tile
+        # could be retrieved. Either way, NOT an empty-sea conclusion.
+        data_unavailable = (len(gfw_failed_dates) == len(dates)) or (cov["analyzed"] == 0 and unavailable > 0)
         run["result"] = {
             "total": len(features),
             "dark_candidates": dark,
             "classes": dict(classes),
+            "coverage": cov,
+            "gfw_failed_dates": gfw_failed_dates,
+            "partial": partial,
+            "data_unavailable": data_unavailable,
         }
-        run["log"].append(f"Done: {dark} dark-vessel candidates out of {len(features)} detections")
+        if gfw_failed_dates:
+            run["log"].append(
+                f"GFW request failed for {len(gfw_failed_dates)}/{len(dates)} date(s): "
+                f"{', '.join(gfw_failed_dates)} -- these dates are unperformed, not empty."
+            )
+        run["log"].append(
+            f"Coverage: {cov['analyzed']} tiles analysed, {unavailable} unavailable "
+            f"({cov['no_scene']} no scene, {cov['download_failed']} download failed); "
+            f"{cov['no_sea']} had no open sea after masking, {cov['degraded']} degraded."
+        )
+        if data_unavailable:
+            run["log"].append("No usable data could be retrieved -- this is missing data, not an empty sea.")
+        elif partial:
+            run["log"].append(f"PARTIAL result: {dark} dark candidates / {len(features)} detections over the dates that were successfully fetched.")
+        else:
+            run["log"].append(f"Done: {dark} dark-vessel candidates out of {len(features)} detections over {cov['analyzed']} analysed tiles")
 
     except Exception as e:
         run["status"] = "error"

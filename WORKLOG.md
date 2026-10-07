@@ -1,370 +1,225 @@
-# Erébus Round 2 — Work Log
+# WORKLOG — Scientific & detection-logic audit
 
-Chronological record of every step and change, written so you can retrace it later.
-Plan and deadlines live in [ROUND2_PLAN.md](ROUND2_PLAN.md). Newest entries at the bottom.
+Chronological log of the audit requested 2026-10-07. Baseline is git
+`549ed4a` (clean tree). Full per-item status lives in [AUDIT_CHECKLIST.md](AUDIT_CHECKLIST.md);
+the narrative report is [FINAL_REPORT.md](FINAL_REPORT.md).
 
-Convention: throwaway scripts used for checking live in the Claude scratchpad (not the repo).
-Anything worth keeping gets copied into `scripts/` or `src/` and noted here.
-
----
-
-## 2026-10-03 — Step 1: credential and data-availability checks
-
-**Goal:** confirm the external services the pipeline depends on still work.
-
-**What I did (read-only, no repo files changed except this log and the plan):**
-
-1. Read `.env` keys only (values not printed): it contains `GFW_API_TOKEN`. Earth Engine auth is in
-   `~/.config/earthengine/credentials`; project id is `dark-vessel-detection-504204`
-   (from `run_milestone1.py`).
-2. Ran a check script that:
-   - called GFW `/v3/vessels/search` with the token → **HTTP 200, token valid**;
-   - called `ee.Initialize(project="dark-vessel-detection-504204")` → **works**;
-   - listed Sentinel-1 IW/VV scenes in the last 120 days for three boxes.
-
-**Results — Sentinel-1 passes, last 120 days (to 2026-10-03):**
-
-| Area | Box (lon_min, lat_min, lon_max, lat_max) | Scenes | Orbits |
-|---|---|---|---|
-| Tuticorin anchorage | 78.22, 8.72, 78.32, 8.85 | 10 | 92 only (every 12 days; latest 2026-09-22) |
-| Palk Strait central | 79.3, 9.6, 79.9, 10.2 | 42 | 92, 19, 27 (latest 2026-09-29) |
-| Gulf of Mannar offshore | 78.6, 8.4, 79.2, 8.9 | 20 | 92 (latest 2026-09-22) |
-
-Takeaway: Palk Strait has the densest recent coverage (three orbits), so it is the best place to
-look for repeat passes and dark candidates.
-
-**Finding: GFW has a SAR-detection dataset.** `public-global-sar-presence:latest` works through the
-same `/4wings/report` endpoint we already use. Records come back per grid cell with
-`detections`, `entryTimestamp`/`exitTimestamp`, lat/lon, and — for detections GFW could not match
-to an AIS vessel — **empty `mmsi`/`shipName`**. That is GFW's own "unmatched to AIS" signal, i.e.
-an independent label we can compare our detector against.
-
-(Details of the follow-up measurement are in the next entry.)
+Terminology used throughout:
+- **BUG** — code does something provably wrong; fix applied in place.
+- **SEMANTIC** — code is not wrong but its label/claim overstates evidence; relabelled.
+- **EXPERIMENT** — a new algorithm/measurement; kept separately identifiable, not wired
+  into the default pipeline unless measured to help.
+- **BLOCKED** — cannot be validated without data/labels we do not have; scoped and deferred.
 
 ---
 
-## 2026-10-03 — Step 2: probing GFW's SAR-detection dataset (`public-global-sar-presence:latest`)
-
-**Goal:** find out whether GFW gives us independent "SAR detection, matched/unmatched to AIS" labels
-to validate our detector against, and whether any exist over the Palk Strait / Gulf of Mannar.
-
-**How:** same `POST /v3/4wings/report` call as `src/fetch_ais.py`, but with
-`datasets[0]=public-global-sar-presence:latest` and `group-by=VESSEL_ID`. Records with empty
-`mmsi` are detections GFW could not match to an AIS vessel. (Scripts were throwaway, in scratchpad.)
-
-**Results (January 2026 unless noted):**
-
-| Box | Monthly records | With MMSI (AIS-matched) | No MMSI (unmatched) |
-|---|---|---|---|
-| Tuticorin anchorage | 10 | 9 | 1 |
-| Palk Strait (79.3–79.9E, 9.6–10.2N) | 40 | 0 | **40** |
-| Gulf of Mannar (78.0–79.5E, 8.3–9.2N) | 72 | 20 | **52** |
-
-Single pass, 2026-01-18 (queried as range `01-17,01-19`; a one-day range `01-18,01-18` returns
-nothing — same quirk as the AIS presence product):
-
-| Box | GFW SAR detections | AIS-matched | Unmatched |
-|---|---|---|---|
-| Tuticorin | 3 | 3 | 0 |
-| Palk Strait | 1 | 0 | 1 |
-| Gulf of Mannar | 10 | 5 | 5 |
-
-**What this means:**
-- The dataset works and gives us an **independent label source**. This is the validation route.
-- **GFW itself reports unmatched SAR detections in the Gulf of Mannar and Palk Strait.** So
-  AIS-silent candidates plausibly exist there. Not the same as "confirmed dark vessels" (see caveats).
-- **Our Tuticorin run found 17 detections on 2026-01-18; GFW found 3.** Our detector is far less
-  selective: most of our 17 are known false positives (linear feature, speckle — see
-  `results/MILESTONE1_FINDINGS.md`). That is a real precision number we can quote honestly.
-- The pass timestamps (`entryTimestamp` ≈ 00:33 UTC) line up with our Sentinel-1 pass time.
-
-**Caveats (do not overstate):**
-- "No MMSI" means GFW did not match it to an AIS vessel in *its* AIS data. That data has gaps in
-  Indian waters, and many small fishing boats never carry AIS. So unmatched ≠ intentionally dark.
-- GFW's detections are grid-snapped (~0.01°, ~1 km), not exact positions.
-- GFW's own detector also has misses and false alarms; it is a reference, not perfect ground truth.
-
-**Next:** build a validation script that, for each Sentinel-1 pass, runs our detector over the
-same area and counts agreement with GFW's detections (found / missed / extra).
-
----
-
-## 2026-10-03 — Step 3: validation script vs GFW (`src/validate_vs_gfw.py`)
-
-**New files:** `src/validate_vs_gfw.py`, `results/VALIDATION_VS_GFW.md`, `data/validation/` (cached GFW
-JSON, tiles `*.tif` [gitignored], `validation_rows.json`, `run.log`). No existing code was modified.
-
-**What the script does:** for 3 passes (2026-01-06/18/30) it fetches GFW's SAR detections for the Gulf of
-Mannar + Palk Strait box, samples 10 per date, downloads a ~9 km Sentinel-1 tile around each from Earth
-Engine, runs our *unmodified* land mask + CA-CFAR detector, and records whether we find a detection within
-1500 m. Also counts our "extra" detections per 100 km².
-
-**Problems hit and fixes:**
-1. First run tried all GFW detections (52 on the first date alone, ~1–2 min per tile) → would have taken
-   hours. Killed it; added `MAX_PER_DATE = 10` sampling spread evenly over the list.
-2. Earth Engine dropped a download connection and crashed the batch → added `download_with_retry`
-   (3 attempts, then skip that tile).
-
-**Result:** 24/30 (80%) of GFW detections also found by us; median offset ~500 m; ~6.3 extra detections
-per 100 km². Full numbers and caveats in `results/VALIDATION_VS_GFW.md`.
-
-**Takeaways for the pitch:** we can quote "agrees with GFW's independent detector on 80% of a 30-ship sample"
-(not "80% recall"). Our weak point remains false alarms, which the persistence/confidence work (next) targets.
-Also: GFW listed 143 detections across three passes of this region, ~70% without an AIS match, so there
-is plenty of unmatched traffic to examine for the dark-vessel search.
-
-**Next:** (a) persistence/confidence score to cut false alarms, (b) the web app skeleton (FastAPI + React)
-with the "all passes on one screen + alerts list" design.
-
----
-
-## 2026-10-03 — Step 4: AISstream live-AIS test (result: NOT usable for India)
-
-**Goal:** record exact-time AIS around a Sentinel-1 pass to fix GFW's coarse timing.
-
-**What I did:** wrote a recorder (`src/record_ais.py`) and tested the key (stored in `.env` as
-`AISSTREAM_API_KEY`, never printed).
-
-**Findings:**
-- Key and service work: a Singapore control box returned 18 ships in 45 s; a global box returned 677 ships.
-- **Our box (Tuticorin / Gulf of Mannar / Palk Strait, 8.0–10.6N, 77.8–80.4E): 0 ship messages in 2.5 min.**
-- **Whole India + Sri Lanka seas (5–24N, 68–90E): 0 messages in 45 s.** Kochi, Chennai and Mumbai/Gujarat
-  coastal boxes: 0 messages in 40 s each.
-- A 2-minute listen over the northern Indian Ocean (0–32N, 55–105E) returned 59 position messages /
-  53 ships, **none inside 0–30N, 60–100E** — all came from the corners (outside India).
-- (First attempt opened 6 connections at once and got HTTP 429 rate-limited — my error, not a coverage issue.)
-
-**Conclusion:** AISstream's volunteer terrestrial network has essentially no coverage of Indian waters.
-Short samples (not a long-term survey), but consistent across 5 separate tests.
-
-**Changes:** deleted `src/record_ais.py`, `data/ais_live/`, and the matching `.gitignore` lines — no
-point keeping a recorder that records nothing. No other files touched.
-
-**Pitch value:** this is a concrete, tested reason why an official feed is needed. "We tested the best free
-live AIS source; it has no coverage of Indian waters. India's Coast Guard / NIC AIS network is the missing
-piece." Use this in Q&A and the partnership slide.
-
-**Next:** back to the plan: persistence/confidence score, then the web app.
-
----
-
-## 2026-10-03 — Step 5: persistence + confidence score (`src/confidence.py`)
-
-**New files:** `src/confidence.py`, `data/scored_detections.geojson` (all 70 Tuticorin detections over 4 passes,
-each with `confidence_class`, `confidence` 0–100, `reasons`). No existing file modified.
-
-**Key discovery (from the data, before writing code):** persistence alone does NOT mean "fixed structure".
-- The pipeline/cable fragments (#5–12) reappear on 3–4 passes, but the AIS ship they "match" is a *different
-  vessel each pass* (OCEAN POISE → HONG FU → GN RUBY → OCEAN ALLIANCE): a fixed object that is merely near
-  whichever ship anchors beside it that day. So the Round 1 "49 of 70 matched" figure is inflated by these.
-- NEREUS PROGRESS also reappears on 4 passes, but matches the *same* vessel every time → ship at anchor.
-- So the rule is persistence **plus AIS-identity consistency**.
-
-**Classes:** ANCHORED_VESSEL (3+ passes, same MMSI), FIXED_OBJECT (3+ passes, MMSI keeps changing/absent),
-VESSEL_CANDIDATE (single pass, ≥15 dB, ≥8 px, AIS nearby), DARK_CANDIDATE (same but NO AIS — needs review),
-LOW_CONFIDENCE (bright but small/weak), CLUTTER (<10 dB). Thresholds are named constants at the top of the file.
-
-**Result vs the Round 1 hand labels on 2026-01-18 (cluster radius 100 m):**
-- #1 NEREUS → ANCHORED_VESSEL ✓ (resolves the old "unexplained" label)
-- #3/#4 DMC JUPITER → VESSEL_CANDIDATE ✓
-- #5–8, #11 pipeline fragments → FIXED_OBJECT ✓; #9, #10, #12 → LOW_CONFIDENCE (not wrongly endorsed)
-- #13–17 speckle → all CLUTTER ✓
-- #2 (hand label "unexplained", streak) → VESSEL_CANDIDATE: nearest AIS ship is SSI DIGNITY at 401 m, and GFW's
-  own SAR detection list has SSI DIGNITY at 78.27E 8.75N on that pass. So #2 is probably a real ship and the
-  Round 1 "streak/artifact" reading may have been wrong. Hypothesis only; not visually re-checked.
-- Across all 70: ANCHORED 4, FIXED 18, VESSEL_CANDIDATE 10, LOW 12, CLUTTER 26, **DARK_CANDIDATE 0**.
-  No detection was wrongly promoted to "vessel" from the known fixed-object or clutter sets.
-
-**Honest caveats:**
-- I chose the 100 m cluster radius while looking at the Jan 18 labels (75 m split real fragments, 125 m began
-  over-merging). That is mild tuning on the same data we score against; ship classes were identical at all three
-  radii. Needs to be tested on a different area before being called validated.
-- Only 4 passes of one anchorage. Persistence logic cannot be applied to the Gulf of Mannar tiles (1 pass each).
-- A *dark* ship anchored in one place for weeks would look like a FIXED_OBJECT. Persistence cannot tell these
-  apart; shape and a known-infrastructure layer would be needed. Stated limitation, not hidden.
-- Still zero dark candidates at Tuticorin, matching the Round 1 negative result.
-
-**Next:** the web app skeleton (FastAPI + React), using `scored_detections.geojson` as its first data source.
-
----
-
-## 2026-10-03 — Step 6: web app skeleton (FastAPI + React)
-
-**New files:**
-- `backend/main.py`, `backend/__init__.py` — FastAPI app. Reads `data/scored_*.geojson` at startup; no Earth Engine/GFW
-  calls at request time (works offline). Endpoints: `/api/health`, `/api/areas`, `/api/detections` (+`/{id}`),
-  `/api/clusters` (one row per location across passes), `/api/alerts` (ranked review queue; fixed objects and clutter
-  excluded), `/api/crop/{id}`, `/api/overlay/tuticorin.png`, `/api/reviews` (GET/POST; saved to `data/reviews.json`).
-  If `frontend/dist` exists it is served at `/`, so the whole app is one process.
-- `frontend/` — Vite + React + TypeScript + MapLibre. Files in `frontend/src/`: `api.ts` (types/fetch), `classes.ts`
-  (plain-language class names + colours), `MapView.tsx`, `AlertsPanel.tsx`, `DetailPanel.tsx`, `App.tsx`, `styles.css`.
-
-**Changes to existing files:** `src/confidence.py` now also emits a stable `id` (`<date>-<NN>`) and `cluster_id` per
-detection (needed by the app; the multi-date files had no `rank`). `.gitignore`: added `data/reviews.json`.
-
-**What the UI shows:** map with one dot per physical location ("All passes combined"; dot size = number of passes
-seen), or a single pass via the date chips; toggle-able class legend; optional SAR radar overlay; ranked review queue;
-detail panel (class + plain explanation, confidence, radar crop, reasons, AIS check, same-location-on-other-passes
-table, confirm/reject/unsure + note). Provenance line on every item.
-
-**Problems hit and fixes:**
-1. Shell heredoc batch silently failed (unmatched quote) — files re-created one by one with the Write tool.
-2. TypeScript rejected the MapLibre colour expression built with a spread → cast with a comment.
-3. Map canvas stayed at 400×300 (container measured before flex layout settled) → added a `ResizeObserver`.
-(The browser pane viewport is 1024×768; screenshots are a scaled crop, so the page only looks cut off.)
-
-**How to run (from project root):**
-```
-cd frontend && npm install && npm run build     # once, or after frontend changes
-cd .. && python -m uvicorn backend.main:app --port 8000
-# open http://localhost:8000
-```
-Frontend dev mode with hot reload: `npm run dev` in `frontend/` (port 5173, proxies `/api` to 8000).
-
-**Verified:** `npm run build` (includes `tsc --noEmit`) passes; in the browser the map renders dots, the queue lists 20
-locations, clicking NEREUS PROGRESS opens its detail with the radar crop and reasons.
-
-**Known gaps (next):**
-- "Gulf of Mannar / Palk Strait" is empty (0 detections). Next step: `src/build_gulf_candidates.py` turns the validation
-  tiles into scored detections + crops, which is where real dark-vessel candidates (GFW "no AIS match" AND detected by
-  us) will appear.
-- Basemap tiles come from OpenStreetMap, so they need internet (Delhi fallback: hotspot, or bundle a basemap).
-- Not tested: review POST from the UI, the date chips, the Radar image overlay, narrow/mobile layout.
-- No automated tests yet. Reviews are a JSON file (fine for a prototype, not multi-user).
-
----
-
-## 2026-10-03 — Step 7: Gulf of Mannar candidates (`src/build_gulf_candidates.py`) + a correction
-
-**New:** `src/build_gulf_candidates.py` → `data/scored_gulf.geojson` (24 scored detections) and 24 radar crops in
-`data/validation/crops/` (120 px window, 4× upscaled, red circle on the detection). The backend picks them up
-automatically as the "Gulf of Mannar / Palk Strait" area. Built only from the 30-detection validation sample.
-
-**What it does:** for each GFW detection our detector also found, keep OUR nearest blob, mark it matched/unmatched using
-GFW's AIS flag, score it with `confidence.py`, save a crop. The 6 GFW detections we missed are left out of the app.
-
-**Result:** 7 VESSEL_CANDIDATE (all AIS-matched), 13 CLUTTER, **4 DARK_CANDIDATE**:
-`2026-01-30-G04` (79.210E 9.077N, 13.4 dB), `2026-01-30-G06` (78.867E 9.128N, 10.8 dB),
-`2026-01-06-G07` (79.398E 9.728N, 10.0 dB), `2026-01-06-G08` (79.557E 10.106N, 12.7 dB).
-
-**I looked at the four crops myself:** each shows a compact bright return with a vertical streak trailing along the
-satellite's track direction (similar to Round 1's detection #2). Plausibly a moving ship, but a streak can also be a
-radar artefact. **Not verified.** They are candidates for analyst review, not findings.
-
-**Design change to `src/confidence.py` (decided after seeing the crops — treat as re-testable, not validated):**
-`score_detection` has a new `corroborated_by` argument. When an independent detector (GFW's SAR detections) reports the
-same object, the contrast bar for vessel/dark candidate drops from 15 dB to 10 dB. Tuticorin results are unchanged
-(no corroboration data there). Without this, the four above would have been LOW_CONFIDENCE.
-
-**Correction to Step 3 (my earlier headline was too generous):** the "80% found" figure is inflated by chance — our detector
-fires ~6.3 times per 100 km², so a 1.5 km circle holds a random detection ~36% of the time. Looking at what was found:
-all 7 AIS-matched GFW ships were found with strong contrast (7/8 = 88%), but of the 22 GFW detections with no AIS match we
-found 17, of which 13 are noise-level (6–9 dB) and only 4 are clear. So: **we see GFW's AIS-matched ships reliably, and
-about 1 in 5 of its AIS-less detections.** `results/VALIDATION_VS_GFW.md` now opens with this correction. Do not quote
-"80% recall" to the jury.
-
-**Why that is still a useful story:** the AIS-less detections GFW reports in the Gulf of Mannar are mostly very weak —
-consistent with small boats at the edge of Sentinel-1's 10 m resolution. That is the honest case for higher-resolution
-SAR (NISAR/RISAT/commercial) in the pitch.
-
-**Caveats:** AIS status comes from GFW (patchy in Indian waters; many small boats carry no AIS), so "no AIS" ≠ switched
-off. Only 30 of GFW's 143 detections were tested; the full list may hold more candidates (next possible step: run all of
-the ~110 AIS-less ones, ~1–2 min each, could be parallelised).
-
-**Next:** the AIS-off demo on NEREUS PROGRESS (clearly labelled simulation).
-
----
-
-## 2026-10-03 — Step 8: AIS-off simulation (backend + UI) and Gulf of Mannar in the app
-
-**Changes:**
-- `backend/main.py`: new `sim=<mmsi>` query parameter on `/api/detections`, `/api/detections/{id}`, `/api/clusters`,
-  `/api/alerts`, plus `/api/simulation/vessels`. `_simulated()` takes the real Tuticorin detections, sets the ones whose
-  nearest AIS vessel is that MMSI to UNMATCHED, and re-scores everything with `confidence.score_all` (so cross-pass
-  persistence is recomputed too). Affected detections get `simulated: true` and a provenance line starting "SIMULATION".
-- `frontend/src/*`: a "Simulate: switch off AIS of <vessel>" dropdown (Tuticorin only), an amber SIMULATION banner with an
-  Exit button, a gold ring on dots that changed, and the simulation flag carried into the detail panel.
-- `src/build_gulf_candidates.py`: now skips GFW points inside the Tuticorin box (they were double-counted as Gulf
-  detections). Gulf set is now 19 detections: 4 DARK_CANDIDATE, 2 VESSEL_CANDIDATE, 13 CLUTTER.
-
-**Simulation results (what the system does when a ship's AIS is removed):**
-- **DMC JUPITER (seen on one pass):** its two detections (#3/#4 on 2026-01-18, 18.4 and 17.9 dB) become DARK_CANDIDATE
-  (76 and 70). This is the clean "we flagged an AIS-silent ship" demo.
-- **NEREUS PROGRESS (same spot on all 4 passes):** it is NOT flagged. With no AIS identity it is reclassified FIXED_OBJECT
-  and drops out of the review queue. **This is a real blind spot** (a dark ship parked in one place for weeks looks like a
-  fixed object). The simulation exposes it rather than hiding it; say so in the pitch before a juror finds it.
-
-**Verified in the browser:** DMC JUPITER scenario puts two red dark-vessel candidates on top of the queue under the banner;
-the Gulf of Mannar view lists the 4 dark candidates first; the detail panel shows crop, reasons ("independently reported by
-GFW SAR detection", "no AIS vessel within match radius") and provenance.
-
-**Not tested yet:** the NEREUS scenario in the UI, the date chips in the Gulf view, review buttons end-to-end, mobile layout.
-
-**Next options:** (a) run the detector on all ~110 AIS-less GFW detections (not just the 30-sample) to see how many
-dark candidates there really are; (b) offline basemap for Delhi; (c) pitch material (deck, demo script, Q&A); (d) NISAR
-feasibility check; (e) the small ML classifier (stretch).
-
----
-
-## 2026-10-03 — Step 9: full search over all 143 GFW SAR detections
-
-**Changes:** `src/validate_vs_gfw.py` gained `--all` (test every GFW detection) and `--workers` (parallel Earth Engine
-downloads via a thread pool; the sequential version would have taken hours). The earlier 30-sample rows are kept in
-`data/validation/validation_rows_sample30.json`. Log of the run: `data/validation/run_all.log`. 143 tiles, none skipped,
-~20 min. Then `src/build_gulf_candidates.py` was re-run: `data/scored_gulf.geojson` now has 95 detections.
-
-**Numbers (full set, 3 passes: 2026-01-06/18/30, Gulf of Mannar + Palk Strait):**
-- GFW SAR detections: 143 (22 with an AIS match, **121 without**).
-- Found by us within 1500 m: 111 (78%) — AIS-matched 20/22 (91%), AIS-less 91/121 (75%).
-- Extra detections: 755 over 11,349 km² = 6.7 per 100 km² (chance of a random hit in a 1.5 km circle ≈ 37%).
-- After scoring (Tuticorin box excluded): CLUTTER 62, VESSEL_CANDIDATE 9, **DARK_CANDIDATE 23**, LOW_CONFIDENCE 1.
-- All 23 dark candidates are single-pass (none repeats across passes), 10.0–16.1 dB, 8–31 px.
-
-**Visual check (me, quick, unverified):** contact sheet of all 23 = `results/DARK_CANDIDATES_CONTACT_SHEET.png`. About 16 show a
-clear compact bright target (often with an along-track streak); about 6 are doubtful (e.g. 2026-01-06-G03 shows nothing
-but noise at 11 dB; 2026-01-30-G27 is faint); 3 (2026-01-06-G09, 2026-01-18-G12, 2026-01-30-G05) sit at the end of bright
-streaks and may be radar artefacts (azimuth ambiguity) of a nearby stronger target, not ships.
-
-**Hand-off for teammates:** `results/dark_candidates_for_review.csv` (blank verdict/name/notes columns) plus the contact sheet.
-Ask them to mark each ship / not ship / unsure. That gives us the only human ground truth we have for the dark search.
-
-**Caveats to keep in the pitch:**
-- 23 candidates ≠ 23 dark vessels. "No AIS" is GFW's AIS database (patchy in Indian waters); many small boats never carry AIS.
-- The 10 dB bar for GFW-corroborated objects was chosen after seeing crops (see Step 7). Re-test after human labels arrive.
-- Several candidates are clustered within ~1 km (e.g. around 79.55E 10.10N; around 79.40E 9.61–9.73N): possibly fishing
-  fleets, possibly one object counted from several GFW cells. Not yet resolved.
-- Single pass each, so persistence cannot help; only GFW's agreement and the radar crop support them.
-
-**Next:** teammates label the 23; then re-score with their labels (tests whether the 10 dB rule is sound).
-
----
-
-## 2026-10-03 — Step 10: objective enrichment test (replaces eyeballing)
-
-**Why:** the user pointed out that the team cannot reliably judge "ship / not ship" by eye (neither can I; my quick visual read in
-Step 9 is not evidence). So the human-labelling hand-off in Step 9 is **withdrawn**. `results/dark_candidates_for_review.csv` and the
-contact sheet remain only as a convenience for a real analyst; no team labelling is needed.
-
-**New:** `src/enrichment_test.py`. For every tile (centred on a GFW detection) it counts "strong" blobs (>=10 dB, >=8 px) within
-1500 m of the centre and compares with the number expected by chance from the density of strong blobs elsewhere in the same
-tile (Poisson test). Tuticorin tiles excluded. No human judgement involved.
-
-**Result:**
-- GFW detections WITH an AIS match (control, 11 tiles): observed 11, expected 1.5 → **7.4x**, p = 5e-07.
-- GFW detections WITHOUT an AIS match (119 tiles): observed 58, expected 7.9 → **7.4x**, p = 2e-30.
-- Reading: AIS-less GFW detections are accompanied by strong ship-sized radar blobs about as strongly as AIS-matched ships are. About
-  8 of the 58 (14%) are expected to be chance, so roughly 6 in 7 of our strong-blob "dark candidates" correspond to something real
-  in the radar, and about 3 of the 23 listed candidates are probably noise. We cannot say which.
-
-**What this does NOT establish (say so if asked):**
-- That the object is a ship, not another bright thing (buoy, platform, rain cell). It shows the bright return is real and that GFW's
-  independent detector also fired there.
-- That the ship is "dark" on purpose: AIS status is from GFW's database, which is patchy over India, and many small boats carry no AIS.
-- Independence: our detector and GFW's use the same Sentinel-1 scenes, so this is agreement between two algorithms on one
-  image, not two sensors. Blobs cluster (fleets), so the Poisson p-values are optimistic; the 7.4x ratio is the robust number.
-
-**Pitch wording that is true:** "Strong ship-like radar returns occur 7x more often than chance at the places GFW reports AIS-less
-detections, the same enrichment as for AIS-matched ships. We flag them for analyst review; confirming them needs a proper AIS
-feed and analyst or optical verification."
-
-**Next:** offline basemap for Delhi; then pitch material; stretch: synthetic-ship injection test to measure detection sensitivity by size.
+## 2026-10-07
+
+### Baseline preservation
+- Recorded git rev, Python 3.13.2, installed dep versions, and sha256 of all
+  tracked scored outputs + raw per-pass detections in
+  [audit/baseline_manifest.json](audit/baseline_manifest.json).
+- Raw SAR `.tif` are gitignored (large). Local cache: 577 recent tiles, 143
+  validation tiles, 3 multi-date tiles. JRC occurrence caches present for 140
+  recent tiles only; none for validation/multi-date — so a full **v3 re-run** of
+  the Gulf and Tuticorin sets needs network (GEE JRC fetch), but **semantic
+  re-scoring from the frozen detections is fully offline**.
+- Baseline itself is the committed tree at `549ed4a`; old detector/v3 behaviour
+  is reproducible by checking it out. No large files duplicated.
+
+### Verification pass (code read before any change)
+Confirmed against source — see AUDIT_CHECKLIST for file:line evidence:
+- §1 `_fit_shape_alpha` trims (not censors) the top 1%, MLE-fits the remainder,
+  extrapolates to the 1e-5 quantile → achieved P_fa ≠ nominal. **Confirmed.**
+- §1 clutter model is fit on **all sea pixels** (`detect_v3.py` norm = intensity[sea]/lm[sea]),
+  not the pure-clutter superpixels the docstring describes. **Confirmed doc/impl mismatch.**
+- §2 `binary_opening` runs before labelling, so `MIN_BLOB_PX=3` is partly illusory;
+  `confidence.MIN_AREA_PX=8` gates independently. **Confirmed.**
+- §3/§9 GFW SAR agreement is labelled "independently reported" and treated as an
+  independent confirmation; it is the same Sentinel-1 imagery, different algorithm,
+  and is **not AIS**. **Confirmed overstatement.**
+- §4 persistence-without-consistent-MMSI → `FIXED_OBJECT` (confident infrastructure
+  label) although the docstring already admits a dark ship at anchor is
+  indistinguishable. **Confirmed overstatement.**
+- §5 `cluster_across_passes` is single-linkage with no diameter cap → transitive
+  chains possible. **Confirmed.**
+- §6 JRC fetched clipped to tile (no pad); shore distance transform runs inside the
+  tile only; JRC failure silently falls back to Natural-Earth-only with no record;
+  docstring claims JRC "catches the Gulf of Mannar reefs" but our probe showed
+  occurrence=99 at the reef FPs. **Confirmed (several).**
+- §7 VH/VV "local" ratio is actually a tile-wide median; only `vh.shape==db.shape`
+  is checked, not CRS/transform alignment. **Confirmed.**
+- §8 `_local_clutter_mean` does `intensity * clutter.astype(float)`; `NaN*0=NaN`, and
+  `uniform_filter` then smears each NaN across an outer-window neighbourhood, where
+  `detect_blobs_v3` replaces it with the global median → wrong local background.
+  **Confirmed latent bug** (fires only if a tile has non-finite pixels; `build_sea_mask`
+  shows non-finite pixels do occur).
+- §13 `requirements.txt` lists `folium/pandas/streamlit/streamlit-folium` — none of
+  the actual stack. **Confirmed stale.**
+
+### Work done
+**Semantics (shared core) — §3, §4, §5, §9:** rewrote `confidence.py`:
+- Complete-linkage clustering with `CLUSTER_DIAMETER_M` cap replaces single-linkage
+  (no more transitive chains). Test: `tests/test_audit_fixes.py::test_complete_linkage_blocks_transitive_chain`.
+- New `PERSISTENT_UNIDENTIFIED` class for persistent + no-consistent-identity targets;
+  `FIXED_OBJECT` now requires explicit `context_fixed` evidence, never inferred from
+  persistence. Propagated to `api.ts`, `classes.ts`, `backend/main.py` ALERT_PRIORITY.
+- GFW association kept distinct from AIS evidence via `ais_source` ("our_ais" vs
+  "gfw_reported") and `_ais_evidence()`; GFW agreement labelled shared-sensor, not
+  independent. Wired into `run_recent.py` (+ many-to-one `ambiguous` flag),
+  `build_gulf_candidates.py`, `backend/main.py` (batch + Run Analysis).
+- `score_basis` = "heuristic evidence/ranking score" on every detection (§9.1).
+- Regenerated Tuticorin offline (`python src/confidence.py`): 15 `FIXED_OBJECT` ->
+  `PERSISTENT_UNIDENTIFIED`, `ANCHORED_VESSEL`x4 preserved.
+- Re-scored frozen recent+gulf detections offline (`audit/rescore_historical.py`,
+  a documented semantic adaptation, NOT a detector re-run). recent: 67
+  `FIXED_OBJECT`->`PERSISTENT_UNIDENTIFIED` (rest identical). gulf: `DARK` 23->16 —
+  the 8 reclassified are 10.0-11.7 dB, below the already-committed 12 dB bar that
+  gulf had never been regenerated under (consistency, not a new tuning or detector
+  change). Baselines saved to `audit/results/*_baseline_549ed4a.json`.
+
+**Detector corrections — §1, §6, §7, §8:** rewrote the affected `detect_v3.py`
+functions (version tag `v3.1-audit`):
+- §8.1 `_local_clutter_mean` finite-masks before the box filter (no NaN propagation);
+  §1.4 requires `MIN_TRAIN_PX=12` local clutter pixels or marks the pixel unsupported.
+- §1.3 `_fit_shape_alpha` returns a diagnostics dict (dist, params, alpha, n_samples,
+  trim quantile, nominal pfa); PFA documented as NOMINAL.
+- §8.2 `detect_blobs_v3`/`run_detector_v3` return `(dets, diag)` with explicit
+  `status` ∈ {ok, degraded, insufficient_data, no_sea} + notes; wired into `run_recent.py`.
+- §6.2 `build_sea_mask` builds NE+JRC land and the shore-distance transform on a grid
+  padded by the shore buffer, then crops — off-tile land now pushes shore distance in.
+- §6.3 distance in true metres via `_pixel_metres` (metric CRS direct, geographic
+  converted); §6.1 excluded-shore km² recorded; §6.4 JRC used/fallback recorded.
+- §7.2 VH used only if co-registered with VV (shape+CRS+transform), else skipped with
+  reason; §7.1 tile-wide ratio relabelled honestly (local is an experiment).
+- Verified on real cached tiles: new mask matches baseline to <0.3% (diff = correct
+  off-tile shore exclusion at edges); full path produces detections with gengamma fit,
+  0% fallback, VH co-registration gating. Committed `scored_recent` stays the FROZEN
+  baseline-detector output; a corrected-detector re-run needs network (JRC) — pending.
+- 11/11 regression tests pass (`tests/test_audit_fixes.py`).
+
+**Experiments:**
+- §1.5 `audit/experiments/calibration.py`: Gamma(2,0.5), 5 seeds, 5M held-out.
+  trim+gengamma (default) achieves **1.45e-4 = 14.5x nominal 1e-5** (reproduces the
+  reported ~1.7e-4). Same fit WITHOUT trim -> 1.3x; gamma no-trim -> 1.0x. Conclusion:
+  the top-1% trim (there to exclude targets) is what breaks P_fa calibration; this is
+  a trade-off, not a free fix. Nominal label is correct; result in `audit/results/calibration.json`.
+
+### Work done (cont.)
+- §11/§1 ablation on 37 tiles / 2257 km²: mask excludes 401 km² (15%, 181 km² buffer);
+  GG-CFAR pixel exceedance 6.35e-4 (~63x nominal); binary_opening removes 77.7% of
+  gated detections. `audit/results/ablation.json`.
+- §2 morphology injection: opening erases all thin/≤8px targets (100%->0% recovery);
+  only solid 3x3+ survive. Effective floor ~9px compact. `audit/results/morphology.json`.
+- §12 enrichment rewritten: actual valid-water area in/out, tile-level block bootstrap,
+  radius/contrast sweep, population-association framing (no precision). 119 tiles,
+  7.5x CI[4.3,13.2] @1500m/12dB. `audit/results/enrichment.json`.
+- §13.1 requirements.txt replaced with the real stack. §13.2/§13.3 top-level provenance
+  block + per-detection detector/mask/vh fields; explicit status distinguishes
+  zero/failed/partial.
+- §9.1 + §3 UI copy: "evidence score" + heuristic note; AIS&GFW evidence section
+  distinguishes our match / gfw_reported / unknown; GFW labelled shared-sensor.
+- §10.1 live-analysis acquisition discovery: queries actual S1 dates (EE), falls back
+  to 12-day stepping. Needs live EE to exercise.
+- Frontend: `tsc --noEmit` clean, `vite build` clean. Backend restarted on fresh data;
+  `/api/areas`, `/api/alerts`, `/api/detections/{id}` verified (PERSISTENT_UNIDENTIFIED
+  surfaced as alert; score_basis/ais_evidence/gfw_association present).
+- 11/11 regression tests pass; all pipeline + backend modules import/compile.
+
+### Follow-up: fixed-object evidence (post-audit, same day)
+Review flagged a real defect in the §4 relabel: `FIXED_OBJECT` was gated behind
+`det["context_fixed"]`, which **nothing in the pipeline ever set**, so the class was
+unreachable and every persistent target fell to `PERSISTENT_UNIDENTIFIED` -- including
+obvious fixed features. Fix gives `FIXED_OBJECT` real, positive evidence paths, keeping
+the asymmetry (a positive signal promotes; ambiguity always falls back to reviewable):
+- **Position-stability** (`FIXED_POSITION_SPREAD_M=15`): a persistent cluster pinned to
+  one spot across passes -> `FIXED_OBJECT` (`fixed_evidence="position_stable"`). Labelled
+  a heuristic, not charted: a short-scope/current-pinned anchored vessel can also stay
+  within the radius (reason string says so). Recovered 4 pinned Tuticorin clusters.
+- **Collinear-chain geometry** (`find_chain_members`): a long, thin, persistent run of
+  clusters (perp RMS <= 60 m, aspect >= 4, members linked <= 1500 m, >= 4 members) is
+  reef/shoal/causeway geometry, not a vessel formation -> `FIXED_OBJECT`
+  (`fixed_evidence="chain_geometry"`). A compact anchorage *blob* has low aspect and is
+  NOT flagged, so anchored vessels are not swept in (tested).
+- Measured on the frozen recent set: the two Gulf-of-Mannar arcs (a 2.9 km, 10:1 line,
+  perp RMS 42 m) = 64 detections -> `FIXED_OBJECT` via chain geometry; 3 (the isolated
+  southern cluster) stay `PERSISTENT_UNIDENTIFIED` (correctly still reviewable). Tuticorin
+  chain rule flagged nothing (anchorage is a blob). Position-stability alone recovered 0
+  on recent (tightest cluster already spreads 16 m -- reef returns wander with tide/sea
+  state), which is exactly why the chain rule, not a looser spread threshold, is the right
+  tool; the threshold was NOT loosened to force the relabel.
+- Wired into all cluster+score sites: `confidence.score_all`, `audit/rescore_historical.py`,
+  `src/run_recent.py`, `backend/main.py` live path. `build_gulf_candidates.py` left
+  untouched (single-date -> no cross-pass persistence, chains cannot form).
+- UI: `fixed_evidence` added to `api.ts` + a basis line in `DetailPanel` (charted /
+  chain geometry / position-stable). 13/13 tests pass; tsc + vite build clean; backend
+  restarted on regenerated data.
+- Still pending (unchanged): an authoritative *charted* reef/infrastructure layer remains
+  the gold standard; the chain heuristic and position-stability are in-data proxies for it.
+
+### Follow-up: review-round fixes (live detector, labels, suspected-fixed, coverage)
+Four reviewer points, verified in code then fixed:
+1. **Live "Run Analysis" used the Round 1 detector.** `vgfw.run_detector_on_tile`
+   (docstring: "Unmodified Round 1 pipeline", old `detect.detect_blobs` + old mask) was
+   driving the live path, contradicting the write-up. Swapped to
+   `detect_v3.run_detector_v3` (the corrected v3.1-audit detector) in `backend/main.py`.
+2. **Labels now follow the evidence.** `DARK_CANDIDATE` now requires *established*
+   no-AIS evidence (`unmatched` or `gfw_reported_no_ais`). A strong target whose AIS was
+   never established (`ais_evidence="unknown"`) is the new **`UNVERIFIED_TARGET`**, not
+   "dark". The `DARK_CANDIDATE` UI blurb no longer claims "no AIS vessel is nearby"
+   unconditionally -- it states the actual basis. Tests: `test_unknown_ais_is_unverified_not_dark`,
+   `test_gfw_reported_no_ais_is_dark_candidate`.
+3. **Heuristic fixed-object shortcut corrected.** The chain-geometry / position-stable
+   promotions now yield **`SUSPECTED_FIXED`**, not `FIXED_OBJECT`: they **stay in the
+   review queue** (added to `ALERT_PRIORITY`, deprioritized below dark/unverified/
+   persistent), are rendered as a distinct "Suspected fixed / reef" class, and are
+   labelled *suspected*, never *charted*/*confirmed*. `FIXED_OBJECT` is now charted-only
+   (and still queue-excluded). Effect: recent 64 -> `SUSPECTED_FIXED` (was FIXED_OBJECT),
+   Tuticorin 4 -> `SUSPECTED_FIXED`. Tests updated accordingly.
+4. **Unavailable data vs empty sea.** The live path now tracks a `coverage` record
+   (requested / no_scene / download_failed / analyzed / no_sea / degraded), logs each
+   unavailable tile, and sets `data_unavailable` when nothing could be retrieved. The UI
+   shows an amber "No data available" notice (not a green success) in that case and prints
+   the coverage summary, so a failed retrieval is never reported as an empty-sea result.
+- 15/15 tests pass; tsc + vite build clean; backend restarted (live queue now: 17 dark,
+  1 persistent, 16 suspected-fixed, 4 vessel, 4 low). Live detector swap verified by import
+  + wiring; full live run needs EE/GFW auth to exercise end-to-end.
+
+### Follow-up: crop brightness consistency + data-availability honesty
+1. **One fixed crop brightness window everywhere.** The Tuticorin and Gulf saved
+   crops used a per-crop percentile [2,98] stretch (each crop rescaled on its own
+   min/max, so a faint smudge looked as bright as a ship and crops were not
+   comparable). Created `src/crops.py` as the single canonical renderer at the fixed
+   **[-23, +3] dB** window and routed `run_recent`, `build_gulf_candidates` and the
+   backend live-analysis crop through it (recent crops already used this window).
+   Regenerated the saved crops from source imagery with `audit/regen_crops.py`:
+   **17 Tuticorin (2026-01-18) from `data/sar_vv_clip.tif`, 95 Gulf (Jan 2026) from
+   `data/validation/{date}_*.tif`** -- no missing inputs. Removed the now-dead
+   per-module crop code/imports/constants.
+2. **GFW request failure vs successful empty response.** The live path conflated a
+   GFW request that *failed* with one that *succeeded with zero records*. Now tracked
+   separately (`gfw_ok` per date): a failure marks that date **unperformed** (unknown),
+   an empty success means **no SAR detections there**. Result carries `gfw_failed_dates`,
+   `partial` (some dates unfetched) and `data_unavailable` (all dates failed / nothing
+   retrieved); the UI shows an amber "Analysis partial" / "No data available" notice
+   instead of a green success with zeros.
+3. **No guessed acquisition dates.** Acquisition discovery no longer falls back to a
+   fabricated 12-day cadence. If EE discovery **fails** -> the run errors ("no analysis
+   performed, no dates guessed"); if it **returns no scenes** -> the run completes as
+   `data_unavailable` with a clear note. Neither invents dates.
+- 15/15 tests pass; tsc + vite build clean; backend restarted; crop endpoint serves the
+  regenerated PNGs. Live-path items (2, 3) need EE/GFW auth to exercise end-to-end.
+
+### Deliverables
+- Implemented fixes + tests: `src/confidence.py`, `src/detect_v3.py`, `src/run_recent.py`,
+  `src/build_gulf_candidates.py`, `src/enrichment_test.py`, `backend/main.py`,
+  `frontend/src/{api,classes,DetailPanel}.*`, `tests/test_audit_fixes.py`.
+- Experiments (separately identifiable): `audit/experiments/{calibration,morphology,ablation}.py`.
+- Baseline + manifests: `audit/baseline_manifest.json`, `audit/results/*_baseline_549ed4a.json`.
+- Reports: `FINAL_REPORT.md`, `AUDIT_CHECKLIST.md`, README updated.
+
+### Not committed
+Per instruction, nothing has been committed or pushed. Committed scored_recent/gulf
+detection geometry remains the FROZEN baseline-detector output; only scoring semantics
+were re-applied (documented as a relabel). Corrected-detector regeneration of those two
+sets is BLOCKED on a network JRC fetch (see FINAL_REPORT §5).

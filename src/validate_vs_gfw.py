@@ -1,6 +1,10 @@
 """
-Round 2 validation: how well does our detector agree with GFW's independent
-Sentinel-1 ship detections (public-global-sar-presence)?
+Round 2 validation: how well does our detector agree with GFW's SAR ship
+detections (public-global-sar-presence)?
+
+NOTE: GFW's SAR-presence product is derived from the SAME Sentinel-1 imagery, by a
+different algorithm. Agreement here is shared-sensor algorithmic agreement, NOT
+independent-sensor confirmation, and GFW itself is a reference, not ground truth.
 
 For each GFW detection we download a small Sentinel-1 tile centred on it, run
 the *unmodified* land mask + CA-CFAR detector on that tile, and record:

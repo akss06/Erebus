@@ -1,5 +1,13 @@
 {
  "type": "FeatureCollection",
+ "provenance": {
+  "generated_by": "src/confidence.py",
+  "kind": "Tuticorin cross-pass scoring (our own AIS match)",
+  "ais_source": "our_ais",
+  "scoring_semantics": "PERSISTENT_UNIDENTIFIED, GFW!=AIS, heuristic score",
+  "status": "ok",
+  "n_features": 70
+ },
  "features": [
   {
    "type": "Feature",
@@ -36,8 +44,10 @@
     "confidence": 5,
     "reasons": [
      "contrast 7.5 dB, 8 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -75,8 +85,10 @@
     "confidence": 77,
     "reasons": [
      "contrast 15.3 dB, 14 px",
-     "AIS vessel nearby (HONG FU, 503 m)"
-    ]
+     "AIS vessel matched by us nearby (HONG FU, 503 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -115,7 +127,9 @@
     "reasons": [
      "contrast 14.9 dB, 34 px",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -153,8 +167,10 @@
     "confidence": 3,
     "reasons": [
      "contrast 6.9 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -193,7 +209,9 @@
     "reasons": [
      "contrast 16.6 dB, 5 px",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -232,7 +250,9 @@
     "reasons": [
      "contrast 16.0 dB, 5 px",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -271,7 +291,9 @@
     "reasons": [
      "contrast 15.1 dB, 5 px",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -310,8 +332,10 @@
     "reasons": [
      "contrast 18.6 dB, 22 px",
      "same spot on 4/4 passes",
-     "same AIS vessel (MMSI 341970001) on 4 passes -> ship at anchor"
-    ]
+     "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -350,8 +374,10 @@
     "reasons": [
      "contrast 15.3 dB, 8 px",
      "seen on 2 passes only; persistence inconclusive",
-     "AIS vessel nearby (HONG FU, 393 m)"
-    ]
+     "AIS vessel matched by us nearby (HONG FU, 393 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -383,15 +409,17 @@
     "matched_hours": 20,
     "id": "2026-01-06-10",
     "date": "2026-01-06",
-    "cluster_id": 20,
-    "cluster_size": 3,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 18,
+    "cluster_id": 19,
+    "cluster_size": 2,
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 74,
     "reasons": [
      "contrast 15.1 dB, 8 px",
-     "same spot on 3/4 passes",
-     "'matched' AIS vessel differs between passes (3 different ships) -> fixed object"
-    ]
+     "seen on 2 passes only; persistence inconclusive",
+     "AIS vessel matched by us nearby (HONG FU, 382 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -423,15 +451,18 @@
     "matched_hours": 20,
     "id": "2026-01-06-11",
     "date": "2026-01-06",
-    "cluster_id": 23,
+    "cluster_id": 24,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 48,
     "reasons": [
      "contrast 14.5 dB, 5 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -463,15 +494,19 @@
     "matched_hours": 1,
     "id": "2026-01-06-12",
     "date": "2026-01-06",
-    "cluster_id": 25,
+    "cluster_id": 26,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "SUSPECTED_FIXED",
+    "confidence": 31,
+    "fixed_evidence": "position_stable",
     "reasons": [
      "contrast 12.2 dB, 28 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
+     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -503,15 +538,18 @@
     "matched_hours": 20,
     "id": "2026-01-06-13",
     "date": "2026-01-06",
-    "cluster_id": 27,
+    "cluster_id": 28,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 21,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 47,
     "reasons": [
      "contrast 13.2 dB, 5 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -543,15 +581,18 @@
     "matched_hours": 20,
     "id": "2026-01-06-14",
     "date": "2026-01-06",
-    "cluster_id": 28,
+    "cluster_id": 29,
     "cluster_size": 3,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 21,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 46,
     "reasons": [
      "contrast 13.0 dB, 5 px",
      "same spot on 3/4 passes",
-     "'matched' AIS vessel differs between passes (3 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (3 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 37 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -583,7 +624,7 @@
     "matched_hours": 20,
     "id": "2026-01-06-15",
     "date": "2026-01-06",
-    "cluster_id": 29,
+    "cluster_id": 30,
     "cluster_size": 2,
     "confidence_class": "LOW_CONFIDENCE",
     "confidence": 37,
@@ -591,7 +632,9 @@
      "contrast 14.7 dB, 8 px",
      "seen on 2 passes only; persistence inconclusive",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -623,14 +666,16 @@
     "matched_hours": null,
     "id": "2026-01-06-16",
     "date": "2026-01-06",
-    "cluster_id": 30,
+    "cluster_id": 31,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 4,
     "reasons": [
      "contrast 7.6 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -662,14 +707,16 @@
     "matched_hours": null,
     "id": "2026-01-06-17",
     "date": "2026-01-06",
-    "cluster_id": 31,
+    "cluster_id": 32,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 2,
     "reasons": [
      "contrast 6.4 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -701,15 +748,17 @@
     "matched_hours": null,
     "id": "2026-01-06-18",
     "date": "2026-01-06",
-    "cluster_id": 41,
+    "cluster_id": 42,
     "cluster_size": 2,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
      "contrast 6.7 dB, 5 px",
      "seen on 2 passes only; persistence inconclusive",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -741,14 +790,16 @@
     "matched_hours": null,
     "id": "2026-01-06-19",
     "date": "2026-01-06",
-    "cluster_id": 42,
+    "cluster_id": 43,
     "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 34,
+    "confidence_class": "CLUTTER",
+    "confidence": 14,
     "reasons": [
      "contrast 10.9 dB, 28 px",
-     "bright but small or weak: not enough evidence either way"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -780,14 +831,16 @@
     "matched_hours": null,
     "id": "2026-01-06-20",
     "date": "2026-01-06",
-    "cluster_id": 48,
+    "cluster_id": 49,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
      "contrast 6.9 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -828,8 +881,10 @@
     "confidence": 80,
     "reasons": [
      "contrast 17.9 dB, 8 px",
-     "AIS vessel nearby (DMC JUPITER, 413 m)"
-    ]
+     "AIS vessel matched by us nearby (DMC JUPITER, 413 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -870,8 +925,10 @@
     "confidence": 86,
     "reasons": [
      "contrast 18.4 dB, 19 px",
-     "AIS vessel nearby (DMC JUPITER, 422 m)"
-    ]
+     "AIS vessel matched by us nearby (DMC JUPITER, 422 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -912,8 +969,10 @@
     "confidence": 2,
     "reasons": [
      "contrast 6.1 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -955,8 +1014,10 @@
     "reasons": [
      "contrast 22.5 dB, 35 px",
      "same spot on 4/4 passes",
-     "same AIS vessel (MMSI 341970001) on 4 passes -> ship at anchor"
-    ]
+     "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -998,7 +1059,9 @@
     "reasons": [
      "contrast 13.3 dB, 8 px",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1041,7 +1104,9 @@
      "contrast 14.1 dB, 5 px",
      "seen on 2 passes only; persistence inconclusive",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1076,7 +1141,7 @@
     "visual_class": "LINEAR_FEATURE",
     "id": "2026-01-18-07",
     "date": "2026-01-18",
-    "cluster_id": 19,
+    "cluster_id": 20,
     "cluster_size": 2,
     "confidence_class": "LOW_CONFIDENCE",
     "confidence": 32,
@@ -1084,7 +1149,9 @@
      "contrast 12.3 dB, 5 px",
      "seen on 2 passes only; persistence inconclusive",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1119,15 +1186,16 @@
     "visual_class": "LINEAR_FEATURE",
     "id": "2026-01-18-08",
     "date": "2026-01-18",
-    "cluster_id": 20,
-    "cluster_size": 3,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "cluster_id": 21,
+    "cluster_size": 1,
+    "confidence_class": "LOW_CONFIDENCE",
+    "confidence": 36,
     "reasons": [
      "contrast 14.3 dB, 5 px",
-     "same spot on 3/4 passes",
-     "'matched' AIS vessel differs between passes (3 different ships) -> fixed object"
-    ]
+     "bright but small or weak: not enough evidence either way"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1162,15 +1230,18 @@
     "visual_class": "LINEAR_FEATURE",
     "id": "2026-01-18-09",
     "date": "2026-01-18",
-    "cluster_id": 23,
+    "cluster_id": 24,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 18,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 50,
     "reasons": [
      "contrast 15.3 dB, 5 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1205,15 +1276,19 @@
     "visual_class": "LINEAR_FEATURE",
     "id": "2026-01-18-10",
     "date": "2026-01-18",
-    "cluster_id": 25,
+    "cluster_id": 26,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 18,
+    "confidence_class": "SUSPECTED_FIXED",
+    "confidence": 32,
+    "fixed_evidence": "position_stable",
     "reasons": [
      "contrast 12.6 dB, 20 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
+     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1248,14 +1323,16 @@
     "visual_class": "UNEXPLAINED",
     "id": "2026-01-18-11",
     "date": "2026-01-18",
-    "cluster_id": 26,
+    "cluster_id": 27,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
     "confidence": 88,
     "reasons": [
      "contrast 19.3 dB, 18 px",
-     "AIS vessel nearby (SSI DIGNITY, 401 m)"
-    ]
+     "AIS vessel matched by us nearby (SSI DIGNITY, 401 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1290,15 +1367,18 @@
     "visual_class": "LINEAR_FEATURE",
     "id": "2026-01-18-12",
     "date": "2026-01-18",
-    "cluster_id": 27,
+    "cluster_id": 28,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 49,
     "reasons": [
      "contrast 15.0 dB, 5 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1333,15 +1413,18 @@
     "visual_class": "LINEAR_FEATURE",
     "id": "2026-01-18-13",
     "date": "2026-01-18",
-    "cluster_id": 28,
+    "cluster_id": 29,
     "cluster_size": 3,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 13,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 57,
     "reasons": [
      "contrast 17.7 dB, 24 px",
      "same spot on 3/4 passes",
-     "'matched' AIS vessel differs between passes (3 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (3 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 37 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1376,14 +1459,16 @@
     "visual_class": "SPECKLE",
     "id": "2026-01-18-14",
     "date": "2026-01-18",
-    "cluster_id": 32,
+    "cluster_id": 33,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
      "contrast 6.9 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -1418,14 +1503,16 @@
     "visual_class": "SPECKLE",
     "id": "2026-01-18-15",
     "date": "2026-01-18",
-    "cluster_id": 36,
+    "cluster_id": 37,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 2,
     "reasons": [
      "contrast 6.1 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -1460,14 +1547,16 @@
     "visual_class": "SPECKLE",
     "id": "2026-01-18-16",
     "date": "2026-01-18",
-    "cluster_id": 38,
+    "cluster_id": 39,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 6,
     "reasons": [
      "contrast 8.4 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -1502,15 +1591,17 @@
     "visual_class": "SPECKLE",
     "id": "2026-01-18-17",
     "date": "2026-01-18",
-    "cluster_id": 41,
+    "cluster_id": 42,
     "cluster_size": 2,
     "confidence_class": "CLUTTER",
     "confidence": 6,
     "reasons": [
      "contrast 8.0 dB, 10 px",
      "seen on 2 passes only; persistence inconclusive",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -1548,8 +1639,10 @@
     "confidence": 84,
     "reasons": [
      "contrast 18.8 dB, 12 px",
-     "AIS vessel nearby (FJ CAMELIA, 567 m)"
-    ]
+     "AIS vessel matched by us nearby (FJ CAMELIA, 567 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1587,8 +1680,10 @@
     "confidence": 5,
     "reasons": [
      "contrast 7.1 dB, 12 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1622,12 +1717,14 @@
     "date": "2026-01-30",
     "cluster_id": 14,
     "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 35,
+    "confidence_class": "CLUTTER",
+    "confidence": 15,
     "reasons": [
      "contrast 11.3 dB, 18 px",
-     "bright but small or weak: not enough evidence either way"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1666,8 +1763,10 @@
     "reasons": [
      "contrast 18.4 dB, 35 px",
      "same spot on 4/4 passes",
-     "same AIS vessel (MMSI 341970001) on 4 passes -> ship at anchor"
-    ]
+     "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1705,8 +1804,10 @@
     "confidence": 83,
     "reasons": [
      "contrast 16.7 dB, 42 px",
-     "AIS vessel nearby (OCEAN POISE, 581 m)"
-    ]
+     "AIS vessel matched by us nearby (OCEAN POISE, 581 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1738,15 +1839,17 @@
     "matched_hours": 1,
     "id": "2026-01-30-06",
     "date": "2026-01-30",
-    "cluster_id": 20,
-    "cluster_size": 3,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 18,
+    "cluster_id": 19,
+    "cluster_size": 2,
+    "confidence_class": "LOW_CONFIDENCE",
+    "confidence": 38,
     "reasons": [
      "contrast 15.5 dB, 5 px",
-     "same spot on 3/4 passes",
-     "'matched' AIS vessel differs between passes (3 different ships) -> fixed object"
-    ]
+     "seen on 2 passes only; persistence inconclusive",
+     "bright but small or weak: not enough evidence either way"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1778,14 +1881,16 @@
     "matched_hours": 1,
     "id": "2026-01-30-07",
     "date": "2026-01-30",
-    "cluster_id": 21,
+    "cluster_id": 22,
     "cluster_size": 1,
     "confidence_class": "LOW_CONFIDENCE",
     "confidence": 36,
     "reasons": [
      "contrast 14.1 dB, 8 px",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1817,14 +1922,16 @@
     "matched_hours": 1,
     "id": "2026-01-30-08",
     "date": "2026-01-30",
-    "cluster_id": 22,
+    "cluster_id": 23,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 5,
     "reasons": [
      "contrast 7.8 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1856,15 +1963,18 @@
     "matched_hours": 1,
     "id": "2026-01-30-09",
     "date": "2026-01-30",
-    "cluster_id": 23,
+    "cluster_id": 24,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 49,
     "reasons": [
      "contrast 15.1 dB, 5 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1896,14 +2006,16 @@
     "matched_hours": 2,
     "id": "2026-01-30-10",
     "date": "2026-01-30",
-    "cluster_id": 24,
+    "cluster_id": 25,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
     "confidence": 86,
     "reasons": [
      "contrast 18.1 dB, 27 px",
-     "AIS vessel nearby (MSC KYMEA II, 353 m)"
-    ]
+     "AIS vessel matched by us nearby (MSC KYMEA II, 353 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1935,15 +2047,19 @@
     "matched_hours": 1,
     "id": "2026-01-30-11",
     "date": "2026-01-30",
-    "cluster_id": 25,
+    "cluster_id": 26,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "SUSPECTED_FIXED",
+    "confidence": 31,
+    "fixed_evidence": "position_stable",
     "reasons": [
      "contrast 12.4 dB, 22 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
+     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -1975,15 +2091,18 @@
     "matched_hours": 1,
     "id": "2026-01-30-12",
     "date": "2026-01-30",
-    "cluster_id": 27,
+    "cluster_id": 28,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 49,
     "reasons": [
      "contrast 13.1 dB, 16 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2015,7 +2134,7 @@
     "matched_hours": 1,
     "id": "2026-01-30-13",
     "date": "2026-01-30",
-    "cluster_id": 29,
+    "cluster_id": 30,
     "cluster_size": 2,
     "confidence_class": "LOW_CONFIDENCE",
     "confidence": 39,
@@ -2023,7 +2142,9 @@
      "contrast 13.5 dB, 28 px",
      "seen on 2 passes only; persistence inconclusive",
      "bright but small or weak: not enough evidence either way"
-    ]
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2055,14 +2176,16 @@
     "matched_hours": null,
     "id": "2026-01-30-14",
     "date": "2026-01-30",
-    "cluster_id": 33,
+    "cluster_id": 34,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 8,
     "reasons": [
      "contrast 9.1 dB, 8 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2094,14 +2217,16 @@
     "matched_hours": 1,
     "id": "2026-01-30-15",
     "date": "2026-01-30",
-    "cluster_id": 34,
+    "cluster_id": 35,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 4,
     "reasons": [
      "contrast 7.1 dB, 8 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2133,14 +2258,16 @@
     "matched_hours": null,
     "id": "2026-01-30-16",
     "date": "2026-01-30",
-    "cluster_id": 35,
+    "cluster_id": 36,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 9,
     "reasons": [
      "contrast 9.2 dB, 10 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2172,14 +2299,16 @@
     "matched_hours": null,
     "id": "2026-01-30-17",
     "date": "2026-01-30",
-    "cluster_id": 37,
+    "cluster_id": 38,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 4,
     "reasons": [
      "contrast 7.2 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2211,14 +2340,16 @@
     "matched_hours": null,
     "id": "2026-01-30-18",
     "date": "2026-01-30",
-    "cluster_id": 39,
+    "cluster_id": 40,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 12,
     "reasons": [
      "contrast 9.7 dB, 18 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2250,14 +2381,16 @@
     "matched_hours": null,
     "id": "2026-01-30-19",
     "date": "2026-01-30",
-    "cluster_id": 40,
+    "cluster_id": 41,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 6,
     "reasons": [
      "contrast 8.4 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2289,14 +2422,16 @@
     "matched_hours": null,
     "id": "2026-01-30-20",
     "date": "2026-01-30",
-    "cluster_id": 43,
+    "cluster_id": 44,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 5,
     "reasons": [
      "contrast 7.9 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2328,14 +2463,16 @@
     "matched_hours": null,
     "id": "2026-01-30-21",
     "date": "2026-01-30",
-    "cluster_id": 44,
+    "cluster_id": 45,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 5,
     "reasons": [
      "contrast 8.2 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2367,14 +2504,16 @@
     "matched_hours": 1,
     "id": "2026-01-30-22",
     "date": "2026-01-30",
-    "cluster_id": 50,
+    "cluster_id": 51,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 2,
     "reasons": [
      "contrast 6.4 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2412,8 +2551,10 @@
     "confidence": 89,
     "reasons": [
      "contrast 19.7 dB, 34 px",
-     "AIS vessel nearby (SEA VALARY, 436 m)"
-    ]
+     "AIS vessel matched by us nearby (SEA VALARY, 436 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2452,8 +2593,10 @@
     "reasons": [
      "contrast 18.1 dB, 38 px",
      "same spot on 4/4 passes",
-     "same AIS vessel (MMSI 341970001) on 4 passes -> ship at anchor"
-    ]
+     "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2485,15 +2628,17 @@
     "matched_hours": 1,
     "id": "2026-02-11-03",
     "date": "2026-02-11",
-    "cluster_id": 19,
+    "cluster_id": 20,
     "cluster_size": 2,
     "confidence_class": "VESSEL_CANDIDATE",
     "confidence": 85,
     "reasons": [
      "contrast 17.8 dB, 26 px",
      "seen on 2 passes only; persistence inconclusive",
-     "AIS vessel nearby (OCEAN ALLIANCE, 352 m)"
-    ]
+     "AIS vessel matched by us nearby (OCEAN ALLIANCE, 352 m)"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2525,15 +2670,18 @@
     "matched_hours": 1,
     "id": "2026-02-11-04",
     "date": "2026-02-11",
-    "cluster_id": 23,
+    "cluster_id": 24,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 14,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 55,
     "reasons": [
      "contrast 16.8 dB, 29 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2565,15 +2713,19 @@
     "matched_hours": 1,
     "id": "2026-02-11-05",
     "date": "2026-02-11",
-    "cluster_id": 25,
+    "cluster_id": 26,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "SUSPECTED_FIXED",
+    "confidence": 31,
+    "fixed_evidence": "position_stable",
     "reasons": [
      "contrast 11.7 dB, 30 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
+     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2605,15 +2757,18 @@
     "matched_hours": 1,
     "id": "2026-02-11-06",
     "date": "2026-02-11",
-    "cluster_id": 27,
+    "cluster_id": 28,
     "cluster_size": 4,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 19,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 49,
     "reasons": [
      "contrast 13.4 dB, 12 px",
      "same spot on 4/4 passes",
-     "'matched' AIS vessel differs between passes (4 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2645,15 +2800,18 @@
     "matched_hours": 1,
     "id": "2026-02-11-07",
     "date": "2026-02-11",
-    "cluster_id": 28,
+    "cluster_id": 29,
     "cluster_size": 3,
-    "confidence_class": "FIXED_OBJECT",
-    "confidence": 11,
+    "confidence_class": "PERSISTENT_UNIDENTIFIED",
+    "confidence": 58,
     "reasons": [
      "contrast 18.7 dB, 21 px",
      "same spot on 3/4 passes",
-     "'matched' AIS vessel differs between passes (3 different ships) -> fixed object"
-    ]
+     "'matched' AIS identity differs between passes (3 ships) -- coarse associations, not a stable identity",
+     "persistent but position spreads 37 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched"
    }
   },
   {
@@ -2685,14 +2843,16 @@
     "matched_hours": null,
     "id": "2026-02-11-08",
     "date": "2026-02-11",
-    "cluster_id": 45,
+    "cluster_id": 46,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
      "contrast 7.0 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2724,14 +2884,16 @@
     "matched_hours": null,
     "id": "2026-02-11-09",
     "date": "2026-02-11",
-    "cluster_id": 46,
+    "cluster_id": 47,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
      "contrast 7.0 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2763,14 +2925,16 @@
     "matched_hours": null,
     "id": "2026-02-11-10",
     "date": "2026-02-11",
-    "cluster_id": 47,
+    "cluster_id": 48,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
      "contrast 6.8 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   },
   {
@@ -2802,14 +2966,16 @@
     "matched_hours": null,
     "id": "2026-02-11-11",
     "date": "2026-02-11",
-    "cluster_id": 49,
+    "cluster_id": 50,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 2,
     "reasons": [
      "contrast 6.3 dB, 5 px",
-     "contrast below 10 dB: indistinguishable from sea clutter"
-    ]
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched"
    }
   }
  ]

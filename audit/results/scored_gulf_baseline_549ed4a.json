@@ -1,0 +1,3933 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.39850053983209,
+     8.240780236818814
+    ]
+   },
+   "properties": {
+    "row": 438.0,
+    "col": 538.0,
+    "area_px": 11,
+    "mean_intensity_db": -11.384362997108523,
+    "max_intensity_db": -9.779935487674408,
+    "local_background_db": -20.4097062581791,
+    "contrast_db": 9.025343261070576,
+    "aspect_ratio": 1.6666666666666667,
+    "fill_ratio": 0.7333333333333333,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 939.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.38999938964844,
+    "gfw_lat": 8.24,
+    "id": "2026-01-18-G01",
+    "date": "2026-01-18",
+    "cluster_id": 1,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G01.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 9.0 dB, 11 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.63583911796542,
+     8.259561694224924
+    ]
+   },
+   "properties": {
+    "row": 449.3666666666667,
+    "col": 397.6333333333333,
+    "area_px": 30,
+    "mean_intensity_db": 13.181051903565997,
+    "max_intensity_db": 23.13507712042288,
+    "local_background_db": -10.063441035022025,
+    "contrast_db": 23.244492938588024,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.8333333333333334,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 460.4,
+    "matched_name": "KUO LUNG",
+    "matched_mmsi": "351965000",
+    "matched_flag": "PAN",
+    "matched_type": "CARGO",
+    "gfw_lon": 78.63999938964844,
+    "gfw_lat": 8.26,
+    "id": "2026-01-30-G01",
+    "date": "2026-01-30",
+    "cluster_id": 2,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G01.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 90,
+    "reasons": [
+     "contrast 23.2 dB, 30 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (KUO LUNG, 460 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.12672095422936,
+     8.335088682216364
+    ]
+   },
+   "properties": {
+    "row": 500.5,
+    "col": 408.17857142857144,
+    "area_px": 28,
+    "mean_intensity_db": -7.071421958674175,
+    "max_intensity_db": 0.09057089699843708,
+    "local_background_db": -19.4699909468776,
+    "contrast_db": 12.398568988203426,
+    "aspect_ratio": 1.1428571428571428,
+    "fill_ratio": 0.5,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 654.3,
+    "matched_name": "SEA ANGEL",
+    "matched_mmsi": "457613000",
+    "matched_flag": "MNG",
+    "matched_type": "CARGO",
+    "gfw_lon": 78.12999725341797,
+    "gfw_lat": 8.34,
+    "id": "2026-01-30-G02",
+    "date": "2026-01-30",
+    "cluster_id": 3,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G02.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 73,
+    "reasons": [
+     "contrast 12.4 dB, 28 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (SEA ANGEL, 654 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.55350757435295,
+     8.36882455318733
+    ]
+   },
+   "properties": {
+    "row": 459.025,
+    "col": 481.675,
+    "area_px": 40,
+    "mean_intensity_db": 11.536178147738363,
+    "max_intensity_db": 25.85334922425766,
+    "local_background_db": -11.821484087868185,
+    "contrast_db": 23.357662235606547,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.8163265306122449,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 407.1,
+    "matched_name": "KUO LUNG",
+    "matched_mmsi": "351965000",
+    "matched_flag": "PAN",
+    "matched_type": "CARGO",
+    "gfw_lon": 78.55000305175781,
+    "gfw_lat": 8.37,
+    "id": "2026-01-06-G01",
+    "date": "2026-01-06",
+    "cluster_id": 4,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G01.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 90,
+    "reasons": [
+     "contrast 23.4 dB, 40 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (KUO LUNG, 407 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.38540057044986,
+     8.415400065139035
+    ]
+   },
+   "properties": {
+    "row": 607.6818181818181,
+    "col": 503.54545454545456,
+    "area_px": 22,
+    "mean_intensity_db": 6.808858540543952,
+    "max_intensity_db": 8.843028574701382,
+    "local_background_db": -10.336880205524468,
+    "contrast_db": 17.145738746068417,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.6285714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 719.4,
+    "matched_name": "LONGVIEW LOGGER",
+    "matched_mmsi": "477969800",
+    "matched_flag": "HKG",
+    "matched_type": "CARGO",
+    "gfw_lon": 78.38999938964844,
+    "gfw_lat": 8.42,
+    "id": "2026-01-06-G02",
+    "date": "2026-01-06",
+    "cluster_id": 5,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G02.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 83,
+    "reasons": [
+     "contrast 17.1 dB, 22 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (LONGVIEW LOGGER, 719 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.40174722571638,
+     8.482384306422919
+    ]
+   },
+   "properties": {
+    "row": 419.4761904761905,
+    "col": 463.57142857142856,
+    "area_px": 21,
+    "mean_intensity_db": -9.774904268658235,
+    "max_intensity_db": -6.424683605719311,
+    "local_background_db": -19.72656300650914,
+    "contrast_db": 9.951658737850904,
+    "aspect_ratio": 2.0,
+    "fill_ratio": 0.65625,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 327.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.4000015258789,
+    "gfw_lat": 8.48,
+    "id": "2026-01-30-G03",
+    "date": "2026-01-30",
+    "cluster_id": 6,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G03.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 13,
+    "reasons": [
+     "contrast 10.0 dB, 21 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.36922085053092,
+     8.551789511776342
+    ]
+   },
+   "properties": {
+    "row": 426.06666666666666,
+    "col": 435.3,
+    "area_px": 30,
+    "mean_intensity_db": 7.686459246320009,
+    "max_intensity_db": 12.742896428179893,
+    "local_background_db": -11.069826332140078,
+    "contrast_db": 18.756285578460087,
+    "aspect_ratio": 1.1428571428571428,
+    "fill_ratio": 0.5357142857142857,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 216.8,
+    "matched_name": "APJ INDRANI",
+    "matched_mmsi": "419001835",
+    "matched_flag": "IND",
+    "matched_type": "CARGO",
+    "gfw_lon": 78.37000274658203,
+    "gfw_lat": 8.55,
+    "id": "2026-01-18-G02",
+    "date": "2026-01-18",
+    "cluster_id": 7,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G02.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 87,
+    "reasons": [
+     "contrast 18.8 dB, 30 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (APJ INDRANI, 217 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.42105612462973,
+     8.579467829468122
+    ]
+   },
+   "properties": {
+    "row": 562.0,
+    "col": 454.0,
+    "area_px": 5,
+    "mean_intensity_db": -13.175954607483272,
+    "max_intensity_db": -12.051253138425027,
+    "local_background_db": -19.38168039387176,
+    "contrast_db": 6.20572578638849,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1176.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.41999816894531,
+    "gfw_lat": 8.59,
+    "id": "2026-01-18-G03",
+    "date": "2026-01-18",
+    "cluster_id": 8,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G03.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.18659799058142,
+     8.62445473224727
+    ]
+   },
+   "properties": {
+    "row": 396.0,
+    "col": 406.5,
+    "area_px": 16,
+    "mean_intensity_db": -9.828367434425147,
+    "max_intensity_db": -5.524036520328865,
+    "local_background_db": -20.914617124304712,
+    "contrast_db": 11.086249689879565,
+    "aspect_ratio": 1.25,
+    "fill_ratio": 0.8,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 620.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.19000244140625,
+    "gfw_lat": 8.62,
+    "id": "2026-01-06-G03",
+    "date": "2026-01-06",
+    "cluster_id": 9,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G03.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 58,
+    "reasons": [
+     "contrast 11.1 dB, 16 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.2038797557117,
+     8.644667272698097
+    ]
+   },
+   "properties": {
+    "row": 394.5,
+    "col": 487.0,
+    "area_px": 8,
+    "mean_intensity_db": -5.041917296517781,
+    "max_intensity_db": -2.892146454031308,
+    "local_background_db": -18.052736076504978,
+    "contrast_db": 13.010818779987197,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 672.0,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.19999694824219,
+    "gfw_lat": 8.64,
+    "id": "2026-01-30-G04",
+    "date": "2026-01-30",
+    "cluster_id": 10,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G04.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 59,
+    "reasons": [
+     "contrast 13.0 dB, 8 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.2189615629874,
+     8.649366765687779
+    ]
+   },
+   "properties": {
+    "row": 452.88461538461536,
+    "col": 432.0,
+    "area_px": 26,
+    "mean_intensity_db": -1.6109028295578194,
+    "max_intensity_db": 6.835911558452288,
+    "local_background_db": -19.62622059917382,
+    "contrast_db": 18.015317769616,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.7428571428571429,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 134.2,
+    "matched_name": "A S R 1 NET BOAT",
+    "matched_mmsi": "419824528",
+    "matched_flag": "IND",
+    "matched_type": "GEAR",
+    "gfw_lon": 78.22000122070312,
+    "gfw_lat": 8.65,
+    "id": "2026-01-06-G04",
+    "date": "2026-01-06",
+    "cluster_id": 11,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G04.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 85,
+    "reasons": [
+     "contrast 18.0 dB, 26 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (A S R 1 NET BOAT, 134 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.20713787205091,
+     8.65085489307238
+    ]
+   },
+   "properties": {
+    "row": 436.27777777777777,
+    "col": 412.3888888888889,
+    "area_px": 18,
+    "mean_intensity_db": -6.208098257814377,
+    "max_intensity_db": -0.295409124510904,
+    "local_background_db": -20.351148676250087,
+    "contrast_db": 14.14305041843571,
+    "aspect_ratio": 1.5,
+    "fill_ratio": 0.75,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 328.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.20999908447266,
+    "gfw_lat": 8.65,
+    "id": "2026-01-30-G05",
+    "date": "2026-01-30",
+    "cluster_id": 12,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G05.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 66,
+    "reasons": [
+     "contrast 14.1 dB, 18 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.22072869317644,
+     8.660947574971228
+    ]
+   },
+   "properties": {
+    "row": 435.85,
+    "col": 452.4,
+    "area_px": 20,
+    "mean_intensity_db": -11.871941718956256,
+    "max_intensity_db": -9.64015007651889,
+    "local_background_db": -20.507828254511807,
+    "contrast_db": 8.635886535555551,
+    "aspect_ratio": 2.25,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "SHIP-LIKE",
+    "match_status": "MATCHED",
+    "match_distance_m": 132.3,
+    "matched_name": "RS FISHING NET BOAT",
+    "matched_mmsi": "419506489",
+    "matched_flag": "IND",
+    "matched_type": "GEAR",
+    "gfw_lon": 78.22000122070312,
+    "gfw_lat": 8.66,
+    "id": "2026-01-06-G05",
+    "date": "2026-01-06",
+    "cluster_id": 13,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G05.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 11,
+    "reasons": [
+     "contrast 8.6 dB, 20 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.4096323296646,
+     8.670151881418963
+    ]
+   },
+   "properties": {
+    "row": 443.5,
+    "col": 439.0,
+    "area_px": 14,
+    "mean_intensity_db": -10.973411239941187,
+    "max_intensity_db": -7.785133518483242,
+    "local_background_db": -20.233113094948358,
+    "contrast_db": 9.25970185500717,
+    "aspect_ratio": 2.0,
+    "fill_ratio": 0.7777777777777778,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 44.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.41000366210938,
+    "gfw_lat": 8.67,
+    "id": "2026-01-30-G06",
+    "date": "2026-01-30",
+    "cluster_id": 14,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G06.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 9.3 dB, 14 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.0106013887127,
+     8.67063865784649
+    ]
+   },
+   "properties": {
+    "row": 438.0,
+    "col": 449.5,
+    "area_px": 8,
+    "mean_intensity_db": -9.675339760799506,
+    "max_intensity_db": -7.761415262850622,
+    "local_background_db": -18.423021180167712,
+    "contrast_db": 8.747681419368206,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 96.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.01000213623047,
+    "gfw_lat": 8.67,
+    "id": "2026-01-30-G07",
+    "date": "2026-01-30",
+    "cluster_id": 15,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G07.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 8.7 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.35550238543561,
+     8.674541089528557
+    ]
+   },
+   "properties": {
+    "row": 507.0,
+    "col": 505.75,
+    "area_px": 24,
+    "mean_intensity_db": 10.347491857940494,
+    "max_intensity_db": 14.184442184147741,
+    "local_background_db": -10.360855629934747,
+    "contrast_db": 20.70834748787524,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.4897959183673469,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 706.7,
+    "matched_name": "YOUNG GLORY",
+    "matched_mmsi": "440270000",
+    "matched_flag": "KOR",
+    "matched_type": "CARGO",
+    "gfw_lon": 78.36000061035156,
+    "gfw_lat": 8.67,
+    "id": "2026-01-06-G06",
+    "date": "2026-01-06",
+    "cluster_id": 16,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G06.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 90,
+    "reasons": [
+     "contrast 20.7 dB, 24 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (YOUNG GLORY, 707 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.63587462833357,
+     8.701798716537457
+    ]
+   },
+   "properties": {
+    "row": 424.6969696969697,
+    "col": 398.3333333333333,
+    "area_px": 33,
+    "mean_intensity_db": 7.593047239919116,
+    "max_intensity_db": 14.778573934602107,
+    "local_background_db": -12.094635396755539,
+    "contrast_db": 19.687682636674655,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6875,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 495.5,
+    "matched_name": "JAG VIRAAT",
+    "matched_mmsi": "419001357",
+    "matched_flag": "IND",
+    "matched_type": "OTHER",
+    "gfw_lon": 78.63999938964844,
+    "gfw_lat": 8.7,
+    "id": "2026-01-18-G04",
+    "date": "2026-01-18",
+    "cluster_id": 17,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G04.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 89,
+    "reasons": [
+     "contrast 19.7 dB, 33 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (JAG VIRAAT, 496 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.48585484543901,
+     8.726345190082357
+    ]
+   },
+   "properties": {
+    "row": 597.5,
+    "col": 507.96875,
+    "area_px": 32,
+    "mean_intensity_db": 0.3946078469835113,
+    "max_intensity_db": 8.08695012721848,
+    "local_background_db": -18.086009630326302,
+    "contrast_db": 18.480617477309814,
+    "aspect_ratio": 1.1666666666666667,
+    "fill_ratio": 0.7619047619047619,
+    "shape_label": "BLOCKY",
+    "match_status": "MATCHED",
+    "match_distance_m": 610.3,
+    "matched_name": "CHEN GLORY 9",
+    "matched_mmsi": "352898805",
+    "matched_flag": "PAN",
+    "matched_type": "OTHER",
+    "gfw_lon": 78.48999786376953,
+    "gfw_lat": 8.73,
+    "id": "2026-01-06-G07",
+    "date": "2026-01-06",
+    "cluster_id": 18,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G07.png",
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 87,
+    "reasons": [
+     "contrast 18.5 dB, 32 px",
+     "independently reported by GFW SAR detection",
+     "AIS vessel nearby (CHEN GLORY 9, 610 m)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.15488711016111,
+     8.750966832480108
+    ]
+   },
+   "properties": {
+    "row": 433.5,
+    "col": 386.0,
+    "area_px": 8,
+    "mean_intensity_db": -11.344822943863427,
+    "max_intensity_db": -10.146218907194232,
+    "local_background_db": -17.668005930102034,
+    "contrast_db": 6.323182986238606,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 572.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.16000366210938,
+    "gfw_lat": 8.75,
+    "id": "2026-01-30-G08",
+    "date": "2026-01-30",
+    "cluster_id": 19,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G08.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 6.3 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.0277339123408,
+     8.755794719780734
+    ]
+   },
+   "properties": {
+    "row": 491.0,
+    "col": 417.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.159177412428303,
+    "max_intensity_db": -8.547112471650307,
+    "local_background_db": -17.82046584900466,
+    "contrast_db": 7.661288436576356,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 529.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.02999877929688,
+    "gfw_lat": 8.76,
+    "id": "2026-01-30-G09",
+    "date": "2026-01-30",
+    "cluster_id": 20,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G09.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.7 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.13635096764912,
+     8.77391328527023
+    ]
+   },
+   "properties": {
+    "row": 400.68,
+    "col": 402.28,
+    "area_px": 25,
+    "mean_intensity_db": -2.577475991985749,
+    "max_intensity_db": 4.651962309718362,
+    "local_background_db": -17.47701377292685,
+    "contrast_db": 14.8995377809411,
+    "aspect_ratio": 1.6,
+    "fill_ratio": 0.625,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 591.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.13999938964844,
+    "gfw_lat": 8.77,
+    "id": "2026-01-30-G10",
+    "date": "2026-01-30",
+    "cluster_id": 21,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G10.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 68,
+    "reasons": [
+     "contrast 14.9 dB, 25 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.23000642009215,
+     8.777499531369132
+    ]
+   },
+   "properties": {
+    "row": 472.0,
+    "col": 442.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.906550673100053,
+    "max_intensity_db": -9.892711506408755,
+    "local_background_db": -17.98850974149581,
+    "contrast_db": 7.081959068395758,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 278.0,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.2300033569336,
+    "gfw_lat": 8.78,
+    "id": "2026-01-30-G11",
+    "date": "2026-01-30",
+    "cluster_id": 22,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G11.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 7.1 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.09499553029238,
+     8.787961728216132
+    ]
+   },
+   "properties": {
+    "row": 578.0,
+    "col": 387.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.130902407511439,
+    "max_intensity_db": -8.311786479255419,
+    "local_background_db": -18.051175633961016,
+    "contrast_db": 7.920273226449577,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1447.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.0999984741211,
+    "gfw_lat": 8.8,
+    "id": "2026-01-30-G12",
+    "date": "2026-01-30",
+    "cluster_id": 23,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G12.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 7.9 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.1987390904713,
+     8.797060729994898
+    ]
+   },
+   "properties": {
+    "row": 476.0,
+    "col": 318.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.996051899627057,
+    "max_intensity_db": -10.261175459042706,
+    "local_background_db": -18.565002889819752,
+    "contrast_db": 7.568950990192695,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1279.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.20999908447266,
+    "gfw_lat": 8.8,
+    "id": "2026-01-30-G13",
+    "date": "2026-01-30",
+    "cluster_id": 24,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G13.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.6 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.14944440935017,
+     8.813511541348925
+    ]
+   },
+   "properties": {
+    "row": 405.5,
+    "col": 436.5,
+    "area_px": 12,
+    "mean_intensity_db": -9.497437697275211,
+    "max_intensity_db": -7.141943556942184,
+    "local_background_db": -17.896523536079588,
+    "contrast_db": 8.399085838804377,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.75,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 395.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.1500015258789,
+    "gfw_lat": 8.81,
+    "id": "2026-01-18-G05",
+    "date": "2026-01-18",
+    "cluster_id": 25,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G05.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 8.4 dB, 12 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.23319414284848,
+     8.814402007747928
+    ]
+   },
+   "properties": {
+    "row": 395.0,
+    "col": 368.0,
+    "area_px": 5,
+    "mean_intensity_db": -11.03808230659997,
+    "max_intensity_db": -9.85325777207031,
+    "local_background_db": -18.125748807569906,
+    "contrast_db": 7.087666500969936,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 893.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.23999786376953,
+    "gfw_lat": 8.81,
+    "id": "2026-01-30-G14",
+    "date": "2026-01-30",
+    "cluster_id": 26,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G14.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 7.1 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.58451719899271,
+     8.829228915379645
+    ]
+   },
+   "properties": {
+    "row": 454.0,
+    "col": 493.0,
+    "area_px": 5,
+    "mean_intensity_db": -12.429546418359523,
+    "max_intensity_db": -10.825238794342107,
+    "local_background_db": -19.846480058270092,
+    "contrast_db": 7.416933639910569,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 503.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.58000183105469,
+    "gfw_lat": 8.83,
+    "id": "2026-01-30-G15",
+    "date": "2026-01-30",
+    "cluster_id": 27,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G15.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.4 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.35559349458202,
+     8.857458175040389
+    ]
+   },
+   "properties": {
+    "row": 473.5,
+    "col": 394.5,
+    "area_px": 12,
+    "mean_intensity_db": -11.023457808687269,
+    "max_intensity_db": -7.751676421106141,
+    "local_background_db": -20.59730452780942,
+    "contrast_db": 9.573846719122152,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.75,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 560.7,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.36000061035156,
+    "gfw_lat": 8.86,
+    "id": "2026-01-30-G16",
+    "date": "2026-01-30",
+    "cluster_id": 28,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G16.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 9.6 dB, 12 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.3466498154383,
+     8.8632790219123
+    ]
+   },
+   "properties": {
+    "row": 409.37931034482756,
+    "col": 406.51724137931035,
+    "area_px": 29,
+    "mean_intensity_db": -3.495422602145976,
+    "max_intensity_db": 5.258531985742447,
+    "local_background_db": -19.566596424199048,
+    "contrast_db": 16.071173822053073,
+    "aspect_ratio": 1.1666666666666667,
+    "fill_ratio": 0.6904761904761905,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 518.0,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.3499984741211,
+    "gfw_lat": 8.86,
+    "id": "2026-01-30-G17",
+    "date": "2026-01-30",
+    "cluster_id": 29,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G17.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 71,
+    "reasons": [
+     "contrast 16.1 dB, 29 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.98103206767148,
+     8.889166240009866
+    ]
+   },
+   "properties": {
+    "row": 454.0,
+    "col": 454.0,
+    "area_px": 5,
+    "mean_intensity_db": -11.34500319322187,
+    "max_intensity_db": -9.782304245866614,
+    "local_background_db": -18.95411323228763,
+    "contrast_db": 7.609110039065758,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 146.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.9800033569336,
+    "gfw_lat": 8.89,
+    "id": "2026-01-18-G06",
+    "date": "2026-01-18",
+    "cluster_id": 30,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G06.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.6 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.96935071294462,
+     8.913726079857963
+    ]
+   },
+   "properties": {
+    "row": 403.5,
+    "col": 436.0,
+    "area_px": 8,
+    "mean_intensity_db": -10.306415371365546,
+    "max_intensity_db": -8.314391037157126,
+    "local_background_db": -18.51144228091894,
+    "contrast_db": 8.205026909553393,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 420.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.97000122070312,
+    "gfw_lat": 8.91,
+    "id": "2026-01-30-G18",
+    "date": "2026-01-30",
+    "cluster_id": 31,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G18.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 8.2 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.97983663674196,
+     8.918548455638106
+    ]
+   },
+   "properties": {
+    "row": 460.7857142857143,
+    "col": 440.64285714285717,
+    "area_px": 14,
+    "mean_intensity_db": -9.429683681294678,
+    "max_intensity_db": -5.500460563837741,
+    "local_background_db": -18.730876347111682,
+    "contrast_db": 9.301192665817004,
+    "aspect_ratio": 1.25,
+    "fill_ratio": 0.7,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 162.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.9800033569336,
+    "gfw_lat": 8.92,
+    "id": "2026-01-30-G19",
+    "date": "2026-01-30",
+    "cluster_id": 32,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G19.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 9.3 dB, 14 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.1065026410019,
+     8.919105884726257
+    ]
+   },
+   "properties": {
+    "row": 454.0,
+    "col": 404.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.094274298005473,
+    "max_intensity_db": -7.63453660258961,
+    "local_background_db": -17.68175883211206,
+    "contrast_db": 8.587484534106586,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 396.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.11000061035156,
+    "gfw_lat": 8.92,
+    "id": "2026-01-30-G20",
+    "date": "2026-01-30",
+    "cluster_id": 33,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G20.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 8.6 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.15336100440773,
+     8.965720135672228
+    ]
+   },
+   "properties": {
+    "row": 492.0,
+    "col": 479.0,
+    "area_px": 11,
+    "mean_intensity_db": -9.570205028823468,
+    "max_intensity_db": -6.9468145468901366,
+    "local_background_db": -18.09937793988236,
+    "contrast_db": 8.529172911058891,
+    "aspect_ratio": 1.6666666666666667,
+    "fill_ratio": 0.7333333333333333,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 602.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.1500015258789,
+    "gfw_lat": 8.97,
+    "id": "2026-01-30-G21",
+    "date": "2026-01-30",
+    "cluster_id": 34,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G21.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 8.5 dB, 11 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.16346345708403,
+     8.980499779232236
+    ]
+   },
+   "properties": {
+    "row": 439.0769230769231,
+    "col": 479.9230769230769,
+    "area_px": 13,
+    "mean_intensity_db": -10.942597463355813,
+    "max_intensity_db": -9.40438511747364,
+    "local_background_db": -17.755501138041826,
+    "contrast_db": 6.812903674686012,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.52,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 384.0,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.16000366210938,
+    "gfw_lat": 8.98,
+    "id": "2026-01-30-G22",
+    "date": "2026-01-30",
+    "cluster_id": 35,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G22.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 6.8 dB, 13 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.40948188731149,
+     8.989877044273337
+    ]
+   },
+   "properties": {
+    "row": 556.0,
+    "col": 435.7647058823529,
+    "area_px": 17,
+    "mean_intensity_db": -8.543098722039417,
+    "max_intensity_db": -5.814163857365742,
+    "local_background_db": -17.26802562382086,
+    "contrast_db": 8.724926901781444,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.6071428571428571,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1127.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41000366210938,
+    "gfw_lat": 9,
+    "id": "2026-01-30-G23",
+    "date": "2026-01-30",
+    "cluster_id": 36,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G23.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 8.7 dB, 17 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.27929101499085,
+     9.02500512233804
+    ]
+   },
+   "properties": {
+    "row": 389.0,
+    "col": 434.0,
+    "area_px": 5,
+    "mean_intensity_db": -12.431875510571682,
+    "max_intensity_db": -11.405842571746254,
+    "local_background_db": -18.6008495786586,
+    "contrast_db": 6.168974068086918,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 561.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.27999877929688,
+    "gfw_lat": 9.02,
+    "id": "2026-01-30-G24",
+    "date": "2026-01-30",
+    "cluster_id": 37,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G24.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.43263390640034,
+     9.024968137412971
+    ]
+   },
+   "properties": {
+    "row": 389.0,
+    "col": 471.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.859097565656366,
+    "max_intensity_db": -8.547880894866843,
+    "local_background_db": -17.396417909095774,
+    "contrast_db": 7.537320343439408,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 623.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.43000030517578,
+    "gfw_lat": 9.02,
+    "id": "2026-01-30-G25",
+    "date": "2026-01-30",
+    "cluster_id": 38,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G25.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.5 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.47591261617303,
+     9.051285221823552
+    ]
+   },
+   "properties": {
+    "row": 431.0,
+    "col": 398.0,
+    "area_px": 5,
+    "mean_intensity_db": -12.466686475690011,
+    "max_intensity_db": -10.7977525617636,
+    "local_background_db": -20.647083387628594,
+    "contrast_db": 8.180396911938583,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 471.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.4800033569336,
+    "gfw_lat": 9.05,
+    "id": "2026-01-06-G08",
+    "date": "2026-01-06",
+    "cluster_id": 39,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G08.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 8.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.17040651407025,
+     9.065704287542292
+    ]
+   },
+   "properties": {
+    "row": 492.0,
+    "col": 446.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.800045743174136,
+    "max_intensity_db": -8.240147396618418,
+    "local_background_db": -18.144055268974,
+    "contrast_db": 8.344009525799864,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 479.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.16999816894531,
+    "gfw_lat": 9.07,
+    "id": "2026-01-30-G26",
+    "date": "2026-01-30",
+    "cluster_id": 40,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G26.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 8.3 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.4997386579784,
+     9.075836732378868
+    ]
+   },
+   "properties": {
+    "row": 489.5238095238095,
+    "col": 328.0952380952381,
+    "area_px": 21,
+    "mean_intensity_db": -7.411403349660985,
+    "max_intensity_db": -2.266065677889897,
+    "local_background_db": -17.425410770674397,
+    "contrast_db": 10.014007421013412,
+    "aspect_ratio": 1.2,
+    "fill_ratio": 0.7,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1218.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.51000213623047,
+    "gfw_lat": 9.08,
+    "id": "2026-01-30-G27",
+    "date": "2026-01-30",
+    "cluster_id": 41,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G27.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 57,
+    "reasons": [
+     "contrast 10.0 dB, 21 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.21014427638762,
+     9.076659530495437
+    ]
+   },
+   "properties": {
+    "row": 482.0,
+    "col": 443.5,
+    "area_px": 16,
+    "mean_intensity_db": -2.7970249706457415,
+    "max_intensity_db": 0.8883114417887334,
+    "local_background_db": -16.203614104396472,
+    "contrast_db": 13.40658913375073,
+    "aspect_ratio": 1.25,
+    "fill_ratio": 0.8,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 371.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.20999908447266,
+    "gfw_lat": 9.08,
+    "id": "2026-01-30-G28",
+    "date": "2026-01-30",
+    "cluster_id": 42,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G28.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 63,
+    "reasons": [
+     "contrast 13.4 dB, 16 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.49872644094533,
+     9.083316270101253
+    ]
+   },
+   "properties": {
+    "row": 407.7586206896552,
+    "col": 427.3103448275862,
+    "area_px": 29,
+    "mean_intensity_db": -2.131064102136041,
+    "max_intensity_db": 7.383882387706176,
+    "local_background_db": -17.503130011744112,
+    "contrast_db": 15.372065909608072,
+    "aspect_ratio": 1.6,
+    "fill_ratio": 0.725,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 394.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.5,
+    "gfw_lat": 9.08,
+    "id": "2026-01-30-G29",
+    "date": "2026-01-30",
+    "cluster_id": 43,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G29.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 69,
+    "reasons": [
+     "contrast 15.4 dB, 29 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.31733556487275,
+     9.097105149079642
+    ]
+   },
+   "properties": {
+    "row": 476.5,
+    "col": 412.0,
+    "area_px": 8,
+    "mean_intensity_db": -11.155623312232551,
+    "max_intensity_db": -9.988375557092382,
+    "local_background_db": -17.837870945091012,
+    "contrast_db": 6.682247632858461,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 434.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.31999969482422,
+    "gfw_lat": 9.1,
+    "id": "2026-01-30-G30",
+    "date": "2026-01-30",
+    "cluster_id": 44,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G30.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 6.7 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.86707653939744,
+     9.127542206768606
+    ]
+   },
+   "properties": {
+    "row": 471.7,
+    "col": 409.7,
+    "area_px": 10,
+    "mean_intensity_db": -7.362741149178075,
+    "max_intensity_db": -4.130058442628524,
+    "local_background_db": -18.162640048423434,
+    "contrast_db": 10.79989889924536,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.625,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 421.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 78.87000274658203,
+    "gfw_lat": 9.13,
+    "id": "2026-01-30-G31",
+    "date": "2026-01-30",
+    "cluster_id": 45,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G31.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 55,
+    "reasons": [
+     "contrast 10.8 dB, 10 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.35209326316351,
+     9.154812788553874
+    ]
+   },
+   "properties": {
+    "row": 391.0,
+    "col": 465.0,
+    "area_px": 5,
+    "mean_intensity_db": -8.419000413422516,
+    "max_intensity_db": -7.046597282089749,
+    "local_background_db": -17.289244028725673,
+    "contrast_db": 8.870243615303156,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 582.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.3499984741211,
+    "gfw_lat": 9.15,
+    "id": "2026-01-30-G32",
+    "date": "2026-01-30",
+    "cluster_id": 46,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G32.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 8.9 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.22022663519684,
+     9.19850557267547
+    ]
+   },
+   "properties": {
+    "row": 461.0,
+    "col": 444.5,
+    "area_px": 8,
+    "mean_intensity_db": -4.176409251505918,
+    "max_intensity_db": -1.689182191534955,
+    "local_background_db": -16.20752710547662,
+    "contrast_db": 12.0311178539707,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 168.0,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.22000122070312,
+    "gfw_lat": 9.2,
+    "id": "2026-01-06-G09",
+    "date": "2026-01-06",
+    "cluster_id": 47,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G09.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 57,
+    "reasons": [
+     "contrast 12.0 dB, 8 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.22786431603596,
+     9.199983078294093
+    ]
+   },
+   "properties": {
+    "row": 445.0,
+    "col": 418.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.355488261918385,
+    "max_intensity_db": -8.265794197755756,
+    "local_background_db": -18.654312754182037,
+    "contrast_db": 9.298824492263652,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 234.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.2300033569336,
+    "gfw_lat": 9.2,
+    "id": "2026-01-18-G07",
+    "date": "2026-01-18",
+    "cluster_id": 48,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G07.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 9.3 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.21916898627883,
+     9.210246765361795
+    ]
+   },
+   "properties": {
+    "row": 442.0,
+    "col": 433.0,
+    "area_px": 5,
+    "mean_intensity_db": -12.794300897762884,
+    "max_intensity_db": -11.856157435714444,
+    "local_background_db": -19.476258324936108,
+    "contrast_db": 6.681957427173224,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 95.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.22000122070312,
+    "gfw_lat": 9.21,
+    "id": "2026-01-18-G08",
+    "date": "2026-01-18",
+    "cluster_id": 49,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G08.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 6.7 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.20924960248311,
+     9.210514008796059
+    ]
+   },
+   "properties": {
+    "row": 438.5,
+    "col": 434.0,
+    "area_px": 8,
+    "mean_intensity_db": -11.061738047321148,
+    "max_intensity_db": -9.400307491668642,
+    "local_background_db": -18.88526757251977,
+    "contrast_db": 7.823529525198621,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 100.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.20999908447266,
+    "gfw_lat": 9.21,
+    "id": "2026-01-18-G09",
+    "date": "2026-01-18",
+    "cluster_id": 50,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G09.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 7.8 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.21847865433261,
+     9.211425303611547
+    ]
+   },
+   "properties": {
+    "row": 540.0,
+    "col": 536.0,
+    "area_px": 5,
+    "mean_intensity_db": -6.2368753745574965,
+    "max_intensity_db": -4.866213901557158,
+    "local_background_db": -17.02902614778366,
+    "contrast_db": 10.792150773226165,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 230.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.22000122070312,
+    "gfw_lat": 9.21,
+    "id": "2026-01-06-G10",
+    "date": "2026-01-06",
+    "cluster_id": 51,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G10.png",
+    "confidence_class": "LOW_CONFIDENCE",
+    "confidence": 30,
+    "reasons": [
+     "contrast 10.8 dB, 5 px",
+     "independently reported by GFW SAR detection",
+     "bright but small or weak: not enough evidence either way"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.22487354556635,
+     9.215835042709841
+    ]
+   },
+   "properties": {
+    "row": 379.5,
+    "col": 386.0,
+    "area_px": 8,
+    "mean_intensity_db": -8.276456014578986,
+    "max_intensity_db": -6.087807017769146,
+    "local_background_db": -17.300714798111983,
+    "contrast_db": 9.024258783532996,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 859.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.2300033569336,
+    "gfw_lat": 9.21,
+    "id": "2026-01-18-G10",
+    "date": "2026-01-18",
+    "cluster_id": 52,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G10.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 9.0 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.22766314056956,
+     9.222086975145965
+    ]
+   },
+   "properties": {
+    "row": 421.5,
+    "col": 416.0,
+    "area_px": 14,
+    "mean_intensity_db": -8.05740144790343,
+    "max_intensity_db": -5.477502085043122,
+    "local_background_db": -17.16493575560258,
+    "contrast_db": 9.10753430769915,
+    "aspect_ratio": 2.0,
+    "fill_ratio": 0.7777777777777778,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 346.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.2300033569336,
+    "gfw_lat": 9.22,
+    "id": "2026-01-18-G11",
+    "date": "2026-01-18",
+    "cluster_id": 53,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G11.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 9.1 dB, 14 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.2228069438234,
+     9.222715246611626
+    ]
+   },
+   "properties": {
+    "row": 414.2857142857143,
+    "col": 472.6666666666667,
+    "area_px": 21,
+    "mean_intensity_db": -4.105655327724629,
+    "max_intensity_db": 1.237330304460463,
+    "local_background_db": -17.706326471669268,
+    "contrast_db": 13.600671143944638,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.75,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 431.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.22000122070312,
+    "gfw_lat": 9.22,
+    "id": "2026-01-18-G12",
+    "date": "2026-01-18",
+    "cluster_id": 54,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G12.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 65,
+    "reasons": [
+     "contrast 13.6 dB, 21 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.36912771722469,
+     9.304296712635079
+    ]
+   },
+   "properties": {
+    "row": 396.72222222222223,
+    "col": 432.27777777777777,
+    "area_px": 18,
+    "mean_intensity_db": -6.9322753488179,
+    "max_intensity_db": -4.2748702385509745,
+    "local_background_db": -16.122203404974616,
+    "contrast_db": 9.189928056156717,
+    "aspect_ratio": 1.2,
+    "fill_ratio": 0.6,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 487.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.37000274658203,
+    "gfw_lat": 9.3,
+    "id": "2026-01-06-G11",
+    "date": "2026-01-06",
+    "cluster_id": 55,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G11.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 11,
+    "reasons": [
+     "contrast 9.2 dB, 18 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.49477990919564,
+     9.395559879013055
+    ]
+   },
+   "properties": {
+    "row": 493.5,
+    "col": 494.0,
+    "area_px": 8,
+    "mean_intensity_db": -6.518600642434599,
+    "max_intensity_db": -4.368574069258316,
+    "local_background_db": -15.342228183913114,
+    "contrast_db": 8.823627541478515,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 720.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.48999786376953,
+    "gfw_lat": 9.4,
+    "id": "2026-01-06-G12",
+    "date": "2026-01-06",
+    "cluster_id": 56,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G12.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 8.8 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.2754792075382,
+     9.490385224403413
+    ]
+   },
+   "properties": {
+    "row": 440.5,
+    "col": 392.0,
+    "area_px": 8,
+    "mean_intensity_db": -9.578495336348464,
+    "max_intensity_db": -7.55677254146319,
+    "local_background_db": -18.42346129483699,
+    "contrast_db": 8.844965958488526,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 497.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.27999877929688,
+    "gfw_lat": 9.49,
+    "id": "2026-01-18-G13",
+    "date": "2026-01-18",
+    "cluster_id": 57,
+    "cluster_size": 1,
+    "crop": "2026-01-18-G13.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 8.8 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.44258154346082,
+     9.537518030659555
+    ]
+   },
+   "properties": {
+    "row": 471.77272727272725,
+    "col": 469.22727272727275,
+    "area_px": 22,
+    "mean_intensity_db": -3.773375545360361,
+    "max_intensity_db": 2.508133129812548,
+    "local_background_db": -17.55872079408279,
+    "contrast_db": 13.78534524872243,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.6285714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 395.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.44000244140625,
+    "gfw_lat": 9.54,
+    "id": "2026-01-30-G33",
+    "date": "2026-01-30",
+    "cluster_id": 58,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G33.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 66,
+    "reasons": [
+     "contrast 13.8 dB, 22 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.43223614404582,
+     9.544503509952431
+    ]
+   },
+   "properties": {
+    "row": 395.0,
+    "col": 466.0,
+    "area_px": 5,
+    "mean_intensity_db": -8.392301348739817,
+    "max_intensity_db": -7.077111545463152,
+    "local_background_db": -17.535190467344236,
+    "contrast_db": 9.142889118604419,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 557.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.43000030517578,
+    "gfw_lat": 9.54,
+    "id": "2026-01-30-G34",
+    "date": "2026-01-30",
+    "cluster_id": 59,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G34.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 9.1 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.44452740750502,
+     9.547016417527772
+    ]
+   },
+   "properties": {
+    "row": 478.0,
+    "col": 490.5652173913044,
+    "area_px": 23,
+    "mean_intensity_db": -7.541429000345909,
+    "max_intensity_db": -3.420546477365188,
+    "local_background_db": -16.595040599533387,
+    "contrast_db": 9.053611599187478,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.8214285714285714,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 596.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.44000244140625,
+    "gfw_lat": 9.55,
+    "id": "2026-01-06-G13",
+    "date": "2026-01-06",
+    "cluster_id": 60,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G13.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 11,
+    "reasons": [
+     "contrast 9.1 dB, 23 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.43102216581018,
+     9.580771290748002
+    ]
+   },
+   "properties": {
+    "row": 436.0,
+    "col": 452.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.12769296241923,
+    "max_intensity_db": -8.802522659225412,
+    "local_background_db": -16.94373313085105,
+    "contrast_db": 6.816040168431821,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 141.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.43000030517578,
+    "gfw_lat": 9.58,
+    "id": "2026-01-06-G14",
+    "date": "2026-01-06",
+    "cluster_id": 61,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G14.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 6.8 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.41802374324165,
+     9.594274506065835
+    ]
+   },
+   "properties": {
+    "row": 397.0,
+    "col": 420.0,
+    "area_px": 5,
+    "mean_intensity_db": -7.482378868500288,
+    "max_intensity_db": -6.202067308414886,
+    "local_background_db": -16.701875228978484,
+    "contrast_db": 9.219496360478196,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 522.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41999816894531,
+    "gfw_lat": 9.59,
+    "id": "2026-01-06-G15",
+    "date": "2026-01-06",
+    "cluster_id": 62,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G15.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 9.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.4041395365953,
+     9.611886834114415
+    ]
+   },
+   "properties": {
+    "row": 423.5,
+    "col": 376.5,
+    "area_px": 12,
+    "mean_intensity_db": -4.292756853932257,
+    "max_intensity_db": 0.1881232196659235,
+    "local_background_db": -16.390637230381223,
+    "contrast_db": 12.097880376448966,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.75,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 676.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41000366210938,
+    "gfw_lat": 9.61,
+    "id": "2026-01-06-G16",
+    "date": "2026-01-06",
+    "cluster_id": 63,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G16.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 59,
+    "reasons": [
+     "contrast 12.1 dB, 12 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.41949603776565,
+     9.62684292432843
+    ]
+   },
+   "properties": {
+    "row": 479.6818181818182,
+    "col": 435.3181818181818,
+    "area_px": 22,
+    "mean_intensity_db": -5.682945419553253,
+    "max_intensity_db": 1.6139625808174338,
+    "local_background_db": -17.953807497931425,
+    "contrast_db": 12.270862078378173,
+    "aspect_ratio": 1.2,
+    "fill_ratio": 0.7333333333333333,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 355.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41999816894531,
+    "gfw_lat": 9.63,
+    "id": "2026-01-30-G35",
+    "date": "2026-01-30",
+    "cluster_id": 64,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G35.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 62,
+    "reasons": [
+     "contrast 12.3 dB, 22 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.4091720152837,
+     9.636457597747727
+    ]
+   },
+   "properties": {
+    "row": 373.0,
+    "col": 432.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.19526074060111,
+    "max_intensity_db": -8.663605811942759,
+    "local_background_db": -17.388577578051688,
+    "contrast_db": 7.193316837450578,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 723.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41000366210938,
+    "gfw_lat": 9.63,
+    "id": "2026-01-06-G17",
+    "date": "2026-01-06",
+    "cluster_id": 65,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G17.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.42818934999616,
+     9.641879312763495
+    ]
+   },
+   "properties": {
+    "row": 423.0,
+    "col": 312.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.896514524651131,
+    "max_intensity_db": -10.024974230458328,
+    "local_background_db": -17.187828493407437,
+    "contrast_db": 6.291313968756306,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1311.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.44000244140625,
+    "gfw_lat": 9.64,
+    "id": "2026-01-06-G18",
+    "date": "2026-01-06",
+    "cluster_id": 66,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G18.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.3 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.37383868107634,
+     9.680262173971295
+    ]
+   },
+   "properties": {
+    "row": 441.5,
+    "col": 483.0,
+    "area_px": 8,
+    "mean_intensity_db": -9.133941236724574,
+    "max_intensity_db": -7.437782132072628,
+    "local_background_db": -17.78151493390864,
+    "contrast_db": 8.647573697184065,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 421.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.37000274658203,
+    "gfw_lat": 9.68,
+    "id": "2026-01-30-G36",
+    "date": "2026-01-30",
+    "cluster_id": 67,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G36.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 8.6 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.40020937450318,
+     9.68070727526761
+    ]
+   },
+   "properties": {
+    "row": 436.94736842105266,
+    "col": 443.42105263157896,
+    "area_px": 19,
+    "mean_intensity_db": -8.918553716960071,
+    "max_intensity_db": -6.5787567152618625,
+    "local_background_db": -17.359756469072263,
+    "contrast_db": 8.441202752112192,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.6785714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 81.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.4000015258789,
+    "gfw_lat": 9.68,
+    "id": "2026-01-30-G37",
+    "date": "2026-01-30",
+    "cluster_id": 68,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G37.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 8.4 dB, 19 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.45037154641166,
+     9.688367986872143
+    ]
+   },
+   "properties": {
+    "row": 462.94736842105266,
+    "col": 444.7894736842105,
+    "area_px": 19,
+    "mean_intensity_db": -8.496186978330563,
+    "max_intensity_db": -5.5362637245143445,
+    "local_background_db": -16.68341209829547,
+    "contrast_db": 8.187225119964907,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.6785714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 186.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.44999694824219,
+    "gfw_lat": 9.69,
+    "id": "2026-01-06-G19",
+    "date": "2026-01-06",
+    "cluster_id": 69,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G19.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 9,
+    "reasons": [
+     "contrast 8.2 dB, 19 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.43652904169421,
+     9.690606013461858
+    ]
+   },
+   "properties": {
+    "row": 437.5,
+    "col": 403.0,
+    "area_px": 8,
+    "mean_intensity_db": -9.161331558861878,
+    "max_intensity_db": -8.119487752208437,
+    "local_background_db": -16.485737355287142,
+    "contrast_db": 7.324405796425264,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 386.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.44000244140625,
+    "gfw_lat": 9.69,
+    "id": "2026-01-06-G20",
+    "date": "2026-01-06",
+    "cluster_id": 70,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G20.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 7.3 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.3945481765739,
+     9.694238143340112
+    ]
+   },
+   "properties": {
+    "row": 398.0,
+    "col": 491.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.629197850780306,
+    "max_intensity_db": -9.548422449946514,
+    "local_background_db": -17.988240588512575,
+    "contrast_db": 7.359042737732269,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 686.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.38999938964844,
+    "gfw_lat": 9.69,
+    "id": "2026-01-30-G38",
+    "date": "2026-01-30",
+    "cluster_id": 71,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G38.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.4 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.41770660495419,
+     9.701324241087457
+    ]
+   },
+   "properties": {
+    "row": 540.0,
+    "col": 415.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.54267350257148,
+    "max_intensity_db": -9.608863096983457,
+    "local_background_db": -17.694475381128466,
+    "contrast_db": 7.151801878556986,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 996.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41999816894531,
+    "gfw_lat": 9.71,
+    "id": "2026-01-06-G21",
+    "date": "2026-01-06",
+    "cluster_id": 72,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G21.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 7.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.40870715880479,
+     9.706284037833038
+    ]
+   },
+   "properties": {
+    "row": 485.5,
+    "col": 427.0,
+    "area_px": 8,
+    "mean_intensity_db": -9.947411951734097,
+    "max_intensity_db": -8.607698713638237,
+    "local_background_db": -17.611382393385526,
+    "contrast_db": 7.663970441651429,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 436.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41000366210938,
+    "gfw_lat": 9.71,
+    "id": "2026-01-30-G39",
+    "date": "2026-01-30",
+    "cluster_id": 73,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G39.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 5,
+    "reasons": [
+     "contrast 7.7 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.4029624626827,
+     9.711825286417703
+    ]
+   },
+   "properties": {
+    "row": 424.9166666666667,
+    "col": 473.25,
+    "area_px": 24,
+    "mean_intensity_db": -8.414569039446606,
+    "max_intensity_db": -5.037541743748932,
+    "local_background_db": -17.488952535837207,
+    "contrast_db": 9.0743834963906,
+    "aspect_ratio": 2.25,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "SHIP-LIKE",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 382.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.4000015258789,
+    "gfw_lat": 9.71,
+    "id": "2026-01-30-G40",
+    "date": "2026-01-30",
+    "cluster_id": 74,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G40.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 11,
+    "reasons": [
+     "contrast 9.1 dB, 24 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.38586991804478,
+     9.717704837921815
+    ]
+   },
+   "properties": {
+    "row": 470.0,
+    "col": 396.0,
+    "area_px": 5,
+    "mean_intensity_db": -7.988797816048752,
+    "max_intensity_db": -6.445478937799293,
+    "local_background_db": -17.569789326985003,
+    "contrast_db": 9.58099151093625,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 519.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.38999938964844,
+    "gfw_lat": 9.72,
+    "id": "2026-01-30-G41",
+    "date": "2026-01-30",
+    "cluster_id": 75,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G41.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 8,
+    "reasons": [
+     "contrast 9.6 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.41750099816495,
+     9.721145632993053
+    ]
+   },
+   "properties": {
+    "row": 431.57894736842104,
+    "col": 413.2631578947368,
+    "area_px": 19,
+    "mean_intensity_db": -9.381368138097214,
+    "max_intensity_db": -7.172265146461174,
+    "local_background_db": -17.390745456941403,
+    "contrast_db": 8.009377318844189,
+    "aspect_ratio": 2.0,
+    "fill_ratio": 0.59375,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 301.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41999816894531,
+    "gfw_lat": 9.72,
+    "id": "2026-01-30-G42",
+    "date": "2026-01-30",
+    "cluster_id": 76,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G42.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 9,
+    "reasons": [
+     "contrast 8.0 dB, 19 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.3976274898456,
+     9.727696816225082
+    ]
+   },
+   "properties": {
+    "row": 470.28,
+    "col": 415.04,
+    "area_px": 25,
+    "mean_intensity_db": -7.217324320161602,
+    "max_intensity_db": -3.6754573473425047,
+    "local_background_db": -17.248362819593165,
+    "contrast_db": 10.031038499431563,
+    "aspect_ratio": 1.6,
+    "fill_ratio": 0.625,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 365.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.4000015258789,
+    "gfw_lat": 9.73,
+    "id": "2026-01-06-G22",
+    "date": "2026-01-06",
+    "cluster_id": 77,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G22.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 57,
+    "reasons": [
+     "contrast 10.0 dB, 25 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.41235176562732,
+     9.728792699196996
+    ]
+   },
+   "properties": {
+    "row": 457.7368421052632,
+    "col": 467.1578947368421,
+    "area_px": 19,
+    "mean_intensity_db": -9.304807671479784,
+    "max_intensity_db": -5.947322849944006,
+    "local_background_db": -17.734370183855024,
+    "contrast_db": 8.42956251237524,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.6785714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 290.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.41000366210938,
+    "gfw_lat": 9.73,
+    "id": "2026-01-30-G43",
+    "date": "2026-01-30",
+    "cluster_id": 78,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G43.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 10,
+    "reasons": [
+     "contrast 8.4 dB, 19 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.61113211311425,
+     9.99284985346524
+    ]
+   },
+   "properties": {
+    "row": 412.5,
+    "col": 453.0,
+    "area_px": 8,
+    "mean_intensity_db": -8.516666059048525,
+    "max_intensity_db": -6.275740944084669,
+    "local_background_db": -17.46561089356274,
+    "contrast_db": 8.948944834514215,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 340.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.61000061035156,
+    "gfw_lat": 9.99,
+    "id": "2026-01-30-G44",
+    "date": "2026-01-30",
+    "cluster_id": 79,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G44.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 8.9 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.55177194138007,
+     10.10129491407714
+    ]
+   },
+   "properties": {
+    "row": 541.5333333333333,
+    "col": 570.2333333333333,
+    "area_px": 30,
+    "mean_intensity_db": -6.591388807265649,
+    "max_intensity_db": -1.1176639230804999,
+    "local_background_db": -17.41424456891518,
+    "contrast_db": 10.822855761649532,
+    "aspect_ratio": 2.0,
+    "fill_ratio": 0.6,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 241.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.55000305175781,
+    "gfw_lat": 10.1,
+    "id": "2026-01-06-G23",
+    "date": "2026-01-06",
+    "cluster_id": 80,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G23.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 59,
+    "reasons": [
+     "contrast 10.8 dB, 30 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.55742590390044,
+     10.106347624629889
+    ]
+   },
+   "properties": {
+    "row": 595.925925925926,
+    "col": 522.4444444444445,
+    "area_px": 27,
+    "mean_intensity_db": -4.7921835876227705,
+    "max_intensity_db": 1.0968587911027257,
+    "local_background_db": -17.482171348590033,
+    "contrast_db": 12.689987760967263,
+    "aspect_ratio": 2.25,
+    "fill_ratio": 0.75,
+    "shape_label": "SHIP-LIKE",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 494.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.55999755859375,
+    "gfw_lat": 10.11,
+    "id": "2026-01-06-G24",
+    "date": "2026-01-06",
+    "cluster_id": 81,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G24.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 63,
+    "reasons": [
+     "contrast 12.7 dB, 27 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.55673468910801,
+     10.115242110263985
+    ]
+   },
+   "properties": {
+    "row": 496.5217391304348,
+    "col": 404.30434782608694,
+    "area_px": 23,
+    "mean_intensity_db": -5.6040404973415034,
+    "max_intensity_db": 0.39922993906498677,
+    "local_background_db": -17.63955751688449,
+    "contrast_db": 12.035517019542986,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.6571428571428571,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 638.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.55999755859375,
+    "gfw_lat": 10.12,
+    "id": "2026-01-06-G25",
+    "date": "2026-01-06",
+    "cluster_id": 82,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G25.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 62,
+    "reasons": [
+     "contrast 12.0 dB, 23 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.87907743660944,
+     10.117430853823645
+    ]
+   },
+   "properties": {
+    "row": 473.0,
+    "col": 539.0,
+    "area_px": 5,
+    "mean_intensity_db": -9.373265698906888,
+    "max_intensity_db": -8.524505628058359,
+    "local_background_db": -15.598032842065365,
+    "contrast_db": 6.224767143158477,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 1033.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.87000274658203,
+    "gfw_lat": 10.12,
+    "id": "2026-01-30-G45",
+    "date": "2026-01-30",
+    "cluster_id": 83,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G45.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.52994600731064,
+     10.12494052670846
+    ]
+   },
+   "properties": {
+    "row": 389.94736842105266,
+    "col": 440.2105263157895,
+    "area_px": 19,
+    "mean_intensity_db": -7.914407529646667,
+    "max_intensity_db": -4.705294029559056,
+    "local_background_db": -17.63521297537323,
+    "contrast_db": 9.720805445726562,
+    "aspect_ratio": 1.75,
+    "fill_ratio": 0.6785714285714286,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 549.4,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.52999877929688,
+    "gfw_lat": 10.12,
+    "id": "2026-01-06-G26",
+    "date": "2026-01-06",
+    "cluster_id": 84,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G26.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 12,
+    "reasons": [
+     "contrast 9.7 dB, 19 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.88396298160586,
+     10.129745782239361
+    ]
+   },
+   "properties": {
+    "row": 447.0,
+    "col": 483.0,
+    "area_px": 11,
+    "mean_intensity_db": -7.034274956217217,
+    "max_intensity_db": -3.946863497822638,
+    "local_background_db": -15.380539997792146,
+    "contrast_db": 8.346265041574929,
+    "aspect_ratio": 1.6666666666666667,
+    "fill_ratio": 0.7333333333333333,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 435.0,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.87999725341797,
+    "gfw_lat": 10.13,
+    "id": "2026-01-30-G46",
+    "date": "2026-01-30",
+    "cluster_id": 85,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G46.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 8.3 dB, 11 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.98968391393419,
+     10.156331162981282
+    ]
+   },
+   "properties": {
+    "row": 374.0,
+    "col": 436.0,
+    "area_px": 5,
+    "mean_intensity_db": -7.825067127004833,
+    "max_intensity_db": -7.108074147246098,
+    "local_background_db": -14.056489228515634,
+    "contrast_db": 6.231422101510801,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 704.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.98999786376953,
+    "gfw_lat": 10.15,
+    "id": "2026-01-06-G27",
+    "date": "2026-01-06",
+    "cluster_id": 86,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G27.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.2 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.74942724392682,
+     10.180487032683255
+    ]
+   },
+   "properties": {
+    "row": 438.5,
+    "col": 434.0,
+    "area_px": 8,
+    "mean_intensity_db": -9.16634203294766,
+    "max_intensity_db": -7.382640544571906,
+    "local_background_db": -17.275109971635953,
+    "contrast_db": 8.108767938688292,
+    "aspect_ratio": 1.3333333333333333,
+    "fill_ratio": 0.6666666666666666,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 82.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.75,
+    "gfw_lat": 10.18,
+    "id": "2026-01-30-G47",
+    "date": "2026-01-30",
+    "cluster_id": 87,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G47.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 6,
+    "reasons": [
+     "contrast 8.1 dB, 8 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.91640501290458,
+     10.206195142916275
+    ]
+   },
+   "properties": {
+    "row": 376.0,
+    "col": 510.0,
+    "area_px": 5,
+    "mean_intensity_db": -5.745751341106906,
+    "max_intensity_db": -4.094523406376771,
+    "local_background_db": -15.156839770991596,
+    "contrast_db": 9.411088429884689,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 982.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.91000366210938,
+    "gfw_lat": 10.2,
+    "id": "2026-01-06-G28",
+    "date": "2026-01-06",
+    "cluster_id": 88,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G28.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
+    "reasons": [
+     "contrast 9.4 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.74829889002437,
+     10.210928773663444
+    ]
+   },
+   "properties": {
+    "row": 545.0,
+    "col": 531.6470588235294,
+    "area_px": 17,
+    "mean_intensity_db": -6.113313676173062,
+    "max_intensity_db": -0.5648855087313083,
+    "local_background_db": -15.701974539314643,
+    "contrast_db": 9.58866086314158,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.68,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 212.9,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.75,
+    "gfw_lat": 10.21,
+    "id": "2026-01-06-G29",
+    "date": "2026-01-06",
+    "cluster_id": 89,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G29.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 11,
+    "reasons": [
+     "contrast 9.6 dB, 17 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.77590671846541,
+     10.224216219277475
+    ]
+   },
+   "properties": {
+    "row": 397.2142857142857,
+    "col": 395.64285714285717,
+    "area_px": 14,
+    "mean_intensity_db": -5.96721702332448,
+    "max_intensity_db": -1.9228415746050722,
+    "local_background_db": -16.632619751898254,
+    "contrast_db": 10.665402728573774,
+    "aspect_ratio": 1.25,
+    "fill_ratio": 0.7,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 648.3,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.77999877929688,
+    "gfw_lat": 10.22,
+    "id": "2026-01-06-G30",
+    "date": "2026-01-06",
+    "cluster_id": 90,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G30.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 56,
+    "reasons": [
+     "contrast 10.7 dB, 14 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.56327598447267,
+     10.232775151482604
+    ]
+   },
+   "properties": {
+    "row": 413.75,
+    "col": 476.0416666666667,
+    "area_px": 24,
+    "mean_intensity_db": -6.566185320690258,
+    "max_intensity_db": -1.597129835563495,
+    "local_background_db": -18.667333508808117,
+    "contrast_db": 12.101148188117858,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.6857142857142857,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 473.2,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.55999755859375,
+    "gfw_lat": 10.23,
+    "id": "2026-01-30-G48",
+    "date": "2026-01-30",
+    "cluster_id": 91,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G48.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 62,
+    "reasons": [
+     "contrast 12.1 dB, 24 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.64347117934854,
+     10.24226098396345
+    ]
+   },
+   "properties": {
+    "row": 419.6470588235294,
+    "col": 478.0,
+    "area_px": 17,
+    "mean_intensity_db": -6.953944854031998,
+    "max_intensity_db": -1.449094512780011,
+    "local_background_db": -18.647523132761727,
+    "contrast_db": 11.693578278729728,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.68,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 455.6,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.63999938964844,
+    "gfw_lat": 10.24,
+    "id": "2026-01-30-G49",
+    "date": "2026-01-30",
+    "cluster_id": 92,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G49.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 60,
+    "reasons": [
+     "contrast 11.7 dB, 17 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.46261790862803,
+     10.264667458636863
+    ]
+   },
+   "properties": {
+    "row": 393.1290322580645,
+    "col": 469.7096774193548,
+    "area_px": 31,
+    "mean_intensity_db": -4.987953473315117,
+    "max_intensity_db": 4.068480960023882,
+    "local_background_db": -18.60606434587573,
+    "contrast_db": 13.618110872560614,
+    "aspect_ratio": 1.1666666666666667,
+    "fill_ratio": 0.7380952380952381,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 592.8,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.45999908447266,
+    "gfw_lat": 10.26,
+    "id": "2026-01-06-G31",
+    "date": "2026-01-06",
+    "cluster_id": 93,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G31.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 65,
+    "reasons": [
+     "contrast 13.6 dB, 31 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.53349690360069,
+     10.279707333025684
+    ]
+   },
+   "properties": {
+    "row": 448.2142857142857,
+    "col": 478.17857142857144,
+    "area_px": 28,
+    "mean_intensity_db": -4.415360711607524,
+    "max_intensity_db": 0.9835733713869135,
+    "local_background_db": -19.121614176198474,
+    "contrast_db": 14.70625346459095,
+    "aspect_ratio": 1.4,
+    "fill_ratio": 0.8,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 384.1,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.52999877929688,
+    "gfw_lat": 10.28,
+    "id": "2026-01-30-G50",
+    "date": "2026-01-30",
+    "cluster_id": 94,
+    "cluster_size": 1,
+    "crop": "2026-01-30-G50.png",
+    "confidence_class": "DARK_CANDIDATE",
+    "confidence": 68,
+    "reasons": [
+     "contrast 14.7 dB, 28 px",
+     "independently reported by GFW SAR detection",
+     "no AIS vessel within match radius -> candidate dark vessel (needs review)"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.95529404702592,
+     10.289698587301157
+    ]
+   },
+   "properties": {
+    "row": 447.0,
+    "col": 498.0,
+    "area_px": 5,
+    "mean_intensity_db": -7.247852947415862,
+    "max_intensity_db": -6.316358726948293,
+    "local_background_db": -14.800100927721068,
+    "contrast_db": 7.552247980305206,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.5555555555555556,
+    "shape_label": "BLOCKY",
+    "match_status": "UNMATCHED",
+    "match_distance_m": 580.5,
+    "matched_name": null,
+    "matched_mmsi": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "gfw_lon": 79.94999694824219,
+    "gfw_lat": 10.29,
+    "id": "2026-01-06-G32",
+    "date": "2026-01-06",
+    "cluster_id": 95,
+    "cluster_size": 1,
+    "crop": "2026-01-06-G32.png",
+    "confidence_class": "CLUTTER",
+    "confidence": 4,
+    "reasons": [
+     "contrast 7.6 dB, 5 px",
+     "contrast below 10 dB: indistinguishable from sea clutter"
+    ]
+   }
+  }
+ ]
+}

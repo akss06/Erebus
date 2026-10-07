@@ -1,0 +1,79 @@
+{
+  "tile": "2026-06-30_1000.tif",
+  "alpha": 3.854,
+  "n_sites": 150,
+  "factor_strong": 4.0,
+  "factor_weak": 1.4,
+  "results": {
+    "single_1px/strong": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 0.0,
+      "lost_to_opening": 0.0
+    },
+    "single_1px/weak": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 0.0,
+      "lost_to_opening": 0.0
+    },
+    "line_1x3/strong": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "line_1x3/weak": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "line_1x4/strong": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "line_1x4/weak": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "L_3px/strong": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "L_3px/weak": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "block_2x2/strong": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "block_2x2/weak": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "block_3x3/strong": {
+      "recovery_with_opening": 1.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 0.0
+    },
+    "block_3x3/weak": {
+      "recovery_with_opening": 1.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 0.0
+    },
+    "adjacent_2x2_pair/strong": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    },
+    "adjacent_2x2_pair/weak": {
+      "recovery_with_opening": 0.0,
+      "recovery_without_opening": 1.0,
+      "lost_to_opening": 1.0
+    }
+  }
+}

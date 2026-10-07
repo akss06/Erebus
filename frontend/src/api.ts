@@ -2,6 +2,9 @@ export type ConfClass =
   | "ANCHORED_VESSEL"
   | "VESSEL_CANDIDATE"
   | "DARK_CANDIDATE"
+  | "UNVERIFIED_TARGET"
+  | "PERSISTENT_UNIDENTIFIED"
+  | "SUSPECTED_FIXED"
   | "LOW_CONFIDENCE"
   | "FIXED_OBJECT"
   | "CLUTTER";
@@ -25,6 +28,10 @@ export interface Detection {
   lat: number;
   confidence_class: ConfClass;
   confidence: number;
+  score_basis?: string;
+  ais_evidence?: string;
+  gfw_association?: string;
+  fixed_evidence?: string;
   reasons: string[];
   contrast_db: number;
   area_px: number;
@@ -92,7 +99,16 @@ export interface AnalyzeStatus {
   status: "starting" | "running" | "done" | "error";
   progress: number;
   log: string[];
-  result: { total: number; dark_candidates: number; classes: Record<string, number> } | null;
+  result: {
+    total: number;
+    dark_candidates: number;
+    classes: Record<string, number>;
+    coverage?: { requested: number; dates?: number; no_scene: number; download_failed: number; analyzed: number; no_sea: number; degraded: number; gfw_failed_dates?: number; detections_kept: number };
+    gfw_failed_dates?: string[];
+    partial?: boolean;
+    data_unavailable?: boolean;
+    note?: string;
+  } | null;
   area_id: string | null;
   error: string | null;
 }

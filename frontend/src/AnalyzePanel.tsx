@@ -144,11 +144,44 @@ export default function AnalyzePanel({ onComplete, onClose }: Props) {
             ))}
           </div>
 
-          {done && status?.result && (
-            <div className="notice" style={{ marginTop: 12, background: "#0a2e1a", borderColor: "#1a6b3a" }}>
-              <b>Analysis complete</b>
+          {done && status?.result?.data_unavailable && (
+            <div className="notice" style={{ marginTop: 12, background: "#2e220a", borderColor: "#6b551a" }}>
+              <b>No data available</b>
+              <br />
+              {status.result.note
+                ? status.result.note
+                : `None of the ${status.result.coverage?.requested ?? 0} requested tiles could be retrieved ` +
+                  `(${status.result.coverage?.no_scene ?? 0} had no Sentinel-1 scene, ${status.result.coverage?.download_failed ?? 0} failed to download).`}
+              <br />
+              This is missing input data, not an empty sea — no conclusion can be drawn.
+            </div>
+          )}
+
+          {done && status?.result && !status.result.data_unavailable && (
+            <div
+              className="notice"
+              style={status.result.partial
+                ? { marginTop: 12, background: "#2e220a", borderColor: "#6b551a" }
+                : { marginTop: 12, background: "#0a2e1a", borderColor: "#1a6b3a" }}
+            >
+              <b>{status.result.partial ? "Analysis partial" : "Analysis complete"}</b>
               <br />
               {status.result.total} detections, {status.result.dark_candidates} dark-vessel candidates.
+              {status.result.coverage && (
+                <>
+                  <br />
+                  {status.result.coverage.analyzed} tiles analysed
+                  {(status.result.coverage.no_scene + status.result.coverage.download_failed) > 0
+                    ? `, ${status.result.coverage.no_scene + status.result.coverage.download_failed} unavailable`
+                    : ""}.
+                </>
+              )}
+              {status.result.partial && status.result.gfw_failed_dates && (
+                <>
+                  <br />
+                  GFW data unavailable for {status.result.gfw_failed_dates.length} date(s): {status.result.gfw_failed_dates.join(", ")} — those dates are unperformed, not empty.
+                </>
+              )}
               <br />
               Results loaded — select the new area tab to explore.
             </div>

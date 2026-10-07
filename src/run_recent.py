@@ -15,12 +15,9 @@ import time
 from collections import Counter
 from pathlib import Path
 
-import numpy as np
-import rasterio
-from PIL import Image, ImageDraw
-
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import confidence
+import crops as crops_mod
 import detect_v3
 import match
 import validate_vs_gfw as vgfw
@@ -41,14 +38,7 @@ REGION = vgfw.REGION
 MATCH_RADIUS_M = vgfw.MATCH_RADIUS_M
 TUTICORIN_BOX = (78.20, 8.70, 78.34, 8.87)
 DEDUPE_M = 60
-CROP_HALF_PX = 60
-CROP_SCALE = 4
-# Fixed dB window for crops. A per-crop percentile stretch gets hijacked by any
-# bright streak (azimuth ambiguity / stronger scatterer) in frame and washes the
-# real target down to grey. A fixed VV window (open water ~ -20 dB -> near black,
-# a vessel ~ 0 dB -> white) renders targets honestly and comparably across crops.
-CROP_DB_LO = -23.0
-CROP_DB_HI = 3.0
+# Crop rendering (fixed [-23,+3] dB window) lives in src/crops.py, shared by every dataset.
 
 
 def fetch_gfw_sar_recent(token: str, date: str) -> list[dict]:
@@ -127,24 +117,9 @@ def ensure_tile(date: str, i: int, lon: float, lat: float) -> Path | None:
 
 
 def save_crop(tif: Path, row: float, col: float, out: Path) -> None:
-    with rasterio.open(tif) as src:
-        db = src.read(1).astype("float64")
-    r, c = int(round(row)), int(round(col))
-    r0, r1 = max(0, r - CROP_HALF_PX), min(db.shape[0], r + CROP_HALF_PX)
-    c0, c1 = max(0, c - CROP_HALF_PX), min(db.shape[1], c + CROP_HALF_PX)
-    crop = db[r0:r1, c0:c1]
-    if not np.isfinite(crop).any():
-        return
-    lo, hi = CROP_DB_LO, CROP_DB_HI
-    img = Image.fromarray(
-        (np.clip((np.nan_to_num(crop, nan=lo) - lo) / (hi - lo), 0, 1) * 255).astype("uint8"), mode="L"
-    )
-    img = img.resize((img.width * CROP_SCALE, img.height * CROP_SCALE), Image.NEAREST).convert("RGB")
-    cx, cy = (c - c0 + 0.5) * CROP_SCALE, (r - r0 + 0.5) * CROP_SCALE
-    d = ImageDraw.Draw(img)
-    d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], outline=(255, 60, 60), width=2)
-    CROP_DIR.mkdir(parents=True, exist_ok=True)
-    img.save(out)
+    # Canonical fixed [-23, +3] dB window (see crops.py) -- shared with Tuticorin,
+    # Gulf and Run Analysis so brightness is comparable across every crop.
+    crops_mod.save_crop(tif, row, col, out)
 
 
 HOTSPOT_CLUSTER_M = 3000  # cluster GFW locations within 3 km into one hotspot
@@ -242,10 +217,17 @@ def main() -> None:
             continue
 
         vh_tif = tif.with_name(tif.stem + "_vh.tif")
-        dets = detect_v3.run_detector_v3(tif, vh_tif)
+        dets, diag = detect_v3.run_detector_v3(tif, vh_tif)
+        if diag.get("status") in ("insufficient_data", "degraded", "no_sea"):
+            print(f"  [diag] {tif.name}: {diag.get('status')} - {'; '.join(diag.get('notes', []))}", flush=True)
         if not dets:
             tile_miss += 1
             continue
+        for d in dets:
+            d["detector_version"] = diag.get("detector_version")
+            d["detector_config"] = diag.get("config_hash")
+            d["mask_jrc_used"] = diag.get("mask", {}).get("jrc_used")
+            d["vh_used"] = diag.get("vh", {}).get("used")
 
         tile_ok += 1
         # Find nearest GFW record on this date for AIS status
@@ -259,6 +241,10 @@ def main() -> None:
             gfw_dists = [(match.haversine_m(det["lon"], det["lat"], g["lon"], g["lat"]), g) for g in gfw_on_date]
             nearest_gfw = min(gfw_dists, key=lambda x: x[0]) if gfw_dists else None
 
+            # gfw_association: was a GFW SAR-presence record within radius of THIS
+            # detection? "associated"/"none" here; many-to-one -> "ambiguous" below.
+            # match_status / matched_* carry GFW's AIS attribution for that record,
+            # which is GFW-reported, not an AIS match we computed (ais_source below).
             if nearest_gfw and nearest_gfw[0] <= MATCH_RADIUS_M:
                 g = nearest_gfw[1]
                 has_ais = bool(g.get("mmsi"))
@@ -269,11 +255,14 @@ def main() -> None:
                     "matched_mmsi": g.get("mmsi") or None,
                     "matched_flag": g.get("flag") or None,
                     "matched_type": g.get("vesselType") or None,
+                    "gfw_association": "associated",
+                    "_gfw_key": (round(g["lon"], 5), round(g["lat"], 5)),
                 })
             else:
                 det.update(match_status="UNMATCHED", match_distance_m=None,
                            matched_name=None, matched_mmsi=None,
-                           matched_flag=None, matched_type=None)
+                           matched_flag=None, matched_type=None,
+                           gfw_association="none", _gfw_key=None)
 
             det["tif_path"] = str(tif)
             day = picked_dets.setdefault(date, [])
@@ -285,25 +274,34 @@ def main() -> None:
     print(f"\n[detect] {tile_ok} tiles processed, {tile_miss} missed; {total_dets} detections "
           f"(land mask, GG-CFAR, TCR + shape gates applied in detector)", flush=True)
 
+    # Mark many-to-one GFW associations as ambiguous: one coarse GFW record cannot
+    # be a confident identity for several distinct detections on the same date.
+    for day in picked_dets.values():
+        key_counts = Counter(d["_gfw_key"] for d in day if d.get("_gfw_key"))
+        for d in day:
+            if d.get("_gfw_key") and key_counts[d["_gfw_key"]] > 1:
+                d["gfw_association"] = "ambiguous"
+
     # Step 4: cluster + score + save crops
     clusters = confidence.cluster_across_passes(picked_dets)
     clusters.sort(key=lambda c: (round(c[0][1]["lat"], 4), round(c[0][1]["lon"], 4)))
+    chains = confidence.find_chain_members(clusters)
     features, per_date = [], Counter()
     for cid, cluster in enumerate(clusters, start=1):
         for date, det in sorted(cluster, key=lambda m: m[0]):
-            # Corroboration only when GFW independently reported a SAR detection
-            # within match radius of THIS detection (match_distance_m set), not
-            # blanket across the whole hotspot tile.
-            corrob = "GFW SAR detection" if det.get("match_distance_m") is not None else None
+            # Corroboration = GFW's SAR-presence algorithm flagged the same spot on
+            # the SAME Sentinel-1 imagery (shared-sensor agreement, not independent).
+            corrob = "GFW's SAR-presence algorithm" if det.get("gfw_association") in ("associated", "ambiguous") else None
             res = confidence.score_detection(
-                det, cluster, len(RECENT_DATES), corroborated_by=corrob
+                det, cluster, len(RECENT_DATES), corroborated_by=corrob, ais_source="gfw_reported",
+                chain_member=id(cluster) in chains,
             )
             per_date[date] += 1
             det_id = f"{date}-R{per_date[date]:02d}"
             tif_path = Path(det.pop("tif", det.pop("tif_path", "")))
             if tif_path.exists():
                 save_crop(tif_path, det["row"], det["col"], CROP_DIR / f"{det_id}.png")
-            props = {k: v for k, v in det.items() if k not in ("lon", "lat", "tif_path")}
+            props = {k: v for k, v in det.items() if k not in ("lon", "lat", "tif_path", "_gfw_key")}
             props.update(
                 id=det_id, date=date, cluster_id=cid, cluster_size=len(cluster),
                 crop=f"{det_id}.png", **res,
