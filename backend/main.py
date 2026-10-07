@@ -180,7 +180,14 @@ class Review(BaseModel):
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"status": "ok", "detections": len(DETECTIONS)}
+    # live_analysis is true only when the live pipeline could actually run: the GFW
+    # token plus an Earth Engine credential -- a service account (for a server) OR
+    # cached interactive credentials (local dev). The frontend uses this to show or
+    # hide the Run Analysis button so it never offers a run that would just error.
+    ee_service_account = bool(os.environ.get("GEE_SERVICE_ACCOUNT") and os.environ.get("GEE_SA_KEY_JSON"))
+    ee_cached = (Path.home() / ".config" / "earthengine" / "credentials").exists()
+    live_analysis = bool(os.environ.get("GFW_API_TOKEN")) and (ee_service_account or ee_cached)
+    return {"status": "ok", "detections": len(DETECTIONS), "live_analysis": live_analysis}
 
 
 @app.get("/api/areas")

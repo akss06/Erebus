@@ -28,10 +28,12 @@ export default function App() {
   const [sim, setSim] = useState<string | null>(null);
   const [simVessels, setSimVessels] = useState<SimVessel[]>([]);
   const [showAnalyze, setShowAnalyze] = useState(false);
+  const [liveAnalysis, setLiveAnalysis] = useState(false);
 
   useEffect(() => {
     api.areas().then(setAreas);
     api.simVessels().then(setSimVessels);
+    api.health().then((h) => setLiveAnalysis(h.live_analysis)).catch(() => setLiveAnalysis(false));
   }, []);
   const area = areas.find((a) => a.id === areaId);
 
@@ -91,9 +93,20 @@ export default function App() {
               {a.name} <small>({a.detections})</small>
             </button>
           ))}
-          <button className={showAnalyze ? "active" : "analyze-btn"} onClick={() => setShowAnalyze(true)}>
-            Run Analysis
-          </button>
+          {liveAnalysis ? (
+            <button className={showAnalyze ? "active" : "analyze-btn"} onClick={() => setShowAnalyze(true)}>
+              Run Analysis
+            </button>
+          ) : (
+            <button
+              className="analyze-btn"
+              disabled
+              style={{ opacity: 0.5, cursor: "not-allowed" }}
+              title="Live analysis runs in the local build (needs Earth Engine credentials). This hosted demo serves precomputed results."
+            >
+              Run Analysis
+            </button>
+          )}
         </nav>
       </header>
 

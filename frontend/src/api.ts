@@ -117,7 +117,14 @@ export interface AnalyzeStatus {
   error: string | null;
 }
 
+export interface Health {
+  status: string;
+  detections: number;
+  live_analysis: boolean;
+}
+
 export const api = {
+  health: () => get<Health>("/api/health"),
   areas: () => get<Area[]>("/api/areas"),
   clusters: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/clusters?area=${area}${q(sim)}`),
   detections: (area: string, date: string, sim: string | null = null) =>
