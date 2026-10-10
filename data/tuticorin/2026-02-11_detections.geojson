@@ -1,0 +1,175 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2540203626895,
+          8.841748534708248
+        ]
+      },
+      "properties": {
+        "row": 94.0,
+        "col": 384.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.935308110284845,
+        "max_intensity_db": -13.347194017075402,
+        "local_background_db": -20.400842871564254,
+        "contrast_db": 6.465534761279409,
+        "tcr_db": 7.1,
+        "eccentricity": 0.0,
+        "solidity": 1.0,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.56,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 4539.9,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31300859385505,
+          8.82491837469925
+        ]
+      },
+      "properties": {
+        "row": 285.0,
+        "col": 1032.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.205746180769177,
+        "max_intensity_db": -11.938456393191748,
+        "local_background_db": -20.09455892276998,
+        "contrast_db": 6.888812742000804,
+        "tcr_db": 8.2,
+        "eccentricity": 0.0,
+        "solidity": 1.0,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.56,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 3988.5,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26900032555648,
+          8.74050660021058
+        ]
+      },
+      "properties": {
+        "row": 1215.7238095238095,
+        "col": 540.7333333333333,
+        "area_px": 105,
+        "mean_intensity_db": 0.9567948870712325,
+        "max_intensity_db": 9.518649969017734,
+        "local_background_db": -18.475169274178068,
+        "contrast_db": 19.4319641612493,
+        "tcr_db": 28.0,
+        "eccentricity": 0.895,
+        "solidity": 0.861,
+        "aspect_ratio": 2.24,
+        "fill_ratio": 0.58,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 123.1,
+        "matched_mmsi": "341970001",
+        "matched_name": "NEREUS PROGRESS",
+        "matched_flag": "KNA",
+        "matched_type": "OTHER",
+        "matched_hours": 1,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.23787980306311,
+          8.739804179020599
+        ]
+      },
+      "properties": {
+        "row": 1221.0,
+        "col": 198.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.315353456509992,
+        "max_intensity_db": -12.661379473466386,
+        "local_background_db": -19.942040392886746,
+        "contrast_db": 6.626686936376753,
+        "tcr_db": 7.3,
+        "eccentricity": 0.0,
+        "solidity": 1.0,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.56,
+        "local_bg_from_global_median": true,
+        "match_status": "MATCHED",
+        "match_distance_m": 233.8,
+        "matched_mmsi": "419801937",
+        "matched_name": "RIVER PEARL 36",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27139142918362,
+          8.726385008872173
+        ]
+      },
+      "properties": {
+        "row": 1372.2068965517242,
+        "col": 565.9310344827586,
+        "area_px": 58,
+        "mean_intensity_db": -0.9865782425856324,
+        "max_intensity_db": 10.335101178296721,
+        "local_background_db": -18.530257930557188,
+        "contrast_db": 17.543679687971554,
+        "tcr_db": 28.9,
+        "eccentricity": 0.871,
+        "solidity": 0.935,
+        "aspect_ratio": 2.04,
+        "fill_ratio": 0.6,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 430.2,
+        "matched_mmsi": "567593000",
+        "matched_name": "SEA VALARY",
+        "matched_flag": "THA",
+        "matched_type": "OTHER",
+        "matched_hours": 24,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    }
+  ]
+}

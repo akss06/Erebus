@@ -2,8 +2,8 @@
 Round 2: turn the GFW validation tiles into scored detections for the app
 (Gulf of Mannar / Palk Strait area).
 
-For every GFW SAR detection that our own detector also found (see
-validate_vs_gfw.py), keep OUR nearest detection, mark it matched/unmatched using
+For every GFW SAR detection that our v3 detector also finds within the match
+radius on the cached validation tile, keep OUR nearest detection, mark it matched/unmatched using
 GFW's AIS flag for that detection, score it with confidence.py and save a radar
 crop. A detection that both detectors see and that GFW could not match to an AIS
 vessel is the only thing that can become a DARK_CANDIDATE.
@@ -24,6 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import confidence  # noqa: E402
 import crops as crops_mod  # noqa: E402
+import detect_v3  # noqa: E402
 import match  # noqa: E402
 import validate_vs_gfw as vgfw  # noqa: E402
 
@@ -50,13 +51,13 @@ def save_crop(tif: Path, row: float, col: float, out: Path) -> None:
 
 
 def main() -> None:
+    vgfw.fetch_sar.authenticate_and_init(vgfw.PROJECT_ID)   # JRC water mask for detect_v3 (cached per tile)
+    # validation_rows.json is the frozen CA-CFAR validation (§6); here we only reuse its
+    # GFW record list and re-detect each tile with v3 -- "found" is decided by v3 below.
     rows = json.loads((VAL / "validation_rows.json").read_text())
     picked: dict[str, list[dict]] = {}
     not_found = 0
     for r in rows:
-        if not r["found_by_us"]:
-            not_found += 1
-            continue
         if TUTICORIN_BOX[0] <= r["lon"] <= TUTICORIN_BOX[2] and TUTICORIN_BOX[1] <= r["lat"] <= TUTICORIN_BOX[3]:
             continue
         i = gfw_index(r["date"], r)
@@ -64,9 +65,12 @@ def main() -> None:
             continue
         tif = VAL / f"{r['date']}_{i:03d}.tif"
         gfw = json.loads((VAL / f"gfw_sar_{r['date']}.json").read_text())[i]
-        dets, _ = vgfw.run_detector_on_tile(tif)
-        near = min(dets, key=lambda d: match.haversine_m(r["lon"], r["lat"], d["lon"], d["lat"]))
-        dist = match.haversine_m(r["lon"], r["lat"], near["lon"], near["lat"])
+        dets, _ = detect_v3.run_detector_v3(tif)
+        near = min(dets, key=lambda d: match.haversine_m(r["lon"], r["lat"], d["lon"], d["lat"]), default=None)
+        dist = match.haversine_m(r["lon"], r["lat"], near["lon"], near["lat"]) if near else float("inf")
+        if dist > vgfw.MATCH_RADIUS_M:
+            not_found += 1
+            continue
         has_ais = bool(gfw["mmsi"])
         near.update({
             "match_status": "MATCHED" if has_ais else "UNMATCHED",

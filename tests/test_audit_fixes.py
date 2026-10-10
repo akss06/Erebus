@@ -81,6 +81,23 @@ def test_pixel_metres_metric_vs_geographic():
     assert 10 < yg < 12 and 10 < xg < 12   # ~0.0001 deg ~ 11 m near the equator
 
 
+def test_jrc_undeclared_fill_is_no_data_not_land(tmp_path):
+    """Open-ocean JRC downloads carry -128 without a nodata tag; that must read as
+    'no JRC data', never as low water occurrence (which masked offshore tiles as land)."""
+    import rasterio
+    from rasterio.transform import from_origin
+    tif = tmp_path / "jrc.tif"
+    occ = np.full((20, 20), -128, dtype="int8")
+    occ[:, :5] = 100                      # a strip of real permanent water
+    tf = from_origin(78.0, 9.0, 0.001, 0.001)
+    with rasterio.open(tif, "w", driver="GTiff", height=20, width=20, count=1,
+                       dtype="int8", crs="EPSG:4326", transform=tf) as dst:
+        dst.write(occ, 1)
+    water, has = D._jrc_water_on_grid(None, tf, (20, 20), "EPSG:4326", tif)
+    assert not has[:, 8:].any()           # fill -> no data (so it cannot mark land)
+    assert water[:, :4].all()
+
+
 # ---------------------------------------------------------------- §5 clustering
 
 def _det(lon, lat):

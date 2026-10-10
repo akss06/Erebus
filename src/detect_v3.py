@@ -72,7 +72,7 @@ PFA = 1e-5                 # NOMINAL target false-alarm rate for the GGD thresho
 SLIC_SEGMENTS = 700        # superpixels per tile (~1-2k px each on a 9 km tile)
 SLIC_COMPACTNESS = 0.08    # low: single-channel intensity, favour intensity over shape
 MIN_BLOB_PX = 3            # NOTE: binary_opening runs first, so thin 3px shapes do not survive (§2)
-MAX_BLOB_PX = 80
+MAX_BLOB_PX = 600          # ~400 m ship incl. glare at 10 m; 80 rejected 9/14 known large AIS ships (audit/results/known_vessel_eval.json)
 TCR_MIN_DB = 6.0           # peak above local clutter; the bright-point-vs-speckle gate
 SOLIDITY_MIN = 0.5         # reject ragged / scattered speckle clusters
 ECC_MAX = 0.985            # reject near-perfect lines (reef edges, wakes)
@@ -173,6 +173,28 @@ def _local_clutter_mean(intensity: np.ndarray, clutter: np.ndarray,
     return lm, enough
 
 
+def _blob_ring_background(intensity: np.ndarray, clutter: np.ndarray, bright: np.ndarray,
+                          coords: np.ndarray) -> float | None:
+    """Clutter mean in a guard+training ring that follows the blob's own outline.
+
+    The fixed square guard window is smaller than a large ship, so its training ring
+    lands on the ship's own glare and inflates the background (a +27 dB ship read a
+    +2 dB "sea"). Used only for blobs wider than that window. None = too little sea."""
+    pad = GUARD_PX + TRAIN_PX + 1
+    r0, c0 = max(coords[:, 0].min() - pad, 0), max(coords[:, 1].min() - pad, 0)
+    r1 = min(coords[:, 0].max() + pad + 1, intensity.shape[0])
+    c1 = min(coords[:, 1].max() + pad + 1, intensity.shape[1])
+    blob = np.zeros((r1 - r0, c1 - c0), bool)
+    blob[coords[:, 0] - r0, coords[:, 1] - c0] = True
+    inner = ndimage.binary_dilation(blob, iterations=GUARD_PX)
+    outer = ndimage.binary_dilation(blob, iterations=GUARD_PX + TRAIN_PX)
+    win = intensity[r0:r1, c0:c1]
+    ring = outer & ~inner & clutter[r0:r1, c0:c1] & ~bright[r0:r1, c0:c1] & np.isfinite(win)
+    if ring.sum() < MIN_TRAIN_PX:
+        return None
+    return float(win[ring].mean())
+
+
 # ---------------------------------------------------------------- detection
 
 def detect_blobs_v3(vv_db: np.ndarray, sea: np.ndarray, vh_db: np.ndarray | None = None) -> tuple[list[dict], dict]:
@@ -208,8 +230,8 @@ def detect_blobs_v3(vv_db: np.ndarray, sea: np.ndarray, vh_db: np.ndarray | None
         diag["status"] = "degraded"
         diag["notes"].append(f"{fallback_frac:.0%} of sea lacked local training support (<{MIN_TRAIN_PX}px); used global median")
 
-    bright = (intensity > lm * alpha) & sea & np.isfinite(intensity)
-    bright = ndimage.binary_opening(bright, iterations=1)
+    above = (intensity > lm * alpha) & sea & np.isfinite(intensity)
+    bright = ndimage.binary_opening(above, iterations=1)
     labels = sk_label(bright)
     if labels.max() == 0:
         return [], diag
@@ -240,7 +262,14 @@ def detect_blobs_v3(vv_db: np.ndarray, sea: np.ndarray, vh_db: np.ndarray | None
         mean_db = float(blob_db.mean())
         max_db = float(blob_db.max())
 
-        bg_db = 10 * np.log10(lm[rr, cc])
+        bg_lin = lm[rr, cc]
+        bh = rp.bbox[2] - rp.bbox[0]
+        bw = rp.bbox[3] - rp.bbox[1]
+        if max(bh, bw) > 2 * GUARD_PX + 1:   # blob outgrows the square guard window
+            ring_bg = _blob_ring_background(intensity, clutter, above, rp.coords)
+            if ring_bg is not None and ring_bg > 0:
+                bg_lin = ring_bg
+        bg_db = 10 * np.log10(bg_lin)
         contrast_db = mean_db - bg_db
         tcr_db = max_db - bg_db  # peak-to-clutter ratio
 
@@ -249,8 +278,6 @@ def detect_blobs_v3(vv_db: np.ndarray, sea: np.ndarray, vh_db: np.ndarray | None
         major = float(rp.axis_major_length)
         minor = float(rp.axis_minor_length)
         aspect = major / minor if minor > 0 else 1.0
-        bh = rp.bbox[2] - rp.bbox[0]
-        bw = rp.bbox[3] - rp.bbox[1]
         fill = area / (bh * bw) if bh * bw else 1.0
 
         # --- gates ---
@@ -310,7 +337,9 @@ def _jrc_water_on_grid(bounds_lonlat, dst_transform, dst_shape, dst_crs, cache_t
 
     with rasterio.open(cache_tif) as src:
         occ = src.read(1).astype("float32")
-        has = src.read_masks(1) > 0
+        # Over open ocean the EE download fills -128 (int8) without declaring it as
+        # nodata; read as an occurrence it turned whole offshore tiles into "land".
+        has = (src.read_masks(1) > 0) & (occ >= 0) & (occ <= 100)
         src_crs, src_transform = src.crs, src.transform
     occ = np.where(has, occ, np.nan)
 

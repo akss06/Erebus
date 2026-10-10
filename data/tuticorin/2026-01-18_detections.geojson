@@ -1,0 +1,277 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31499642296723,
+          8.799395710720587
+        ]
+      },
+      "properties": {
+        "row": 568.0,
+        "col": 1052.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.46815048483875,
+        "max_intensity_db": -12.573060779962383,
+        "local_background_db": -19.798892566989757,
+        "contrast_db": 6.330742082151007,
+        "tcr_db": 7.2,
+        "eccentricity": 0.0,
+        "solidity": 1.0,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.56,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 7153.0,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22821854259266,
+          8.79536022592768
+        ]
+      },
+      "properties": {
+        "row": 605.7,
+        "col": 96.3,
+        "area_px": 10,
+        "mean_intensity_db": -11.531738958904448,
+        "max_intensity_db": -9.274131422909798,
+        "local_background_db": -19.388798562170525,
+        "contrast_db": 7.857059603266077,
+        "tcr_db": 10.1,
+        "eccentricity": 0.616,
+        "solidity": 1.0,
+        "aspect_ratio": 1.27,
+        "fill_ratio": 0.62,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 5047.6,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2821848188143,
+          8.793332276682882
+        ]
+      },
+      "properties": {
+        "row": 632.5,
+        "col": 690.2857142857143,
+        "area_px": 14,
+        "mean_intensity_db": -11.457333388118832,
+        "max_intensity_db": -9.375120610479819,
+        "local_background_db": -19.075629129071924,
+        "contrast_db": 7.6182957409530925,
+        "tcr_db": 9.7,
+        "eccentricity": 0.851,
+        "solidity": 0.933,
+        "aspect_ratio": 1.9,
+        "fill_ratio": 0.58,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 5001.0,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.25664829837997,
+          8.766899672899614
+        ]
+      },
+      "properties": {
+        "row": 923.0,
+        "col": 407.0,
+        "area_px": 5,
+        "mean_intensity_db": -12.000454469597022,
+        "max_intensity_db": -10.745040516598102,
+        "local_background_db": -19.0775906848931,
+        "contrast_db": 7.077136215296077,
+        "tcr_db": 8.3,
+        "eccentricity": 0.0,
+        "solidity": 1.0,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.56,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 2383.9,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27387363090735,
+          8.752477471415515
+        ]
+      },
+      "properties": {
+        "row": 1084.0,
+        "col": 595.5,
+        "area_px": 8,
+        "mean_intensity_db": 6.854381134780423,
+        "max_intensity_db": 9.30153587296013,
+        "local_background_db": -1.8274050780345168,
+        "contrast_db": 8.68178621281494,
+        "tcr_db": 11.1,
+        "eccentricity": 0.577,
+        "solidity": 1.0,
+        "aspect_ratio": 1.22,
+        "fill_ratio": 0.67,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 507.4,
+        "matched_mmsi": "538005363",
+        "matched_name": "SSI DIGNITY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2735235355074,
+          8.7510826386197
+        ]
+      },
+      "properties": {
+        "row": 1099.4095238095238,
+        "col": 591.5333333333333,
+        "area_px": 105,
+        "mean_intensity_db": 9.354832390353812,
+        "max_intensity_db": 19.613196884465843,
+        "local_background_db": -16.36802916456719,
+        "contrast_db": 25.722861554921003,
+        "tcr_db": 36.0,
+        "eccentricity": 0.977,
+        "solidity": 0.795,
+        "aspect_ratio": 4.74,
+        "fill_ratio": 0.44,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 405.9,
+        "matched_mmsi": "538005363",
+        "matched_name": "SSI DIGNITY",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.2694143084484,
+          8.740594257753429
+        ]
+      },
+      "properties": {
+        "row": 1215.1630434782608,
+        "col": 545.445652173913,
+        "area_px": 92,
+        "mean_intensity_db": 3.2958293046925182,
+        "max_intensity_db": 17.841999896035613,
+        "local_background_db": -18.509791604826226,
+        "contrast_db": 21.805620909518744,
+        "tcr_db": 36.4,
+        "eccentricity": 0.803,
+        "solidity": 0.911,
+        "aspect_ratio": 1.68,
+        "fill_ratio": 0.68,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 92.0,
+        "matched_mmsi": "341970001",
+        "matched_name": "NEREUS PROGRESS",
+        "matched_flag": "KNA",
+        "matched_type": "OTHER",
+        "matched_hours": 7,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28380212698373,
+          8.729935794362872
+        ]
+      },
+      "properties": {
+        "row": 1334.2708333333333,
+        "col": 703.0208333333334,
+        "area_px": 96,
+        "mean_intensity_db": 5.5877392200928595,
+        "max_intensity_db": 14.264806826576606,
+        "local_background_db": -18.064312422541164,
+        "contrast_db": 23.652051642634024,
+        "tcr_db": 32.3,
+        "eccentricity": 0.957,
+        "solidity": 0.889,
+        "aspect_ratio": 3.45,
+        "fill_ratio": 0.6,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 418.1,
+        "matched_mmsi": "511101582",
+        "matched_name": "DMC JUPITER",
+        "matched_flag": "PLW",
+        "matched_type": "CARGO",
+        "matched_hours": 22,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    }
+  ]
+}

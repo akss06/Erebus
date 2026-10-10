@@ -44,16 +44,11 @@ AREAS = {
         "zoom": 12,
         "overlay": {"image": "/api/overlay/tuticorin.png", "bounds": None},
     },
+    # Both seasons come from the same v3 detector. Each file was clustered across its own
+    # passes; locations are not merged across seasons (5 months apart).
     "gulf_of_mannar": {
-        "name": "Gulf of Mannar / Palk Strait (Jan 2026)",
-        "file": "scored_gulf.geojson",
-        "center": [79.35, 9.3],
-        "zoom": 8,
-        "overlay": None,
-    },
-    "recent": {
-        "name": "Gulf of Mannar (Jun–Sep 2026)",
-        "file": "scored_recent.geojson",
+        "name": "Gulf of Mannar / Palk Strait (Jan + Jun–Sep 2026)",
+        "files": ["scored_gulf.geojson", "scored_recent.geojson"],
         "center": [79.0, 9.2],
         "zoom": 8,
         "overlay": None,
@@ -70,7 +65,6 @@ ALERT_PRIORITY = {"DARK_CANDIDATE": 0, "UNVERIFIED_TARGET": 1, "PERSISTENT_UNIDE
 PROVENANCE = {
     "tuticorin": "Real detection (Sentinel-1 + AIS presence)",
     "gulf_of_mannar": "Real detection (Sentinel-1); AIS status from GFW, unverified",
-    "recent": "Real detection (Sentinel-1 Jun–Sep 2026); AIS status from GFW, unverified",
 }
 
 sys.path.insert(0, str(ROOT / "src"))
@@ -90,12 +84,19 @@ _lock = threading.Lock()
 
 
 def _load_area(area_id: str) -> list[dict]:
-    path = DATA / AREAS[area_id]["file"]
-    if not path.exists():
-        return []
+    files = AREAS[area_id].get("files") or [AREAS[area_id]["file"]]
+    feats = []
+    for name in files:
+        path = DATA / name
+        if path.exists():
+            # namespace cluster ids by file: each file numbers its clusters from 1
+            feats += [(Path(name).stem if len(files) > 1 else None, f)
+                      for f in json.loads(path.read_text(encoding="utf-8"))["features"]]
     out = []
-    for f in json.loads(path.read_text(encoding="utf-8"))["features"]:
+    for prefix, f in feats:
         p = dict(f["properties"])
+        if prefix and "cluster_id" in p:
+            p["cluster_id"] = f"{prefix}:{p['cluster_id']}"
         p["lon"], p["lat"] = f["geometry"]["coordinates"]
         p["area_id"] = area_id
         p["provenance"] = PROVENANCE[area_id]
@@ -270,7 +271,7 @@ def crop(det_id: str) -> FileResponse:
     fname = d and d.get("_crop_file")
     if not fname:
         raise HTTPException(404, "no evidence crop for this detection")
-    search = [DATA, DATA / "validation" / "crops", DATA / "recent" / "crops"]
+    search = [DATA, DATA / "tuticorin" / "crops", DATA / "validation" / "crops", DATA / "recent" / "crops"]
     if d.get("area_id", "").startswith("analysis_"):
         rid = d["area_id"].replace("analysis_", "", 1)
         search.insert(0, DATA / "runs" / rid / "crops")

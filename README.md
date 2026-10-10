@@ -45,7 +45,7 @@ dense, repeat-pass test bed.
         │
 [3] land_mask     → mask land pixels (Natural Earth 10 m coastline + coast buffer)
         │
-[4] detect        → CA-CFAR on linear intensity → ship-sized bright blobs (lat, lon, area, contrast)
+[4] detect        → v3 superpixel GG-CFAR (§9) → ship-sized bright blobs (lat, lon, area, contrast)
         │
 [5] fetch_ais     → GFW AIS presence + GFW SAR-detection records in AOI, ±1 day of the pass
         │
@@ -103,8 +103,10 @@ dark-vessel-detection/
 │   ├── match.py                 — spatial match of detections to AIS → MATCHED / UNMATCHED
 │   ├── confidence.py            — cross-pass clustering + persistence + chain geometry → confidence class
 │   ├── validate_vs_gfw.py       — run our detector where GFW reports SAR detections; agreement metrics
-│   ├── build_gulf_candidates.py — turn validation tiles into scored Gulf of Mannar candidates + crops
+│   ├── build_gulf_candidates.py — re-detect the Jan 2026 validation tiles with v3 → scored candidates + crops
+│   ├── build_tuticorin_v3.py    — re-detect the 4 Tuticorin passes with v3 + our own AIS match → scored + crops
 │   ├── run_recent.py            — multi-date hotspot pipeline on recent (Jun–Sep 2026) passes
+│   ├── eval_known_vessels.py    — known-vessel evaluation: do we find GFW's AIS-identified ships? (§6)
 │   ├── enrichment_test.py       — enrichment test: do strong blobs cluster at GFW's AIS-less points?
 │   └── run_multi_date.py        — multi-pass Tuticorin run
 ├── audit/                       — baseline manifest, experiments (calibration/morphology/ablation),
@@ -121,9 +123,10 @@ dark-vessel-detection/
 ## 5. Detection methodology
 
 The project has **two detectors**: the original **CA-CFAR** (`detect.py`, described
-here — still used for the Tuticorin and Jan 2026 sets and for the frozen GFW
-validation) and the newer **v3 superpixel Generalized-Gamma CFAR** (`detect_v3.py`,
-§9, used for the recent Jun–Sep set). Both feed the same confidence scorer below.
+here — now kept only as the frozen baseline behind the §6 GFW-agreement figures) and
+the **v3 superpixel Generalized-Gamma CFAR** (`detect_v3.py`, §9), which produces
+**every dataset in the app** (Tuticorin, Jan 2026 and Jun–Sep 2026). Both feed the same
+confidence scorer below.
 
 ### Land mask (`land_mask.py`)
 Land is a bright radar reflector and buries a naive threshold in coastal false
@@ -213,6 +216,24 @@ independence assumption):
 > particular target is a vessel, and it is not evidence over arbitrary ocean (all tiles
 > are GFW hotspots).
 
+**Known-vessel evaluation (`eval_known_vessels.py`, Oct 2026).** The figures above are
+from the frozen CA-CFAR. For the detector the app actually uses, the reference set is
+GFW's SAR detections that **carry an AIS identity**: real, broadcasting ships, so this
+measures detection without hand labels. Jun–Sep 2026 tiles, 1 km radius:
+
+| | before the Oct-2026 fixes | after |
+|---|---|---|
+| known AIS ships reaching the review queue | 3 / 27 | **12 / 29** (chance ≈ 1.3) |
+| large cargo ships / tankers in the queue | 1 / 14 | **9 / 15** |
+| Jan 2026 AIS-identified GFW ships found (1.5 km) | 14 / 22 (v3 with mask bug) | **20 / 22** (chance ≈ 9) |
+
+The evaluation exposed two v3 bugs, both now fixed (§9): a **size cap** that rejected
+every large ship, and a **water mask** that turned open-ocean tiles into "land". Scope:
+the reference covers only ships that broadcast AIS **and** that GFW's detector saw. It's
+biased towards large, easy targets and says nothing about small non-AIS boats. With
+n = 29 it's indicative, not a precision/recall figure. Position offset to GFW (median
+~535 m) is bounded by GFW's ~1 km grid snapping, not a location-accuracy measurement.
+
 **AIS coverage, tested:** AISstream's free live-AIS network returned **0 messages**
 over Indian waters across five separate tests (677 ships in a global box; 0 in ours).
 This is the concrete, tested case for an official feed (Coast Guard / NIC) — the
@@ -222,21 +243,25 @@ single biggest gap in operational-grade matching.
 
 ## 7. Scored datasets currently in the app
 
-| Area | Detections | Breakdown | Detector |
+All three sets are produced by the **v3 detector** (§9, with the Oct-2026 size-cap and
+water-mask fixes). The app shows them as two areas: **Gulf of Mannar / Palk Strait**
+(Jan + Jun–Sep 2026 together) and the **Tuticorin anchorage** zoom-in, which carries
+our own AIS match and the AIS-off simulation.
+
+| Data set | Detections | Breakdown | In review queue (locations) |
 |---|---|---|---|
-| **Gulf of Mannar (Jun–Sep 2026)** | 572 | VESSEL_CANDIDATE 4 · PERSISTENT_UNIDENTIFIED 67 · LOW 4 · CLUTTER 480 · **DARK 17** | **v3** (superpixel GG-CFAR, §9) |
-| **Tuticorin anchorage** | 70 over 4 passes | ANCHORED 4 · VESSEL_CANDIDATE 11 · PERSISTENT_UNIDENTIFIED 15 · LOW 12 · CLUTTER 28 · **DARK 0** | CA-CFAR detections, audited scoring |
-| **Gulf of Mannar / Palk Strait (Jan 2026)** | 95 | VESSEL_CANDIDATE 9 · CLUTTER 70 · **DARK 16** | CA-CFAR detections, audited scoring |
+| **Gulf of Mannar, Jun–Sep 2026** (8 passes) | 589 | VESSEL_CANDIDATE 13 · SUSPECTED_FIXED 76 · PERSISTENT_UNIDENTIFIED 3 · UNVERIFIED 1 · LOW 3 · CLUTTER 469 · **DARK 24** | 59 |
+| **Gulf of Mannar / Palk Strait, Jan 2026** (3 passes) | 88 | VESSEL_CANDIDATE 6 · CLUTTER 74 · **DARK 8** | 14 |
+| **Tuticorin anchorage** (4 passes, own AIS) | 34 | ANCHORED 4 · VESSEL_CANDIDATE 8 · CLUTTER 22 · **DARK 0** | 9 |
 
 All dark-candidate counts are **unverified candidates pending review**, not confirmed
-dark vessels. The Oct-2026 audit re-scored all three sets with the corrected semantics
-(former `FIXED_OBJECT` → `PERSISTENT_UNIDENTIFIED`; GFW≠AIS; heuristic score). The
-recent set's detections come from the v3 detector; the Tuticorin and Jan 2026
-*detections* are still the original CA-CFAR output (their geometry is frozen as the
-baseline — re-running them through the corrected v3 detector needs a network JRC fetch
-and is pending). The Jan 2026 DARK
-count moved 23→16 because the already-committed 12 dB evidence bar (which the recent set
-already used) was finally applied consistently — a relabel, not a detector change.
+dark vessels. On inspection, several of the Jun–Sep candidates (e.g. three near Pamban,
+79.23°E 9.20°N) are long, thin streaks: likely azimuth ambiguities, wakes or structures,
+not ships. Real large ships are also elongated, so they are left for the analyst
+to reject rather than filtered out. In the merged Gulf area, locations are clustered
+across passes **within** each season, not across the 5-month gap. The Round-1 CA-CFAR
+Tuticorin per-pass files (with hand labels) are kept unchanged as the historical
+baseline; the v3 per-pass output is in `data/tuticorin/`.
 
 ---
 
@@ -296,6 +321,10 @@ detector — each stage mapped to a paper from a SAR false-positive-reduction re
    JRC v1.4 is a historical water-*occurrence* record, not an acquisition-time reef map
    — our probe found occurrence = 99 over the Adam's Bridge reefs, so JRC does **not**
    reliably exclude them. An authoritative charted reef layer is the right tool (pending).
+   **Open-ocean fix (Oct 2026):** the Earth Engine download fills open ocean (beyond JRC's
+   coverage) with -128 without declaring it as nodata. It was read as 0 % water, so whole
+   offshore tiles were masked as land. Values outside 0–100 now count as "no JRC data"
+   (regression test `test_jrc_undeclared_fill_is_no_data_not_land`).
 2. **SLIC superpixels, robust-MAD clutter selection** (Pappas 2018; Li M-D 2022) —
    keep the dominant sea as clutter, exclude only genuinely bright outlier superpixels.
    (An earlier Otsu half-split flooded rough-sea tiles; the MAD test fixed it.)
@@ -315,6 +344,12 @@ detector — each stage mapped to a paper from a SAR false-positive-reduction re
    than a solid 3×3 block, so `MIN_BLOB_PX=3` is effectively ~9 px compact (the audit's
    morphology experiment measured 100%→0% recovery for thin/≤8 px injected targets).
    A 15 m boat (~1–2 px at 10 m) is below this floor.
+   **Size ceiling (fixed Oct 2026):** `MAX_BLOB_PX` was 80, which silently rejected 9 of 14
+   known large AIS ships (a 180–400 m ship plus its glare covers ~90–500 px). It's now 600
+   (~a 400 m ship), set from ship size and not fitted to the test set. For blobs wider than
+   the square guard window, the background is now measured in a ring that follows the
+   blob's own outline, so a ship's glare isn't counted as "sea". That glare had pushed
+   large ships below the 12 dB bar.
 5. **VH/VV cross-pol** — a corroborating signal only (see §5); the background ratio is
    **tile-wide** (a genuinely local version is an experiment), and VH is used only if it
    is confirmed co-registered with VV.
@@ -333,10 +368,9 @@ stay honest.
 
 **Still pending (needs data/network):**
 (a) an authoritative charted Adam's Bridge reef-chain mask (two Jun-30 dark candidates
-sit on that shoal, which JRC reports as permanent water); (b) re-running the Tuticorin
-and Jan 2026 *detections* through the corrected v3 detector (their scoring is already
-audited; a full detector re-run needs the JRC fetch); (c) a labelled evaluation set to
-turn the density/exceedance measurements into precision/recall.
+sit on that shoal, which JRC reports as permanent water); (b) a labelled evaluation set
+to turn the known-vessel and density measurements into precision/recall. (Re-running the
+Tuticorin and Jan 2026 detections through v3 is done as of Oct 2026.)
 
 ---
 
@@ -363,8 +397,10 @@ Frontend dev mode with hot reload: `npm run dev` in `frontend/` (port 5173, prox
 **Re-run the detection pipelines** (needs Earth Engine + GFW auth):
 ```bash
 python src/validate_vs_gfw.py --all --workers 4   # agreement vs GFW
-python src/build_gulf_candidates.py               # Gulf of Mannar candidates + crops
+python src/build_gulf_candidates.py               # Jan 2026 Gulf candidates (v3) + crops
+python src/build_tuticorin_v3.py                  # Tuticorin 4 passes (v3 + own AIS) + crops
 python src/run_recent.py --max-hotspots 20        # recent multi-date hotspot run
+python src/eval_known_vessels.py                  # known-vessel evaluation (offline, cached tiles)
 ```
 
 ---

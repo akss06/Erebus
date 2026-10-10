@@ -42,7 +42,7 @@ export interface Detection {
   matched_mmsi?: string;
   matched_flag?: string;
   matched_type?: string;
-  cluster_id?: number;
+  cluster_id?: number | string;
   cluster_size?: number;
   provenance: string;
   crop_url: string | null;

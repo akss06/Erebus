@@ -1,0 +1,243 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22633901460914,
+          8.79684179357998
+        ]
+      },
+      "properties": {
+        "row": 589.2222222222222,
+        "col": 76.25,
+        "area_px": 36,
+        "mean_intensity_db": -9.92959528511888,
+        "max_intensity_db": -4.298967422936574,
+        "local_background_db": -20.00971944468879,
+        "contrast_db": 10.08012415956991,
+        "tcr_db": 15.7,
+        "eccentricity": 0.909,
+        "solidity": 0.9,
+        "aspect_ratio": 2.39,
+        "fill_ratio": 0.65,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 1998.0,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26931136149639,
+          8.740865968499307
+        ]
+      },
+      "properties": {
+        "row": 1212.2211538461538,
+        "col": 544.8557692307693,
+        "area_px": 104,
+        "mean_intensity_db": -1.146420549202499,
+        "max_intensity_db": 7.474586805389107,
+        "local_background_db": -19.706460771998927,
+        "contrast_db": 18.560040222796427,
+        "tcr_db": 27.2,
+        "eccentricity": 0.915,
+        "solidity": 0.812,
+        "aspect_ratio": 2.48,
+        "fill_ratio": 0.52,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 122.2,
+        "matched_mmsi": "341970001",
+        "matched_name": "NEREUS PROGRESS",
+        "matched_flag": "KNA",
+        "matched_type": "OTHER",
+        "matched_hours": 20,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27174464695449,
+          8.730566227466921
+        ]
+      },
+      "properties": {
+        "row": 1326.4088050314465,
+        "col": 570.8238993710692,
+        "area_px": 159,
+        "mean_intensity_db": 3.5539488448016163,
+        "max_intensity_db": 10.510899682391912,
+        "local_background_db": -19.123531461964593,
+        "contrast_db": 22.67748030676621,
+        "tcr_db": 29.6,
+        "eccentricity": 0.979,
+        "solidity": 0.779,
+        "aspect_ratio": 4.89,
+        "fill_ratio": 0.39,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 202.2,
+        "matched_mmsi": "538011871",
+        "matched_name": "SSI IRRESISTIBLE",
+        "matched_flag": "MHL",
+        "matched_type": "CARGO",
+        "matched_hours": 24,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.30319282702112,
+          8.72920177180275
+        ]
+      },
+      "properties": {
+        "row": 1344.0,
+        "col": 917.0,
+        "area_px": 5,
+        "mean_intensity_db": -13.562184059549725,
+        "max_intensity_db": -12.653605649346964,
+        "local_background_db": -20.196219214502737,
+        "contrast_db": 6.634035154953011,
+        "tcr_db": 7.5,
+        "eccentricity": 0.0,
+        "solidity": 1.0,
+        "aspect_ratio": 1.0,
+        "fill_ratio": 0.56,
+        "local_bg_from_global_median": false,
+        "match_status": "UNMATCHED",
+        "match_distance_m": 1774.6,
+        "matched_mmsi": null,
+        "matched_name": null,
+        "matched_flag": null,
+        "matched_type": null,
+        "matched_hours": null,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.27753376142975,
+          8.724488187530481
+        ]
+      },
+      "properties": {
+        "row": 1394.1384615384616,
+        "col": 634.0846153846154,
+        "area_px": 130,
+        "mean_intensity_db": -3.7289320021884658,
+        "max_intensity_db": 2.5142402382339113,
+        "local_background_db": -20.045666267983783,
+        "contrast_db": 16.31673426579532,
+        "tcr_db": 22.6,
+        "eccentricity": 0.931,
+        "solidity": 0.867,
+        "aspect_ratio": 2.73,
+        "fill_ratio": 0.52,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 567.9,
+        "matched_mmsi": "352005913",
+        "matched_name": "BO RUN JIU ZHOU",
+        "matched_flag": "PAN",
+        "matched_type": "CARGO",
+        "matched_hours": 24,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28582517308062,
+          8.72196890808823
+        ]
+      },
+      "properties": {
+        "row": 1422.6780821917807,
+        "col": 725.1849315068494,
+        "area_px": 146,
+        "mean_intensity_db": 3.7698700208335927,
+        "max_intensity_db": 10.583885356123819,
+        "local_background_db": -18.581678384925514,
+        "contrast_db": 22.351548405759107,
+        "tcr_db": 29.2,
+        "eccentricity": 0.954,
+        "solidity": 0.834,
+        "aspect_ratio": 3.35,
+        "fill_ratio": 0.44,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 508.5,
+        "matched_mmsi": "636023636",
+        "matched_name": "HONG FU",
+        "matched_flag": "LBR",
+        "matched_type": "CARGO",
+        "matched_hours": 3,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.22982904178235,
+          8.721128602503743
+        ]
+      },
+      "properties": {
+        "row": 1427.5,
+        "col": 108.5,
+        "area_px": 8,
+        "mean_intensity_db": -12.984612027005362,
+        "max_intensity_db": -11.658084562280528,
+        "local_background_db": -20.58655910116689,
+        "contrast_db": 7.601947074161529,
+        "tcr_db": 8.9,
+        "eccentricity": 0.816,
+        "solidity": 1.0,
+        "aspect_ratio": 1.73,
+        "fill_ratio": 0.5,
+        "local_bg_from_global_median": false,
+        "match_status": "MATCHED",
+        "match_distance_m": 126.9,
+        "matched_mmsi": "419000783",
+        "matched_name": "CG 239",
+        "matched_flag": "IND",
+        "matched_type": "OTHER",
+        "matched_hours": 1,
+        "detector_version": "v3.1-audit",
+        "detector_config": "79d269e96db1"
+      }
+    }
+  ]
+}

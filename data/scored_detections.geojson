@@ -1,12 +1,12 @@
 {
  "type": "FeatureCollection",
  "provenance": {
-  "generated_by": "src/confidence.py",
-  "kind": "Tuticorin cross-pass scoring (our own AIS match)",
+  "generated_by": "src/build_tuticorin_v3.py",
+  "kind": "Tuticorin cross-pass scoring (our own AIS match), v3 detector",
   "ais_source": "our_ais",
   "scoring_semantics": "PERSISTENT_UNIDENTIFIED, GFW!=AIS, heuristic score",
   "status": "ok",
-  "n_features": 70
+  "n_features": 34
  },
  "features": [
   {
@@ -24,18 +24,23 @@
     "area_px": 8,
     "mean_intensity_db": -12.984612027005362,
     "max_intensity_db": -11.658084562280528,
-    "local_background_db": -20.45793558936691,
-    "contrast_db": 7.47332356236155,
-    "aspect_ratio": 1.0,
+    "local_background_db": -20.58655910116689,
+    "contrast_db": 7.601947074161529,
+    "tcr_db": 8.9,
+    "eccentricity": 0.816,
+    "solidity": 1.0,
+    "aspect_ratio": 1.73,
     "fill_ratio": 0.5,
-    "shape_label": "BLOCKY",
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 986.6,
+    "match_distance_m": 126.9,
     "matched_mmsi": "419000783",
     "matched_name": "CG 239",
     "matched_flag": "IND",
     "matched_type": "OTHER",
     "matched_hours": 1,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-06-01",
     "date": "2026-01-06",
     "cluster_id": 1,
@@ -43,11 +48,12 @@
     "confidence_class": "CLUTTER",
     "confidence": 5,
     "reasons": [
-     "contrast 7.5 dB, 8 px",
+     "contrast 7.6 dB, 8 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-06-01.png"
    }
   },
   {
@@ -55,40 +61,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.2862257747995,
-     8.722555808358367
+     78.28582517308062,
+     8.72196890808823
     ]
    },
    "properties": {
-    "row": 1416.2142857142858,
-    "col": 729.6428571428571,
-    "area_px": 14,
-    "mean_intensity_db": 8.256654294766266,
-    "max_intensity_db": 10.308778414820301,
-    "local_background_db": -7.001844678049169,
-    "contrast_db": 15.258498972815435,
-    "aspect_ratio": 1.25,
-    "fill_ratio": 0.7,
-    "shape_label": "BLOCKY",
+    "row": 1422.6780821917807,
+    "col": 725.1849315068494,
+    "area_px": 146,
+    "mean_intensity_db": 3.7698700208335927,
+    "max_intensity_db": 10.583885356123819,
+    "local_background_db": -18.581678384925514,
+    "contrast_db": 22.351548405759107,
+    "tcr_db": 29.2,
+    "eccentricity": 0.954,
+    "solidity": 0.834,
+    "aspect_ratio": 3.35,
+    "fill_ratio": 0.44,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 502.9,
+    "match_distance_m": 508.5,
     "matched_mmsi": "636023636",
     "matched_name": "HONG FU",
     "matched_flag": "LBR",
     "matched_type": "CARGO",
     "matched_hours": 3,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-06-02",
     "date": "2026-01-06",
     "cluster_id": 2,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 77,
+    "confidence": 90,
     "reasons": [
-     "contrast 15.3 dB, 14 px",
-     "AIS vessel matched by us nearby (HONG FU, 503 m)"
+     "contrast 22.4 dB, 146 px",
+     "AIS vessel matched by us nearby (HONG FU, 508 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-06-02.png"
    }
   },
   {
@@ -96,40 +108,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.27768135223647,
-     8.724807367040771
+     78.27753376142975,
+     8.724488187530481
     ]
    },
    "properties": {
-    "row": 1390.6176470588234,
-    "col": 635.7352941176471,
-    "area_px": 34,
-    "mean_intensity_db": -0.3745719740432007,
+    "row": 1394.1384615384616,
+    "col": 634.0846153846154,
+    "area_px": 130,
+    "mean_intensity_db": -3.7289320021884658,
     "max_intensity_db": 2.5142402382339113,
-    "local_background_db": -15.290607917711945,
-    "contrast_db": 14.916035943668744,
-    "aspect_ratio": 1.5,
-    "fill_ratio": 0.6296296296296297,
-    "shape_label": "BLOCKY",
+    "local_background_db": -20.045666267983783,
+    "contrast_db": 16.31673426579532,
+    "tcr_db": 22.6,
+    "eccentricity": 0.931,
+    "solidity": 0.867,
+    "aspect_ratio": 2.73,
+    "fill_ratio": 0.52,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 592.1,
+    "match_distance_m": 567.9,
     "matched_mmsi": "352005913",
     "matched_name": "BO RUN JIU ZHOU",
     "matched_flag": "PAN",
     "matched_type": "CARGO",
     "matched_hours": 24,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-06-03",
     "date": "2026-01-06",
     "cluster_id": 3,
     "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 41,
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 82,
     "reasons": [
-     "contrast 14.9 dB, 34 px",
-     "bright but small or weak: not enough evidence either way"
+     "contrast 16.3 dB, 130 px",
+     "AIS vessel matched by us nearby (BO RUN JIU ZHOU, 568 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-06-03.png"
    }
   },
   {
@@ -147,11 +165,14 @@
     "area_px": 5,
     "mean_intensity_db": -13.562184059549725,
     "max_intensity_db": -12.653605649346964,
-    "local_background_db": -20.425865307270232,
-    "contrast_db": 6.863681247720507,
+    "local_background_db": -20.196219214502737,
+    "contrast_db": 6.634035154953011,
+    "tcr_db": 7.5,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
     "match_distance_m": 1774.6,
     "matched_mmsi": null,
@@ -159,6 +180,8 @@
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-06-04",
     "date": "2026-01-06",
     "cluster_id": 6,
@@ -166,11 +189,12 @@
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
-     "contrast 6.9 dB, 5 px",
+     "contrast 6.6 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-06-04.png"
    }
   },
   {
@@ -178,40 +202,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.27140435512767,
-     8.729606824469663
+     78.27174464695449,
+     8.730566227466921
     ]
    },
    "properties": {
-    "row": 1337.0,
-    "col": 567.0,
-    "area_px": 5,
-    "mean_intensity_db": 9.35443769686516,
-    "max_intensity_db": 10.433197039411965,
-    "local_background_db": -7.245057924720434,
-    "contrast_db": 16.599495621585593,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "row": 1326.4088050314465,
+    "col": 570.8238993710692,
+    "area_px": 159,
+    "mean_intensity_db": 3.5539488448016163,
+    "max_intensity_db": 10.510899682391912,
+    "local_background_db": -19.123531461964593,
+    "contrast_db": 22.67748030676621,
+    "tcr_db": 29.6,
+    "eccentricity": 0.979,
+    "solidity": 0.779,
+    "aspect_ratio": 4.89,
+    "fill_ratio": 0.39,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 160.8,
+    "match_distance_m": 202.2,
     "matched_mmsi": "538011871",
     "matched_name": "SSI IRRESISTIBLE",
     "matched_flag": "MHL",
     "matched_type": "CARGO",
     "matched_hours": 24,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-06-05",
     "date": "2026-01-06",
     "cluster_id": 8,
     "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 40,
+    "confidence_class": "VESSEL_CANDIDATE",
+    "confidence": 90,
     "reasons": [
-     "contrast 16.6 dB, 5 px",
-     "bright but small or weak: not enough evidence either way"
+     "contrast 22.7 dB, 159 px",
+     "AIS vessel matched by us nearby (SSI IRRESISTIBLE, 202 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-06-05.png"
    }
   },
   {
@@ -219,123 +249,47 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.27185315089984,
-     8.730332884105065
+     78.26931136149639,
+     8.740865968499307
     ]
    },
    "properties": {
-    "row": 1329.0,
-    "col": 572.0,
-    "area_px": 5,
-    "mean_intensity_db": 9.052098451464603,
-    "max_intensity_db": 10.510899682391912,
-    "local_background_db": -6.9718843658678225,
-    "contrast_db": 16.023982817332424,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 207.4,
-    "matched_mmsi": "538011871",
-    "matched_name": "SSI IRRESISTIBLE",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 24,
-    "id": "2026-01-06-06",
-    "date": "2026-01-06",
-    "cluster_id": 10,
-    "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 39,
-    "reasons": [
-     "contrast 16.0 dB, 5 px",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.27202623273278,
-     8.731508728547157
-    ]
-   },
-   "properties": {
-    "row": 1316.0,
-    "col": 574.0,
-    "area_px": 5,
-    "mean_intensity_db": 7.956470844562513,
-    "max_intensity_db": 9.782481141756499,
-    "local_background_db": -7.141786816814253,
-    "contrast_db": 15.098257661376767,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 279.1,
-    "matched_mmsi": "538011871",
-    "matched_name": "SSI IRRESISTIBLE",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 24,
-    "id": "2026-01-06-07",
-    "date": "2026-01-06",
-    "cluster_id": 11,
-    "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 37,
-    "reasons": [
-     "contrast 15.1 dB, 5 px",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.26919039892425,
-     8.74056884088231
-    ]
-   },
-   "properties": {
-    "row": 1215.5,
-    "col": 543.5,
-    "area_px": 22,
-    "mean_intensity_db": 4.448336519629006,
+    "row": 1212.2211538461538,
+    "col": 544.8557692307693,
+    "area_px": 104,
+    "mean_intensity_db": -1.146420549202499,
     "max_intensity_db": 7.474586805389107,
-    "local_background_db": -14.182350393563866,
-    "contrast_db": 18.63068691319287,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.6111111111111112,
-    "shape_label": "BLOCKY",
+    "local_background_db": -19.706460771998927,
+    "contrast_db": 18.560040222796427,
+    "tcr_db": 27.2,
+    "eccentricity": 0.915,
+    "solidity": 0.812,
+    "aspect_ratio": 2.48,
+    "fill_ratio": 0.52,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 108.9,
+    "match_distance_m": 122.2,
     "matched_mmsi": "341970001",
     "matched_name": "NEREUS PROGRESS",
     "matched_flag": "KNA",
     "matched_type": "OTHER",
     "matched_hours": 20,
-    "id": "2026-01-06-08",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-06-06",
     "date": "2026-01-06",
-    "cluster_id": 15,
+    "cluster_id": 11,
     "cluster_size": 4,
     "confidence_class": "ANCHORED_VESSEL",
     "confidence": 97,
     "reasons": [
-     "contrast 18.6 dB, 22 px",
+     "contrast 18.6 dB, 104 px",
      "same spot on 4/4 passes",
      "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-06-06.png"
    }
   },
   {
@@ -343,463 +297,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.2222798662587,
-     8.747274959968541
+     78.22633901460914,
+     8.79684179357998
     ]
    },
    "properties": {
-    "row": 1137.5,
-    "col": 27.5,
-    "area_px": 8,
-    "mean_intensity_db": 13.282124814324058,
-    "max_intensity_db": 14.997818398272928,
-    "local_background_db": -1.99995240271699,
-    "contrast_db": 15.28207721704105,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 393.1,
-    "matched_mmsi": "636023636",
-    "matched_name": "HONG FU",
-    "matched_flag": "LBR",
-    "matched_type": "CARGO",
-    "matched_hours": 20,
-    "id": "2026-01-06-09",
-    "date": "2026-01-06",
-    "cluster_id": 18,
-    "cluster_size": 2,
-    "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 74,
-    "reasons": [
-     "contrast 15.3 dB, 8 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "AIS vessel matched by us nearby (HONG FU, 393 m)"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.2219176295297,
-     8.747136775598104
-    ]
-   },
-   "properties": {
-    "row": 1139.0,
-    "col": 23.5,
-    "area_px": 8,
-    "mean_intensity_db": 13.551433608137923,
-    "max_intensity_db": 15.213789971475657,
-    "local_background_db": -1.554891385544552,
-    "contrast_db": 15.106324993682476,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 381.7,
-    "matched_mmsi": "636023636",
-    "matched_name": "HONG FU",
-    "matched_flag": "LBR",
-    "matched_type": "CARGO",
-    "matched_hours": 20,
-    "id": "2026-01-06-10",
-    "date": "2026-01-06",
-    "cluster_id": 19,
-    "cluster_size": 2,
-    "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 74,
-    "reasons": [
-     "contrast 15.1 dB, 8 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "AIS vessel matched by us nearby (HONG FU, 382 m)"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22286578005915,
-     8.747866536422137
-    ]
-   },
-   "properties": {
-    "row": 1131.0,
-    "col": 34.0,
-    "area_px": 5,
-    "mean_intensity_db": 13.506616878104179,
-    "max_intensity_db": 14.201654816628524,
-    "local_background_db": -0.9710977739650013,
-    "contrast_db": 14.47771465206918,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 394.2,
-    "matched_mmsi": "636023636",
-    "matched_name": "HONG FU",
-    "matched_flag": "LBR",
-    "matched_type": "CARGO",
-    "matched_hours": 20,
-    "id": "2026-01-06-11",
-    "date": "2026-01-06",
-    "cluster_id": 24,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 48,
-    "reasons": [
-     "contrast 14.5 dB, 5 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22903960650898,
-     8.748528120333058
-    ]
-   },
-   "properties": {
-    "row": 1124.1785714285713,
-    "col": 102.03571428571429,
-    "area_px": 28,
-    "mean_intensity_db": -4.746470578658462,
-    "max_intensity_db": -2.6312416991367527,
-    "local_background_db": -16.990473346690344,
-    "contrast_db": 12.244002768031882,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.5833333333333334,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 194.9,
-    "matched_mmsi": "419821076",
-    "matched_name": "HOLYSPIRIT1 NET BOAT",
-    "matched_flag": "IND",
-    "matched_type": "GEAR",
-    "matched_hours": 1,
-    "id": "2026-01-06-12",
-    "date": "2026-01-06",
-    "cluster_id": 26,
-    "cluster_size": 4,
-    "confidence_class": "SUSPECTED_FIXED",
-    "confidence": 31,
-    "fixed_evidence": "position_stable",
-    "reasons": [
-     "contrast 12.2 dB, 28 px",
-     "same spot on 4/4 passes",
-     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
-     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22354938479522,
-     8.753653963918616
-    ]
-   },
-   "properties": {
-    "row": 1067.0,
-    "col": 42.0,
-    "area_px": 5,
-    "mean_intensity_db": 1.6796931380441253,
-    "max_intensity_db": 2.5450014650017607,
-    "local_background_db": -11.554652711938056,
-    "contrast_db": 13.234345849982182,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 563.2,
-    "matched_mmsi": "636023636",
-    "matched_name": "HONG FU",
-    "matched_flag": "LBR",
-    "matched_type": "CARGO",
-    "matched_hours": 20,
-    "id": "2026-01-06-13",
-    "date": "2026-01-06",
-    "cluster_id": 28,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 47,
-    "reasons": [
-     "contrast 13.2 dB, 5 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22063333493668,
-     8.754987790312388
-    ]
-   },
-   "properties": {
-    "row": 1052.0,
-    "col": 10.0,
-    "area_px": 5,
-    "mean_intensity_db": 1.5860889100868192,
-    "max_intensity_db": 3.173532642120746,
-    "local_background_db": -11.453523697629524,
-    "contrast_db": 13.039612607716343,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 559.0,
-    "matched_mmsi": "636023636",
-    "matched_name": "HONG FU",
-    "matched_flag": "LBR",
-    "matched_type": "CARGO",
-    "matched_hours": 20,
-    "id": "2026-01-06-14",
-    "date": "2026-01-06",
-    "cluster_id": 29,
-    "cluster_size": 3,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 46,
-    "reasons": [
-     "contrast 13.0 dB, 5 px",
-     "same spot on 3/4 passes",
-     "'matched' AIS identity differs between passes (3 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 37 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22095251975935,
-     8.754809436722496
-    ]
-   },
-   "properties": {
-    "row": 1054.0,
-    "col": 13.5,
-    "area_px": 8,
-    "mean_intensity_db": 4.028938888651545,
-    "max_intensity_db": 6.847927444777299,
-    "local_background_db": -10.623130811478065,
-    "contrast_db": 14.65206970012961,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 544.9,
-    "matched_mmsi": "636023636",
-    "matched_name": "HONG FU",
-    "matched_flag": "LBR",
-    "matched_type": "CARGO",
-    "matched_hours": 20,
-    "id": "2026-01-06-15",
-    "date": "2026-01-06",
-    "cluster_id": 30,
-    "cluster_size": 2,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 37,
-    "reasons": [
-     "contrast 14.7 dB, 8 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.3078863802918,
-     8.75851056296894
-    ]
-   },
-   "properties": {
-    "row": 1020.0,
-    "col": 971.0,
-    "area_px": 5,
-    "mean_intensity_db": -12.742174030236724,
-    "max_intensity_db": -11.454978009843648,
-    "local_background_db": -20.334366430128213,
-    "contrast_db": 7.5921923998914895,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "UNMATCHED",
-    "match_distance_m": 3207.6,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "id": "2026-01-06-16",
-    "date": "2026-01-06",
-    "cluster_id": 31,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 4,
-    "reasons": [
-     "contrast 7.6 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.2972951696784,
-     8.766205542795934
-    ]
-   },
-   "properties": {
-    "row": 934.0,
-    "col": 855.0,
-    "area_px": 5,
-    "mean_intensity_db": -13.583938700328508,
-    "max_intensity_db": -12.585785446715663,
-    "local_background_db": -19.98379269086965,
-    "contrast_db": 6.399853990541141,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "UNMATCHED",
-    "match_distance_m": 2619.2,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "id": "2026-01-06-17",
-    "date": "2026-01-06",
-    "cluster_id": 32,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 2,
-    "reasons": [
-     "contrast 6.4 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22850599536304,
-     8.795522580981608
-    ]
-   },
-   "properties": {
-    "row": 604.0,
-    "col": 100.0,
-    "area_px": 5,
-    "mean_intensity_db": -13.840698391645532,
-    "max_intensity_db": -13.249226061843014,
-    "local_background_db": -20.51209295604101,
-    "contrast_db": 6.671394564395477,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "UNMATCHED",
-    "match_distance_m": 2842.7,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "id": "2026-01-06-18",
-    "date": "2026-01-06",
-    "cluster_id": 42,
-    "cluster_size": 2,
-    "confidence_class": "CLUTTER",
-    "confidence": 3,
-    "reasons": [
-     "contrast 6.7 dB, 5 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.2263199317596,
-     8.796790741312321
-    ]
-   },
-   "properties": {
-    "row": 589.7857142857143,
-    "col": 76.03571428571429,
-    "area_px": 28,
-    "mean_intensity_db": -9.168929835341206,
+    "row": 589.2222222222222,
+    "col": 76.25,
+    "area_px": 36,
+    "mean_intensity_db": -9.92959528511888,
     "max_intensity_db": -4.298967422936574,
-    "local_background_db": -20.04526044931888,
-    "contrast_db": 10.876330613977675,
-    "aspect_ratio": 1.6,
-    "fill_ratio": 0.7,
-    "shape_label": "BLOCKY",
+    "local_background_db": -20.00971944468879,
+    "contrast_db": 10.08012415956991,
+    "tcr_db": 15.7,
+    "eccentricity": 0.909,
+    "solidity": 0.9,
+    "aspect_ratio": 2.39,
+    "fill_ratio": 0.65,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 3006.4,
+    "match_distance_m": 1998.0,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-06-19",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-06-07",
     "date": "2026-01-06",
-    "cluster_id": 43,
+    "cluster_id": 25,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
-    "confidence": 14,
+    "confidence": 13,
     "reasons": [
-     "contrast 10.9 dB, 28 px",
+     "contrast 10.1 dB, 36 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-06-07.png"
    }
   },
   {
@@ -807,84 +344,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.2322411841907,
-     8.830606089489443
+     78.28380212698373,
+     8.729935794362872
     ]
    },
    "properties": {
-    "row": 216.0,
-    "col": 144.0,
-    "area_px": 5,
-    "mean_intensity_db": -14.197975810328632,
-    "max_intensity_db": -13.254546497624101,
-    "local_background_db": -21.08806652557234,
-    "contrast_db": 6.8900907152437085,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "UNMATCHED",
-    "match_distance_m": 4739.3,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "id": "2026-01-06-20",
-    "date": "2026-01-06",
-    "cluster_id": 49,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 3,
-    "reasons": [
-     "contrast 6.9 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.28371284348897,
-     8.729462675377992
-    ]
-   },
-   "properties": {
-    "area_px": 8,
-    "mean_intensity_db": 11.913932752014162,
-    "max_intensity_db": 13.904688320103453,
-    "local_background_db": -5.964522318923952,
-    "contrast_db": 17.878455070938113,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 105.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
+    "row": 1334.2708333333333,
+    "col": 703.0208333333334,
+    "area_px": 96,
+    "mean_intensity_db": 5.5877392200928595,
+    "max_intensity_db": 14.264806826576606,
+    "local_background_db": -18.064312422541164,
+    "contrast_db": 23.652051642634024,
+    "tcr_db": 32.3,
+    "eccentricity": 0.957,
+    "solidity": 0.889,
+    "aspect_ratio": 3.45,
+    "fill_ratio": 0.6,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 412.6,
+    "match_distance_m": 418.1,
     "matched_mmsi": "511101582",
     "matched_name": "DMC JUPITER",
     "matched_flag": "PLW",
     "matched_type": "CARGO",
     "matched_hours": 22,
-    "rank": 4,
-    "visual_class": "CONFIRMED_VESSEL",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-18-01",
     "date": "2026-01-18",
     "cluster_id": 7,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 80,
+    "confidence": 90,
     "reasons": [
-     "contrast 17.9 dB, 8 px",
-     "AIS vessel matched by us nearby (DMC JUPITER, 413 m)"
+     "contrast 23.7 dB, 96 px",
+     "AIS vessel matched by us nearby (DMC JUPITER, 418 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-18-01.png"
    }
   },
   {
@@ -892,110 +391,24 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.28383695197489,
-     8.730145979644913
+     78.2694143084484,
+     8.740594257753429
     ]
    },
    "properties": {
-    "area_px": 19,
-    "mean_intensity_db": 10.804641190191184,
-    "max_intensity_db": 14.264806826576606,
-    "local_background_db": -7.5738817980075135,
-    "contrast_db": 18.378522988198696,
-    "aspect_ratio": 1.75,
-    "fill_ratio": 0.6785714285714286,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 113.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 422.2,
-    "matched_mmsi": "511101582",
-    "matched_name": "DMC JUPITER",
-    "matched_flag": "PLW",
-    "matched_type": "CARGO",
-    "matched_hours": 22,
-    "rank": 3,
-    "visual_class": "CONFIRMED_VESSEL",
-    "id": "2026-01-18-02",
-    "date": "2026-01-18",
-    "cluster_id": 9,
-    "cluster_size": 1,
-    "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 86,
-    "reasons": [
-     "contrast 18.4 dB, 19 px",
-     "AIS vessel matched by us nearby (DMC JUPITER, 422 m)"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.23487748930621,
-     8.738732061470229
-    ]
-   },
-   "properties": {
-    "area_px": 5,
-    "mean_intensity_db": -12.862838032323063,
-    "max_intensity_db": -11.85501154063161,
-    "local_background_db": -18.915978504788903,
-    "contrast_db": 6.05314047246584,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 165.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": false,
-    "match_status": "MATCHED",
-    "match_distance_m": 553.9,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "rank": 16,
-    "visual_class": "SPECKLE",
-    "id": "2026-01-18-03",
-    "date": "2026-01-18",
-    "cluster_id": 13,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 2,
-    "reasons": [
-     "contrast 6.1 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.26941018698469,
-     8.740590888882071
-    ]
-   },
-   "properties": {
-    "area_px": 35,
-    "mean_intensity_db": 8.791359787839479,
+    "row": 1215.1630434782608,
+    "col": 545.445652173913,
+    "area_px": 92,
+    "mean_intensity_db": 3.2958293046925182,
     "max_intensity_db": 17.841999896035613,
-    "local_background_db": -13.737926287818947,
-    "contrast_db": 22.529286075658426,
-    "aspect_ratio": 1.1428571428571428,
-    "fill_ratio": 0.625,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 229.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
+    "local_background_db": -18.509791604826226,
+    "contrast_db": 21.805620909518744,
+    "tcr_db": 36.4,
+    "eccentricity": 0.803,
+    "solidity": 0.911,
+    "aspect_ratio": 1.68,
+    "fill_ratio": 0.68,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
     "match_distance_m": 92.0,
     "matched_mmsi": "341970001",
@@ -1003,21 +416,22 @@
     "matched_flag": "KNA",
     "matched_type": "OTHER",
     "matched_hours": 7,
-    "rank": 1,
-    "visual_class": "UNEXPLAINED",
-    "id": "2026-01-18-04",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-02",
     "date": "2026-01-18",
-    "cluster_id": 15,
+    "cluster_id": 11,
     "cluster_size": 4,
     "confidence_class": "ANCHORED_VESSEL",
     "confidence": 100,
     "reasons": [
-     "contrast 22.5 dB, 35 px",
+     "contrast 21.8 dB, 92 px",
      "same spot on 4/4 passes",
      "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-18-02.png"
    }
   },
   {
@@ -1025,314 +439,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.22010781719358,
-     8.74652956705009
+     78.2735235355074,
+     8.7510826386197
     ]
    },
    "properties": {
-    "area_px": 8,
-    "mean_intensity_db": 0.5201460777007675,
-    "max_intensity_db": 1.9201940631930527,
-    "local_background_db": -12.819324250044017,
-    "contrast_db": 13.339470327744785,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 2.0,
-    "suspected_edge_artifact": true,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 386.1,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 10,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-05",
-    "date": "2026-01-18",
-    "cluster_id": 17,
-    "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 35,
-    "reasons": [
-     "contrast 13.3 dB, 8 px",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22246519865753,
-     8.74704380246329
-    ]
-   },
-   "properties": {
-    "area_px": 5,
-    "mean_intensity_db": 1.01339109547632,
-    "max_intensity_db": 2.5697048207174875,
-    "local_background_db": -13.051193471781028,
-    "contrast_db": 14.064584567257349,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 28.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 425.9,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 9,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-06",
-    "date": "2026-01-18",
-    "cluster_id": 18,
-    "cluster_size": 2,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 35,
-    "reasons": [
-     "contrast 14.1 dB, 5 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22055616927072,
-     8.74730083501731
-    ]
-   },
-   "properties": {
-    "area_px": 5,
-    "mean_intensity_db": 0.3703000150856665,
-    "max_intensity_db": 1.5442754249746642,
-    "local_background_db": -11.967608920251296,
-    "contrast_db": 12.337908935336962,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 7.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 306.3,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 12,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-07",
-    "date": "2026-01-18",
-    "cluster_id": 20,
-    "cluster_size": 2,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 32,
-    "reasons": [
-     "contrast 12.3 dB, 5 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22291724134675,
-     8.74731817064124
-    ]
-   },
-   "properties": {
-    "area_px": 5,
-    "mean_intensity_db": 1.0786764191537515,
-    "max_intensity_db": 2.202278555677744,
-    "local_background_db": -13.239831484233227,
-    "contrast_db": 14.318507903386978,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 33.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 437.8,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 8,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-08",
-    "date": "2026-01-18",
-    "cluster_id": 21,
-    "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 36,
-    "reasons": [
-     "contrast 14.3 dB, 5 px",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22363903775114,
-     8.747955918614663
-    ]
-   },
-   "properties": {
-    "area_px": 5,
-    "mean_intensity_db": 1.859971204497981,
-    "max_intensity_db": 2.8140422444732085,
-    "local_background_db": -13.432037389525224,
-    "contrast_db": 15.292008594023205,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 41.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 459.9,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 6,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-09",
-    "date": "2026-01-18",
-    "cluster_id": 24,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 50,
-    "reasons": [
-     "contrast 15.3 dB, 5 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22905640899982,
-     8.74854225221935
-    ]
-   },
-   "properties": {
-    "area_px": 20,
-    "mean_intensity_db": -4.03929279054231,
-    "max_intensity_db": -2.2823274109737595,
-    "local_background_db": -16.64224421357544,
-    "contrast_db": 12.602951423033131,
-    "aspect_ratio": 1.4,
-    "fill_ratio": 0.5714285714285714,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 101.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 192.6,
-    "matched_mmsi": "352002939",
-    "matched_name": "AB OLIVIA",
-    "matched_flag": "PAN",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "rank": 11,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-10",
-    "date": "2026-01-18",
-    "cluster_id": 26,
-    "cluster_size": 4,
-    "confidence_class": "SUSPECTED_FIXED",
-    "confidence": 32,
-    "fixed_evidence": "position_stable",
-    "reasons": [
-     "contrast 12.6 dB, 20 px",
-     "same spot on 4/4 passes",
-     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
-     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.27350089844852,
-     8.751004025401418
-    ]
-   },
-   "properties": {
-    "area_px": 18,
-    "mean_intensity_db": 15.468780116768215,
+    "row": 1099.4095238095238,
+    "col": 591.5333333333333,
+    "area_px": 105,
+    "mean_intensity_db": 9.354832390353812,
     "max_intensity_db": 19.613196884465843,
-    "local_background_db": -3.8486390369190433,
-    "contrast_db": 19.317419153687258,
-    "aspect_ratio": 1.4,
-    "fill_ratio": 0.5142857142857142,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 344.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
+    "local_background_db": -16.36802916456719,
+    "contrast_db": 25.722861554921003,
+    "tcr_db": 36.0,
+    "eccentricity": 0.977,
+    "solidity": 0.795,
+    "aspect_ratio": 4.74,
+    "fill_ratio": 0.44,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 401.0,
+    "match_distance_m": 405.9,
     "matched_mmsi": "538005363",
     "matched_name": "SSI DIGNITY",
     "matched_flag": "MHL",
     "matched_type": "CARGO",
     "matched_hours": 24,
-    "rank": 2,
-    "visual_class": "UNEXPLAINED",
-    "id": "2026-01-18-11",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-03",
     "date": "2026-01-18",
-    "cluster_id": 27,
+    "cluster_id": 14,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 88,
+    "confidence": 90,
     "reasons": [
-     "contrast 19.3 dB, 18 px",
-     "AIS vessel matched by us nearby (SSI DIGNITY, 401 m)"
+     "contrast 25.7 dB, 105 px",
+     "AIS vessel matched by us nearby (SSI DIGNITY, 406 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-18-03.png"
    }
   },
   {
@@ -1340,91 +486,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.22432600486735,
-     8.753291621989563
+     78.27387363090735,
+     8.752477471415515
     ]
    },
    "properties": {
-    "area_px": 5,
-    "mean_intensity_db": 3.1687680388134236,
-    "max_intensity_db": 4.77324187806201,
-    "local_background_db": -11.816296377824445,
-    "contrast_db": 14.985064416637869,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 49.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
+    "row": 1084.0,
+    "col": 595.5,
+    "area_px": 8,
+    "mean_intensity_db": 6.854381134780423,
+    "max_intensity_db": 9.30153587296013,
+    "local_background_db": -1.8274050780345168,
+    "contrast_db": 8.68178621281494,
+    "tcr_db": 11.1,
+    "eccentricity": 0.577,
+    "solidity": 1.0,
+    "aspect_ratio": 1.22,
+    "fill_ratio": 0.67,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 599.9,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 7,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-12",
+    "match_distance_m": 507.4,
+    "matched_mmsi": "538005363",
+    "matched_name": "SSI DIGNITY",
+    "matched_flag": "MHL",
+    "matched_type": "CARGO",
+    "matched_hours": 24,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-04",
     "date": "2026-01-18",
-    "cluster_id": 28,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 49,
+    "cluster_id": 15,
+    "cluster_size": 1,
+    "confidence_class": "CLUTTER",
+    "confidence": 7,
     "reasons": [
-     "contrast 15.0 dB, 5 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
+     "contrast 8.7 dB, 8 px",
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22047849122653,
-     8.754705194913779
-    ]
-   },
-   "properties": {
-    "area_px": 24,
-    "mean_intensity_db": 14.444082726446517,
-    "max_intensity_db": 21.52147618587092,
-    "local_background_db": -3.2177479770969293,
-    "contrast_db": 17.661830703543448,
-    "aspect_ratio": 1.4,
-    "fill_ratio": 0.6857142857142857,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 6.082762530298219,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": true,
-    "match_status": "MATCHED",
-    "match_distance_m": 525.8,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 3,
-    "rank": 5,
-    "visual_class": "LINEAR_FEATURE",
-    "id": "2026-01-18-13",
-    "date": "2026-01-18",
-    "cluster_id": 29,
-    "cluster_size": 3,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 57,
-    "reasons": [
-     "contrast 17.7 dB, 24 px",
-     "same spot on 3/4 passes",
-     "'matched' AIS identity differs between passes (3 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 37 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-18-04.png"
    }
   },
   {
@@ -1437,17 +538,19 @@
     ]
    },
    "properties": {
+    "row": 923.0,
+    "col": 407.0,
     "area_px": 5,
     "mean_intensity_db": -12.000454469597022,
     "max_intensity_db": -10.745040516598102,
-    "local_background_db": -18.932001912319834,
-    "contrast_db": 6.931547442722811,
+    "local_background_db": -19.0775906848931,
+    "contrast_db": 7.077136215296077,
+    "tcr_db": 8.3,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 404.01113846031524,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": false,
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
     "match_distance_m": 2383.9,
     "matched_mmsi": null,
@@ -1455,20 +558,21 @@
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "rank": 15,
-    "visual_class": "SPECKLE",
-    "id": "2026-01-18-14",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-05",
     "date": "2026-01-18",
-    "cluster_id": 33,
+    "cluster_id": 16,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
-     "contrast 6.9 dB, 5 px",
+     "contrast 7.1 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-18-05.png"
    }
   },
   {
@@ -1476,87 +580,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.31911451130958,
-     8.782528333703866
+     78.2821848188143,
+     8.793332276682882
     ]
    },
    "properties": {
-    "area_px": 5,
-    "mean_intensity_db": -14.033807284759158,
-    "max_intensity_db": -13.225085810089558,
-    "local_background_db": -20.084813681683467,
-    "contrast_db": 6.0510063969243095,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 11.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": false,
-    "match_status": "UNMATCHED",
-    "match_distance_m": 5709.6,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "rank": 17,
-    "visual_class": "SPECKLE",
-    "id": "2026-01-18-15",
-    "date": "2026-01-18",
-    "cluster_id": 37,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 2,
-    "reasons": [
-     "contrast 6.1 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.28215919801359,
-     8.793286914595795
-    ]
-   },
-   "properties": {
-    "area_px": 5,
-    "mean_intensity_db": -10.509595471724499,
+    "row": 632.5,
+    "col": 690.2857142857143,
+    "area_px": 14,
+    "mean_intensity_db": -11.457333388118832,
     "max_intensity_db": -9.375120610479819,
-    "local_background_db": -18.930426830271344,
-    "contrast_db": 8.420831358546845,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 417.4793408062248,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": false,
+    "local_background_db": -19.075629129071924,
+    "contrast_db": 7.6182957409530925,
+    "tcr_db": 9.7,
+    "eccentricity": 0.851,
+    "solidity": 0.933,
+    "aspect_ratio": 1.9,
+    "fill_ratio": 0.58,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 4995.4,
+    "match_distance_m": 5001.0,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "rank": 13,
-    "visual_class": "SPECKLE",
-    "id": "2026-01-18-16",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-06",
     "date": "2026-01-18",
-    "cluster_id": 39,
+    "cluster_id": 21,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
-    "confidence": 6,
+    "confidence": 7,
     "reasons": [
-     "contrast 8.4 dB, 5 px",
+     "contrast 7.6 dB, 14 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-18-06.png"
    }
   },
   {
@@ -1569,17 +632,19 @@
     ]
    },
    "properties": {
+    "row": 605.7,
+    "col": 96.3,
     "area_px": 10,
     "mean_intensity_db": -11.531738958904448,
     "max_intensity_db": -9.274131422909798,
-    "local_background_db": -19.501930767244392,
-    "contrast_db": 7.970191808339944,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.625,
-    "shape_label": "BLOCKY",
-    "edge_dist_px": 91.0,
-    "suspected_edge_artifact": false,
-    "high_intensity_flag": false,
+    "local_background_db": -19.388798562170525,
+    "contrast_db": 7.857059603266077,
+    "tcr_db": 10.1,
+    "eccentricity": 0.616,
+    "solidity": 1.0,
+    "aspect_ratio": 1.27,
+    "fill_ratio": 0.62,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
     "match_distance_m": 5047.6,
     "matched_mmsi": null,
@@ -1587,21 +652,21 @@
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "rank": 14,
-    "visual_class": "SPECKLE",
-    "id": "2026-01-18-17",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-07",
     "date": "2026-01-18",
-    "cluster_id": 42,
-    "cluster_size": 2,
+    "cluster_id": 24,
+    "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 6,
     "reasons": [
-     "contrast 8.0 dB, 10 px",
-     "seen on 2 passes only; persistence inconclusive",
+     "contrast 7.9 dB, 10 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-18-07.png"
    }
   },
   {
@@ -1609,40 +674,93 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.28269427816095,
-     8.725650628968262
+     78.31499642296723,
+     8.799395710720587
     ]
    },
    "properties": {
-    "row": 1381.5,
-    "col": 690.5,
-    "area_px": 12,
-    "mean_intensity_db": 12.879814267678592,
-    "max_intensity_db": 16.199086339509496,
-    "local_background_db": -5.883074266616994,
-    "contrast_db": 18.762888534295584,
+    "row": 568.0,
+    "col": 1052.0,
+    "area_px": 5,
+    "mean_intensity_db": -13.46815048483875,
+    "max_intensity_db": -12.573060779962383,
+    "local_background_db": -19.798892566989757,
+    "contrast_db": 6.330742082151007,
+    "tcr_db": 7.2,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.75,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
+    "match_status": "UNMATCHED",
+    "match_distance_m": 7153.0,
+    "matched_mmsi": null,
+    "matched_name": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "matched_hours": null,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-18-08",
+    "date": "2026-01-18",
+    "cluster_id": 26,
+    "cluster_size": 1,
+    "confidence_class": "CLUTTER",
+    "confidence": 2,
+    "reasons": [
+     "contrast 6.3 dB, 5 px",
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-18-08.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.28298613190181,
+     8.726443669652214
+    ]
+   },
+   "properties": {
+    "row": 1372.746153846154,
+    "col": 693.776923076923,
+    "area_px": 130,
+    "mean_intensity_db": 5.354683493283,
+    "max_intensity_db": 16.199086339509496,
+    "local_background_db": -18.6412074338797,
+    "contrast_db": 23.995890927162698,
+    "tcr_db": 34.8,
+    "eccentricity": 0.978,
+    "solidity": 0.726,
+    "aspect_ratio": 4.76,
+    "fill_ratio": 0.36,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 567.2,
+    "match_distance_m": 514.0,
     "matched_mmsi": "538009555",
     "matched_name": "FJ CAMELIA",
     "matched_flag": "MHL",
     "matched_type": "CARGO",
     "matched_hours": 24,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-30-01",
     "date": "2026-01-30",
-    "cluster_id": 4,
+    "cluster_id": 5,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 84,
+    "confidence": 90,
     "reasons": [
-     "contrast 18.8 dB, 12 px",
-     "AIS vessel matched by us nearby (FJ CAMELIA, 567 m)"
+     "contrast 24.0 dB, 130 px",
+     "AIS vessel matched by us nearby (FJ CAMELIA, 514 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-30-01.png"
    }
   },
   {
@@ -1660,30 +778,36 @@
     "area_px": 12,
     "mean_intensity_db": -13.190657901911841,
     "max_intensity_db": -12.108709798601407,
-    "local_background_db": -20.27513583119233,
-    "contrast_db": 7.084477929280489,
-    "aspect_ratio": 2.0,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
+    "local_background_db": -20.300793154671624,
+    "contrast_db": 7.1101352527597825,
+    "tcr_db": 8.2,
+    "eccentricity": 0.882,
+    "solidity": 0.857,
+    "aspect_ratio": 2.12,
+    "fill_ratio": 0.67,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
     "match_distance_m": 898.4,
-    "matched_mmsi": "419087700",
-    "matched_name": "",
+    "matched_mmsi": "419001810",
+    "matched_name": "CHOLA TREASURE",
     "matched_flag": "IND",
-    "matched_type": "OTHER",
+    "matched_type": "CARGO",
     "matched_hours": 1,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-01-30-02",
     "date": "2026-01-30",
-    "cluster_id": 12,
+    "cluster_id": 9,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
-    "confidence": 5,
+    "confidence": 6,
     "reasons": [
      "contrast 7.1 dB, 12 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-30-02.png"
    }
   },
   {
@@ -1691,206 +815,47 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.22518936810314,
-     8.739349057870633
+     78.26925682616469,
+     8.740717392576546
     ]
    },
    "properties": {
-    "row": 1225.2777777777778,
-    "col": 58.388888888888886,
-    "area_px": 18,
-    "mean_intensity_db": -8.127091839137035,
-    "max_intensity_db": -5.014616716283884,
-    "local_background_db": -19.461564639163683,
-    "contrast_db": 11.334472800026647,
-    "aspect_ratio": 1.5,
-    "fill_ratio": 0.75,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 534.0,
-    "matched_mmsi": "419087700",
-    "matched_name": "",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-01-30-03",
-    "date": "2026-01-30",
-    "cluster_id": 14,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 15,
-    "reasons": [
-     "contrast 11.3 dB, 18 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.26921797934868,
-     8.740729374706145
-    ]
-   },
-   "properties": {
-    "row": 1213.5428571428572,
-    "col": 543.3142857142857,
-    "area_px": 35,
-    "mean_intensity_db": 3.7955020675724094,
+    "row": 1213.6785714285713,
+    "col": 543.7410714285714,
+    "area_px": 112,
+    "mean_intensity_db": -0.3592940468867263,
     "max_intensity_db": 7.391074692904228,
-    "local_background_db": -14.641768142577561,
-    "contrast_db": 18.437270210149972,
-    "aspect_ratio": 1.1428571428571428,
-    "fill_ratio": 0.625,
-    "shape_label": "BLOCKY",
+    "local_background_db": -20.187421401008656,
+    "contrast_db": 19.82812735412193,
+    "tcr_db": 27.6,
+    "eccentricity": 0.884,
+    "solidity": 0.83,
+    "aspect_ratio": 2.14,
+    "fill_ratio": 0.54,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 117.9,
+    "match_distance_m": 113.9,
     "matched_mmsi": "341970001",
     "matched_name": "NEREUS PROGRESS",
     "matched_flag": "KNA",
     "matched_type": "OTHER",
     "matched_hours": 9,
-    "id": "2026-01-30-04",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-03",
     "date": "2026-01-30",
-    "cluster_id": 15,
+    "cluster_id": 11,
     "cluster_size": 4,
     "confidence_class": "ANCHORED_VESSEL",
-    "confidence": 96,
+    "confidence": 100,
     "reasons": [
-     "contrast 18.4 dB, 35 px",
+     "contrast 19.8 dB, 112 px",
      "same spot on 4/4 passes",
      "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22728145033909,
-     8.745518251007947
-    ]
-   },
-   "properties": {
-    "row": 1157.1666666666667,
-    "col": 81.92857142857143,
-    "area_px": 42,
-    "mean_intensity_db": 5.651730706467045,
-    "max_intensity_db": 8.16797027050142,
-    "local_background_db": -11.072465622403193,
-    "contrast_db": 16.72419632887024,
-    "aspect_ratio": 1.0833333333333333,
-    "fill_ratio": 0.2692307692307692,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 581.2,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-01-30-05",
-    "date": "2026-01-30",
-    "cluster_id": 16,
-    "cluster_size": 1,
-    "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 83,
-    "reasons": [
-     "contrast 16.7 dB, 42 px",
-     "AIS vessel matched by us nearby (OCEAN POISE, 581 m)"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22210092035627,
-     8.746940921866113
-    ]
-   },
-   "properties": {
-    "row": 1141.0,
-    "col": 25.0,
-    "area_px": 5,
-    "mean_intensity_db": 4.161241950522168,
-    "max_intensity_db": 5.6027094319597035,
-    "local_background_db": -11.320736122288082,
-    "contrast_db": 15.48197807281025,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 411.0,
-    "matched_mmsi": "538011477",
-    "matched_name": "GN RUBY",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 1,
-    "id": "2026-01-30-06",
-    "date": "2026-01-30",
-    "cluster_id": 19,
-    "cluster_size": 2,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 38,
-    "reasons": [
-     "contrast 15.5 dB, 5 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.2238656974769,
-     8.7477670248066
-    ]
-   },
-   "properties": {
-    "row": 1132.0,
-    "col": 44.5,
-    "area_px": 8,
-    "mean_intensity_db": 1.986562630922084,
-    "max_intensity_db": 3.4849677519361295,
-    "local_background_db": -12.129555261224827,
-    "contrast_db": 14.11611789214691,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 492.0,
-    "matched_mmsi": "538011477",
-    "matched_name": "GN RUBY",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 1,
-    "id": "2026-01-30-07",
-    "date": "2026-01-30",
-    "cluster_id": 22,
-    "cluster_size": 1,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 36,
-    "reasons": [
-     "contrast 14.1 dB, 8 px",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-30-03.png"
    }
   },
   {
@@ -1908,11 +873,14 @@
     "area_px": 5,
     "mean_intensity_db": -12.456799692568724,
     "max_intensity_db": -11.019526090152356,
-    "local_background_db": -20.2544110407715,
-    "contrast_db": 7.797611348202777,
+    "local_background_db": -20.14867042274684,
+    "contrast_db": 7.691870730178115,
+    "tcr_db": 9.1,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
     "match_distance_m": 1249.9,
     "matched_mmsi": "341203002",
@@ -1920,18 +888,21 @@
     "matched_flag": "KNA",
     "matched_type": "OTHER",
     "matched_hours": 1,
-    "id": "2026-01-30-08",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-04",
     "date": "2026-01-30",
-    "cluster_id": 23,
+    "cluster_id": 12,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
-    "confidence": 5,
+    "confidence": 4,
     "reasons": [
-     "contrast 7.8 dB, 5 px",
+     "contrast 7.7 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-30-04.png"
    }
   },
   {
@@ -1939,212 +910,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.22345570958564,
-     8.747944716841593
+     78.28257535118952,
+     8.748114455378627
     ]
    },
    "properties": {
-    "row": 1130.0,
-    "col": 40.0,
-    "area_px": 5,
-    "mean_intensity_db": 3.123768650008714,
-    "max_intensity_db": 4.341119713082027,
-    "local_background_db": -11.983634983027871,
-    "contrast_db": 15.107403633036585,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 443.1,
-    "matched_mmsi": "538011477",
-    "matched_name": "GN RUBY",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 1,
-    "id": "2026-01-30-09",
-    "date": "2026-01-30",
-    "cluster_id": 24,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 49,
-    "reasons": [
-     "contrast 15.1 dB, 5 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.28254695867732,
-     8.748069202945276
-    ]
-   },
-   "properties": {
-    "row": 1133.3703703703704,
-    "col": 690.6666666666666,
-    "area_px": 27,
-    "mean_intensity_db": 8.835347955565608,
+    "row": 1132.871794871795,
+    "col": 690.982905982906,
+    "area_px": 117,
+    "mean_intensity_db": 4.55729805487629,
     "max_intensity_db": 13.138693998114254,
-    "local_background_db": -9.218347999864864,
-    "contrast_db": 18.05369595543047,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.5625,
-    "shape_label": "BLOCKY",
+    "local_background_db": -19.11082408127087,
+    "contrast_db": 23.66812213614716,
+    "tcr_db": 32.2,
+    "eccentricity": 0.961,
+    "solidity": 0.848,
+    "aspect_ratio": 3.61,
+    "fill_ratio": 0.43,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 352.9,
+    "match_distance_m": 352.3,
     "matched_mmsi": "636020701",
     "matched_name": "MSC KYMEA II",
     "matched_flag": "LBR",
     "matched_type": "CARGO",
     "matched_hours": 2,
-    "id": "2026-01-30-10",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-05",
     "date": "2026-01-30",
-    "cluster_id": 25,
+    "cluster_id": 13,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 86,
+    "confidence": 90,
     "reasons": [
-     "contrast 18.1 dB, 27 px",
-     "AIS vessel matched by us nearby (MSC KYMEA II, 353 m)"
+     "contrast 23.7 dB, 117 px",
+     "AIS vessel matched by us nearby (MSC KYMEA II, 352 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22906130970185,
-     8.748532020871425
-    ]
-   },
-   "properties": {
-    "row": 1123.9545454545455,
-    "col": 101.77272727272727,
-    "area_px": 22,
-    "mean_intensity_db": -3.3713876195082633,
-    "max_intensity_db": -1.6557257011203308,
-    "local_background_db": -15.770681627245803,
-    "contrast_db": 12.39929400773754,
-    "aspect_ratio": 1.4,
-    "fill_ratio": 0.6285714285714286,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 193.3,
-    "matched_mmsi": "419001466",
-    "matched_name": "OCEAN POISE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-01-30-11",
-    "date": "2026-01-30",
-    "cluster_id": 26,
-    "cluster_size": 4,
-    "confidence_class": "SUSPECTED_FIXED",
-    "confidence": 31,
-    "fixed_evidence": "position_stable",
-    "reasons": [
-     "contrast 12.4 dB, 22 px",
-     "same spot on 4/4 passes",
-     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
-     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22358919358008,
-     8.753671638313659
-    ]
-   },
-   "properties": {
-    "row": 1066.625,
-    "col": 41.9375,
-    "area_px": 16,
-    "mean_intensity_db": 1.1686274417642706,
-    "max_intensity_db": 3.533624643878869,
-    "local_background_db": -11.91584491814118,
-    "contrast_db": 13.084472359905451,
-    "aspect_ratio": 1.1666666666666667,
-    "fill_ratio": 0.38095238095238093,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 567.6,
-    "matched_mmsi": "538011477",
-    "matched_name": "GN RUBY",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 1,
-    "id": "2026-01-30-12",
-    "date": "2026-01-30",
-    "cluster_id": 28,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 49,
-    "reasons": [
-     "contrast 13.1 dB, 16 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22111177109436,
-     8.75479410807735
-    ]
-   },
-   "properties": {
-    "row": 1054.0,
-    "col": 14.75,
-    "area_px": 28,
-    "mean_intensity_db": 2.6862821130274526,
-    "max_intensity_db": 5.646937781409992,
-    "local_background_db": -10.77831991538881,
-    "contrast_db": 13.464602028416262,
-    "aspect_ratio": 1.1666666666666667,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 546.9,
-    "matched_mmsi": "538011477",
-    "matched_name": "GN RUBY",
-    "matched_flag": "MHL",
-    "matched_type": "CARGO",
-    "matched_hours": 1,
-    "id": "2026-01-30-13",
-    "date": "2026-01-30",
-    "cluster_id": 30,
-    "cluster_size": 2,
-    "confidence_class": "LOW_CONFIDENCE",
-    "confidence": 39,
-    "reasons": [
-     "contrast 13.5 dB, 28 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "bright but small or weak: not enough evidence either way"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-30-05.png"
    }
   },
   {
@@ -2162,11 +967,14 @@
     "area_px": 8,
     "mean_intensity_db": -11.608371580308125,
     "max_intensity_db": -9.30547772368803,
-    "local_background_db": -20.691855529995316,
-    "contrast_db": 9.08348394968719,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
+    "local_background_db": -20.691687408269722,
+    "contrast_db": 9.083315827961597,
+    "tcr_db": 11.4,
+    "eccentricity": 0.577,
+    "solidity": 1.0,
+    "aspect_ratio": 1.22,
+    "fill_ratio": 0.67,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
     "match_distance_m": 2373.6,
     "matched_mmsi": null,
@@ -2174,9 +982,11 @@
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-14",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-06",
     "date": "2026-01-30",
-    "cluster_id": 34,
+    "cluster_id": 17,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 8,
@@ -2185,7 +995,8 @@
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-06.png"
    }
   },
   {
@@ -2193,81 +1004,93 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.23313381267722,
-     8.77778620995637
+     78.2767187290009,
+     8.779323243435119
     ]
    },
    "properties": {
-    "row": 800.5,
-    "col": 149.0,
-    "area_px": 8,
-    "mean_intensity_db": -12.990860202350511,
-    "max_intensity_db": -11.15739632927625,
-    "local_background_db": -20.07098091802279,
-    "contrast_db": 7.08012071567228,
-    "aspect_ratio": 1.3333333333333333,
-    "fill_ratio": 0.6666666666666666,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 423.0,
-    "matched_mmsi": "419801903",
-    "matched_name": "MSV-PENIEL-TTN-266",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-01-30-15",
-    "date": "2026-01-30",
-    "cluster_id": 35,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 4,
-    "reasons": [
-     "contrast 7.1 dB, 8 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.27687029194702,
-     8.779712859959309
-    ]
-   },
-   "properties": {
-    "row": 782.7,
-    "col": 630.7,
-    "area_px": 10,
-    "mean_intensity_db": -11.155673903812618,
-    "max_intensity_db": -8.845773634940448,
-    "local_background_db": -20.39282238847866,
-    "contrast_db": 9.237148484666042,
+    "row": 787.0,
+    "col": 629.0,
+    "area_px": 5,
+    "mean_intensity_db": -10.784860272793392,
+    "max_intensity_db": -9.24241668907602,
+    "local_background_db": -20.485590138500484,
+    "contrast_db": 9.700729865707093,
+    "tcr_db": 11.2,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.625,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 3321.8,
+    "match_distance_m": 2937.1,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-16",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-07",
     "date": "2026-01-30",
-    "cluster_id": 36,
+    "cluster_id": 18,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
-    "confidence": 9,
+    "confidence": 8,
     "reasons": [
-     "contrast 9.2 dB, 10 px",
+     "contrast 9.7 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-07.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.27686910506826,
+     8.779875488472694
+    ]
+   },
+   "properties": {
+    "row": 780.9,
+    "col": 630.7,
+    "area_px": 20,
+    "mean_intensity_db": -11.75809579681557,
+    "max_intensity_db": -8.845773634940448,
+    "local_background_db": -20.466545410884976,
+    "contrast_db": 8.708449614069405,
+    "tcr_db": 11.6,
+    "eccentricity": 0.917,
+    "solidity": 0.8,
+    "aspect_ratio": 2.51,
+    "fill_ratio": 0.62,
+    "local_bg_from_global_median": false,
+    "match_status": "UNMATCHED",
+    "match_distance_m": 2952.7,
+    "matched_mmsi": null,
+    "matched_name": null,
+    "matched_flag": null,
+    "matched_type": null,
+    "matched_hours": null,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-08",
+    "date": "2026-01-30",
+    "cluster_id": 19,
+    "cluster_size": 1,
+    "confidence_class": "CLUTTER",
+    "confidence": 11,
+    "reasons": [
+     "contrast 8.7 dB, 20 px",
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-08.png"
    }
   },
   {
@@ -2285,11 +1108,14 @@
     "area_px": 5,
     "mean_intensity_db": -12.997092016711738,
     "max_intensity_db": -11.830111791495355,
-    "local_background_db": -20.19405678278655,
-    "contrast_db": 7.196964766074812,
+    "local_background_db": -20.37034582844474,
+    "contrast_db": 7.373253811733003,
+    "tcr_db": 8.5,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
     "match_distance_m": 3483.6,
     "matched_mmsi": null,
@@ -2297,18 +1123,21 @@
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-17",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-09",
     "date": "2026-01-30",
-    "cluster_id": 38,
+    "cluster_id": 20,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 4,
     "reasons": [
-     "contrast 7.2 dB, 5 px",
+     "contrast 7.4 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-09.png"
    }
   },
   {
@@ -2326,30 +1155,36 @@
     "area_px": 18,
     "mean_intensity_db": -9.954869204042362,
     "max_intensity_db": -6.684833888158506,
-    "local_background_db": -19.664626048785035,
-    "contrast_db": 9.709756844742673,
-    "aspect_ratio": 1.75,
-    "fill_ratio": 0.6428571428571429,
-    "shape_label": "BLOCKY",
+    "local_background_db": -19.818523524015387,
+    "contrast_db": 9.863654319973024,
+    "tcr_db": 13.1,
+    "eccentricity": 0.844,
+    "solidity": 0.9,
+    "aspect_ratio": 1.87,
+    "fill_ratio": 0.64,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 1691.5,
+    "match_distance_m": 2884.8,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-18",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-10",
     "date": "2026-01-30",
-    "cluster_id": 40,
+    "cluster_id": 22,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 12,
     "reasons": [
-     "contrast 9.7 dB, 18 px",
+     "contrast 9.9 dB, 18 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-10.png"
    }
   },
   {
@@ -2367,21 +1202,26 @@
     "area_px": 5,
     "mean_intensity_db": -11.63505002464993,
     "max_intensity_db": -10.21592629516029,
-    "local_background_db": -20.060058500267317,
-    "contrast_db": 8.425008475617387,
+    "local_background_db": -20.045014543807426,
+    "contrast_db": 8.409964519157496,
+    "tcr_db": 9.8,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 1878.4,
+    "match_distance_m": 2839.7,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-19",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-11",
     "date": "2026-01-30",
-    "cluster_id": 41,
+    "cluster_id": 23,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 6,
@@ -2390,7 +1230,8 @@
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-11.png"
    }
   },
   {
@@ -2408,21 +1249,26 @@
     "area_px": 5,
     "mean_intensity_db": -11.796740903074895,
     "max_intensity_db": -11.06108748988252,
-    "local_background_db": -19.660174101880926,
-    "contrast_db": 7.863433198806032,
+    "local_background_db": -19.721659973964385,
+    "contrast_db": 7.924919070889491,
+    "tcr_db": 8.7,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 2401.1,
+    "match_distance_m": 3455.6,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-20",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-12",
     "date": "2026-01-30",
-    "cluster_id": 44,
+    "cluster_id": 27,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 5,
@@ -2431,7 +1277,8 @@
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-12.png"
    }
   },
   {
@@ -2449,30 +1296,36 @@
     "area_px": 5,
     "mean_intensity_db": -11.78062982563428,
     "max_intensity_db": -10.569468650008966,
-    "local_background_db": -19.989114145637036,
-    "contrast_db": 8.208484320002755,
+    "local_background_db": -20.063188423854022,
+    "contrast_db": 8.282558598219742,
+    "tcr_db": 9.5,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 3264.0,
+    "match_distance_m": 4746.0,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-01-30-21",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-13",
     "date": "2026-01-30",
-    "cluster_id": 45,
+    "cluster_id": 28,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 5,
     "reasons": [
-     "contrast 8.2 dB, 5 px",
+     "contrast 8.3 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-01-30-13.png"
    }
   },
   {
@@ -2490,21 +1343,26 @@
     "area_px": 5,
     "mean_intensity_db": -13.969735861395108,
     "max_intensity_db": -13.46263737860519,
-    "local_background_db": -20.40504116173665,
-    "contrast_db": 6.435305300341543,
+    "local_background_db": -20.389469434819624,
+    "contrast_db": 6.419733573424516,
+    "tcr_db": 6.9,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 779.0,
+    "match_distance_m": 1136.1,
     "matched_mmsi": "419819609",
     "matched_name": "ST MATHA NET BOAT",
     "matched_flag": "IND",
     "matched_type": "GEAR",
     "matched_hours": 1,
-    "id": "2026-01-30-22",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-01-30-14",
     "date": "2026-01-30",
-    "cluster_id": 51,
+    "cluster_id": 31,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 2,
@@ -2513,7 +1371,8 @@
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-01-30-14.png"
    }
   },
   {
@@ -2521,40 +1380,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.27135280805689,
-     8.726313071165626
+     78.27139142918362,
+     8.726385008872173
     ]
    },
    "properties": {
-    "row": 1373.0,
-    "col": 565.5,
-    "area_px": 34,
-    "mean_intensity_db": 2.4462439741725728,
+    "row": 1372.2068965517242,
+    "col": 565.9310344827586,
+    "area_px": 58,
+    "mean_intensity_db": -0.9865782425856324,
     "max_intensity_db": 10.335101178296721,
-    "local_background_db": -17.27465930180852,
-    "contrast_db": 19.720903275981094,
-    "aspect_ratio": 1.1666666666666667,
-    "fill_ratio": 0.8095238095238095,
-    "shape_label": "BLOCKY",
+    "local_background_db": -18.530257930557188,
+    "contrast_db": 17.543679687971554,
+    "tcr_db": 28.9,
+    "eccentricity": 0.871,
+    "solidity": 0.935,
+    "aspect_ratio": 2.04,
+    "fill_ratio": 0.6,
+    "local_bg_from_global_median": false,
     "match_status": "MATCHED",
-    "match_distance_m": 436.2,
+    "match_distance_m": 430.2,
     "matched_mmsi": "567593000",
     "matched_name": "SEA VALARY",
     "matched_flag": "THA",
     "matched_type": "OTHER",
     "matched_hours": 24,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
     "id": "2026-02-11-01",
     "date": "2026-02-11",
-    "cluster_id": 5,
+    "cluster_id": 4,
     "cluster_size": 1,
     "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 89,
+    "confidence": 84,
     "reasons": [
-     "contrast 19.7 dB, 34 px",
-     "AIS vessel matched by us nearby (SEA VALARY, 436 m)"
+     "contrast 17.5 dB, 58 px",
+     "AIS vessel matched by us nearby (SEA VALARY, 430 m)"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
+    "ais_evidence": "matched",
+    "crop": "2026-02-11-01.png"
    }
   },
   {
@@ -2562,297 +1427,94 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     78.26894217234526,
-     8.740331429433766
+     78.23787980306311,
+     8.739804179020599
     ]
    },
    "properties": {
-    "row": 1217.657894736842,
-    "col": 540.078947368421,
-    "area_px": 38,
-    "mean_intensity_db": 5.332246316504694,
-    "max_intensity_db": 9.518649969017734,
-    "local_background_db": -12.71834921222182,
-    "contrast_db": 18.050595528726515,
-    "aspect_ratio": 1.5714285714285714,
-    "fill_ratio": 0.4935064935064935,
-    "shape_label": "BLOCKY",
+    "row": 1221.0,
+    "col": 198.0,
+    "area_px": 5,
+    "mean_intensity_db": -13.315353456509992,
+    "max_intensity_db": -12.661379473466386,
+    "local_background_db": -19.942040392886746,
+    "contrast_db": 6.626686936376753,
+    "tcr_db": 7.3,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
+    "aspect_ratio": 1.0,
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": true,
     "match_status": "MATCHED",
-    "match_distance_m": 121.6,
+    "match_distance_m": 233.8,
+    "matched_mmsi": "419801937",
+    "matched_name": "RIVER PEARL 36",
+    "matched_flag": "IND",
+    "matched_type": "OTHER",
+    "matched_hours": 1,
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-02-11-02",
+    "date": "2026-02-11",
+    "cluster_id": 10,
+    "cluster_size": 1,
+    "confidence_class": "CLUTTER",
+    "confidence": 3,
+    "reasons": [
+     "contrast 6.6 dB, 5 px",
+     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
+    ],
+    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
+    "ais_evidence": "matched",
+    "crop": "2026-02-11-02.png"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     78.26900032555648,
+     8.74050660021058
+    ]
+   },
+   "properties": {
+    "row": 1215.7238095238095,
+    "col": 540.7333333333333,
+    "area_px": 105,
+    "mean_intensity_db": 0.9567948870712325,
+    "max_intensity_db": 9.518649969017734,
+    "local_background_db": -18.475169274178068,
+    "contrast_db": 19.4319641612493,
+    "tcr_db": 28.0,
+    "eccentricity": 0.895,
+    "solidity": 0.861,
+    "aspect_ratio": 2.24,
+    "fill_ratio": 0.58,
+    "local_bg_from_global_median": false,
+    "match_status": "MATCHED",
+    "match_distance_m": 123.1,
     "matched_mmsi": "341970001",
     "matched_name": "NEREUS PROGRESS",
     "matched_flag": "KNA",
     "matched_type": "OTHER",
     "matched_hours": 1,
-    "id": "2026-02-11-02",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-02-11-03",
     "date": "2026-02-11",
-    "cluster_id": 15,
+    "cluster_id": 11,
     "cluster_size": 4,
     "confidence_class": "ANCHORED_VESSEL",
-    "confidence": 96,
+    "confidence": 99,
     "reasons": [
-     "contrast 18.1 dB, 38 px",
+     "contrast 19.4 dB, 105 px",
      "same spot on 4/4 passes",
      "same AIS vessel (MMSI 341970001) on 4 passes -> anchored-vessel hypothesis"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22052724184556,
-     8.746877419028893
-    ]
-   },
-   "properties": {
-    "row": 1141.3076923076924,
-    "col": 7.5,
-    "area_px": 26,
-    "mean_intensity_db": 4.826158992663365,
-    "max_intensity_db": 12.176414027598137,
-    "local_background_db": -12.971146874550662,
-    "contrast_db": 17.79730586721403,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.7222222222222222,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 352.0,
-    "matched_mmsi": "419002047",
-    "matched_name": "OCEAN ALLIANCE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-02-11-03",
-    "date": "2026-02-11",
-    "cluster_id": 20,
-    "cluster_size": 2,
-    "confidence_class": "VESSEL_CANDIDATE",
-    "confidence": 85,
-    "reasons": [
-     "contrast 17.8 dB, 26 px",
-     "seen on 2 passes only; persistence inconclusive",
-     "AIS vessel matched by us nearby (OCEAN ALLIANCE, 352 m)"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22321922280109,
-     8.748090187857924
-    ]
-   },
-   "properties": {
-    "row": 1128.103448275862,
-    "col": 37.241379310344826,
-    "area_px": 29,
-    "mean_intensity_db": 4.8238127053409805,
-    "max_intensity_db": 11.126356494396397,
-    "local_background_db": -11.98065202023231,
-    "contrast_db": 16.80446472557329,
-    "aspect_ratio": 1.6,
-    "fill_ratio": 0.725,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 412.5,
-    "matched_mmsi": "419002047",
-    "matched_name": "OCEAN ALLIANCE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-02-11-04",
-    "date": "2026-02-11",
-    "cluster_id": 24,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 55,
-    "reasons": [
-     "contrast 16.8 dB, 29 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 86 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22900334733744,
-     8.748515388893173
-    ]
-   },
-   "properties": {
-    "row": 1123.8666666666666,
-    "col": 100.96666666666667,
-    "area_px": 30,
-    "mean_intensity_db": -4.365465044198791,
-    "max_intensity_db": -1.7603599602951325,
-    "local_background_db": -16.102771127788586,
-    "contrast_db": 11.737306083589795,
-    "aspect_ratio": 1.1428571428571428,
-    "fill_ratio": 0.5357142857142857,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 198.3,
-    "matched_mmsi": "419826557",
-    "matched_name": "SINTHATHIRAI MATHA",
-    "matched_flag": "IND",
-    "matched_type": "FISHING",
-    "matched_hours": 1,
-    "id": "2026-02-11-05",
-    "date": "2026-02-11",
-    "cluster_id": 26,
-    "cluster_size": 4,
-    "confidence_class": "SUSPECTED_FIXED",
-    "confidence": 31,
-    "fixed_evidence": "position_stable",
-    "reasons": [
-     "contrast 11.7 dB, 30 px",
-     "same spot on 4/4 passes",
-     "position-stable: max cross-pass spread 7 m <= 15 m -> SUSPECTED fixed, not confirmed",
-     "heuristic, not charted: a vessel on a short scope or pinned by current could also stay within this radius -- stays reviewable"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22429385349561,
-     8.75330255731164
-    ]
-   },
-   "properties": {
-    "row": 1070.5,
-    "col": 49.5,
-    "area_px": 12,
-    "mean_intensity_db": 1.749043199515394,
-    "max_intensity_db": 4.815072747081527,
-    "local_background_db": -11.675755867392155,
-    "contrast_db": 13.42479906690755,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.75,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 597.8,
-    "matched_mmsi": "419002047",
-    "matched_name": "OCEAN ALLIANCE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-02-11-06",
-    "date": "2026-02-11",
-    "cluster_id": 28,
-    "cluster_size": 4,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 49,
-    "reasons": [
-     "contrast 13.4 dB, 12 px",
-     "same spot on 4/4 passes",
-     "'matched' AIS identity differs between passes (4 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 94 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.2203668643678,
-     8.754790299347974
-    ]
-   },
-   "properties": {
-    "row": 1053.7142857142858,
-    "col": 6.380952380952381,
-    "area_px": 21,
-    "mean_intensity_db": 13.534594411195755,
-    "max_intensity_db": 20.467989921407256,
-    "local_background_db": -5.188619965999464,
-    "contrast_db": 18.72321437719522,
-    "aspect_ratio": 1.2,
-    "fill_ratio": 0.7,
-    "shape_label": "BLOCKY",
-    "match_status": "MATCHED",
-    "match_distance_m": 534.2,
-    "matched_mmsi": "419002047",
-    "matched_name": "OCEAN ALLIANCE",
-    "matched_flag": "IND",
-    "matched_type": "OTHER",
-    "matched_hours": 1,
-    "id": "2026-02-11-07",
-    "date": "2026-02-11",
-    "cluster_id": 29,
-    "cluster_size": 3,
-    "confidence_class": "PERSISTENT_UNIDENTIFIED",
-    "confidence": 58,
-    "reasons": [
-     "contrast 18.7 dB, 21 px",
-     "same spot on 3/4 passes",
-     "'matched' AIS identity differs between passes (3 ships) -- coarse associations, not a stable identity",
-     "persistent but position spreads 37 m across passes (> 15 m): not pinned like a structure -- infrastructure vs anchored dark vessel unresolved -> review"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "matched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.22459632949902,
-     8.804217081889872
-    ]
-   },
-   "properties": {
-    "row": 507.0,
-    "col": 57.0,
-    "area_px": 5,
-    "mean_intensity_db": -12.372645046063829,
-    "max_intensity_db": -11.649385808652655,
-    "local_background_db": -19.346703963861025,
-    "contrast_db": 6.974058917797196,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "UNMATCHED",
-    "match_distance_m": 2757.6,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "id": "2026-02-11-08",
-    "date": "2026-02-11",
-    "cluster_id": 46,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 3,
-    "reasons": [
-     "contrast 7.0 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "matched",
+    "crop": "2026-02-11-03.png"
    }
   },
   {
@@ -2870,71 +1532,36 @@
     "area_px": 5,
     "mean_intensity_db": -13.205746180769177,
     "max_intensity_db": -11.938456393191748,
-    "local_background_db": -20.232172974722214,
-    "contrast_db": 7.026426793953037,
+    "local_background_db": -20.09455892276998,
+    "contrast_db": 6.888812742000804,
+    "tcr_db": 8.2,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 3896.8,
+    "match_distance_m": 3988.5,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-02-11-09",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-02-11-04",
     "date": "2026-02-11",
-    "cluster_id": 47,
+    "cluster_id": 29,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 3,
     "reasons": [
-     "contrast 7.0 dB, 5 px",
+     "contrast 6.9 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     78.25839922104957,
-     8.826962824043429
-    ]
-   },
-   "properties": {
-    "row": 258.0,
-    "col": 431.0,
-    "area_px": 5,
-    "mean_intensity_db": -13.36187256105902,
-    "max_intensity_db": -12.396772200528742,
-    "local_background_db": -20.14870008194861,
-    "contrast_db": 6.786827520889592,
-    "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
-    "match_status": "UNMATCHED",
-    "match_distance_m": 6083.2,
-    "matched_mmsi": null,
-    "matched_name": null,
-    "matched_flag": null,
-    "matched_type": null,
-    "matched_hours": null,
-    "id": "2026-02-11-10",
-    "date": "2026-02-11",
-    "cluster_id": 48,
-    "cluster_size": 1,
-    "confidence_class": "CLUTTER",
-    "confidence": 3,
-    "reasons": [
-     "contrast 6.8 dB, 5 px",
-     "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
-    ],
-    "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-02-11-04.png"
    }
   },
   {
@@ -2952,30 +1579,36 @@
     "area_px": 5,
     "mean_intensity_db": -13.935308110284845,
     "max_intensity_db": -13.347194017075402,
-    "local_background_db": -20.254936144292767,
-    "contrast_db": 6.319628034007922,
+    "local_background_db": -20.400842871564254,
+    "contrast_db": 6.465534761279409,
+    "tcr_db": 7.1,
+    "eccentricity": 0.0,
+    "solidity": 1.0,
     "aspect_ratio": 1.0,
-    "fill_ratio": 0.5555555555555556,
-    "shape_label": "BLOCKY",
+    "fill_ratio": 0.56,
+    "local_bg_from_global_median": false,
     "match_status": "UNMATCHED",
-    "match_distance_m": 7355.8,
+    "match_distance_m": 4539.9,
     "matched_mmsi": null,
     "matched_name": null,
     "matched_flag": null,
     "matched_type": null,
     "matched_hours": null,
-    "id": "2026-02-11-11",
+    "detector_version": "v3.1-audit",
+    "detector_config": "79d269e96db1",
+    "id": "2026-02-11-05",
     "date": "2026-02-11",
-    "cluster_id": 50,
+    "cluster_id": 30,
     "cluster_size": 1,
     "confidence_class": "CLUTTER",
     "confidence": 2,
     "reasons": [
-     "contrast 6.3 dB, 5 px",
+     "contrast 6.5 dB, 5 px",
      "contrast below 12 dB evidence threshold: not separable from sea clutter at the current bar"
     ],
     "score_basis": "heuristic evidence/ranking score 0-100 (not a calibrated probability)",
-    "ais_evidence": "unmatched"
+    "ais_evidence": "unmatched",
+    "crop": "2026-02-11-05.png"
    }
   }
  ]
