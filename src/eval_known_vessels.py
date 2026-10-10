@@ -26,7 +26,9 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from pyproj import Transformer
+from scipy import ndimage
 from shapely.geometry import Point, box
+from skimage.measure import label as sk_label, regionprops
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import detect_v3
@@ -53,6 +55,54 @@ def vessel_group(rec: dict) -> str:
     if "FISH" in t or "TRAWL" in t:
         return "fishing"
     return "other/unknown type"
+
+
+SIZE_BINS = [(0, 1, "nothing visible"), (1, 100, "<100 m"), (100, 250, "100-250 m"), (250, math.inf, ">250 m")]
+
+
+def apparent_size_m(tif: Path, lon: float, lat: float) -> float | None:
+    """Long axis of the largest bright object within ~800 m of the reference position,
+    measured straight from the image and independent of the detector. Radar glare makes
+    this larger than the true hull length, so it is a size class, not a ship length.
+    0 = nothing bright there; None = no usable image."""
+    with rasterio.open(tif) as src:
+        db = src.read(1).astype("float64")
+        x, y = Transformer.from_crs("EPSG:4326", src.crs, always_xy=True).transform(lon, lat)
+        r, c = src.index(x, y)
+        nodata, px = src.nodata, abs(src.transform.a)
+    w = 80
+    win = db[max(r - w, 0):r + w, max(c - w, 0):c + w]
+    valid = np.isfinite(win) & ((win != nodata) if nodata is not None else True)
+    if valid.sum() < 100:
+        return None
+    bright = ndimage.binary_opening(valid & (win > np.median(win[valid]) + 10))
+    props = regionprops(sk_label(bright))
+    return float(max(props, key=lambda p: p.area).axis_major_length * px) if props else 0.0
+
+
+def jan_rows() -> list[dict]:
+    """Jan 2026 AIS-identified GFW ships: detected if build_gulf_candidates kept a v3
+    detection for that GFW record within MAIN_R (it records gfw_lon/gfw_lat)."""
+    import build_gulf_candidates as bgc
+    kept = {}
+    for f in json.loads((DATA / "scored_gulf.geojson").read_text(encoding="utf-8"))["features"]:
+        p = f["properties"]
+        kept[(p["date"], round(p["gfw_lon"], 5), round(p["gfw_lat"], 5))] = p
+    out = []
+    for r in json.loads((bgc.VAL / "validation_rows.json").read_text(encoding="utf-8")):
+        if not r["gfw_has_ais_match"]:
+            continue
+        if bgc.TUTICORIN_BOX[0] <= r["lon"] <= bgc.TUTICORIN_BOX[2] and bgc.TUTICORIN_BOX[1] <= r["lat"] <= bgc.TUTICORIN_BOX[3]:
+            continue   # not part of the Gulf set (Tuticorin has its own area)
+        i = bgc.gfw_index(r["date"], r)
+        if i is None:
+            continue
+        p = kept.get((r["date"], round(r["lon"], 5), round(r["lat"], 5)))
+        hit = p is not None and p["match_distance_m"] <= MAIN_R
+        out.append({"season": "Jan 2026", "date": r["date"], "name": r["gfw_name"],
+                    "detected_any": hit, "detected_in_queue": hit and p["confidence_class"] not in NOT_IN_QUEUE,
+                    "apparent_size_m": apparent_size_m(bgc.VAL / f"{r['date']}_{i:03d}.tif", r["lon"], r["lat"])})
+    return out
 
 
 def load_land_utm(crs) -> object:
@@ -184,11 +234,27 @@ def main() -> None:
         elif x["nearest_queue_m"] is None or x["nearest_queue_m"] > MAIN_R:
             k = f"detected but scored {x['nearest_any_class']} (not in queue)"
             result["missed_nearest_class"][k] = result["missed_nearest_class"].get(k, 0) + 1
+    # Pooled Jan + Jun-Sep, split by radar-apparent size (no registry lengths: GFW's
+    # registry covers ~1 in 15 of these mostly merchant ships).
+    pooled = [{"season": "Jun-Sep 2026", "date": x["date"], "name": x["name"],
+               "detected_any": x["nearest_any_m"] is not None and x["nearest_any_m"] <= MAIN_R,
+               "detected_in_queue": x["nearest_queue_m"] is not None and x["nearest_queue_m"] <= MAIN_R,
+               "apparent_size_m": apparent_size_m(RECENT / x["tile"], x["lon"], x["lat"])} for x in in_sea]
+    pooled += jan_rows()
+    result["pooled_by_apparent_size"] = {"note": "radar-apparent size incl. glare, not hull length; match radius 1 km"}
+    for lo, hi, label in SIZE_BINS:
+        sub = [x for x in pooled if x["apparent_size_m"] is not None and lo <= x["apparent_size_m"] < hi]
+        result["pooled_by_apparent_size"][label] = {
+            "n": len(sub), "detected_any": sum(x["detected_any"] for x in sub),
+            "detected_in_queue": sum(x["detected_in_queue"] for x in sub)}
+    result["pooled_total"] = {"n": len(pooled), "detected_any": sum(x["detected_any"] for x in pooled),
+                              "detected_in_queue": sum(x["detected_in_queue"] for x in pooled)}
+    result["pooled_rows"] = pooled
     result["rows"] = rows
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
-    print(json.dumps({k: v for k, v in result.items() if k != "rows"}, indent=2, default=str))
+    print(json.dumps({k: v for k, v in result.items() if k not in ("rows", "pooled_rows")}, indent=2, default=str))
     print(f"[out] {OUT}")
 
 

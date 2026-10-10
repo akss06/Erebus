@@ -133,6 +133,356 @@
     "no detection within radius": 15,
     "detected but scored CLUTTER (not in queue)": 2
   },
+  "pooled_by_apparent_size": {
+    "note": "radar-apparent size incl. glare, not hull length; match radius 1 km",
+    "nothing visible": {
+      "n": 4,
+      "detected_any": 1,
+      "detected_in_queue": 0
+    },
+    "<100 m": {
+      "n": 7,
+      "detected_any": 5,
+      "detected_in_queue": 2
+    },
+    "100-250 m": {
+      "n": 15,
+      "detected_any": 7,
+      "detected_in_queue": 6
+    },
+    ">250 m": {
+      "n": 14,
+      "detected_any": 11,
+      "detected_in_queue": 10
+    }
+  },
+  "pooled_total": {
+    "n": 40,
+    "detected_any": 24,
+    "detected_in_queue": 18
+  },
+  "pooled_rows": [
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-06-30",
+      "name": "MSC KANU F",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 165.52204948684863
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-06-30",
+      "name": "FSL KELANG",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 237.87432819143652
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-06-30",
+      "name": "FENG HAI DA",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 198.24246475800737
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-06-30",
+      "name": "MV BLUHA",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 34.64101615137754
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-06-30",
+      "name": "BHARADWAJ",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 166.89292016856828
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-06-30",
+      "name": "PARAKKUMPATAI  BOAT",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 118.55464144256139
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-12",
+      "name": "MSS CHROME",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 246.61225067964085
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-24",
+      "name": "SEA ANGEL",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 52.71572221283754
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-24",
+      "name": "CG 254",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 103.81908584356688
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-24",
+      "name": "ESMERALDA",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 250.47575154452028
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-24",
+      "name": "BARROW ISLAND",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 317.1250497825261
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-24",
+      "name": "OCEAN HOPE",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 194.02118138267508
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-07-24",
+      "name": "JACK.NET-1_92%",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 0.0
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-05",
+      "name": "PARAGON TRADER",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 267.5367815491676
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-05",
+      "name": "CHANG AN 1",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 157.9912550994189
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-17",
+      "name": "HAI FENG NENG YUAN",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 254.66372341449346
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-17",
+      "name": "APJ JAOUAD",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 375.1338415455405
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-17",
+      "name": "MV BLUHA",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 186.24606685229918
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-17",
+      "name": "STAR NICOLE",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 394.11052052015714
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-29",
+      "name": "MSC VANESSA",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 459.014477469743
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-29",
+      "name": "ANASTASIA K",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 478.34387543394405
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-29",
+      "name": "JIA CHEN",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 301.1482456803683
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-08-29",
+      "name": "S.PRABANCHAN NET-1",
+      "detected_any": true,
+      "detected_in_queue": false,
+      "apparent_size_m": 0.0
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-09-10",
+      "name": "JESSICA NET BOAT",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 84.06870423439955
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-09-10",
+      "name": "KMAX RULER",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 296.63177596846174
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-09-10",
+      "name": "LEO SAPPHIRE",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 0.0
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-09-10",
+      "name": "WYATT FISHING BOAT",
+      "detected_any": true,
+      "detected_in_queue": false,
+      "apparent_size_m": 47.4287342047822
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-09-10",
+      "name": "BRUCE",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 239.8631637229352
+    },
+    {
+      "season": "Jun-Sep 2026",
+      "date": "2026-09-22",
+      "name": "ASHICO VICTORIA",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 141.1295952424907
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-06",
+      "name": "LONGVIEW LOGGER",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 261.5513194333855
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-06",
+      "name": "YOUNG GLORY",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 249.7418189103445
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-06",
+      "name": "CHEN GLORY 9",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 117.87016532825876
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-06",
+      "name": "A S R 1 NET BOAT",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 62.01736729460423
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-06",
+      "name": "KUO LUNG",
+      "detected_any": true,
+      "detected_in_queue": false,
+      "apparent_size_m": 228.40864003140464
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-06",
+      "name": "RS FISHING NET BOAT",
+      "detected_any": true,
+      "detected_in_queue": false,
+      "apparent_size_m": 34.64101615137754
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-18",
+      "name": "APJ INDRANI",
+      "detected_any": true,
+      "detected_in_queue": false,
+      "apparent_size_m": 279.39914107509924
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-18",
+      "name": "JAG VIRAAT",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 323.08307934436016
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-30",
+      "name": "SEA ANGEL",
+      "detected_any": true,
+      "detected_in_queue": false,
+      "apparent_size_m": 60.999452699891144
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-30",
+      "name": "KUO LUNG",
+      "detected_any": true,
+      "detected_in_queue": true,
+      "apparent_size_m": 270.14640777801173
+    },
+    {
+      "season": "Jan 2026",
+      "date": "2026-01-30",
+      "name": "MSV DAULAH",
+      "detected_any": false,
+      "detected_in_queue": false,
+      "apparent_size_m": 0.0
+    }
+  ],
   "rows": [
     {
       "date": "2026-06-30",

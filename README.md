@@ -227,6 +227,13 @@ measures detection without hand labels. Jun–Sep 2026 tiles, 1 km radius:
 | large cargo ships / tankers in the queue | 1 / 14 | **9 / 15** |
 | Jan 2026 AIS-identified GFW ships found (1.5 km) | 14 / 22 (v3 with mask bug) | **20 / 22** (chance ≈ 9) |
 
+**By size** (pooled Jan + Jun–Sep, 40 known ships, 1 km). GFW registry lengths exist for
+only ~1 in 15 of these mostly merchant ships, so size is the **radar-apparent** long axis
+measured in the image at each ship's position, independent of the detector. It includes
+glare, so it's a size class, not a hull length. In review queue: >250 m **10/14** ·
+100–250 m **6/15** · <100 m **2/7** · nothing visible at GFW's position 0/4 (total 18/40).
+Detection rises with size, which is consistent with Sentinel-1's 10 m resolution limit for small boats.
+
 The evaluation exposed two v3 bugs, both now fixed (§9): a **size cap** that rejected
 every large ship, and a **water mask** that turned open-ocean tiles into "land". Scope:
 the reference covers only ships that broadcast AIS **and** that GFW's detector saw. It's
