@@ -125,17 +125,9 @@ export default function App() {
               {a.name} <small>({a.detections})</small>
             </button>
           ))}
-          {liveAnalysis ? (
+          {/* Only where the backend can actually run it (local build with Earth Engine credentials). */}
+          {liveAnalysis && (
             <button className={showAnalyze ? "active" : "analyze-btn"} onClick={() => setShowAnalyze(true)}>
-              Run Analysis
-            </button>
-          ) : (
-            <button
-              className="analyze-btn"
-              disabled
-              style={{ opacity: 0.5, cursor: "not-allowed" }}
-              title="Live analysis runs in the local build (needs Earth Engine credentials). This hosted demo serves precomputed results."
-            >
               Run Analysis
             </button>
           )}
