@@ -13,3 +13,5 @@ frontend/dist/
 data/**/*.tif
 data/validation/run.log
 audit/results/
+# raw ISRO EOS-04 downloads (GBs; not served)
+data/eos04/

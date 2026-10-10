@@ -83,6 +83,11 @@ app.add_middleware(
 _lock = threading.Lock()
 
 
+# Same-day ISRO EOS-04 cross-check for the 29 Aug 2026 pass (src/build_eos04_crosscheck.py, README §6).
+_EOS04_PATH = DATA / "eos04_crosscheck.json"
+EOS04 = json.loads(_EOS04_PATH.read_text(encoding="utf-8")) if _EOS04_PATH.exists() else {}
+
+
 def _load_area(area_id: str) -> list[dict]:
     files = AREAS[area_id].get("files") or [AREAS[area_id]["file"]]
     feats = []
@@ -108,6 +113,12 @@ def _load_area(area_id: str) -> list[dict]:
             crop = p["crop"]
         p["crop_url"] = f"/api/crop/{p['id']}" if crop else None
         p["_crop_file"] = crop
+        x = EOS04.get(p["id"])
+        if x:
+            p["eos04"] = {"seen": x["seen"], "distance_m": x["distance_m"],
+                          "s1_time_utc": x["s1_time_utc"], "eos04_time_utc": x["eos04_time_utc"],
+                          "crop_url": f"/api/crop/{p['id']}/eos04" if x.get("crop") else None}
+            p["_eos04_crop_file"] = x.get("crop")
         out.append(p)
     return out
 
@@ -280,6 +291,16 @@ def crop(det_id: str) -> FileResponse:
         if path.exists():
             return FileResponse(path)
     raise HTTPException(404, "crop file missing")
+
+
+@app.get("/api/crop/{det_id}/eos04")
+def crop_eos04(det_id: str) -> FileResponse:
+    d = DETECTIONS.get(det_id)
+    fname = d and d.get("_eos04_crop_file")
+    path = DATA / "recent" / "crops" / fname if fname else None
+    if not path or not path.exists():
+        raise HTTPException(404, "no EOS-04 crop for this detection")
+    return FileResponse(path)
 
 
 @app.get("/api/overlay/tuticorin.png")

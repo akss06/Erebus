@@ -47,6 +47,16 @@ export interface Detection {
   provenance: string;
   crop_url: string | null;
   simulated?: boolean;
+  eos04?: Eos04Check;
+}
+
+// Same-day check against India's EOS-04 radar satellite (29 Aug 2026 pass only).
+export interface Eos04Check {
+  seen: boolean;
+  distance_m: number;
+  s1_time_utc: string;
+  eos04_time_utc: string;
+  crop_url: string | null;
 }
 
 export interface Review {

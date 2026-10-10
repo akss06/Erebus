@@ -110,6 +110,7 @@ dark-vessel-detection/
 │   ├── enrichment_test.py       — enrichment test: do strong blobs cluster at GFW's AIS-less points?
 │   ├── eos04_detect.py          — v3 on an ISRO EOS-04 scene vs the same-day Sentinel-1 tiles (§6)
 │   ├── eos04_anchorage.py       — same comparison over the Tuticorin anchorage box (§6)
+│   ├── build_eos04_crosscheck.py — EOS-04 result + crop per 29 Aug detection, shown in the app (§6)
 │   └── run_multi_date.py        — multi-pass Tuticorin run
 ├── audit/                       — baseline manifest, experiments (calibration/morphology/ablation),
 │                                  results, rescore_historical.py, regen_crops.py
@@ -309,6 +310,11 @@ still comes only from GFW. One day and eight named targets make this a **case st
 not an accuracy figure**. The misses (NORDICO, R99, R127) could be movement in the
 4 min gap, boats too small for 18 m pixels, or Sentinel-1 false alarms; this data cannot
 separate those.
+
+**In the app:** every 29 Aug Gulf detection inside the compared area (132) has a "Seen by a
+second satellite?" line in its detail panel, with the EOS-04 crop of the same 1.2 km of sea,
+for misses as well as hits (`data/eos04_crosscheck.json`, built by
+`src/build_eos04_crosscheck.py`; crops in `data/recent/crops/<id>_eos04.png`).
 
 Reproduce (data in `data/eos04/`, gitignored; needs Earth Engine + `GFW_API_TOKEN`):
 `python -P -E src/eos04_detect.py data/eos04/scene_25/<product dir> 2026-08-29` and

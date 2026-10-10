@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api, API_BASE, type DetectionDetail, type Review } from "./api";
+import { api, API_BASE, type DetectionDetail, type Eos04Check, type Review } from "./api";
 import { CLASSES } from "./classes";
 
 interface Props {
@@ -32,6 +32,12 @@ function aisSentence(d: DetectionDetail): string {
     default:
       return "Unknown: AIS was not checked at this spot.";
   }
+}
+
+function eos04Sentence(e: Eos04Check): string {
+  return e.seen
+    ? `Yes: India's EOS-04 radar satellite (ISRO) passed about 4 minutes later and also saw an object here, ${e.distance_m} m from where Sentinel-1 saw it. That shows something physical was there, not what it is.`
+    : "No: India's EOS-04 radar satellite (ISRO) passed about 4 minutes later and saw nothing within 100 m. The object may have moved, been too small for EOS-04's coarser image, or been a false alarm.";
 }
 
 export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
@@ -89,7 +95,23 @@ export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
             ? `Yes, at this spot on ${passes} satellite passes (${[d.date, ...d.other_passes.map((p) => p.date)].sort().join(", ")}).`
             : "No, only on this one satellite pass."}
         </dd>
+        {d.eos04 && (
+          <>
+            <dt>Seen by a second satellite?</dt>
+            <dd>{eos04Sentence(d.eos04)}</dd>
+          </>
+        )}
       </dl>
+
+      {d.eos04?.crop_url && (
+        <figure>
+          <img src={API_BASE + d.eos04.crop_url} alt="ISRO EOS-04 radar image of the same spot" />
+          <figcaption>
+            ISRO EOS-04 radar image of the same spot, {d.eos04.eos04_time_utc} UTC (Sentinel-1: {d.eos04.s1_time_utc} UTC).
+            The red circle marks where Sentinel-1 saw the object.
+          </figcaption>
+        </figure>
+      )}
 
       {NEEDS_CAUTION.has(d.confidence_class) && (
         <p className="caution">
