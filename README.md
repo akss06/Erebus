@@ -83,13 +83,8 @@ environment and are gitignored — never committed.
 
 ```
 dark-vessel-detection/
-├── PROJECT_SPEC.md              — Round 1 spec, stack decisions, gotchas
-├── ROUND2_PLAN.md               — Round 2 plan, deadlines, jury-question prep
-├── WORKLOG.md                   — chronological record of every step (source of truth)
 ├── README.md                    — this file
 ├── DEPLOY.md                    — step-by-step deploy (Vercel + Render)
-├── FINAL_REPORT.md              — Oct-2026 audit: bugs, corrected claims, experiments, outcomes
-├── AUDIT_CHECKLIST.md           — per-finding evidence → fix → verification table
 ├── Dockerfile / .dockerignore   — backend image for Render / any Docker host
 ├── render.yaml                  — Render blueprint (optional; free tier is created manually)
 ├── requirements.txt             — Python deps (the real detection + API stack)
@@ -118,7 +113,7 @@ dark-vessel-detection/
 ├── config/
 │   └── milestone1_confirmed.json— frozen Round 1 detector settings + AOI
 ├── data/                        — SAR clips (gitignored *.tif), scored GeoJSON, crops, caches
-└── results/                     — findings write-ups (Milestone 1/2, validation, dark search)
+└── results/                     — detection crops / evidence images (PNG) + candidate CSV
 ```
 
 ---
@@ -186,10 +181,9 @@ imagery, not independent-sensor confirmation**, and the lowered bar is an experi
 heuristic, not a validated threshold. A positive **VH/VV cross-pol** signal adds
 confidence but never demotes.
 
-> See [FINAL_REPORT.md](FINAL_REPORT.md), [AUDIT_CHECKLIST.md](AUDIT_CHECKLIST.md) and
-> [audit/](audit/) for the Oct-2026 scientific audit: confirmed bugs, corrected
-> interpretations, experiments (P_fa calibration, morphology, ablation, enrichment),
-> measured outcomes and the experiments blocked by missing labels.
+> See [audit/](audit/) for the Oct-2026 scientific audit scripts and results: confirmed
+> bugs, corrected interpretations, experiments (P_fa calibration, morphology, ablation,
+> enrichment), measured outcomes and the experiments blocked by missing labels.
 
 ---
 
@@ -240,7 +234,7 @@ dark vessels. The Oct-2026 audit re-scored all three sets with the corrected sem
 recent set's detections come from the v3 detector; the Tuticorin and Jan 2026
 *detections* are still the original CA-CFAR output (their geometry is frozen as the
 baseline — re-running them through the corrected v3 detector needs a network JRC fetch
-and is noted as pending in [FINAL_REPORT.md](FINAL_REPORT.md) §5). The Jan 2026 DARK
+and is pending). The Jan 2026 DARK
 count moved 23→16 because the already-committed 12 dB evidence bar (which the recent set
 already used) was finally applied consistently — a relabel, not a detector change.
 
@@ -337,7 +331,7 @@ The frozen Round-1 CA-CFAR detector (`detect.py`) and the GFW validation
 (`validate_vs_gfw.py`) are deliberately left untouched so the §6 validation numbers
 stay honest.
 
-**Still pending (needs data/network, see [FINAL_REPORT.md](FINAL_REPORT.md) §5):**
+**Still pending (needs data/network):**
 (a) an authoritative charted Adam's Bridge reef-chain mask (two Jun-30 dark candidates
 sit on that shoal, which JRC reports as permanent water); (b) re-running the Tuticorin
 and Jan 2026 *detections* through the corrected v3 detector (their scoring is already
@@ -426,8 +420,8 @@ Full step-by-step for both services, in order, is in **[DEPLOY.md](DEPLOY.md)**.
 - **Persistence cannot distinguish a long-anchored dark ship from a fixed structure**
   (see §5). Resolving this needs a known-infrastructure layer and/or shape analysis.
 - **Confidence thresholds involve mild tuning on the same data** they were checked
-  against (noted in `WORKLOG.md`); they need testing on a fresh area to be called
-  validated. The 0–100 score is a **heuristic rank, not a calibrated probability**.
+  against; they need testing on a fresh area to be called validated. The 0–100 score is
+  a **heuristic rank, not a calibrated probability**.
 - **The nominal P_fa = 1e-5 is not the achieved rate.** The GG-CFAR fit trims rather
   than censors the tail; the audit measured ~14.5× inflation on synthetic clutter and
   ~63× pixel exceedance on real tiles. The gates and the 12 dB bar, not the P_fa, do the
@@ -437,8 +431,7 @@ Full step-by-step for both services, in order, is in **[DEPLOY.md](DEPLOY.md)**.
   above a small boat — a sensitivity cost traded for ~4.5× fewer raw detections.
 - **No labelled ground truth exists.** All quantitative results are density, pixel
   exceedance, coverage or population-level enrichment — **never precision/recall or
-  "false objects per km²"**, which would require an independent labelled set (§5 of the
-  final report lists what is blocked on this).
+  "false objects per km²"**, which would require an independent labelled set.
 - **Reefs and azimuth ambiguities still produce some false positives.** Intermittently
   exposed shoals (e.g. Adam's Bridge) can read as targets, and strong scatterers throw
   bright azimuth-ambiguity "ghost" streaks; the v3 shape/mask gates reduce but do not
@@ -449,6 +442,5 @@ Full step-by-step for both services, in order, is in **[DEPLOY.md](DEPLOY.md)**.
 
 ---
 
-See `WORKLOG.md` for the full step-by-step record and `results/` for the detailed
-Milestone 1/2, validation, and dark-search write-ups.
+See the commit history for the full step-by-step record.
 ```

@@ -34,3 +34,12 @@ data/scored_analysis_*.geojson
 # frontend build artifacts
 frontend/node_modules/
 frontend/dist/
+
+# internal docs - kept local, not pushed to the public GitHub repo
+CLAUDE.md
+WORKLOG.md
+PROJECT_SPEC.md
+ROUND2_PLAN.md
+FINAL_REPORT.md
+AUDIT_CHECKLIST.md
+results/*.md
