@@ -7,7 +7,9 @@ interface Props {
   onSelect: (id: string) => void;
 }
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const VERDICT_LABEL = { confirm: "ship", reject: "not a ship", unsure: "can't tell" } as const;
+
+const MONTHS =["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function dateSummary(dates: string[]): string {
   if (!dates.length) return "";
@@ -22,11 +24,11 @@ export default function AlertsPanel({ alerts, selectedId, onSelect }: Props) {
       <h2>Review queue</h2>
       <p className="muted small">
         {alerts.length} location{alerts.length !== 1 ? "s" : ""}, most suspicious first.
-        {dark > 0 && <> · <b style={{ color: "#ff4d4f" }}>{dark} dark candidate{dark !== 1 ? "s" : ""}</b></>}
+        {dark > 0 && <> · <b style={{ color: "#ff4d4f" }}>{dark} with no AIS match</b></>}
       </p>
       {dark === 0 && (
         <p className="notice">
-          No dark-vessel candidates. Every radar return has a nearby AIS vessel.
+          No ship-like returns without an AIS match in this area.
         </p>
       )}
       <ul className="alerts">
@@ -41,7 +43,7 @@ export default function AlertsPanel({ alerts, selectedId, onSelect }: Props) {
                   {a.matched_names[0] ?? "no AIS match"} · {a.passes_seen} pass{a.passes_seen > 1 ? "es" : ""}{a.dates.length > 0 && ` · ${dateSummary(a.dates)}`}
                 </div>
               </div>
-              {a.review && <span className={`badge ${a.review.verdict}`}>{a.review.verdict}</span>}
+              {a.review && <span className={`badge ${a.review.verdict}`}>{VERDICT_LABEL[a.review.verdict]}</span>}
             </li>
           );
         })}

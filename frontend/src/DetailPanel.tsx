@@ -10,10 +10,29 @@ interface Props {
 }
 
 const VERDICTS: { value: Review["verdict"]; label: string }[] = [
-  { value: "confirm", label: "Confirm" },
-  { value: "reject", label: "Reject" },
-  { value: "unsure", label: "Unsure" },
+  { value: "confirm", label: "Looks like a ship" },
+  { value: "reject", label: "Not a ship" },
+  { value: "unsure", label: "Can't tell" },
 ];
+
+// Classes where a missing AIS signal is the point -- show the "lead, not proof" caution.
+const NEEDS_CAUTION = new Set(["DARK_CANDIDATE", "UNVERIFIED_TARGET", "PERSISTENT_UNIDENTIFIED"]);
+
+function aisSentence(d: DetectionDetail): string {
+  const who = `${d.matched_name || "an unnamed ship"}${d.matched_flag ? ` (${d.matched_flag})` : ""}`;
+  switch (d.ais_evidence) {
+    case "matched":
+      return `Yes: ${who} was broadcasting AIS ${d.match_distance_m?.toFixed(0)} m away.`;
+    case "gfw_reported_ais":
+      return `Yes: Global Fishing Watch links this spot to ${who}, a ship broadcasting AIS.`;
+    case "gfw_reported_no_ais":
+      return "No: Global Fishing Watch saw something here too, but no AIS-broadcasting ship was linked to it.";
+    case "unmatched":
+      return "No: no AIS-broadcasting ship was found nearby.";
+    default:
+      return "Unknown: AIS was not checked at this spot.";
+  }
+}
 
 export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
   const [d, setD] = useState<DetectionDetail | null>(null);
@@ -30,6 +49,9 @@ export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
 
   if (!d) return <aside className="panel"><p className="muted">Loading…</p></aside>;
   const info = CLASSES[d.confidence_class];
+  const brighter = Math.round(10 ** (d.contrast_db / 10));
+  const across = Math.round(Math.sqrt(d.area_px) * 10);   // 10 m pixels
+  const passes = d.other_passes.length + 1;
 
   const submit = async (verdict: Review["verdict"]) => {
     setSaving(true);
@@ -42,76 +64,58 @@ export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
   return (
     <aside className="panel">
       <button className="link" onClick={onClose}>← Back to review queue</button>
+      {d.simulated && <p className="provenance sim">{d.provenance}</p>}
+
       <h2>
         <span className="dot" style={{ background: info.color }} /> {info.label}
       </h2>
-      <p className="muted">{info.blurb}</p>
-      {d.fixed_evidence && (
-        <p className="muted small">
-          {d.fixed_evidence === "charted" ? <>Fixed-object basis: <b>charted fixed-infrastructure feature (confirmed)</b></>
-            : d.fixed_evidence === "chain_geometry" ? <><b>Suspected</b> fixed/reef basis: collinear persistent chain (reef/shoal/causeway geometry) &mdash; not confirmed, still reviewable</>
-            : <><b>Suspected</b> fixed basis: position-stable across passes (heuristic, not charted) &mdash; not confirmed, still reviewable</>}
-        </p>
-      )}
+      <p>{info.blurb}</p>
 
-      <div className="stat-row">
-        <div title={d.score_basis ?? "heuristic evidence/ranking score, not a calibrated probability"}>
-          <b>{d.confidence}</b><span>evidence score /100</span>
-        </div>
-        <div><b>{d.contrast_db.toFixed(1)} dB</b><span>contrast</span></div>
-        <div><b>{d.area_px}</b><span>pixels</span></div>
-      </div>
-      <p className="muted small">
-        The score is a heuristic ranking of evidence (radar strength, size, persistence, AIS), not a probability that this is a vessel.
-      </p>
-
-      {d.crop_url ? (
+      {d.crop_url && (
         <figure>
-          <img src={API_BASE + d.crop_url} alt="Radar crop around the detection" />
-          <figcaption>Sentinel-1 radar crop, detection at the centre ({d.date})</figcaption>
+          <img src={API_BASE + d.crop_url} alt="Satellite radar image around the detection" />
+          <figcaption>Satellite radar image, {d.date}. The detected object is circled in red.</figcaption>
         </figure>
-      ) : (
-        <p className="muted small">No evidence crop saved for this detection yet.</p>
       )}
 
-      <h3>Why this class</h3>
-      <ul>{d.reasons.map((r) => <li key={r}>{r}</li>)}</ul>
+      <dl className="facts">
+        <dt>What the satellite saw</dt>
+        <dd>A bright object roughly {across} m across, about {brighter}× brighter than the sea around it.</dd>
+        <dt>Is a ship broadcasting its position (AIS) here?</dt>
+        <dd>{aisSentence(d)}</dd>
+        <dt>Seen here before?</dt>
+        <dd>
+          {passes > 1
+            ? `Yes, at this spot on ${passes} satellite passes (${[d.date, ...d.other_passes.map((p) => p.date)].sort().join(", ")}).`
+            : "No, only on this one satellite pass."}
+        </dd>
+      </dl>
 
-      <h3>AIS &amp; GFW evidence</h3>
-      {d.ais_evidence === "matched" ? (
-        <p>
-          AIS vessel matched by us: <b>{d.matched_name || "unknown"}</b>
-          {d.matched_flag ? ` (${d.matched_flag})` : ""}, {d.match_distance_m?.toFixed(0)} m away.
-        </p>
-      ) : d.ais_evidence === "gfw_reported_ais" ? (
-        <p>
-          GFW's SAR record here carries an AIS identity: <b>{d.matched_name || "unknown"}</b>
-          {d.matched_flag ? ` (${d.matched_flag})` : ""}
-          {d.match_distance_m != null ? `, ${d.match_distance_m.toFixed(0)} m away` : ""}. This is GFW-reported, not an
-          independent AIS match by us.
-        </p>
-      ) : d.ais_evidence === "gfw_reported_no_ais" ? (
-        <p>GFW's SAR record here has no AIS identity (GFW-reported absence, not a verified no-AIS observation).</p>
-      ) : d.ais_evidence === "unmatched" ? (
-        <p>No AIS vessel within our match radius.</p>
-      ) : (
-        <p>AIS status unknown (no GFW record within radius and no AIS checked by us).</p>
-      )}
-      {d.gfw_association && (
-        <p className="muted small">
-          GFW SAR association: <b>{d.gfw_association}</b>
-          {d.gfw_association === "ambiguous" ? " — one coarse GFW record covers several detections, so the identity is not confident." : ""}
+      {NEEDS_CAUTION.has(d.confidence_class) && (
+        <p className="caution">
+          A missing AIS signal is a reason to check, not proof of wrongdoing. Many small fishing boats don't carry AIS at all.
         </p>
       )}
-      <p className="muted small">
-        GFW's SAR-presence product is derived from the same Sentinel-1 imagery (shared-sensor algorithmic agreement, not an
-        independent sensor). Its AIS is daily and ~1 km, so it cannot prove a ship was broadcasting at the moment of the pass.
-      </p>
 
-      {d.other_passes.length > 0 && (
-        <>
-          <h3>Same location on other passes</h3>
-          <table>
+      <h3>Your review</h3>
+      <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Optional note" maxLength={500} />
+      <div className="verdicts">
+        {VERDICTS.map((v) => (
+          <button key={v.value} disabled={saving} className={d.review?.verdict === v.value ? "active" : ""} onClick={() => submit(v.value)}>
+            {v.label}
+          </button>
+        ))}
+      </div>
+
+      <details className="tech">
+        <summary>Technical details</summary>
+        <p className="small">
+          Ranking score <b>{d.confidence}/100</b> (orders the review queue; not a probability) · contrast{" "}
+          <b>{d.contrast_db.toFixed(1)} dB</b> · <b>{d.area_px}</b> pixels (10 m each)
+        </p>
+        <ul className="small">{d.reasons.map((r) => <li key={r}>{r}</li>)}</ul>
+        {d.other_passes.length > 0 && (
+          <table className="small">
             <tbody>
               {d.other_passes.map((p) => (
                 <tr key={p.id}>
@@ -122,20 +126,14 @@ export default function DetailPanel({ id, sim, onClose, onReviewed }: Props) {
               ))}
             </tbody>
           </table>
-        </>
-      )}
-
-      <h3>Analyst review</h3>
-      <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Optional note" maxLength={500} />
-      <div className="verdicts">
-        {VERDICTS.map((v) => (
-          <button key={v.value} disabled={saving} className={d.review?.verdict === v.value ? "active" : ""} onClick={() => submit(v.value)}>
-            {v.label}
-          </button>
-        ))}
-      </div>
-
-      <p className={d.simulated ? "provenance sim" : "provenance"}>Provenance: {d.provenance}</p>
+        )}
+        <p className="small muted">
+          Global Fishing Watch detects ships from the same Sentinel-1 images, so its agreement is a second algorithm, not an
+          independent sensor. Its AIS data is daily and ~1 km coarse.
+          {d.gfw_association === "ambiguous" && " Here one GFW record covers several detections, so the identity is not certain."}
+        </p>
+        {!d.simulated && <p className="small muted">Source: {d.provenance} · ID {d.id}</p>}
+      </details>
     </aside>
   );
 }

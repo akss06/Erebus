@@ -6,47 +6,48 @@ interface ClassInfo {
   blurb: string;
 }
 
-// Plain-language names; the blurb is what a judge reads to understand the class.
+// Plain-language names; the blurb is what a non-expert reads to understand the class.
+// "Unmatched" is never called a dark vessel: a missing AIS signal is a lead, not proof.
 export const CLASSES: Record<ConfClass, ClassInfo> = {
   DARK_CANDIDATE: {
-    label: "Dark vessel candidate",
+    label: "No AIS match: needs review",
     color: "#ff4d4f",
-    blurb: "Looks like a ship on radar with no matching AIS signal -- either none within our radius, or GFW reports no AIS here (a reported absence, not a verified one). Needs human verification before any claim.",
+    blurb: "Looks like a ship on radar, but no ship broadcasting its position was found here. A person needs to check it before drawing any conclusion.",
   },
   UNVERIFIED_TARGET: {
-    label: "Unverified target",
+    label: "AIS not checked: needs review",
     color: "#fa8c16",
-    blurb: "Strong, ship-sized radar return, but AIS status was never established (not checked / no reference). A candidate for review -- it cannot be called 'dark' without checking AIS.",
+    blurb: "A strong, ship-sized radar return, but we had no AIS data for this spot, so we can't say whether it was broadcasting.",
   },
   VESSEL_CANDIDATE: {
     label: "Likely vessel",
     color: "#36cfc9",
-    blurb: "Bright, ship-sized return seen on one pass, with an AIS vessel nearby.",
+    blurb: "Looks like a ship on radar, and a ship broadcasting its position (AIS) was nearby.",
   },
   ANCHORED_VESSEL: {
     label: "Ship at anchor",
     color: "#52c41a",
-    blurb: "Same spot on several passes and the same AIS vessel every time.",
+    blurb: "The same AIS-identified ship, seen at this spot on several satellite passes.",
   },
   LOW_CONFIDENCE: {
     label: "Low confidence",
     color: "#faad14",
-    blurb: "Bright but small or weak. Not enough evidence either way.",
+    blurb: "Something bright but small or faint. Not enough to say either way.",
   },
   PERSISTENT_UNIDENTIFIED: {
-    label: "Persistent, unidentified",
+    label: "Seen repeatedly, unidentified",
     color: "#9254de",
-    blurb: "Same spot on several passes with no consistent AIS identity. Could be fixed infrastructure OR a dark ship anchored for weeks -- persistence alone cannot tell them apart. Stays in the review queue.",
+    blurb: "Something at this spot on several passes, with no AIS identity. It could be a structure or a ship anchored for a long time; radar alone can't tell them apart.",
   },
   SUSPECTED_FIXED: {
-    label: "Suspected fixed / reef",
+    label: "Possibly fixed object / reef",
     color: "#596e8c",
-    blurb: "Pattern consistent with fixed infrastructure or a reef/shoal -- a collinear persistent chain, or a return pinned to one spot across passes -- but NOT confirmed. Could still be vessels. Stays in the review queue; this is a suspected label, not a charted one.",
+    blurb: "Behaves like a fixed object or reef (it never moves, or lines up with others). Not confirmed, so it stays in the review queue.",
   },
   FIXED_OBJECT: {
     label: "Fixed object (charted)",
     color: "#8c8c8c",
-    blurb: "Confirmed fixed infrastructure from a charted feature (not inferred from persistence or geometry): a pipeline, platform or shoal, not a ship.",
+    blurb: "A structure shown on official charts, such as a platform or pipeline. Not a ship.",
   },
   CLUTTER: {
     label: "Sea clutter",

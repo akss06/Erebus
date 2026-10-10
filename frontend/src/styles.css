@@ -48,12 +48,18 @@ button.link { background: none; border: none; color: var(--accent); padding: 0 0
 .stat-row b { display: block; font-size: 16px; }
 .stat-row span { color: var(--muted); font-size: 11px; }
 figure { margin: 0; }
-figure img { width: 100%; border-radius: 8px; image-rendering: pixelated; border: 1px solid var(--line); }
+figure img { width: 100%; max-width: 320px; display: block; margin: 0 auto; border-radius: 8px; image-rendering: pixelated; border: 1px solid var(--line); }
 figcaption { color: var(--muted); font-size: 12px; margin-top: 4px; }
 ul { padding-left: 18px; margin: 4px 0; }
 table { width: 100%; font-size: 13px; border-collapse: collapse; }
 td { padding: 3px 4px; border-bottom: 1px solid var(--line); }
 textarea { width: 100%; min-height: 56px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px; font: inherit; resize: vertical; }
+.facts { margin: 12px 0; }
+.facts dt { color: var(--muted); font-size: 12px; margin-top: 10px; }
+.facts dd { margin: 2px 0 0; }
+.caution { font-size: 13px; color: var(--muted); border-left: 3px solid #faad14; padding-left: 8px; }
+.tech { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 8px; }
+.tech summary { cursor: pointer; color: var(--muted); font-size: 13px; }
 .verdicts { display: flex; gap: 8px; margin-top: 8px; }
 .verdicts button { flex: 1; }
 .provenance { margin-top: 16px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
