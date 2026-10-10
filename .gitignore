@@ -20,6 +20,9 @@ data/ne_10m_land.zip
 # deployed app actually reads, so those stay tracked
 data/**/*.tif
 
+# raw ISRO EOS-04 downloads from Bhoonidhi (zips + extracted products, 100s of MB)
+data/eos04/
+
 # downloaded validation tiles are covered by data/**/*.tif; run logs too
 data/validation/run.log
 data/reviews.json

@@ -1,0 +1,150 @@
+{
+  "product": "E04_SAR_MRS_29AUG2026_241003626491_25051_STUC00ZTD_1565_25_DH_D_R_N08483_E077960",
+  "scene_center_time_utc": "29-AUG-2026 00:36:37.806000000",
+  "pixel_m": 18.0,
+  "v3_rescaled": {
+    "MAX_BLOB_PX": 185,
+    "GUARD_PX": 3,
+    "TRAIN_PX": 11,
+    "config_hash": "4d348a54232c"
+  },
+  "tiles_run": 13,
+  "eos04_detections": 25,
+  "comparison": {
+    "all": {
+      "n_s1": 132,
+      "within_100m": 6,
+      "within_250m": 13,
+      "within_500m": 30,
+      "rows": null
+    },
+    "not_clutter": {
+      "n_s1": 5,
+      "within_100m": 3,
+      "within_250m": 3,
+      "within_500m": 3,
+      "rows": [
+        {
+          "id": "2026-08-29-R99",
+          "class": "DARK_CANDIDATE",
+          "ais": "UNMATCHED",
+          "area_px_s1": 45,
+          "nearest_eos04_m": 1121.0
+        },
+        {
+          "id": "2026-08-29-R110",
+          "class": "DARK_CANDIDATE",
+          "ais": "UNMATCHED",
+          "area_px_s1": 44,
+          "nearest_eos04_m": 98.0
+        },
+        {
+          "id": "2026-08-29-R117",
+          "class": "VESSEL_CANDIDATE",
+          "ais": "MATCHED",
+          "area_px_s1": 101,
+          "nearest_eos04_m": 27.0
+        },
+        {
+          "id": "2026-08-29-R118",
+          "class": "VESSEL_CANDIDATE",
+          "ais": "MATCHED",
+          "area_px_s1": 130,
+          "nearest_eos04_m": 31.0
+        },
+        {
+          "id": "2026-08-29-R127",
+          "class": "UNVERIFIED_TARGET",
+          "ais": "UNMATCHED",
+          "area_px_s1": 28,
+          "nearest_eos04_m": 2436.0
+        }
+      ]
+    },
+    "ais_matched": {
+      "n_s1": 11,
+      "within_100m": 4,
+      "within_250m": 6,
+      "within_500m": 6,
+      "rows": [
+        {
+          "id": "2026-08-29-R80",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 985.0
+        },
+        {
+          "id": "2026-08-29-R88",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 1345.0
+        },
+        {
+          "id": "2026-08-29-R89",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 1448.0
+        },
+        {
+          "id": "2026-08-29-R111",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 217.0
+        },
+        {
+          "id": "2026-08-29-R113",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 18.0
+        },
+        {
+          "id": "2026-08-29-R115",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 8,
+          "nearest_eos04_m": 57.0
+        },
+        {
+          "id": "2026-08-29-R116",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 123.0
+        },
+        {
+          "id": "2026-08-29-R117",
+          "class": "VESSEL_CANDIDATE",
+          "ais": "MATCHED",
+          "area_px_s1": 101,
+          "nearest_eos04_m": 27.0
+        },
+        {
+          "id": "2026-08-29-R118",
+          "class": "VESSEL_CANDIDATE",
+          "ais": "MATCHED",
+          "area_px_s1": 130,
+          "nearest_eos04_m": 31.0
+        },
+        {
+          "id": "2026-08-29-R121",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 536.0
+        },
+        {
+          "id": "2026-08-29-R124",
+          "class": "CLUTTER",
+          "ais": "MATCHED",
+          "area_px_s1": 5,
+          "nearest_eos04_m": 1192.0
+        }
+      ]
+    }
+  }
+}

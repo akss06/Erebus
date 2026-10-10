@@ -108,6 +108,8 @@ dark-vessel-detection/
 │   ├── run_recent.py            — multi-date hotspot pipeline on recent (Jun–Sep 2026) passes
 │   ├── eval_known_vessels.py    — known-vessel evaluation: do we find GFW's AIS-identified ships? (§6)
 │   ├── enrichment_test.py       — enrichment test: do strong blobs cluster at GFW's AIS-less points?
+│   ├── eos04_detect.py          — v3 on an ISRO EOS-04 scene vs the same-day Sentinel-1 tiles (§6)
+│   ├── eos04_anchorage.py       — same comparison over the Tuticorin anchorage box (§6)
 │   └── run_multi_date.py        — multi-pass Tuticorin run
 ├── audit/                       — baseline manifest, experiments (calibration/morphology/ablation),
 │                                  results, rescore_historical.py, regen_crops.py
@@ -245,6 +247,72 @@ n = 29 it's indicative, not a precision/recall figure. Position offset to GFW (m
 over Indian waters across five separate tests (677 ships in a global box; 0 in ours).
 This is the concrete, tested case for an official feed (Coast Guard / NIC) — the
 single biggest gap in operational-grade matching.
+
+### Cross-check with an Indian satellite: ISRO EOS-04, 29 Aug 2026
+
+Every check above uses Sentinel-1, including GFW's (same images, different algorithm).
+To get a check from a **different sensor**, we ran the same v3 detector on a free
+**ISRO EOS-04 (RISAT-1A)** C-band image from Bhoonidhi (NRSC) and compared the two.
+
+**Why only this day.** A fair comparison needs both satellites over the same sea at
+nearly the same time, or ships move between images. Over the Gulf of Mannar,
+Sentinel-1 has one track (00:32 UTC, every 12 days) and free EOS-04 MRS scenes come
+every ~8–9 days. The Bhoonidhi catalogue for Jan–Feb and Jun–Sep 2026 gives exactly
+**one same-day pair: 29 Aug 2026**, Sentinel-1 at 00:32:16 and EOS-04 at ~00:36:38 UTC
+(**~4 min apart**). Other dates are ≥ 1 day apart, where only anchored ships could line
+up and a miss means nothing, so they were not used.
+
+**Method.**
+- Product `E04_SAR_MRS_L2B_DH` (scene `…_1565_25_…`): UTM 43N GeoTIFF, **18 m pixels**,
+  HH + HV, 16-bit counts. Converted to σ⁰ dB = 20·log₁₀(DN) − K, with K = 69.263 from
+  the product's `BAND_META.txt`. HH stands in for VV and HV for VH.
+- `detect_v3.py` is unchanged. Its pixel-count settings are rescaled to cover the same
+  ground at 18 m as at 10 m (`MAX_BLOB_PX` 600 → 185, `GUARD_PX` 5 → 3, `TRAIN_PX` 20 → 11);
+  metre-based settings (1 km shore buffer) need nothing. Rescaled, **not tuned**.
+- **Open sea** (`src/eos04_detect.py`): EOS-04 is cut into the same 13 × 9 km windows
+  the Sentinel-1 29 Aug run used, with the same 3 km-from-centre filter and 60 m dedupe.
+- **Tuticorin anchorage** (`src/eos04_anchorage.py`): the Tuticorin-tab box
+  (78.22–78.32E, 8.72–8.85N), which the Gulf run skips and the Tuticorin tab only has
+  for Jan–Feb. Own AIS match (GFW presence, 1.5 km), as in the Tuticorin tab.
+- "Seen by both" = a detection from the other satellite within **100 m**.
+
+**Results.**
+
+| Target | AIS (via GFW) | Sentinel-1 | EOS-04 | Offset |
+|---|---|---|---|---|
+| ANASTASIA K | yes | ✓ | ✓ | 27 m |
+| JIA CHEN | yes | ✓ | ✓ | 31 m |
+| ASHICO VICTORIA (anchorage) | yes | ✓ | ✓ | 40 m |
+| NEREUS PROGRESS (anchorage) | yes | ✓ | ✓ | 46 m |
+| NORDICO (anchorage) | yes | ✓ | – | nearest 2.8 km |
+| R110 | **no match** | ✓ | ✓ | 98 m |
+| R99 | **no match** | ✓ | – | nearest 1.1 km |
+| R127 | **no match** | ✓ | – | nearest 2.4 km |
+
+Clearly visible AIS ships: **4 of 5** seen by both satellites, 27–46 m apart.
+Sentinel-1 no-AIS candidates rated real-looking (not clutter): **1 of 3** also seen by
+EOS-04. Small targets at the anchorage's south edge appear 280–460 m apart between the
+two images (boats moving ~2–3.5 kn, or different objects; can't tell). Most detections
+v3 already classes as clutter do not reappear on EOS-04 (13 of 132 within 250 m), but
+EOS-04's coarser pixels confound that comparison.
+
+Figures: `audit/results/eos04_vs_s1_2026-08-29_chips.png` (the targets side by side),
+`audit/results/eos04_vs_s1_2026-08-29_anchorage.png` (the anchorage). Numbers:
+`audit/results/eos04_vs_s1_2026-08-29_scene25.json`, `..._anchorage.json`.
+
+**What it shows and doesn't.** A second, independently operated satellite saw the same
+ships in the same places, so the detector is finding physical objects, not image
+artefacts. Unlike GFW agreement, this is a different sensor (different satellite,
+operator, polarisation, resolution and viewing geometry). It says **nothing about
+identity or AIS status**: R110 is still an unverified candidate, and its "no AIS" label
+still comes only from GFW. One day and eight named targets make this a **case study,
+not an accuracy figure**. The misses (NORDICO, R99, R127) could be movement in the
+4 min gap, boats too small for 18 m pixels, or Sentinel-1 false alarms; this data cannot
+separate those.
+
+Reproduce (data in `data/eos04/`, gitignored; needs Earth Engine + `GFW_API_TOKEN`):
+`python -P -E src/eos04_detect.py data/eos04/scene_25/<product dir> 2026-08-29` and
+`python -P -E src/eos04_anchorage.py data/eos04/scene_25/<product dir>`.
 
 ---
 
@@ -459,7 +527,8 @@ Full step-by-step for both services, in order, is in **[DEPLOY.md](DEPLOY.md)**.
   patchy over India; free live AIS has no coverage here. "No AIS" means "not in GFW's
   AIS data," which is **not** the same as "deliberately dark."
 - **Our detector and GFW's share the same Sentinel-1 scenes**, so agreement between
-  them is two algorithms on one image, not two independent sensors.
+  them is two algorithms on one image, not two independent sensors. The one
+  independent-sensor check (ISRO EOS-04, §6) covers a single day and eight targets.
 - **Persistence cannot distinguish a long-anchored dark ship from a fixed structure**
   (see §5). Resolving this needs a known-infrastructure layer and/or shape analysis.
 - **Confidence thresholds involve mild tuning on the same data** they were checked
