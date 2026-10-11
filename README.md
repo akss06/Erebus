@@ -249,6 +249,33 @@ over Indian waters across five separate tests (677 ships in a global box; 0 in o
 This is the concrete, tested case for an official feed (Coast Guard / NIC) — the
 single biggest gap in operational-grade matching.
 
+### Blind labelling of the review queue (Oct 2026)
+
+Do the locations the app puts in front of an analyst actually look like ships? Three team
+members labelled 93 radar crops in an offline sheet that showed **only the image** (no class,
+score, AIS status or date), in random order: the **73 Gulf review-queue locations** plus
+**20 detections the system had discarded as clutter**, mixed in as hidden controls. Each image
+was judged "looks like a ship", "not a ship" or "can't tell".
+
+| Group | ≥ 2 of 3 said "ship" | Nobody said "ship" |
+|---|---|---|
+| Review queue (all) | **48 / 73** | 9 / 73 |
+| · no AIS match | 23 / 32 | 1 / 32 |
+| · AIS-broadcasting likely vessels | 19 / 19 | 0 / 19 |
+| · possibly fixed object / reef | 5 / 17 | 5 / 17 |
+| Discarded as clutter (controls) | **2 / 20** | 15 / 20 |
+
+The queue is strongly concentrated on ship-like targets compared with what the filter throws
+away, and every AIS ship was recognised. **Limits:** agreement between labellers was low
+(55–78 % pairwise on ship vs not; Fleiss κ = 0.15), the labellers are team members rather than
+independent radar experts, Labeller A is the project author and finished quickly, and the
+control set is small. Without Labeller A, both remaining labellers said "ship" for 29/73 queue
+locations vs 1/20 controls. This is **not an accuracy figure**: "looks like a ship" is a human
+judgement of a 1.2 km radar crop, not ground truth.
+
+Files: `audit/labelling/` (sheet builder, template, scorer, answer key) and
+`audit/results/blind_labelling.json` (`…_excl_labeller_a.json` without Labeller A).
+
 ### Cross-check with an Indian satellite: ISRO EOS-04, 29 Aug 2026
 
 Every check above uses Sentinel-1, including GFW's (same images, different algorithm).

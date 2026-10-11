@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erébus Blind Labelling</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1b1f24; --muted: #5b6573; --line: #d9dee5;
+    --ship: #1a7f37; --not: #b42318; --unsure: #8a6100; --accent: #2563eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1216; --card: #171b21; --text: #e6e9ee; --muted: #9aa4b2; --line: #2a313b;
+            --ship: #3fb950; --not: #f85149; --unsure: #d29922; --accent: #60a5fa; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .muted { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 16px; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  input[type=text] { width: 100%; padding: 10px; font: inherit; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }
+  button { font: inherit; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--text); padding: 10px 14px; cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  .verdicts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .verdicts button { padding: 14px 6px; font-weight: 600; }
+  .verdicts button[data-v=ship] { border-color: var(--ship); color: var(--ship); }
+  .verdicts button[data-v=not] { border-color: var(--not); color: var(--not); }
+  .verdicts button[data-v=unsure] { border-color: var(--unsure); color: var(--unsure); }
+  .verdicts button.chosen[data-v=ship] { background: var(--ship); color: #fff; }
+  .verdicts button.chosen[data-v=not] { background: var(--not); color: #fff; }
+  .verdicts button.chosen[data-v=unsure] { background: var(--unsure); color: #fff; }
+  .img { width: min(100%, 58vh); margin: 0 auto; aspect-ratio: 1; background: #000; border-radius: 8px; overflow: hidden; }
+  .img img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; display: block; }
+  .bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; margin: 8px 0 12px; }
+  .bar > div { height: 100%; background: var(--accent); }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .hint { font-size: 13px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Erébus: blind labelling</h1>
+  <p class="muted">Radar images from the Gulf of Mannar. For each one, decide whether the object in the red circle looks like a ship.</p>
+
+  <section id="intro" class="card">
+    <div id="rules">
+    <b>How to judge</b>
+    <ul>
+      <li><b>Looks like a ship:</b> a compact bright spot, maybe slightly stretched. Big ships sometimes have a faint bright cross or line through them (radar glare).</li>
+      <li><b>Not a ship:</b> a long thin streak or line, part of a coastline or reef, a fuzzy patch, or speckle barely brighter than the sea.</li>
+      <li><b>Can't tell:</b> anything in between. This is a valid answer; use it honestly.</li>
+    </ul>
+    <p class="hint muted">Each image is about 1.2 km across. Judge only what you see. Don't look anything up or discuss with teammates until everyone has finished. Your progress is saved in this browser, so you can close the page and come back. Keyboard: 1 = ship, 2 = not a ship, 3 = can't tell, ← = back.</p>
+    </div>
+    <label for="name"><b>Your name</b></label>
+    <input id="name" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Priya">
+    <p><button id="start" class="primary" disabled>Start</button></p>
+  </section>
+
+  <section id="label" class="card" hidden>
+    <div class="row"><span id="pos" class="muted"></span><span id="code" class="muted"></span></div>
+    <div class="bar"><div id="fill"></div></div>
+    <div class="img"><img id="img" alt="Radar image; the object to judge is in the red circle"></div>
+    <div class="verdicts">
+      <button data-v="ship">Looks like a ship</button>
+      <button data-v="not">Not a ship</button>
+      <button data-v="unsure">Can't tell</button>
+    </div>
+    <details id="howto" style="margin-top:12px"><summary>How to judge</summary></details>
+    <div class="row" style="margin-top:12px">
+      <button id="back">← Back</button>
+      <button id="toEnd">Finish / download</button>
+    </div>
+  </section>
+
+  <section id="done" class="card" hidden>
+    <b>Thank you!</b>
+    <p id="summary"></p>
+    <p><button id="download" class="primary">Download my answers</button></p>
+    <p class="hint muted">Send the downloaded file to Akshat. You can go back to change answers before downloading.</p>
+    <button id="review">← Back to the images</button>
+  </section>
+</main>
+
+<script>
+const ITEMS = __ITEMS__;
+const KEY = "erebus-blind-labelling-v1";
+let state = { name: "", labels: {}, i: 0 };
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.labels) state = s; } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+const $ = (id) => document.getElementById(id);
+const show = (id) => ["intro", "label", "done"].forEach((s) => ($(s).hidden = s !== id));
+const count = () => Object.keys(state.labels).length;
+
+{ const r = $("rules").cloneNode(true); r.removeAttribute("id"); r.querySelector("b").remove(); $("howto").appendChild(r); }
+$("name").value = state.name;
+const nameOk = () => ($("start").disabled = !$("name").value.trim());
+$("name").addEventListener("input", nameOk); nameOk();
+$("start").onclick = () => { state.name = $("name").value.trim(); save(); render(); };
+
+function render() {
+  if (state.i >= ITEMS.length) return finish();
+  show("label");
+  const it = ITEMS[state.i];
+  $("img").src = "data:image/png;base64," + it.img;
+  $("code").textContent = it.code;
+  $("pos").textContent = `Image ${state.i + 1} of ${ITEMS.length} · ${count()} answered`;
+  $("fill").style.width = (100 * count() / ITEMS.length) + "%";
+  document.querySelectorAll(".verdicts button").forEach((b) => b.classList.toggle("chosen", state.labels[it.code] === b.dataset.v));
+  $("back").disabled = state.i === 0;
+}
+function choose(v) { state.labels[ITEMS[state.i].code] = v; state.i += 1; save(); render(); }
+document.querySelectorAll(".verdicts button").forEach((b) => (b.onclick = () => choose(b.dataset.v)));
+$("back").onclick = () => { if (state.i > 0) { state.i -= 1; save(); render(); } };
+$("toEnd").onclick = finish;
+$("review").onclick = () => { state.i = Math.min(state.i, ITEMS.length - 1); render(); };
+
+function finish() {
+  show("done");
+  const missing = ITEMS.length - count();
+  $("summary").textContent = missing
+    ? `You've answered ${count()} of ${ITEMS.length}. ${missing} still unanswered; you can download now or go back and finish.`
+    : `All ${ITEMS.length} answered.`;
+}
+$("download").onclick = () => {
+  const out = { name: state.name, sheet: KEY, answered: count(), total: ITEMS.length, finished_at: new Date().toISOString(), labels: state.labels };
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], { type: "application/json" }));
+  a.download = `erebus-labels-${state.name.replace(/[^A-Za-z0-9_-]+/g, "_") || "anon"}.json`;
+  a.click();
+};
+document.addEventListener("keydown", (e) => {
+  if ($("label").hidden || e.target.tagName === "INPUT") return;
+  if (e.key === "1") choose("ship");
+  else if (e.key === "2") choose("not");
+  else if (e.key === "3") choose("unsure");
+  else if (e.key === "ArrowLeft") $("back").click();
+});
+if (state.name && count()) render();
+</script>
+</body>
+</html>

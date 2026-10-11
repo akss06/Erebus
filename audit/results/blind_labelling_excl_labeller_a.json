@@ -1,0 +1,216 @@
+{
+  "labellers": [
+    "Labeller B",
+    "Labeller C"
+  ],
+  "queue": {
+    "n_images": 73,
+    "per_labeller": {
+      "Labeller B": {
+        "answered": 73,
+        "ship": 0.712,
+        "not": 0.082,
+        "unsure": 0.205
+      },
+      "Labeller C": {
+        "answered": 73,
+        "ship": 0.534,
+        "not": 0.247,
+        "unsure": 0.219
+      }
+    },
+    "majority": {
+      "ship": 29,
+      "not": 2,
+      "unsure": 2,
+      "split": 40
+    },
+    "mean_pairwise_agreement": 0.452,
+    "fleiss_kappa": -0.016,
+    "kappa_images": 73
+  },
+  "clutter_controls": {
+    "n_images": 20,
+    "per_labeller": {
+      "Labeller B": {
+        "answered": 20,
+        "ship": 0.25,
+        "not": 0.4,
+        "unsure": 0.35
+      },
+      "Labeller C": {
+        "answered": 20,
+        "ship": 0.05,
+        "not": 0.6,
+        "unsure": 0.35
+      }
+    },
+    "majority": {
+      "ship": 1,
+      "not": 5,
+      "unsure": 3,
+      "split": 11
+    },
+    "mean_pairwise_agreement": 0.45,
+    "fleiss_kappa": 0.091,
+    "kappa_images": 20
+  },
+  "queue_by_class": {
+    "DARK_CANDIDATE": {
+      "n_images": 32,
+      "per_labeller": {
+        "Labeller B": {
+          "answered": 32,
+          "ship": 0.75,
+          "not": 0.031,
+          "unsure": 0.219
+        },
+        "Labeller C": {
+          "answered": 32,
+          "ship": 0.5,
+          "not": 0.219,
+          "unsure": 0.281
+        }
+      },
+      "majority": {
+        "ship": 11,
+        "not": 0,
+        "unsure": 1,
+        "split": 20
+      },
+      "mean_pairwise_agreement": 0.375,
+      "fleiss_kappa": -0.176,
+      "kappa_images": 32
+    },
+    "LOW_CONFIDENCE": {
+      "n_images": 3,
+      "per_labeller": {
+        "Labeller B": {
+          "answered": 3,
+          "ship": 0.333,
+          "not": 0.333,
+          "unsure": 0.333
+        },
+        "Labeller C": {
+          "answered": 3,
+          "ship": 0.0,
+          "not": 0.333,
+          "unsure": 0.667
+        }
+      },
+      "majority": {
+        "ship": 0,
+        "not": 0,
+        "unsure": 0,
+        "split": 3
+      },
+      "mean_pairwise_agreement": 0.0,
+      "fleiss_kappa": -0.636,
+      "kappa_images": 3
+    },
+    "PERSISTENT_UNIDENTIFIED": {
+      "n_images": 1,
+      "per_labeller": {
+        "Labeller B": {
+          "answered": 1,
+          "ship": 0.0,
+          "not": 1.0,
+          "unsure": 0.0
+        },
+        "Labeller C": {
+          "answered": 1,
+          "ship": 0.0,
+          "not": 1.0,
+          "unsure": 0.0
+        }
+      },
+      "majority": {
+        "ship": 0,
+        "not": 1,
+        "unsure": 0,
+        "split": 0
+      },
+      "mean_pairwise_agreement": 1.0,
+      "fleiss_kappa": null,
+      "kappa_images": 1
+    },
+    "SUSPECTED_FIXED": {
+      "n_images": 17,
+      "per_labeller": {
+        "Labeller B": {
+          "answered": 17,
+          "ship": 0.706,
+          "not": 0.118,
+          "unsure": 0.176
+        },
+        "Labeller C": {
+          "answered": 17,
+          "ship": 0.176,
+          "not": 0.529,
+          "unsure": 0.294
+        }
+      },
+      "majority": {
+        "ship": 3,
+        "not": 1,
+        "unsure": 1,
+        "split": 12
+      },
+      "mean_pairwise_agreement": 0.294,
+      "fleiss_kappa": -0.094,
+      "kappa_images": 17
+    },
+    "UNVERIFIED_TARGET": {
+      "n_images": 1,
+      "per_labeller": {
+        "Labeller B": {
+          "answered": 1,
+          "ship": 1.0,
+          "not": 0.0,
+          "unsure": 0.0
+        },
+        "Labeller C": {
+          "answered": 1,
+          "ship": 1.0,
+          "not": 0.0,
+          "unsure": 0.0
+        }
+      },
+      "majority": {
+        "ship": 1,
+        "not": 0,
+        "unsure": 0,
+        "split": 0
+      },
+      "mean_pairwise_agreement": 1.0,
+      "fleiss_kappa": null,
+      "kappa_images": 1
+    },
+    "VESSEL_CANDIDATE": {
+      "n_images": 19,
+      "per_labeller": {
+        "Labeller B": {
+          "answered": 19,
+          "ship": 0.737,
+          "not": 0.053,
+          "unsure": 0.211
+        },
+        "Labeller C": {
+          "answered": 19,
+          "ship": 1.0,
+          "not": 0.0,
+          "unsure": 0.0
+        }
+      },
+      "majority": {
+        "ship": 14,
+        "not": 0,
+        "unsure": 0,
+        "split": 5
+      },
+      "mean_pairwise_agreement": 0.737,
+      "fleiss_kappa": -0.124,
+      "kappa_images": 19
+    }
+  }
+}

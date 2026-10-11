@@ -1,0 +1,560 @@
+[
+ {
+  "detection_id": "2026-09-10-R39",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L01"
+ },
+ {
+  "detection_id": "2026-08-29-R09",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L02"
+ },
+ {
+  "detection_id": "2026-09-10-R43",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L03"
+ },
+ {
+  "detection_id": "2026-09-10-R05",
+  "set": "queue",
+  "class": "LOW_CONFIDENCE",
+  "code": "L04"
+ },
+ {
+  "detection_id": "2026-06-30-R59",
+  "set": "queue",
+  "class": "LOW_CONFIDENCE",
+  "code": "L05"
+ },
+ {
+  "detection_id": "2026-06-30-R08",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L06"
+ },
+ {
+  "detection_id": "2026-01-30-G13",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L07"
+ },
+ {
+  "detection_id": "2026-09-22-R08",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L08"
+ },
+ {
+  "detection_id": "2026-01-06-G06",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L09"
+ },
+ {
+  "detection_id": "2026-07-24-R81",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L10"
+ },
+ {
+  "detection_id": "2026-09-10-R49",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L11"
+ },
+ {
+  "detection_id": "2026-01-30-G07",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L12"
+ },
+ {
+  "detection_id": "2026-09-10-R10",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L13"
+ },
+ {
+  "detection_id": "2026-07-24-R15",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L14"
+ },
+ {
+  "detection_id": "2026-09-10-R30",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L15"
+ },
+ {
+  "detection_id": "2026-09-10-R34",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L16"
+ },
+ {
+  "detection_id": "2026-07-24-R17",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L17"
+ },
+ {
+  "detection_id": "2026-06-30-R86",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L18"
+ },
+ {
+  "detection_id": "2026-01-06-G16",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L19"
+ },
+ {
+  "detection_id": "2026-07-24-R97",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L20"
+ },
+ {
+  "detection_id": "2026-09-10-R71",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L21"
+ },
+ {
+  "detection_id": "2026-01-30-G25",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L22"
+ },
+ {
+  "detection_id": "2026-07-12-R12",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L23"
+ },
+ {
+  "detection_id": "2026-07-12-R26",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L24"
+ },
+ {
+  "detection_id": "2026-01-06-G08",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L25"
+ },
+ {
+  "detection_id": "2026-01-06-G20",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L26"
+ },
+ {
+  "detection_id": "2026-08-05-R03",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L27"
+ },
+ {
+  "detection_id": "2026-06-30-R03",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L28"
+ },
+ {
+  "detection_id": "2026-08-17-R74",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L29"
+ },
+ {
+  "detection_id": "2026-07-24-R12",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L30"
+ },
+ {
+  "detection_id": "2026-09-10-R18",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L31"
+ },
+ {
+  "detection_id": "2026-06-30-R67",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L32"
+ },
+ {
+  "detection_id": "2026-07-24-R83",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L33"
+ },
+ {
+  "detection_id": "2026-07-12-R05",
+  "set": "queue",
+  "class": "PERSISTENT_UNIDENTIFIED",
+  "code": "L34"
+ },
+ {
+  "detection_id": "2026-08-29-R138",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L35"
+ },
+ {
+  "detection_id": "2026-07-24-R96",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L36"
+ },
+ {
+  "detection_id": "2026-01-06-G04",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L37"
+ },
+ {
+  "detection_id": "2026-06-30-R35",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L38"
+ },
+ {
+  "detection_id": "2026-08-29-R08",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L39"
+ },
+ {
+  "detection_id": "2026-07-24-R07",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L40"
+ },
+ {
+  "detection_id": "2026-01-30-G01",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L41"
+ },
+ {
+  "detection_id": "2026-09-22-R18",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L42"
+ },
+ {
+  "detection_id": "2026-01-18-G02",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L43"
+ },
+ {
+  "detection_id": "2026-08-29-R99",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L44"
+ },
+ {
+  "detection_id": "2026-01-18-G10",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L45"
+ },
+ {
+  "detection_id": "2026-07-24-R82",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L46"
+ },
+ {
+  "detection_id": "2026-06-30-R82",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L47"
+ },
+ {
+  "detection_id": "2026-08-17-R34",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L48"
+ },
+ {
+  "detection_id": "2026-08-29-R01",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L49"
+ },
+ {
+  "detection_id": "2026-09-10-R70",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L50"
+ },
+ {
+  "detection_id": "2026-09-10-R45",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L51"
+ },
+ {
+  "detection_id": "2026-01-30-G45",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L52"
+ },
+ {
+  "detection_id": "2026-08-17-R07",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L53"
+ },
+ {
+  "detection_id": "2026-06-30-R18",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L54"
+ },
+ {
+  "detection_id": "2026-08-17-R88",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L55"
+ },
+ {
+  "detection_id": "2026-08-29-R118",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L56"
+ },
+ {
+  "detection_id": "2026-01-30-G05",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L57"
+ },
+ {
+  "detection_id": "2026-09-10-R46",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L58"
+ },
+ {
+  "detection_id": "2026-07-24-R68",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L59"
+ },
+ {
+  "detection_id": "2026-07-12-R21",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L60"
+ },
+ {
+  "detection_id": "2026-07-12-R02",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L61"
+ },
+ {
+  "detection_id": "2026-01-06-G30",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L62"
+ },
+ {
+  "detection_id": "2026-06-30-R85",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L63"
+ },
+ {
+  "detection_id": "2026-07-24-R18",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L64"
+ },
+ {
+  "detection_id": "2026-07-24-R86",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L65"
+ },
+ {
+  "detection_id": "2026-01-18-G03",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L66"
+ },
+ {
+  "detection_id": "2026-08-29-R11",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L67"
+ },
+ {
+  "detection_id": "2026-09-10-R47",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L68"
+ },
+ {
+  "detection_id": "2026-09-22-R16",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L69"
+ },
+ {
+  "detection_id": "2026-06-30-R87",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L70"
+ },
+ {
+  "detection_id": "2026-06-30-R84",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L71"
+ },
+ {
+  "detection_id": "2026-06-30-R45",
+  "set": "queue",
+  "class": "LOW_CONFIDENCE",
+  "code": "L72"
+ },
+ {
+  "detection_id": "2026-08-05-R08",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L73"
+ },
+ {
+  "detection_id": "2026-01-06-G02",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L74"
+ },
+ {
+  "detection_id": "2026-06-30-R14",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L75"
+ },
+ {
+  "detection_id": "2026-08-17-R86",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L76"
+ },
+ {
+  "detection_id": "2026-08-17-R39",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L77"
+ },
+ {
+  "detection_id": "2026-01-30-G10",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L78"
+ },
+ {
+  "detection_id": "2026-01-06-G07",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L79"
+ },
+ {
+  "detection_id": "2026-07-24-R102",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L80"
+ },
+ {
+  "detection_id": "2026-08-17-R14",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L81"
+ },
+ {
+  "detection_id": "2026-08-17-R111",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L82"
+ },
+ {
+  "detection_id": "2026-07-24-R36",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L83"
+ },
+ {
+  "detection_id": "2026-09-10-R69",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L84"
+ },
+ {
+  "detection_id": "2026-08-29-R117",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L85"
+ },
+ {
+  "detection_id": "2026-08-29-R127",
+  "set": "queue",
+  "class": "UNVERIFIED_TARGET",
+  "code": "L86"
+ },
+ {
+  "detection_id": "2026-06-30-R31",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L87"
+ },
+ {
+  "detection_id": "2026-08-29-R110",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L88"
+ },
+ {
+  "detection_id": "2026-07-12-R23",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L89"
+ },
+ {
+  "detection_id": "2026-01-30-G26",
+  "set": "clutter_control",
+  "class": "CLUTTER",
+  "code": "L90"
+ },
+ {
+  "detection_id": "2026-06-30-R05",
+  "set": "queue",
+  "class": "VESSEL_CANDIDATE",
+  "code": "L91"
+ },
+ {
+  "detection_id": "2026-08-17-R113",
+  "set": "queue",
+  "class": "SUSPECTED_FIXED",
+  "code": "L92"
+ },
+ {
+  "detection_id": "2026-01-30-G31",
+  "set": "queue",
+  "class": "DARK_CANDIDATE",
+  "code": "L93"
+ }
+]
