@@ -2,13 +2,13 @@
 
 Detect ships in real **Sentinel-1 SAR** imagery over Indian waters, cross-reference
 them against **AIS** broadcasts, and flag radar targets that appear on satellite but
-are **not** broadcasting their position — *candidate "dark vessels"*.
+have **no matching AIS** broadcast — *unverified candidates for human review*.
 
 Built by **Team SREEGOAT / Erébus** (Manipal Institute of Technology, Bengaluru) for
 TechGig *Ideas of India 2026*, Round 2.
 
 **Live:** frontend on **Vercel**, backend API on **Render** (Docker). The hosted demo
-serves the full precomputed viewer; the live "Run Analysis" button is gated there (it
+serves the full precomputed viewer; the live "Run Analysis" button is hidden there (it
 needs Earth Engine credentials) — see [§11 Deployment](#11-deployment) and
 [DEPLOY.md](DEPLOY.md).
 
@@ -49,11 +49,11 @@ dense, repeat-pass test bed.
         │
 [5] fetch_ais     → GFW AIS presence + GFW SAR-detection records in AOI, ±1 day of the pass
         │
-[6] match         → nearest AIS to each detection; no AIS within radius = UNMATCHED ("dark")
+[6] match         → nearest AIS to each detection; no AIS within radius = UNMATCHED (not yet "dark")
         │
 [7] confidence    → cluster detections across passes; persistence + AIS-identity → confidence class
         │
-[8] app           → interactive web map + review queue (green = matched, red = dark candidate)
+[8] app           → interactive web map + review queue (teal = likely vessel with AIS, red = no AIS match: needs review)
 ```
 
 Detection runs **locally in NumPy** on a small clipped GeoTIFF — far more debuggable
@@ -69,7 +69,7 @@ ESA SNAP / snappy** toolchain anywhere in this project.
 |---|---|
 | SAR source | Google Earth Engine — `COPERNICUS/S1_GRD`, IW mode, VV polarization, 10 m |
 | AIS source | Global Fishing Watch API (`public-global-presence` + `public-global-sar-presence`) |
-| Detection | Python, NumPy, SciPy, rasterio, GeoPandas, Shapely — CA-CFAR + morphology |
+| Detection | Python, NumPy, SciPy, rasterio, GeoPandas, Shapely — v3 superpixel Generalized-Gamma CFAR (§9); CA-CFAR kept as frozen baseline |
 | Backend | FastAPI + Pydantic (serves precomputed GeoJSON; no GEE/GFW calls at request time) |
 | Frontend | Vite + React 19 + TypeScript + MapLibre GL |
 | Deployment | Frontend → Vercel (static build); backend → Render / any Docker host (`Dockerfile`) |
@@ -362,8 +362,8 @@ our own AIS match and the AIS-off simulation.
 | **Gulf of Mannar / Palk Strait, Jan 2026** (3 passes) | 88 | VESSEL_CANDIDATE 6 · CLUTTER 74 · **DARK 8** | 14 |
 | **Tuticorin anchorage** (4 passes, own AIS) | 34 | ANCHORED 4 · VESSEL_CANDIDATE 8 · CLUTTER 22 · **DARK 0** | 9 |
 
-All dark-candidate counts are **unverified candidates pending review**, not confirmed
-dark vessels. On inspection, several of the Jun–Sep candidates (e.g. three near Pamban,
+All `DARK` counts (shown in the app as "No AIS match: needs review") are **unverified
+candidates pending review**, not confirmed dark vessels. On inspection, several of the Jun–Sep candidates (e.g. three near Pamban,
 79.23°E 9.20°N) are long, thin streaks: likely azimuth ambiguities, wakes or structures,
 not ships. Real large ships are also elongated, so they are left for the analyst
 to reject rather than filtered out. In the merged Gulf area, locations are clustered
@@ -391,7 +391,7 @@ time, except the live "Run Analysis" feature).
   system reclassify it. DMC JUPITER becomes a `DARK_CANDIDATE` (the clean demo);
   NEREUS PROGRESS, seen across passes, falls to `PERSISTENT_UNIDENTIFIED` — the honest
   limitation: an anchored vessel with AIS removed looks like a persistent unidentified
-  return, not a clean dark candidate. It does, however, stay in the review queue rather
+  return, not a clean no-AIS candidate. It does, however, stay in the review queue rather
   than being dismissed. Always behind an amber **SIMULATION** banner.
 - **Run Analysis**: kick off the detection pipeline on a new AOI/date on demand, with
   live progress streamed over Server-Sent Events. It runs the same corrected
@@ -403,7 +403,7 @@ time, except the live "Run Analysis" feature).
   vs unavailable vs no open sea) and distinguishes a **GFW request failure** (that date
   *unperformed* → `partial`) from a **successful empty response** (no detections there),
   so a failed retrieval is never presented as an empty sea. On the hosted demo this
-  button is disabled unless the backend has live-analysis credentials (gated via
+  button is hidden unless the backend has live-analysis credentials (gated via
   `/api/health`; see §11).
 
 **API endpoints** (`backend/main.py`): `/api/health`, `/api/areas`, `/api/detections`
@@ -418,7 +418,7 @@ runs.
 
 Visual review of the recent run surfaced three false-positive modes the original
 CA-CFAR could not handle: clustered clutter flagged as vessels, detections on small
-unmasked reefs/islets, and faint speckle near bright returns reading as dark vessels.
+unmasked reefs/islets, and faint speckle near bright returns reading as no-AIS candidates.
 `detect_v3.py` replaces the hand-tuned post-filters with a literature-grounded
 detector — each stage mapped to a paper from a SAR false-positive-reduction review
 (the Elicit set):
@@ -475,7 +475,7 @@ The frozen Round-1 CA-CFAR detector (`detect.py`) and the GFW validation
 stay honest.
 
 **Still pending (needs data/network):**
-(a) an authoritative charted Adam's Bridge reef-chain mask (two Jun-30 dark candidates
+(a) an authoritative charted Adam's Bridge reef-chain mask (two Jun-30 no-AIS candidates
 sit on that shoal, which JRC reports as permanent water); (b) a labelled evaluation set
 to turn the known-vessel and density measurements into precision/recall. (Re-running the
 Tuticorin and Jan 2026 detections through v3 is done as of Oct 2026.)
@@ -539,7 +539,7 @@ there.
 
 **Live-analysis gating.** `/api/health` returns a `live_analysis` flag — true only when
 the GFW token **and** an Earth Engine credential (a service account, or a cached local
-login) are present. The frontend disables the **Run Analysis** button when it's false,
+login) are present. The frontend hides the **Run Analysis** button when it's false,
 so the hosted demo never offers a run that would just error. The precomputed viewer
 (areas, crops, overlay, AIS-off simulation) needs **no secrets**.
 

@@ -140,7 +140,7 @@ export const api = {
   detections: (area: string, date: string, sim: string | null = null) =>
     get<Detection[]>(`/api/detections?area=${area}&date=${date}${q(sim)}`),
   detection: (id: string, sim: string | null = null) => get<DetectionDetail>(`/api/detections/${id}?${q(sim).slice(1)}`),
-  alerts: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/alerts?area=${area}${q(sim)}`),
+  alerts: (area: string, sim: string | null = null) => get<Cluster[]>(`/api/alerts?area=${area}&limit=200${q(sim)}`),
   simVessels: () => get<SimVessel[]>("/api/simulation/vessels"),
   review: async (r: Review): Promise<Review> => {
     const res = await fetch(`${API_BASE}/api/reviews`, {
