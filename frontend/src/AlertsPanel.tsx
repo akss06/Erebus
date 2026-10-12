@@ -40,7 +40,8 @@ export default function AlertsPanel({ alerts, selectedId, onSelect }: Props) {
               <div>
                 <b>{info.label}</b> <span className="conf">{a.confidence}</span>
                 <div className="small muted">
-                  {a.matched_names[0] ?? "no AIS match"} · {a.passes_seen} pass{a.passes_seen > 1 ? "es" : ""}{a.dates.length > 0 && ` · ${dateSummary(a.dates)}`}
+                  {a.matched_names[0] ?? (a.confidence_class === "DARK_CANDIDATE" ? "no AIS match"
+                    : a.confidence_class === "UNVERIFIED_TARGET" ? "AIS not checked" : "no AIS identified")} ·{a.passes_seen} pass{a.passes_seen > 1 ? "es" : ""}{a.dates.length > 0 && ` · ${dateSummary(a.dates)}`}
                 </div>
               </div>
               {a.review && <span className={`badge ${a.review.verdict}`}>{VERDICT_LABEL[a.review.verdict]}</span>}
