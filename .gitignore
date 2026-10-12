@@ -40,6 +40,7 @@ frontend/dist/
 
 # internal docs - kept local, not pushed to the public GitHub repo
 CLAUDE.md
+AGENTS.md
 WORKLOG.md
 PROJECT_SPEC.md
 ROUND2_PLAN.md
